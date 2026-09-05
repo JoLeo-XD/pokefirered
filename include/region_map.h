@@ -12,6 +12,7 @@ enum {
 };
 
 u8 *GetMapName(u8 *dest, u16 mapsec, u16 fill);
+u8 *GetMapNameSummary(u8 *dest, u16 mapsec);
 u8 *GetMapNameGeneric(u8 *dest, u16 mapsec);
 u8 *GetMapNameGeneric_(u8 *dest, u16 mapsec);
 void InitRegionMapWithExitCB(u8 type, void (*callback)(void));

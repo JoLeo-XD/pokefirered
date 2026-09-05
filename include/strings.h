@@ -885,10 +885,12 @@ extern const u8 gEasyChatGroupName_Pokemon2[];
 extern const u8 gText_ThreeQuestionMarks[];
 
 // hall_of_fame
-extern const u8 gText_LeagueChamp[];
+extern const u8 gText_LeagueChampM[];
+extern const u8 gText_LeagueChampF[];
 extern const u8 gText_HOFNumber[];
-extern const u8 gText_UPDOWNPick_ABUTTONBBUTTONCancel[];
-extern const u8 gText_UPDOWNPick_ABUTTONNext_BBUTTONBack[];
+extern const u8 gText_UPDOWNPick_ABUTTONPrev_BBUTTONCancel[];
+extern const u8 gText_UPDOWNPick_ABUTTONPrev_BBUTTONNext[];
+extern const u8 gText_UPDOWNPick_ABUTTONCancel_BBUTTONNext[];
 extern const u8 gText_ABUTTONExit[];
 extern const u8 gText_HOFCorrupted[];
 extern const u8 gText_WelcomeToHOF[];
@@ -913,6 +915,9 @@ extern const u8 gText_GiveUpTryingToTeachNewMove[];
 extern const u8 gText_DecimalPoint[];
 
 // map_name_popup
+extern const u8 gText_Floor[];
+extern const u8 gText_GroundFloor[];
+extern const u8 gText_SubFloor[];
 extern const u8 gText_Rooftop2[];
 
 // option menu
@@ -997,7 +1002,8 @@ extern const u8 gText_NumericalModeNational[];
 extern const u8 gText_PokedexPokemon[];
 extern const u8 gText_HT[];
 extern const u8 gText_WT[];
-extern const u8 gText_Lbs[];
+extern const u8 gText_kg[];
+extern const u8 gText_meters[];
 extern const u8 gText_Cry[];
 extern const u8 gText_NextDataCancel[];
 extern const u8 gText_Next[];
@@ -1474,9 +1480,11 @@ extern const u8 gPCText_Simple[];
 extern const u8 gText_Counting_1[];
 extern const u8 gText_Counting_2And[];
 extern const u8 gText_Poof[];
-extern const u8 gText_WasUsedOn[];
+extern const u8 gText_WasUsedOn1[];
+extern const u8 gText_WasUsedOn2[];
 extern const u8 gText_Period[];
-extern const u8 gText_LevelRoseTo[];
+extern const u8 gText_LevelRoseTo1[];
+extern const u8 gText_LevelRoseTo2[];
 extern const u8 gText_Period2[];
 extern const u8 gText_MonLearnedTMHM[];
 extern const u8 gText_MonForgotMove[];
@@ -1524,6 +1532,8 @@ extern const u8 gText_PokeSum_ApparentlyFatefulEncounterHatched_BoldGentleGramma
 extern const u8 gText_PokeSum_ApparentlyFatefulEncounterHatched[];
 extern const u8 gText_PokeSum_ApparentlyMet[];
 extern const u8 gText_PokeSum_ApparentlyMet_BoldGentleGrammar[];
+extern const u8 gText_PokeSum_ApparentlyHatched[];
+extern const u8 gText_PokeSum_ApparentlyHatched_BoldGentleGrammar[];
 extern const u8 gText_PokeSum_ExpPoints[];
 extern const u8 gText_PokeSum_NextLv[];
 extern const u8 gText_PokeSum_PageName_PokemonInfo[];

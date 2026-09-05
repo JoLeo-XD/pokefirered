@@ -428,30 +428,33 @@ const u8 gTypeEffectiveness[336] =
 const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
 {
     [TYPE_NORMAL] = _("NORMAL"),
-    [TYPE_FIGHTING] = _("FIGHT"),
-    [TYPE_FLYING] = _("FLYING"),
-    [TYPE_POISON] = _("POISON"),
-    [TYPE_GROUND] = _("GROUND"),
-    [TYPE_ROCK] = _("ROCK"),
-    [TYPE_BUG] = _("BUG"),
-    [TYPE_GHOST] = _("GHOST"),
-    [TYPE_STEEL] = _("STEEL"),
+    [TYPE_FIGHTING] = _("LUTA"),
+    [TYPE_FLYING] = _("VOADOR"),
+    [TYPE_POISON] = _("VENENO"),
+    [TYPE_GROUND] = _("TERRA"),
+    [TYPE_ROCK] = _("ROCHA"),
+    [TYPE_BUG] = _("INSETO"),
+    [TYPE_GHOST] = _("FANTAS"),
+    [TYPE_STEEL] = _("AÇO"),
     [TYPE_MYSTERY] = _("???"),
-    [TYPE_FIRE] = _("FIRE"),
-    [TYPE_WATER] = _("WATER"),
-    [TYPE_GRASS] = _("GRASS"),
-    [TYPE_ELECTRIC] = _("ELECTR"),
-    [TYPE_PSYCHIC] = _("PSYCHC"),
-    [TYPE_ICE] = _("ICE"),
-    [TYPE_DRAGON] = _("DRAGON"),
-    [TYPE_DARK] = _("DARK"),
+    [TYPE_FIRE] = _("FOGO"),
+    [TYPE_WATER] = _("ÁGUA"),
+    [TYPE_GRASS] = _("GRAMA"),
+    [TYPE_ELECTRIC] = _("ELÉTRI"),
+    [TYPE_PSYCHIC] = _("PSÍQUI"),
+    [TYPE_ICE] = _("GELO"),
+    [TYPE_DRAGON] = _("DRAGÃO"),
+    [TYPE_DARK] = _("ESCURO"),
 };
 
 // This is a factor in how much money you get for beating a trainer.
 const struct TrainerMoney gTrainerMoneyTable[] =
 {
     {TRAINER_CLASS_LEADER, 25},
-    {TRAINER_CLASS_ELITE_FOUR, 25},
+    {TRAINER_CLASS_ELITE_FOUR_1, 25},
+    {TRAINER_CLASS_ELITE_FOUR_2, 25},
+    {TRAINER_CLASS_ELITE_FOUR_3, 25},
+    {TRAINER_CLASS_ELITE_FOUR_4, 25},
     {TRAINER_CLASS_PKMN_PROF, 25},
     {TRAINER_CLASS_RIVAL_EARLY, 4},
     {TRAINER_CLASS_RIVAL_LATE, 9},
@@ -463,7 +466,8 @@ const struct TrainerMoney gTrainerMoneyTable[] =
     {TRAINER_CLASS_PICNICKER, 5},
     {TRAINER_CLASS_SUPER_NERD, 6},
     {TRAINER_CLASS_FISHERMAN, 9},
-    {TRAINER_CLASS_TEAM_ROCKET, 8},
+    {TRAINER_CLASS_TEAM_ROCKET_GRUNT, 8},
+    {TRAINER_CLASS_TEAM_ROCKET_ADMIN, 8},
     {TRAINER_CLASS_LASS, 4},
     {TRAINER_CLASS_BEAUTY, 18},
     {TRAINER_CLASS_BLACK_BELT, 6},
@@ -3746,9 +3750,13 @@ static void HandleEndTurn_BattleWon(void)
             PlayBGM(MUS_VICTORY_GYM_LEADER);
             break;
         case TRAINER_CLASS_BOSS:
-        case TRAINER_CLASS_TEAM_ROCKET:
+        case TRAINER_CLASS_TEAM_ROCKET_GRUNT:
+        case TRAINER_CLASS_TEAM_ROCKET_ADMIN:
         case TRAINER_CLASS_COOLTRAINER:
-        case TRAINER_CLASS_ELITE_FOUR:
+        case TRAINER_CLASS_ELITE_FOUR_1:
+        case TRAINER_CLASS_ELITE_FOUR_2:
+        case TRAINER_CLASS_ELITE_FOUR_3:
+        case TRAINER_CLASS_ELITE_FOUR_4:
         case TRAINER_CLASS_GENTLEMAN:
         default:
             PlayBGM(MUS_VICTORY_TRAINER);

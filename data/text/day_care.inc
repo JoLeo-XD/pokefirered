@@ -127,4 +127,4 @@ DayCare_Text_WhatWillYouBattleWith::
 	.string "Come back another time.$"
 
 DayCare_Text_Huh::
-	.string "Huh?$"
+	.string "Oh?$"

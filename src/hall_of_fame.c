@@ -385,7 +385,7 @@ static void Task_Hof_InitMonData(u8 taskId)
     u16 j;
     u8 nick[11];
 
-    gTasks[taskId].data[2] = 0;
+    gTasks[taskId].data[3] = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
@@ -397,7 +397,7 @@ static void Task_Hof_InitMonData(u8 taskId)
             GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, nick);
             for (j = 0; j < 10; j++)
                 sHofMonPtr[0].mon[i].nick[j] = nick[j];
-            gTasks[taskId].data[2]++;
+            gTasks[taskId].data[3]++;
         }
         else
         {
@@ -410,7 +410,7 @@ static void Task_Hof_InitMonData(u8 taskId)
     }
     sSelectedPaletteIndices = 0;
     gTasks[taskId].data[1] = 0;
-    gTasks[taskId].data[4] = 0xFF;
+    gTasks[taskId].data[5] = 0xFF;
     for (i = 0; i < 6; i++)
         gTasks[taskId].data[i + 5] = 0xFF;
     if (gTasks[taskId].data[0])
@@ -465,13 +465,13 @@ static void Task_Hof_TrySaveData(u8 taskId)
     TrySavingData(SAVE_HALL_OF_FAME);
     PlaySE(SE_SAVE);
     gTasks[taskId].func = Task_Hof_DelayAfterSave;
-    gTasks[taskId].data[3] = 32;
+    gTasks[taskId].data[4] = 32;
 }
 
 static void Task_Hof_DelayAfterSave(u8 taskId)
 {
-    if (gTasks[taskId].data[3] != 0)
-        gTasks[taskId].data[3]--;
+    if (gTasks[taskId].data[4] != 0)
+        gTasks[taskId].data[4]--;
     else
         gTasks[taskId].func = Task_Hof_StartDisplayingMons;
 }
@@ -493,7 +493,7 @@ static void Task_Hof_DisplayMon(u8 taskId)
     struct HallofFameMon* currMon = &sHofMonPtr[0].mon[currMonId];
 
 
-    if (gTasks[taskId].data[2] > 3)
+    if (gTasks[taskId].data[3] > 3)
     {
         srcX = sHallOfFame_MonFullTeamPositions[currMonId][0];
         srcY = sHallOfFame_MonFullTeamPositions[currMonId][1];
@@ -513,7 +513,7 @@ static void Task_Hof_DisplayMon(u8 taskId)
     gSprites[spriteId].data[2] = dstY;
     gSprites[spriteId].data[0] = 0;
     gSprites[spriteId].callback = SpriteCB_GetOnScreen;
-    gTasks[taskId].data[5 + currMonId] = spriteId;
+    gTasks[taskId].data[6 + currMonId] = spriteId;
     ClearDialogWindowAndFrame(0, TRUE);
     gTasks[taskId].func = Task_Hof_PlayMonCryAndPrintInfo;
 }
@@ -522,12 +522,12 @@ static void Task_Hof_PlayMonCryAndPrintInfo(u8 taskId)
 {
     u16 currMonId = gTasks[taskId].data[1];
     struct HallofFameMon* currMon = &sHofMonPtr[0].mon[currMonId];
-    if (gSprites[gTasks[taskId].data[5 + currMonId]].data[0])
+    if (gSprites[gTasks[taskId].data[6 + currMonId]].data[0])
     {
         if (currMon->species != SPECIES_EGG)
             PlayCry_Normal(currMon->species, 0);
         HallOfFame_PrintMonInfo(currMon, 0, 14);
-        gTasks[taskId].data[3] = 120;
+        gTasks[taskId].data[4] = 120;
         gTasks[taskId].func = Task_Hof_TryDisplayAnotherMon;
     }
 }
@@ -537,18 +537,18 @@ static void Task_Hof_TryDisplayAnotherMon(u8 taskId)
     u16 currPokeId = gTasks[taskId].data[1];
     struct HallofFameMon* currMon = &sHofMonPtr[0].mon[currPokeId];
 
-    if (gTasks[taskId].data[3] != 0)
+    if (gTasks[taskId].data[4] != 0)
     {
-        gTasks[taskId].data[3]--;
+        gTasks[taskId].data[4]--;
     }
     else
     {
-        sSelectedPaletteIndices |= (0x10000 << gSprites[gTasks[taskId].data[5 + currPokeId]].oam.paletteNum);
+        sSelectedPaletteIndices |= (0x10000 << gSprites[gTasks[taskId].data[6 + currPokeId]].oam.paletteNum);
         if (gTasks[taskId].data[1] < PARTY_SIZE - 1 && currMon[1].species != SPECIES_NONE) // there is another pokemon to display
         {
             gTasks[taskId].data[1]++;
             BeginNormalPaletteFade(sSelectedPaletteIndices, 0, 12, 12, HALL_OF_FAME_BG_PAL);
-            gSprites[gTasks[taskId].data[5 + currPokeId]].oam.priority = 1;
+            gSprites[gTasks[taskId].data[6 + currPokeId]].oam.priority = 1;
             gTasks[taskId].func = Task_Hof_DisplayMon;
         }
         else
@@ -565,22 +565,22 @@ static void Task_Hof_PaletteFadeAndPrintWelcomeText(u8 taskId)
     BeginNormalPaletteFade(PALETTES_OBJECTS, 0, 0, 0, RGB_BLACK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (gTasks[taskId].data[5 + i] != 0xFF)
-            gSprites[gTasks[taskId].data[5 + i]].oam.priority = 0;
+        if (gTasks[taskId].data[6 + i] != 0xFF)
+            gSprites[gTasks[taskId].data[6 + i]].oam.priority = 0;
     }
 
     HallOfFame_PrintWelcomeText(0, 15);
     PlaySE(SE_APPLAUSE);
-    gTasks[taskId].data[3] = 400;
+    gTasks[taskId].data[4] = 400;
     gTasks[taskId].func = Task_Hof_ApplauseAndConfetti;
 }
 
 static void Task_Hof_ApplauseAndConfetti(u8 taskId)
 {
-    if (gTasks[taskId].data[3] != 0)
+    if (gTasks[taskId].data[4] != 0)
     {
-        gTasks[taskId].data[3]--;
-        if ((gTasks[taskId].data[3] & 3) == 0 && gTasks[taskId].data[3] > 110)
+        gTasks[taskId].data[4]--;
+        if ((gTasks[taskId].data[4] & 3) == 0 && gTasks[taskId].data[4] > 110)
             Hof_SpawnConfetti();
     }
     else
@@ -588,27 +588,27 @@ static void Task_Hof_ApplauseAndConfetti(u8 taskId)
         u16 i;
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            if (gTasks[taskId].data[5 + i] != 0xFF)
-                gSprites[gTasks[taskId].data[5 + i]].oam.priority = 1;
+            if (gTasks[taskId].data[6 + i] != 0xFF)
+                gSprites[gTasks[taskId].data[6 + i]].oam.priority = 1;
         }
         BeginNormalPaletteFade(sSelectedPaletteIndices, 0, 12, 12, HALL_OF_FAME_BG_PAL);
         FillWindowPixelBuffer(0, PIXEL_FILL(0));
         CopyWindowToVram(0, COPYWIN_FULL);
-        gTasks[taskId].data[3] = 7;
+        gTasks[taskId].data[4] = 7;
         gTasks[taskId].func = Task_Hof_WaitBorderFadeAway;
     }
 }
 
 static void Task_Hof_WaitBorderFadeAway(u8 taskId)
 {
-    if (gTasks[taskId].data[3] > 15)
+    if (gTasks[taskId].data[4] > 15)
     {
         gTasks[taskId].func = Task_Hof_SpawnPlayerPic;
     }
     else
     {
-        gTasks[taskId].data[3]++;
-        SetGpuReg(REG_OFFSET_BLDALPHA, 256 * gTasks[taskId].data[3]);
+        gTasks[taskId].data[4]++;
+        SetGpuReg(REG_OFFSET_BLDALPHA, 256 * gTasks[taskId].data[4]);
     }
 }
 
@@ -618,29 +618,32 @@ static void Task_Hof_SpawnPlayerPic(u8 taskId)
     ShowBg(0);
     ShowBg(1);
     ShowBg(3);
-    gTasks[taskId].data[4] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender, TRUE), TRUE, 0x78, 0x48, 6, 0xFFFF);
+    gTasks[taskId].data[5] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender, TRUE), TRUE, 0x78, 0x48, 6, 0xFFFF);
     AddWindow(&sWindowTemplate);
     LoadStdWindowGfx(1, 0x21D, BG_PLTT_ID(13));
-    gTasks[taskId].data[3] = 120;
+    gTasks[taskId].data[4] = 120;
     gTasks[taskId].func = Task_Hof_WaitAndPrintPlayerInfo;
 }
 
 static void Task_Hof_WaitAndPrintPlayerInfo(u8 taskId)
 {
-    if (gTasks[taskId].data[3] != 0)
+    if (gTasks[taskId].data[4] != 0)
     {
-        gTasks[taskId].data[3]--;
+        gTasks[taskId].data[4]--;
     }
-    else if (gSprites[gTasks[taskId].data[4]].x != 192)
+    else if (gSprites[gTasks[taskId].data[5]].x != 192)
     {
-        gSprites[gTasks[taskId].data[4]].x++;
+        gSprites[gTasks[taskId].data[5]].x++;
     }
     else
     {
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 0x20, 0x20);
         HallOfFame_PrintPlayerInfo(1, 2);
         DrawDialogueFrame(0, 0);
-        AddTextPrinterParameterized2(0, FONT_NORMAL, gText_LeagueChamp, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+		if (gSaveBlock2Ptr->playerGender == MALE)
+			AddTextPrinterParameterized2(0, FONT_NORMAL, gText_LeagueChampM, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+		else
+			AddTextPrinterParameterized2(0, FONT_NORMAL, gText_LeagueChampF, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
         CopyWindowToVram(0, COPYWIN_FULL);
         gTasks[taskId].func = Task_Hof_ExitOnKeyPressed;
     }
@@ -670,14 +673,14 @@ static void Task_Hof_HandleExit(u8 taskId)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            u8 spriteId = gTasks[taskId].data[5 + i];
+            u8 spriteId = gTasks[taskId].data[6 + i];
             if (spriteId != 0xFF)
             {
                 FreeAndDestroyMonPicSprite(spriteId);
             }
         }
 
-        FreeAndDestroyTrainerPicSprite(gTasks[taskId].data[4]);
+        FreeAndDestroyTrainerPicSprite(gTasks[taskId].data[5]);
         HideBg(0);
         HideBg(1);
         HideBg(3);
@@ -780,7 +783,9 @@ static void Task_HofPC_CopySaveData(u8 taskId)
         else
             gTasks[taskId].data[0] = HALL_OF_FAME_MAX_TEAMS - 1;
 
-        gTasks[taskId].data[1] = GetGameStat(GAME_STAT_ENTERED_HOF);
+        gTasks[taskId].data[2] = gTasks[taskId].data[0];
+		
+		gTasks[taskId].data[1] = GetGameStat(GAME_STAT_ENTERED_HOF);
 
         gTasks[taskId].func = Task_HofPC_DrawSpritesPrintText;
     }
@@ -797,13 +802,13 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
 
     currMon = &savedTeams->mon[0];
     sSelectedPaletteIndices = 0;
-    gTasks[taskId].data[2] = 0;
-    gTasks[taskId].data[4] = 0;
+    gTasks[taskId].data[3] = 0;
+    gTasks[taskId].data[5] = 0;
 
     for (i = 0; i < PARTY_SIZE; i++, currMon++)
     {
         if (currMon->species != SPECIES_NONE)
-            gTasks[taskId].data[4]++;
+            gTasks[taskId].data[5]++;
     }
 
     currMon = &savedTeams->mon[0];
@@ -815,7 +820,7 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
             u16 spriteId;
             s16 posX, posY;
 
-            if (gTasks[taskId].data[4] > 3)
+            if (gTasks[taskId].data[5] > 3)
             {
                 posX = sHallOfFame_MonFullTeamPositions[i][2];
                 posY = sHallOfFame_MonFullTeamPositions[i][3];
@@ -829,11 +834,11 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
             spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, TRUE, posX,
                                                        posY, i, 0xFFFF);
             gSprites[spriteId].oam.priority = 1;
-            gTasks[taskId].data[5 + i] = spriteId;
+            gTasks[taskId].data[6 + i] = spriteId;
         }
         else
         {
-            gTasks[taskId].data[5 + i] = 0xFF;
+            gTasks[taskId].data[6 + i] = 0xFF;
         }
     }
 
@@ -843,9 +848,11 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_HOFNumber);
 
     if (gTasks[taskId].data[0] <= 0)
-        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONBBUTTONCancel, 0, 0, TRUE);
+        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONCancel_BBUTTONNext, 0, 0, TRUE);
+    else if (gTasks[taskId].data[0] >= gTasks[taskId].data[2])
+        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONCancel, 0, 0, TRUE);
     else
-        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONNext_BBUTTONBack, 0, 0, TRUE);
+        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONNext, 0, 0, TRUE);
 
     gTasks[taskId].func = Task_HofPC_PrintMonInfo;
 }
@@ -862,17 +869,17 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u16 spriteId = gTasks[taskId].data[5 + i];
+        u16 spriteId = gTasks[taskId].data[6 + i];
         if (spriteId != 0xFF)
             gSprites[spriteId].oam.priority = 1;
     }
 
-    currMonId = gTasks[taskId].data[5 + gTasks[taskId].data[2]];
+    currMonId = gTasks[taskId].data[6 + gTasks[taskId].data[3]];
     gSprites[currMonId].oam.priority = 0;
     sSelectedPaletteIndices = (0x10000 << gSprites[currMonId].oam.paletteNum) ^ 0xFFFF0000;
     BlendPalettesUnfaded(sSelectedPaletteIndices, 0xC, HALL_OF_FAME_BG_PAL);
 
-    currMon = &savedTeams->mon[gTasks[taskId].data[2]];
+    currMon = &savedTeams->mon[gTasks[taskId].data[3]];
     if (currMon->species != SPECIES_EGG)
     {
         StopCryAndClearCrySongs();
@@ -894,7 +901,7 @@ static void Task_HofPC_HandleInput(u8 taskId)
             gTasks[taskId].data[0]--;
             for (i = 0; i < 6; i++)
             {
-                u8 spriteId = gTasks[taskId].data[5 + i];
+                u8 spriteId = gTasks[taskId].data[6 + i];
                 if (spriteId != 0xFF)
                 {
                     FreeAndDestroyMonPicSprite(spriteId);
@@ -914,23 +921,41 @@ static void Task_HofPC_HandleInput(u8 taskId)
             gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
         }
     }
-    else if (JOY_NEW(B_BUTTON)) // turn off hall of fame PC
+    else if (JOY_NEW(B_BUTTON))
     {
-        if (IsCryPlayingOrClearCrySongs())
+        if (gTasks[taskId].data[0] != gTasks[taskId].data[2]) // prepare another team to view
         {
-            StopCryAndClearCrySongs();
-            m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
+            gTasks[taskId].data[0]++;
+            for (i = 0; i < 6; i++)
+            {
+                u8 spriteId = gTasks[taskId].data[6 + i];
+                if (spriteId != 0xFF)
+                {
+                    FreeAndDestroyMonPicSprite(spriteId);
+                }
+            }
+            if (gTasks[taskId].data[1] != 0)
+                gTasks[taskId].data[1]++;
+            gTasks[taskId].func = Task_HofPC_DrawSpritesPrintText;
         }
-        gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
+        else // no more teams to view, turn off hall of fame PC
+        {
+            if (IsCryPlayingOrClearCrySongs())
+            {
+                StopCryAndClearCrySongs();
+                m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
+            }
+            gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
+        }
     }
-    else if (JOY_NEW(DPAD_UP) && gTasks[taskId].data[2] != 0) // change mon -1
+    else if (JOY_NEW(DPAD_UP) && gTasks[taskId].data[3] != 0) // change mon -1
     {
-        gTasks[taskId].data[2]--;
+        gTasks[taskId].data[3]--;
         gTasks[taskId].func = Task_HofPC_PrintMonInfo;
     }
-    else if (JOY_NEW(DPAD_DOWN) && gTasks[taskId].data[2] < gTasks[taskId].data[4] - 1) // change mon +1
+    else if (JOY_NEW(DPAD_DOWN) && gTasks[taskId].data[3] < gTasks[taskId].data[5] - 1) // change mon +1
     {
-        gTasks[taskId].data[2]++;
+        gTasks[taskId].data[3]++;
         gTasks[taskId].func = Task_HofPC_PrintMonInfo;
     }
 }

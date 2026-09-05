@@ -978,7 +978,7 @@ static void Task_SelectedTMHM_Field(u8 taskId)
     // Print label text next to the context window
     strbuf = Alloc(256);
     GetTMNumberAndMoveString(strbuf, gSpecialVar_ItemId);
-    StringAppend(strbuf, gText_Var1IsSelected + 2); // +2 skips over the stringvar
+    StringAppend(strbuf, gText_IsSelected);
     TMCase_Print(WIN_SELECTED_MSG, FONT_NORMAL, strbuf, 0, 2, 1, 0, 0, COLOR_DARK);
     Free(strbuf);
     if (IS_HM(gSpecialVar_ItemId))

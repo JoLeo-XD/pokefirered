@@ -39,7 +39,7 @@ enum {
 };
 
 #define KBROW_COUNT 4
-#define KBCOL_COUNT 8
+#define KBCOL_COUNT 10
 
 enum {
     GFXTAG_BACK_BUTTON,
@@ -84,21 +84,21 @@ enum {
     KBPAGE_SYMBOLS,
     KBPAGE_LETTERS_UPPER,
     KBPAGE_LETTERS_LOWER,
-    KBPAGE_COUNT,
+    KBPAGE_COUNT
 };
 
 // This set is used for initializing a page's keyboard text and getting its number of columns
 enum {
     KEYBOARD_LETTERS_LOWER,
     KEYBOARD_LETTERS_UPPER,
-    KEYBOARD_SYMBOLS,
+    KEYBOARD_SYMBOLS
 };
 
 // This set is used for getting the gfx/pal tags of the page's swap button
 enum {
     PAGE_SWAP_UPPER,
     PAGE_SWAP_OTHERS,
-    PAGE_SWAP_LOWER,
+    PAGE_SWAP_LOWER
 };
 
 enum {
@@ -376,16 +376,16 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
 // The keys shown on the keyboard are handled separately by sNamingScreenKeyboardText
 static const u8 sKeyboardChars[KBPAGE_COUNT][KBROW_COUNT][KBCOL_COUNT] = {
     [KEYBOARD_LETTERS_LOWER] = {
-        __("abcdef ."),
-        __("ghijkl ,"),
-        __("mnopqrs"),
-        __("tuvwxyz"),
+        __("abcdef ´¨."),
+        __("ghijkl ` ,"),
+        __("mnopqrs^ ç"),
+        __("tuvwxyz~"),
     },
     [KEYBOARD_LETTERS_UPPER] = {
-        __("ABCDEF ."),
-        __("GHIJKL ,"),
-        __("MNOPQRS"),
-        __("TUVWXYZ"),
+        __("ABCDEF ´¨."),
+        __("GHIJKL ` ,"),
+        __("MNOPQRS^ Ç"),
+        __("TUVWXYZ~"),
     },
     [KEYBOARD_SYMBOLS] = {
         __("01234"),
@@ -402,8 +402,8 @@ static const u8 sPageColumnCounts[] = {
 };
 
 static const u8 sPageColumnXPos[KBPAGE_COUNT][KBCOL_COUNT] = {
-    [KEYBOARD_LETTERS_LOWER] = {0, 12, 24, 56, 68, 80, 92, 123},
-    [KEYBOARD_LETTERS_UPPER] = {0, 12, 24, 56, 68, 80, 92, 123},
+    [KEYBOARD_LETTERS_LOWER] = {0, 10, 20, 42, 52, 62, 72, 94, 104, 123},
+    [KEYBOARD_LETTERS_UPPER] = {0, 10, 20, 42, 52, 62, 72, 94, 104, 123},
     [KEYBOARD_SYMBOLS]       = {0, 22, 44, 66, 88, 110}
 };
 
@@ -1706,8 +1706,8 @@ static void DrawMonTextEntryBox(void)
 {
     u8 buffer[32];
 
-    StringCopy(buffer, gSpeciesNames[sNamingScreen->monSpecies]);
-    StringAppendN(buffer, sNamingScreen->template->title, 15);
+    StringCopyN(buffer, sNamingScreen->template->title, 15);
+    StringAppend(buffer, gSpeciesNames[sNamingScreen->monSpecies]);
     FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(1));
     AddTextPrinterParameterized(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL_COPY_1, buffer, 1, 1, 0, NULL);
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX]);
@@ -1820,9 +1820,214 @@ static bool8 AddTextCharacter(void)
 {
     s16 x;
     s16 y;
+	u8 index;
 
-    GetCursorPos(&x, &y);
-    BufferCharacter(GetCharAtKeyboardPos(x, y));
+    index = GetPreviousTextCaretPosition();
+	GetCursorPos(&x, &y);
+	
+	// Check if the current character is an accent mark, if so
+	// only change previous character without inputting another one,
+	// if not input character like normal. Some cases aren't checked
+	// due to not all possibilities actually being used in Portuguese.
+	if (GetCharAtKeyboardPos(x, y) == CHAR_ACUTE) // Check if it's an acute accent mark
+	{
+		// Check if previous character is variant of "A" or "a"
+		if (sNamingScreen->textBuffer[index] == CHAR_A
+		|| sNamingScreen->textBuffer[index] == CHAR_A_GRAVE
+		|| sNamingScreen->textBuffer[index] == CHAR_A_CIRCUMFLEX
+		|| sNamingScreen->textBuffer[index] == CHAR_A_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_A_ACUTE; // Change to "Á"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_a
+		|| sNamingScreen->textBuffer[index] == CHAR_a_GRAVE
+		|| sNamingScreen->textBuffer[index] == CHAR_a_CIRCUMFLEX
+		|| sNamingScreen->textBuffer[index] == CHAR_a_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_a_ACUTE; // Change to "á"
+		}
+		// Check if previous character is variant of "E" or "e"
+		else if (sNamingScreen->textBuffer[index] == CHAR_E
+        || sNamingScreen->textBuffer[index] == CHAR_E_CIRCUMFLEX)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_E_ACUTE; // Change to "É"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_e
+		|| sNamingScreen->textBuffer[index] == CHAR_e_CIRCUMFLEX)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_e_ACUTE; // Change to "é"
+		}
+		// Check if previous character is variant of "I" or "i"
+		else if (sNamingScreen->textBuffer[index] == CHAR_I)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_I_ACUTE; // Change to "Í"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_i)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_i_ACUTE; // Change to "í"
+		}
+		// Check if previous character is variant of "O" or "o"
+		else if (sNamingScreen->textBuffer[index] == CHAR_O
+		|| sNamingScreen->textBuffer[index] == CHAR_O_CIRCUMFLEX
+		|| sNamingScreen->textBuffer[index] == CHAR_O_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_O_ACUTE; // Change to "Ó"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_o
+		|| sNamingScreen->textBuffer[index] == CHAR_o_CIRCUMFLEX
+		|| sNamingScreen->textBuffer[index] == CHAR_o_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_o_ACUTE; // Change to "ó"
+		}
+		// Check if previous character is variant of "U" or "u"
+		else if (sNamingScreen->textBuffer[index] == CHAR_U
+        || sNamingScreen->textBuffer[index] == CHAR_U_DIAERESIS)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_U_ACUTE; // Change to "Ú"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_u
+		|| sNamingScreen->textBuffer[index] == CHAR_u_DIAERESIS)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_u_ACUTE; // Change to "ú"
+		}
+		// Play sound effect without doing anything
+		else
+		{
+			PlaySE(SE_SELECT);
+			return FALSE;
+		}
+	}
+	else if (GetCharAtKeyboardPos(x, y) == CHAR_GRAVE) // Check if it's a grave accent mark (only really used for the letter A)
+	{
+		// Check if previous character is variant of "A" or "a"
+		if (sNamingScreen->textBuffer[index] == CHAR_A
+		|| sNamingScreen->textBuffer[index] == CHAR_A_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_A_CIRCUMFLEX
+		|| sNamingScreen->textBuffer[index] == CHAR_A_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_A_GRAVE; // Change to "À"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_a
+		|| sNamingScreen->textBuffer[index] == CHAR_a_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_a_CIRCUMFLEX
+		|| sNamingScreen->textBuffer[index] == CHAR_a_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_a_GRAVE; // Change to "à"
+		}
+		// Play sound effect without doing anything
+		else
+		{
+			PlaySE(SE_SELECT);
+			return FALSE;
+		}
+	}
+	else if (GetCharAtKeyboardPos(x, y) == CHAR_CIRCUMFLEX) // Check if it's a circumflex accent mark
+	{
+		// Check if previous character is variant of "A" or "a"
+		if (sNamingScreen->textBuffer[index] == CHAR_A
+		|| sNamingScreen->textBuffer[index] == CHAR_A_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_A_GRAVE
+		|| sNamingScreen->textBuffer[index] == CHAR_A_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_A_CIRCUMFLEX; // Change to "Â"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_a
+		|| sNamingScreen->textBuffer[index] == CHAR_a_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_a_GRAVE
+		|| sNamingScreen->textBuffer[index] == CHAR_a_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_a_CIRCUMFLEX; // Change to "â"
+		}
+		// Check if previous character is variant of "E" or "e"
+		else if (sNamingScreen->textBuffer[index] == CHAR_E
+        || sNamingScreen->textBuffer[index] == CHAR_E_ACUTE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_E_CIRCUMFLEX; // Change to "Ê"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_e
+		|| sNamingScreen->textBuffer[index] == CHAR_e_ACUTE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_e_CIRCUMFLEX; // Change to "ê"
+		}
+		// Check if previous character is variant of "O" or "o"
+		else if (sNamingScreen->textBuffer[index] == CHAR_O
+		|| sNamingScreen->textBuffer[index] == CHAR_O_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_O_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_O_CIRCUMFLEX; // Change to "Ô"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_o
+		|| sNamingScreen->textBuffer[index] == CHAR_o_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_o_TILDE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_o_CIRCUMFLEX; // Change to "ô"
+		}
+		// Play sound effect without doing anything
+		else
+		{
+			PlaySE(SE_SELECT);
+			return FALSE;
+		}
+	}
+	else if (GetCharAtKeyboardPos(x, y) == CHAR_TILDE) // Check if it's a tilde
+	{
+		// Check if previous character is variant of "A" or "a"
+		if (sNamingScreen->textBuffer[index] == CHAR_A
+		|| sNamingScreen->textBuffer[index] == CHAR_A_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_A_GRAVE
+		|| sNamingScreen->textBuffer[index] == CHAR_A_CIRCUMFLEX)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_A_TILDE; // Change to "Ã"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_a
+		|| sNamingScreen->textBuffer[index] == CHAR_a_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_a_GRAVE
+		|| sNamingScreen->textBuffer[index] == CHAR_a_CIRCUMFLEX)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_a_TILDE; // Change to "ã"
+		}
+		// Check if previous character is variant of "O" or "o"
+		else if (sNamingScreen->textBuffer[index] == CHAR_O
+		|| sNamingScreen->textBuffer[index] == CHAR_O_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_O_CIRCUMFLEX)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_O_TILDE; // Change to "Õ"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_o
+		|| sNamingScreen->textBuffer[index] == CHAR_o_ACUTE
+		|| sNamingScreen->textBuffer[index] == CHAR_o_CIRCUMFLEX)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_o_TILDE; // Change to "õ"
+		}
+		// Play sound effect without doing anything
+		else
+		{
+			PlaySE(SE_SELECT);
+			return FALSE;
+		}
+	}
+	else if (GetCharAtKeyboardPos(x, y) == CHAR_DIAERESIS) // Check if it's a diaeresis (only really used for the letter U)
+	{
+		// Check if previous character is variant of "U" or "u"
+		if (sNamingScreen->textBuffer[index] == CHAR_U
+        || sNamingScreen->textBuffer[index] == CHAR_U_ACUTE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_U_DIAERESIS; // Change to "Ú"
+		}
+		else if (sNamingScreen->textBuffer[index] == CHAR_u
+		|| sNamingScreen->textBuffer[index] == CHAR_u_ACUTE)
+		{
+			sNamingScreen->textBuffer[index] = CHAR_u_DIAERESIS; // Change to "ú"
+		}
+		// Play sound effect without doing anything
+		else
+		{
+			PlaySE(SE_SELECT);
+			return FALSE;
+		}
+	}
+	else // Input character normally
+		BufferCharacter(GetCharAtKeyboardPos(x, y));
     DrawTextEntry();
     CopyBgTilemapBufferToVram(3);
     PlaySE(SE_SELECT);
@@ -1908,7 +2113,7 @@ static void DrawTextEntry(void)
 
 struct TextColor   // Needed because of alignment
 {
-    u8 colors[3][4];
+    u8 colors[3][3];
 };
 
 static const struct TextColor sTextColorStruct = {
@@ -1921,16 +2126,16 @@ static const struct TextColor sTextColorStruct = {
 
 static const u8 sFillValues[KBPAGE_COUNT] =
 {
-    [KEYBOARD_LETTERS_LOWER] = PIXEL_FILL(14),
-    [KEYBOARD_LETTERS_UPPER] = PIXEL_FILL(13),
-    [KEYBOARD_SYMBOLS]       = PIXEL_FILL(15)
+    [KEYBOARD_LETTERS_LOWER]  = PIXEL_FILL(14),
+    [KEYBOARD_LETTERS_UPPER]  = PIXEL_FILL(13),
+    [KEYBOARD_SYMBOLS]        = PIXEL_FILL(15)
 };
 
 static const u8 *const sKeyboardTextColors[KBPAGE_COUNT] =
 {
-    [KEYBOARD_LETTERS_LOWER] = sTextColorStruct.colors[1],
-    [KEYBOARD_LETTERS_UPPER] = sTextColorStruct.colors[0],
-    [KEYBOARD_SYMBOLS]       = sTextColorStruct.colors[2]
+    [KEYBOARD_LETTERS_LOWER]  = sTextColorStruct.colors[1],
+    [KEYBOARD_LETTERS_UPPER]  = sTextColorStruct.colors[0],
+    [KEYBOARD_SYMBOLS]        = sTextColorStruct.colors[2]
 };
 
 static void PrintKeyboardKeys(u8 window, u8 page)
@@ -2314,6 +2519,7 @@ static const struct SubspriteTable sSubspriteTable_PageSwapFrame[] = {
 static const struct SubspriteTable sSubspriteTable_PageSwapText[] = {
     {ARRAY_COUNT(sSubsprites_PageSwapText), sSubsprites_PageSwapText},
     {ARRAY_COUNT(sSubsprites_PageSwapText), sSubsprites_PageSwapText},
+    {ARRAY_COUNT(sSubsprites_PageSwapText), sSubsprites_PageSwapText},
     {ARRAY_COUNT(sSubsprites_PageSwapText), sSubsprites_PageSwapText}
 };
 
@@ -2468,7 +2674,7 @@ static const u8 *const sNamingScreenKeyboardText[KBPAGE_COUNT][KBROW_COUNT] = {
         gText_NamingScreenKeyboard_56789,
         gText_NamingScreenKeyboard_Symbols1,
         gText_NamingScreenKeyboard_Symbols2
-    },
+    }
 };
 
 static const struct SpriteSheet sSpriteSheets[] = {

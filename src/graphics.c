@@ -1147,7 +1147,7 @@ const u32 gMoveRelearner_Tilemap[] = INCBIN_U32("graphics/interface/learn_move.b
 
 const u16 gNamingScreenKeyboard_Pal[] = INCBIN_U16("graphics/naming_screen/keyboard.gbapal");
 const u16 gNamingScreenRival_Pal[]    = INCBIN_U16("graphics/naming_screen/rival.gbapal");
-const u16 gNamingScreenMenu_Pal[6][16] =
+const u16 gNamingScreenMenu_Pal[7][16] =
 {
     INCBIN_U16("graphics/naming_screen/menu.gbapal"),
     INCBIN_U16("graphics/naming_screen/page_swap_upper.gbapal"),

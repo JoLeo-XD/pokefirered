@@ -30,7 +30,16 @@ void TrySetQuestLogBattleEvent(void)
             case TRAINER_CLASS_CHAMPION:
                 eventId = QL_EVENT_DEFEATED_CHAMPION;
                 break;
-            case TRAINER_CLASS_ELITE_FOUR:
+            case TRAINER_CLASS_ELITE_FOUR_1:
+                eventId = QL_EVENT_DEFEATED_E4_MEMBER;
+                break;
+            case TRAINER_CLASS_ELITE_FOUR_2:
+                eventId = QL_EVENT_DEFEATED_E4_MEMBER;
+                break;
+            case TRAINER_CLASS_ELITE_FOUR_3:
+                eventId = QL_EVENT_DEFEATED_E4_MEMBER;
+                break;
+            case TRAINER_CLASS_ELITE_FOUR_4:
                 eventId = QL_EVENT_DEFEATED_E4_MEMBER;
                 break;
             default:

@@ -197,9 +197,9 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
         ptr = MapNamePopupAppendFloorNum(ptr, gMapHeader.floorNum);
         maxWidth = gMapHeader.floorNum != FLOOR_ROOFTOP ? 152 : 176;
     }
-    xpos = (maxWidth - GetStringWidth(FONT_NORMAL, mapName, -1)) / 2;
+    xpos = (maxWidth - GetStringWidth(FONT_SMALL, mapName, -1)) / 2;
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, mapName, xpos, 2, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(windowId, FONT_SMALL, mapName, xpos, 2, TEXT_SKIP_DRAW, NULL);
 }
 
 static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
@@ -207,15 +207,22 @@ static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
     if (floorNum == 0)
         return dest;
     *dest++ = CHAR_SPACE;
+    if (floorNum == 1)
+        return StringCopy(dest, gText_GroundFloor);
     if (floorNum == FLOOR_ROOFTOP)
         return StringCopy(dest, gText_Rooftop2);
-    if (floorNum < 0)
+    if (floorNum > 0)
     {
-        *dest++ = CHAR_B;
+        floorNum -= 1;
+		dest = ConvertIntToDecimalStringN(dest, floorNum, STR_CONV_MODE_LEFT_ALIGN, 2);
+		dest = StringAppend(dest, gText_Floor);
+	}
+    else if (floorNum < 0)
+    {
+        dest = StringCopy(dest, gText_SubFloor);
         floorNum *= -1;
+		dest = ConvertIntToDecimalStringN(dest, floorNum, STR_CONV_MODE_LEFT_ALIGN, 2);
     }
-    dest = ConvertIntToDecimalStringN(dest, floorNum, STR_CONV_MODE_LEFT_ALIGN, 2);
-    *dest++ = CHAR_F;
     *dest = EOS;
     return dest;
 }

@@ -11,7 +11,6 @@
 #define CHAR_E_CIRCUMFLEX      0x07
 #define CHAR_E_DIAERESIS       0x08
 #define CHAR_I_GRAVE           0x09
-//#define CHAR_I_ACUTE         0x0A // Is 0x5A instead
 #define CHAR_I_CIRCUMFLEX      0x0B
 #define CHAR_I_DIAERESIS       0x0C
 #define CHAR_O_GRAVE           0x0D
@@ -25,14 +24,12 @@
 #define CHAR_ESZETT            0x15
 #define CHAR_a_GRAVE           0x16
 #define CHAR_a_ACUTE           0x17
-//#define CHAR_a_CIRCUMFLEX    0x18 // Is 0x68 instead
 #define CHAR_c_CEDILLA         0x19
 #define CHAR_e_GRAVE           0x1A
 #define CHAR_e_ACUTE           0x1B
 #define CHAR_e_CIRCUMFLEX      0x1C
 #define CHAR_e_DIAERESIS       0x1D
 #define CHAR_i_GRAVE           0x1E
-//#define CHAR_i_ACUTE         0x1F // Is 0x6F instead
 #define CHAR_i_CIRCUMFLEX      0x20
 #define CHAR_i_DIAERESIS       0x21
 #define CHAR_o_GRAVE           0x22
@@ -53,6 +50,12 @@
 #define CHAR_EQUALS            0x35
 #define CHAR_SEMICOLON         0x36
 #define CHAR_BARD_WORD_DELIMIT 0x37 // Empty space to separate words in Bard's song
+//
+#define CHAR_ACUTE             0x40
+#define CHAR_GRAVE             0x41
+#define CHAR_CIRCUMFLEX        0x42
+#define CHAR_DIAERESIS         0x43
+#define CHAR_TILDE             0x44
 //
 #define CHAR_EMPTY_RECT        0x50
 #define CHAR_INV_QUESTION_MARK 0x51
@@ -165,11 +168,11 @@
 #define CHAR_z                 0xEE
 #define CHAR_BLACK_TRIANGLE    0xEF
 #define CHAR_COLON             0xF0
-#define CHAR_A_DIAERESIS       0xF1
-#define CHAR_O_DIAERESIS       0xF2
+#define CHAR_A_TILDE           0xF1
+#define CHAR_O_TILDE           0xF2
 #define CHAR_U_DIAERESIS       0xF3
-#define CHAR_a_DIAERESIS       0xF4
-#define CHAR_o_DIAERESIS       0xF5
+#define CHAR_a_TILDE           0xF4
+#define CHAR_o_TILDE           0xF5
 #define CHAR_u_DIAERESIS       0xF6
 #define CHAR_DYNAMIC           0xF7
 #define CHAR_KEYPAD_ICON       0xF8

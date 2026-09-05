@@ -394,15 +394,17 @@ void PSA_PrintMessage(u8 messageId)
     switch (messageId)
     {
     case 0: // Item was used on Mon
-        str = StringCopy(scene->textBuf, ItemId_GetName(itemId));
-        str = StringCopy(str, gText_WasUsedOn);
+        str = StringCopy(scene->textBuf, gText_WasUsedOn1);
+        str = StringAppend(str, ItemId_GetName(itemId));
+        str = StringAppend(str, gText_WasUsedOn2);
         GetMonData(pokemon, MON_DATA_NICKNAME, str);
         StringAppend(scene->textBuf, gText_Period);
         break;
     case 1: // Mon's level was elevated to level
         level = GetMonData(pokemon, MON_DATA_LEVEL);
-        GetMonData(pokemon, MON_DATA_NICKNAME, scene->textBuf);
-        str = StringAppend(scene->textBuf, gText_LevelRoseTo);
+        str = StringCopy(scene->textBuf, gText_LevelRoseTo1);
+        GetMonData(pokemon, MON_DATA_NICKNAME, str);
+        str = StringAppend(str, gText_LevelRoseTo2);
         if (level < MAX_LEVEL)
             level++;
         str = ConvertIntToDecimalStringN(str, level, STR_CONV_MODE_LEFT_ALIGN, level < MAX_LEVEL ? 2 : 3);

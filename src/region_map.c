@@ -468,7 +468,7 @@ static const struct WindowTemplate sRegionMapWindowTemplates[] = {
         .bg = 3,
         .tilemapLeft = 3,
         .tilemapTop = 2,
-        .width = 15,
+        .width = 17,
         .height = 2,
         .paletteNum = 12,
         .baseBlock = 0x001
@@ -478,10 +478,10 @@ static const struct WindowTemplate sRegionMapWindowTemplates[] = {
         .bg = 3,
         .tilemapLeft = 3,
         .tilemapTop = 4,
-        .width = 15,
+        .width = 17,
         .height = 2,
         .paletteNum = 12,
-        .baseBlock = 0x01f
+        .baseBlock = 0x027
     }, 
     [WIN_MAP_PREVIEW] =
     {
@@ -491,7 +491,7 @@ static const struct WindowTemplate sRegionMapWindowTemplates[] = {
         .width = 25,
         .height = 11,
         .paletteNum = 12,
-        .baseBlock = 0x03d
+        .baseBlock = 0x055
     },
     [WIN_TOPBAR_LEFT] =
     {
@@ -501,7 +501,7 @@ static const struct WindowTemplate sRegionMapWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .paletteNum = 12,
-        .baseBlock = 0x150
+        .baseBlock = 0x168
     }, 
     [WIN_TOPBAR_RIGHT] =
     {
@@ -511,7 +511,7 @@ static const struct WindowTemplate sRegionMapWindowTemplates[] = {
         .width = 5,
         .height = 2,
         .paletteNum = 12,
-        .baseBlock = 0x15a
+        .baseBlock = 0x172
     }, DUMMY_WIN_TEMPLATE
 };
 
@@ -617,8 +617,8 @@ ALIGNED(4) static const bool8 sRegionMapPermissions[REGIONMAP_TYPE_COUNT][MAPPER
 };
 
 static const struct GpuWindowParams sMapsecNameWindowDims[3] = {
-    [WIN_MAP_NAME]     = {.left = 24, .top = 16, .right = 144, .bottom = 32},
-    [WIN_DUNGEON_NAME] = {.left = 24, .top = 32, .right = 144, .bottom = 48},
+    [WIN_MAP_NAME]     = {.left = 24, .top = 16, .right = 160, .bottom = 32},
+    [WIN_DUNGEON_NAME] = {.left = 24, .top = 32, .right = 160, .bottom = 48},
     [CLEAR_NAME]       = {.left =  0, .top =  0, .right =   0, .bottom =  0}
 };
 
@@ -3822,6 +3822,18 @@ u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
             *dst++ = CHAR_SPACE;
         *dst = EOS;
     }
+    return dst;
+}
+
+u8 *GetMapNameSummary(u8 *dst0, u16 mapsec)
+{
+    u8 *dst;
+    u16 idx;
+	u16 fill = 18;
+    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_SPECIAL_AREA - MAPSECS_KANTO)
+		dst = StringCopy(dst0, sMapNames[idx]);
+    else
+        return StringFill(dst0, CHAR_SPACE, fill);
     return dst;
 }
 

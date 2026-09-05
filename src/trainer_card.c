@@ -1259,6 +1259,8 @@ static void BufferNameForCardBack(void)
     {
         StringAppend(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], gText_Var1sTrainerCard);
     }
+																														  
+																													  
 }
 
 static void PrintNameOnCardBack(void)

@@ -753,7 +753,7 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 
 static void _TriggerPendingDaycareMaleEgg(struct DayCare *daycare)
 {
-    daycare->offspringPersonality = (Random()) | (EGG_GENDER_MALE);
+    daycare->offspringPersonality = (Random()) | (EGG_GENDER_CHANCE);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
 
@@ -1003,7 +1003,7 @@ static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare
     }
 }
 
-/*static void GiveVoltTackleIfLightBall(struct Pokemon *mon, struct DayCare *daycare)
+static void GiveVoltTackleIfLightBall(struct Pokemon *mon, struct DayCare *daycare)
 {
     u32 motherItem = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM);
     u32 fatherItem = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM);
@@ -1013,7 +1013,7 @@ static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare
         if (GiveMoveToMon(mon, MOVE_VOLT_TACKLE) == MON_HAS_MAX_MOVES)
             DeleteFirstMoveAndGiveMoveToMon(mon, MOVE_VOLT_TACKLE);
     }
-}*/
+}
 
 static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parentSlots)
 {
@@ -1040,14 +1040,6 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     }
 
     eggSpecies = GetEggSpecies(species[parentSlots[0]]);
-    if (eggSpecies == SPECIES_NIDORAN_F && daycare->offspringPersonality & EGG_GENDER_MALE)
-    {
-        eggSpecies = SPECIES_NIDORAN_M;
-    }
-    if (eggSpecies == SPECIES_ILLUMISE && daycare->offspringPersonality & EGG_GENDER_MALE)
-    {
-        eggSpecies = SPECIES_VOLBEAT;
-    }
 
     // Make Ditto the "mother" slot if the other daycare mon is male.
     if (species[parentSlots[1]] == SPECIES_DITTO && GetBoxMonGender(&daycare->mons[parentSlots[0]].mon) != MON_FEMALE)
@@ -1057,6 +1049,30 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
         parentSlots[0] = ditto;
     }
 
+    if (eggSpecies == SPECIES_NIDORAN_F && daycare->offspringPersonality & EGG_GENDER_CHANCE)
+    {
+        eggSpecies = SPECIES_NIDORAN_M;
+    }
+    else if (GetEggSpecies(species[parentSlots[1]]) == SPECIES_NIDORAN_M && daycare->offspringPersonality & EGG_GENDER_CHANCE)
+    {
+        eggSpecies = SPECIES_NIDORAN_F;
+    }
+    if (eggSpecies == SPECIES_ILLUMISE && daycare->offspringPersonality & EGG_GENDER_CHANCE)
+    {
+        eggSpecies = SPECIES_VOLBEAT;
+    }
+    else if (GetEggSpecies(species[parentSlots[1]]) == SPECIES_VOLBEAT && daycare->offspringPersonality & EGG_GENDER_CHANCE)
+    {
+        eggSpecies = SPECIES_ILLUMISE;
+    }
+    if (eggSpecies == SPECIES_MILTANK && daycare->offspringPersonality & EGG_GENDER_CHANCE)
+    {
+        eggSpecies = SPECIES_TAUROS;
+    }
+    else if (GetEggSpecies(species[parentSlots[1]]) == SPECIES_TAUROS && daycare->offspringPersonality & EGG_GENDER_CHANCE)
+    {
+        eggSpecies = SPECIES_MILTANK;
+    }
     return eggSpecies;
 }
 
@@ -1073,8 +1089,8 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     InheritIVs(&egg, daycare);
     BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
 
-    /*if (species == SPECIES_PICHU)
-        GiveVoltTackleIfLightBall(&egg, daycare);*/
+    if (species == SPECIES_PICHU)
+        GiveVoltTackleIfLightBall(&egg, daycare);
 
     isEgg = TRUE;
     SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);
@@ -1313,12 +1329,36 @@ static u8 GetDaycareCompatibilityScore(struct DayCare *daycare)
         if (!EggGroupsOverlap(eggGroups[0], eggGroups[1]))
             return PARENTS_INCOMPATIBLE;
 
-        if (species[0] == species[1])
+        if (GetEggSpecies(species[0]) == GetEggSpecies(species[1]))
         {
             if (trainerIds[0] == trainerIds[1])
-                return PARENTS_MED_COMPATIBILITY; // same species, same trainer
+                return PARENTS_MED_COMPATIBILITY; // same evolutionary line, same trainer
 
-            return PARENTS_MAX_COMPATIBILITY; // same species, different trainers
+            return PARENTS_MAX_COMPATIBILITY; // same evolutionary line, different trainers
+        }
+        else if ((GetEggSpecies(species[0]) == SPECIES_NIDORAN_F && GetEggSpecies(species[1]) == SPECIES_NIDORAN_M)
+            || (GetEggSpecies(species[0]) == SPECIES_NIDORAN_M && GetEggSpecies(species[1]) == SPECIES_NIDORAN_F))
+        {
+            if (trainerIds[0] == trainerIds[1])
+                return PARENTS_MED_COMPATIBILITY; // both nidoran line, same trainer
+
+            return PARENTS_MAX_COMPATIBILITY; // both nidoran line, different trainers
+        }
+        else if ((GetEggSpecies(species[0]) == SPECIES_ILLUMISE && GetEggSpecies(species[1]) == SPECIES_VOLBEAT)
+            || (GetEggSpecies(species[0]) == SPECIES_VOLBEAT && GetEggSpecies(species[1]) == SPECIES_ILLUMISE))
+        {
+            if (trainerIds[0] == trainerIds[1])
+                return PARENTS_MED_COMPATIBILITY; // illumise and volbeat, same trainer
+
+            return PARENTS_MAX_COMPATIBILITY; // illumise and volbeat, different trainers
+        }
+        else if ((GetEggSpecies(species[0]) == SPECIES_MILTANK && GetEggSpecies(species[1]) == SPECIES_TAUROS)
+            || (GetEggSpecies(species[0]) == SPECIES_TAUROS && GetEggSpecies(species[1]) == SPECIES_MILTANK))
+        {
+            if (trainerIds[0] == trainerIds[1])
+                return PARENTS_MED_COMPATIBILITY; // miltank and tauros, same trainer
+
+            return PARENTS_MAX_COMPATIBILITY; // miltank and tauros, different trainers
         }
         else
         {

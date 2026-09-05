@@ -967,8 +967,8 @@ static void PrintSaveStats(void)
     LoadStdWindowGfx(sSaveStatsWindowId, 0x21D, BG_PLTT_ID(13));
     DrawStdFrameWithCustomTileAndPalette(sSaveStatsWindowId, FALSE, 0x21D, 13);
     SaveStatToString(SAVE_STAT_LOCATION, gStringVar4, 8);
-    x = (u32)(112 - GetStringWidth(FONT_NORMAL, gStringVar4, -1)) / 2;
-    AddTextPrinterParameterized3(sSaveStatsWindowId, FONT_NORMAL, x, 0, sTextColor_LocationHeader, -1, gStringVar4);
+    x = (u32)(112 - GetStringWidth(FONT_SMALL, gStringVar4, -1)) / 2;
+    AddTextPrinterParameterized3(sSaveStatsWindowId, FONT_SMALL, x, 0, sTextColor_LocationHeader, -1, gStringVar4);
     x = (u32)(112 - GetStringWidth(FONT_NORMAL, gStringVar4, -1)) / 2;
     AddTextPrinterParameterized3(sSaveStatsWindowId, FONT_SMALL, 2, 14, sTextColor_StatName, -1, gSaveStatName_Player);
     SaveStatToString(SAVE_STAT_NAME, gStringVar4, 2);

@@ -1109,7 +1109,7 @@ Help_Text_Nature::
 	.string "NATURE$"
 
 Help_Text_IDNo::
-	.string "ID No.$"
+	.string "N.º ID$"
 
 Help_Text_PP::
 	.string "PP$"
@@ -1181,7 +1181,7 @@ Help_Text_Pokemon::
 	.string "POKéMON$"
 
 Help_Text_IDNo2::
-	.string "ID No.$"
+	.string "N.º ID$"
 
 Help_Text_Money2::
 	.string "MONEY$"
@@ -1316,12 +1316,12 @@ Help_Text_DefineNature::
 	.string "POKéMON will grow upon leveling up.$"
 
 Help_Text_DefineIDNo::
-	.string "The ID No. is a special number assigned\n"
+	.string "The N.º ID is a special number assigned\n"
 	.string "specifically to you as a TRAINER.\l"
-	.string "Together with the OT name, the ID No.\l"
+	.string "Together with the OT name, the N.º ID\l"
 	.string "is used to precisely identify the\l"
 	.string "Original TRAINER.\l"
-	.string "The ID No. does not change even if the\l"
+	.string "The N.º ID does not change even if the\l"
 	.string "POKéMON is traded.$"
 
 Help_Text_DefinePP::
@@ -1485,12 +1485,12 @@ Help_Text_DefinePokemon::
 	.string "use them for battling, and so on.$"
 
 Help_Text_DefineIDNo2::
-	.string "The ID No. is a special number assigned\n"
+	.string "The N.º ID is a special number assigned\n"
 	.string "specifically to you as a TRAINER.\l"
-	.string "Together with the OT name, the ID No.\l"
+	.string "Together with the OT name, the N.º ID\l"
 	.string "is used to precisely identify the\l"
 	.string "Original TRAINER.\l"
-	.string "The ID No. does not change even if the\l"
+	.string "The N.º ID does not change even if the\l"
 	.string "POKéMON is traded.$"
 
 Help_Text_DefineMoney2::

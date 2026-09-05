@@ -1,31 +1,31 @@
 @ Flavor text for interacting with various background objects
 
 Text_Bookshelf::
-	.string "It's crammed full of POKéMON\n"
-	.string "books.$"
+	.string "Está cheia de livros sobre\n"
+	.string "POKéMON.$"
 
 Text_NothingButPokemonBooks::
 	.string "ほんだなに　ならんでいるのは\n"
 	.string "ポケモンの　ほん　ばかりだ$"
 
 Text_ATownMap::
-	.string "A TOWN MAP.$"
+	.string "Um MAPA DA ÁREA.$"
 
 Text_PokeMartShelf::
-	.string "Wow!\n"
-	.string "Tons of POKéMON stuff!$"
+	.string "Nossa!\n"
+	.string "Quantas coisas de POKéMON!$"
 
 Text_DishesPlatesNeatlyLinedUp::
-	.string "Dishes and plates are neatly\n"
-	.string "lined up.$"
+	.string "As louças estão muito bem\n"
+	.string "organizadas.$"
 
 Text_Kitchen::
-	.string "It smells delicious!\n"
-	.string "Somebody's been cooking here.$"
+	.string "Está com um cheiro bom!\n"
+	.string "Alguém anda cozinhando.$"
 
 Text_Dresser::
-	.string "It's a nicely made dresser.\n"
-	.string "It will hold a lot of stuff.$"
+	.string "É uma cômoda bem feita.\n"
+	.string "Pode suportar várias coisas.$"
 
 Text_Snacks::
 	.string "There's a pile of snacks here.$"

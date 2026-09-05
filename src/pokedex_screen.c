@@ -609,7 +609,7 @@ const struct WindowTemplate sWindowTemplate_DexEntry_SpeciesStats = {
     .bg = 1,
     .tilemapLeft = 2,
     .tilemapTop = 3,
-    .width = 13,
+    .width = 16,
     .height = 8,
     .paletteNum = 0,
     .baseBlock = 0x01e8
@@ -2669,7 +2669,7 @@ void DexScreen_DexPageZoomEffectFrame(u8 bg, u8 scale)
 void DexScreen_PrintMonCategory(u8 windowId, u16 species, u8 x, u8 y)
 {
     u8 * categoryName;
-    u8 index, categoryStr[12];
+    u8 index, categoryStr[15];
 
     species = SpeciesToNationalPokedexNum(species);
 
@@ -2677,11 +2677,7 @@ void DexScreen_PrintMonCategory(u8 windowId, u16 species, u8 x, u8 y)
     index = 0;
     if (DexScreen_GetSetPokedexFlag(species, FLAG_GET_CAUGHT, FALSE))
     {
-#if REVISION == 0
-        while ((categoryName[index] != CHAR_SPACE) && (index < 11))
-#else
-        while ((categoryName[index] != EOS) && (index < 11))
-#endif
+        while ((categoryName[index] != EOS) && (index < 15))
         {
             categoryStr[index] = categoryName[index];
             index++;
@@ -2689,7 +2685,7 @@ void DexScreen_PrintMonCategory(u8 windowId, u16 species, u8 x, u8 y)
     }
     else
     {
-        while (index < 11)
+        while (index < 10)
         {
             categoryStr[index] = CHAR_QUESTION_MARK;
             index++;
@@ -2698,63 +2694,75 @@ void DexScreen_PrintMonCategory(u8 windowId, u16 species, u8 x, u8 y)
 
     categoryStr[index] = EOS;
 
-    DexScreen_AddTextPrinterParameterized(windowId, FONT_SMALL, categoryStr, x, y, 0);
-    x += GetStringWidth(FONT_SMALL, categoryStr, 0);
     DexScreen_AddTextPrinterParameterized(windowId, FONT_SMALL, gText_PokedexPokemon, x, y, 0);
+    x += GetStringWidth(FONT_SMALL, gText_PokedexPokemon, 0);
+    DexScreen_AddTextPrinterParameterized(windowId, FONT_SMALL, categoryStr, x, y, 0);
 }
 
 void DexScreen_PrintMonHeight(u8 windowId, u16 species, u8 x, u8 y)
 {
     u16 height;
-    u32 inches, feet;
+    u16 meters;
+    bool8 output;
     const u8 *labelText;
+    const u8 * mText;
     u8 buffer[32];
     u8 i;
+    u32 j;
 
     species = SpeciesToNationalPokedexNum(species);
     height = gPokedexEntries[species].height;
     labelText = gText_HT;
+    mText = gText_meters;
 
     i = 0;
     buffer[i++] = EXT_CTRL_CODE_BEGIN;
     buffer[i++] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
     buffer[i++] = 5;
     buffer[i++] = CHAR_SPACE;
+    buffer[i++] = CHAR_SPACE;
 
     if (DexScreen_GetSetPokedexFlag(species, FLAG_GET_CAUGHT, FALSE))
     {
-        inches = 10000 * height / 254; // actually tenths of inches here
-        if (inches % 10 >= 5)
-            inches += 10;
-        feet = inches / 120;
-        inches = (inches - (feet * 120)) / 10;
-        if (feet / 10 == 0)
+        meters = 10 * height; // Convert to centimeters
+        if (meters % 10 >= 5)
+            meters += 10;
+		
+        output = FALSE;
+		
+        meters %= 10000;
+        if ((buffer[i] = (meters / 1000) + CHAR_0) == CHAR_0 && !output)
         {
-            buffer[i++] = 0;
-            buffer[i++] = feet + CHAR_0;
+            buffer[i++] = CHAR_SPACE;
         }
         else
         {
-            buffer[i++] = feet / 10 + CHAR_0;
-            buffer[i++] = feet % 10 + CHAR_0;
+            output = TRUE;
+            i++;
         }
-        buffer[i++] = CHAR_SGL_QUOTE_RIGHT;
-        buffer[i++] = inches / 10 + CHAR_0;
-        buffer[i++] = inches % 10 + CHAR_0;
-        buffer[i++] = CHAR_DBL_QUOTE_RIGHT;
-        buffer[i++] = EOS;
+        meters %= 1000;
+        buffer[i++] = (meters / 100) + CHAR_0;
+        meters %= 100;
+        buffer[i++] = CHAR_COMMA;
+        buffer[i++] = (meters / 10) + CHAR_0;
     }
     else
     {
         buffer[i++] = CHAR_QUESTION_MARK;
         buffer[i++] = CHAR_QUESTION_MARK;
-        buffer[i++] = CHAR_SGL_QUOTE_RIGHT;
+        buffer[i++] = CHAR_COMMA;
         buffer[i++] = CHAR_QUESTION_MARK;
-        buffer[i++] = CHAR_QUESTION_MARK;
-        buffer[i++] = CHAR_DBL_QUOTE_RIGHT;
     }
+    buffer[i++] = CHAR_SPACE;
+    buffer[i++] = EXT_CTRL_CODE_BEGIN;
+    buffer[i++] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
+    buffer[i++] = 0;
 
-    buffer[i++] = EOS;
+
+    for (j = 0; j < 33 - i && mText[j] != EOS; j++)
+        buffer[i + j] = mText[j];
+
+    buffer[i + j] = EOS;
     DexScreen_AddTextPrinterParameterized(windowId, FONT_SMALL, labelText, x, y, 0);
     x += 30;
     DexScreen_AddTextPrinterParameterized(windowId, FONT_SMALL, buffer, x, y, 0);
@@ -2763,10 +2771,10 @@ void DexScreen_PrintMonHeight(u8 windowId, u16 species, u8 x, u8 y)
 void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
 {
     u16 weight;
-    u32 lbs;
+    u32 kg;
     bool8 output;
     const u8 * labelText;
-    const u8 * lbsText;
+    const u8 * kgText;
     u8 buffer[32];
     u8 i;
     u32 j;
@@ -2774,7 +2782,7 @@ void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
     species = SpeciesToNationalPokedexNum(species);
     weight = gPokedexEntries[species].weight;
     labelText = gText_WT;
-    lbsText = gText_Lbs;
+    kgText = gText_kg;
 
     i = 0;
     buffer[i++] = EXT_CTRL_CODE_BEGIN;
@@ -2783,15 +2791,15 @@ void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
 
     if (DexScreen_GetSetPokedexFlag(species, FLAG_GET_CAUGHT, FALSE))
     {
-        lbs = (weight * 100000) / 4536; // Convert to hundredths of lb
+        kg = weight * 10; // Convert to hundredths of kg
 
-        // Round up to the nearest 0.1 lb
-        if (lbs % 10 >= 5)
-            lbs += 10;
+        // Round up to the nearest 0.1 kg
+        if (kg % 10 >= 5)
+            kg += 10;
 
         output = FALSE;
 
-        if ((buffer[i] = (lbs / 100000) + CHAR_0) == CHAR_0 && !output)
+        if ((buffer[i] = (kg / 100000) + CHAR_0) == CHAR_0 && !output)
         {
             buffer[i++] = CHAR_SPACE;
         }
@@ -2801,8 +2809,8 @@ void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
             i++;
         }
 
-        lbs %= 100000;
-        if ((buffer[i] = (lbs / 10000) + CHAR_0) == CHAR_0 && !output)
+        kg %= 100000;
+        if ((buffer[i] = (kg / 10000) + CHAR_0) == CHAR_0 && !output)
         {
             buffer[i++] = CHAR_SPACE;
         }
@@ -2812,8 +2820,8 @@ void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
             i++;
         }
 
-        lbs %= 10000;
-        if ((buffer[i] = (lbs / 1000) + CHAR_0) == CHAR_0 && !output)
+        kg %= 10000;
+        if ((buffer[i] = (kg / 1000) + CHAR_0) == CHAR_0 && !output)
         {
             buffer[i++] = CHAR_SPACE;
         }
@@ -2823,19 +2831,19 @@ void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
             i++;
         }
 
-        lbs %= 1000;
-        buffer[i++] = (lbs / 100) + CHAR_0;
-        lbs %= 100;
-        buffer[i++] = CHAR_PERIOD;
-        buffer[i++] = (lbs / 10) + CHAR_0;
+        kg %= 1000;
+        buffer[i++] = (kg / 100) + CHAR_0;
+        kg %= 100;
+        buffer[i++] = CHAR_COMMA;
+        buffer[i++] = (kg / 10) + CHAR_0;
     }
     else
     {
+        buffer[i++] = CHAR_SPACE;
         buffer[i++] = CHAR_QUESTION_MARK;
         buffer[i++] = CHAR_QUESTION_MARK;
         buffer[i++] = CHAR_QUESTION_MARK;
-        buffer[i++] = CHAR_QUESTION_MARK;
-        buffer[i++] = CHAR_PERIOD;
+        buffer[i++] = CHAR_COMMA;
         buffer[i++] = CHAR_QUESTION_MARK;
     }
     buffer[i++] = CHAR_SPACE;
@@ -2843,8 +2851,8 @@ void DexScreen_PrintMonWeight(u8 windowId, u16 species, u8 x, u8 y)
     buffer[i++] = EXT_CTRL_CODE_MIN_LETTER_SPACING;
     buffer[i++] = 0;
 
-    for (j = 0; j < 33 - i && lbsText[j] != EOS; j++)
-        buffer[i + j] = lbsText[j];
+    for (j = 0; j < 33 - i && kgText[j] != EOS; j++)
+        buffer[i + j] = kgText[j];
 
     buffer[i + j] = EOS;
     DexScreen_AddTextPrinterParameterized(windowId, FONT_SMALL, labelText, x, y, 0);

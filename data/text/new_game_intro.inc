@@ -125,13 +125,13 @@ gNameChoice_Suzi::
     .string "SUZI$"
 
 gControlsGuide_Text_Intro::
-    .string "Os vários botões serão explicados na\n"
-	.string "ordem de sua importância.$"
+    .string "Os diversos botões serão explicados\n"
+	.string "em ordem de importância.$"
 
 gControlsGuide_Text_DPad::
     .string "Movimenta a personagem.\n"
     .string "Também usado para escolher\n"
-    .string "entre dados variados.$"
+    .string "dentre dados variados.$"
 
 gControlsGuide_Text_AButton::
     .string "Use para confirmar uma escolha,\n"

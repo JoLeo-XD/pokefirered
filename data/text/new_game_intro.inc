@@ -163,7 +163,7 @@ gPikachuIntro_Text_Page1::
 	.string "embarcar será uma grande aventura na\n"
 	.string "qual você é a personagem principal.\n"
 	.string "\n"
-	.string "Fale com gente e examine coisas onde\n"
+	.string "Fale com gente e examine coisas aonde\n"
 	.string "for que vá, sejam cidades, estradas ou\n"
 	.string "cavernas. Colete informações e dicas\n"
 	.string "de todas as origens.$"

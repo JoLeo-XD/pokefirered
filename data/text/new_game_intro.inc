@@ -164,9 +164,9 @@ gPikachuIntro_Text_Page1::
 	.string "qual você é a personagem principal.\n"
 	.string "\n"
 	.string "Fale com gente e examine coisas aonde\n"
-	.string "for que vá, sejam cidades, estradas ou\n"
-	.string "cavernas. Colete informações e dicas\n"
-	.string "de todas as origens.$"
+	.string "for que vá, sejam cidades, estradas\n"
+	.string "ou cavernas. Colete informações e\n"
+	.string "dicas de todas as origens.$"
 
 gPikachuIntro_Text_Page2::
 	.string "Novas oportunidades se abrirão se\n"
@@ -185,7 +185,7 @@ gPikachuIntro_Text_Page3::
 	.string "Este é nosso grande objetivo.\n"
 	.string "\n"
 	.string "\n"
-	.string "Agora aperte o botão A, e que sua\n"
+	.string "Agora, aperte o botão A, e que sua\n"
 	.string "aventura comece!$"
 
 gOakSpeech_Text_WelcomeToTheWorld::

@@ -847,12 +847,7 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
     ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[1], STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_HOFNumber);
 
-    //if (gTasks[taskId].data[0] <= 0)
-    //    TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONCancel_BBUTTONNext, 0, 0, TRUE);
-    //else if (gTasks[taskId].data[0] >= gTasks[taskId].data[2])
-        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONCancel, 0, 0, TRUE);
-    //else
-    //    TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONNext, 0, 0, TRUE);
+    TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPKMN_LEFTRIGHTPick_BBUTTONCancel, 0, 0, TRUE);
 
     gTasks[taskId].func = Task_HofPC_PrintMonInfo;
 }
@@ -911,15 +906,6 @@ static void Task_HofPC_HandleInput(u8 taskId)
                 gTasks[taskId].data[1]--;
             gTasks[taskId].func = Task_HofPC_DrawSpritesPrintText;
         }
-        else // no more teams to view, turn off hall of fame PC
-        {
-            if (IsCryPlayingOrClearCrySongs())
-            {
-                StopCryAndClearCrySongs();
-                m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
-            }
-            gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
-        }
     }
     else if (JOY_NEW(DPAD_RIGHT))
     {
@@ -937,15 +923,6 @@ static void Task_HofPC_HandleInput(u8 taskId)
             if (gTasks[taskId].data[1] != 0)
                 gTasks[taskId].data[1]++;
             gTasks[taskId].func = Task_HofPC_DrawSpritesPrintText;
-        }
-        else // no more teams to view, turn off hall of fame PC
-        {
-            if (IsCryPlayingOrClearCrySongs())
-            {
-                StopCryAndClearCrySongs();
-                m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
-            }
-            gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
         }
     }
     else if (JOY_NEW(B_BUTTON))

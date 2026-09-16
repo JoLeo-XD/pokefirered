@@ -7463,8 +7463,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 {
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsMoneanChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7473,8 +7473,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsMoneanChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7483,8 +7483,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsLiptooChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7493,8 +7493,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_LIPTOO_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsLiptooChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7503,8 +7503,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsWeepthChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7513,8 +7513,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_WEEPTH_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsWeepthChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7523,8 +7523,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsDilfordChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7533,8 +7533,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_DILFORD_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsDilfordChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7543,8 +7543,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsScufibChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7553,8 +7553,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_SCUFIB_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsScufibChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7563,8 +7563,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsRixyChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7573,8 +7573,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_RIXY_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsRixyChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7583,8 +7583,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsViapoisChamber_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7593,8 +7593,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER),
         .landMonsInfo = &sSevenIslandTanobyRuinsViapoisChamber_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7603,8 +7603,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(VIRIDIAN_FOREST),
-        .mapNum = MAP_NUM(VIRIDIAN_FOREST),
+        .mapGroup = MAP_GROUP(MAP_VIRIDIAN_FOREST),
+        .mapNum = MAP_NUM(MAP_VIRIDIAN_FOREST),
         .landMonsInfo = &sViridianForest_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7613,8 +7613,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(VIRIDIAN_FOREST),
-        .mapNum = MAP_NUM(VIRIDIAN_FOREST),
+        .mapGroup = MAP_GROUP(MAP_VIRIDIAN_FOREST),
+        .mapNum = MAP_NUM(MAP_VIRIDIAN_FOREST),
         .landMonsInfo = &sViridianForest_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7623,8 +7623,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_MOON_1F),
-        .mapNum = MAP_NUM(MT_MOON_1F),
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_1F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_1F),
         .landMonsInfo = &sMtMoon1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7633,8 +7633,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_MOON_1F),
-        .mapNum = MAP_NUM(MT_MOON_1F),
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_1F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_1F),
         .landMonsInfo = &sMtMoon1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7643,8 +7643,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_MOON_B1F),
-        .mapNum = MAP_NUM(MT_MOON_B1F),
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_B1F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_B1F),
         .landMonsInfo = &sMtMoonB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7653,8 +7653,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_MOON_B1F),
-        .mapNum = MAP_NUM(MT_MOON_B1F),
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_B1F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_B1F),
         .landMonsInfo = &sMtMoonB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7663,8 +7663,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_MOON_B2F),
-        .mapNum = MAP_NUM(MT_MOON_B2F),
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_B2F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_B2F),
         .landMonsInfo = &sMtMoonB2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7673,8 +7673,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_MOON_B2F),
-        .mapNum = MAP_NUM(MT_MOON_B2F),
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_B2F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_B2F),
         .landMonsInfo = &sMtMoonB2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7683,8 +7683,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SSANNE_EXTERIOR),
-        .mapNum = MAP_NUM(SSANNE_EXTERIOR),
+        .mapGroup = MAP_GROUP(MAP_SSANNE_EXTERIOR),
+        .mapNum = MAP_NUM(MAP_SSANNE_EXTERIOR),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSSAnneExterior_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7693,8 +7693,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SSANNE_EXTERIOR),
-        .mapNum = MAP_NUM(SSANNE_EXTERIOR),
+        .mapGroup = MAP_GROUP(MAP_SSANNE_EXTERIOR),
+        .mapNum = MAP_NUM(MAP_SSANNE_EXTERIOR),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSSAnneExterior_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7703,8 +7703,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(DIGLETTS_CAVE_B1F),
-        .mapNum = MAP_NUM(DIGLETTS_CAVE_B1F),
+        .mapGroup = MAP_GROUP(MAP_DIGLETTS_CAVE_B1F),
+        .mapNum = MAP_NUM(MAP_DIGLETTS_CAVE_B1F),
         .landMonsInfo = &sDiglettsCaveB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7713,8 +7713,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(DIGLETTS_CAVE_B1F),
-        .mapNum = MAP_NUM(DIGLETTS_CAVE_B1F),
+        .mapGroup = MAP_GROUP(MAP_DIGLETTS_CAVE_B1F),
+        .mapNum = MAP_NUM(MAP_DIGLETTS_CAVE_B1F),
         .landMonsInfo = &sDiglettsCaveB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7723,8 +7723,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(VICTORY_ROAD_1F),
-        .mapNum = MAP_NUM(VICTORY_ROAD_1F),
+        .mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_1F),
+        .mapNum = MAP_NUM(MAP_VICTORY_ROAD_1F),
         .landMonsInfo = &sVictoryRoad1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7733,8 +7733,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(VICTORY_ROAD_1F),
-        .mapNum = MAP_NUM(VICTORY_ROAD_1F),
+        .mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_1F),
+        .mapNum = MAP_NUM(MAP_VICTORY_ROAD_1F),
         .landMonsInfo = &sVictoryRoad1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7743,8 +7743,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(VICTORY_ROAD_2F),
-        .mapNum = MAP_NUM(VICTORY_ROAD_2F),
+        .mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_2F),
+        .mapNum = MAP_NUM(MAP_VICTORY_ROAD_2F),
         .landMonsInfo = &sVictoryRoad2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7753,8 +7753,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(VICTORY_ROAD_2F),
-        .mapNum = MAP_NUM(VICTORY_ROAD_2F),
+        .mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_2F),
+        .mapNum = MAP_NUM(MAP_VICTORY_ROAD_2F),
         .landMonsInfo = &sVictoryRoad2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7763,8 +7763,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(VICTORY_ROAD_3F),
-        .mapNum = MAP_NUM(VICTORY_ROAD_3F),
+        .mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_3F),
+        .mapNum = MAP_NUM(MAP_VICTORY_ROAD_3F),
         .landMonsInfo = &sVictoryRoad3F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7773,8 +7773,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(VICTORY_ROAD_3F),
-        .mapNum = MAP_NUM(VICTORY_ROAD_3F),
+        .mapGroup = MAP_GROUP(MAP_VICTORY_ROAD_3F),
+        .mapNum = MAP_NUM(MAP_VICTORY_ROAD_3F),
         .landMonsInfo = &sVictoryRoad3F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7783,8 +7783,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_1F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_1F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_1F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_1F),
         .landMonsInfo = &sPokemonMansion1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7793,8 +7793,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_1F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_1F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_1F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_1F),
         .landMonsInfo = &sPokemonMansion1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7803,8 +7803,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_2F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_2F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_2F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_2F),
         .landMonsInfo = &sPokemonMansion2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7813,8 +7813,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_2F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_2F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_2F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_2F),
         .landMonsInfo = &sPokemonMansion2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7823,8 +7823,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_3F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_3F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_3F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_3F),
         .landMonsInfo = &sPokemonMansion3F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7833,8 +7833,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_3F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_3F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_3F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_3F),
         .landMonsInfo = &sPokemonMansion3F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7843,8 +7843,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_B1F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_B1F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_B1F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_B1F),
         .landMonsInfo = &sPokemonMansionB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7853,8 +7853,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_MANSION_B1F),
-        .mapNum = MAP_NUM(POKEMON_MANSION_B1F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_B1F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_B1F),
         .landMonsInfo = &sPokemonMansionB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -7863,8 +7863,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_CENTER),
-        .mapNum = MAP_NUM(SAFARI_ZONE_CENTER),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_CENTER),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_CENTER),
         .landMonsInfo = &sSafariZoneCenter_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneCenter_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7873,8 +7873,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_CENTER),
-        .mapNum = MAP_NUM(SAFARI_ZONE_CENTER),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_CENTER),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_CENTER),
         .landMonsInfo = &sSafariZoneCenter_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneCenter_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7883,8 +7883,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_EAST),
-        .mapNum = MAP_NUM(SAFARI_ZONE_EAST),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_EAST),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_EAST),
         .landMonsInfo = &sSafariZoneEast_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneEast_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7893,8 +7893,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_EAST),
-        .mapNum = MAP_NUM(SAFARI_ZONE_EAST),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_EAST),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_EAST),
         .landMonsInfo = &sSafariZoneEast_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneEast_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7903,8 +7903,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_NORTH),
-        .mapNum = MAP_NUM(SAFARI_ZONE_NORTH),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_NORTH),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_NORTH),
         .landMonsInfo = &sSafariZoneNorth_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneNorth_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7913,8 +7913,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_NORTH),
-        .mapNum = MAP_NUM(SAFARI_ZONE_NORTH),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_NORTH),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_NORTH),
         .landMonsInfo = &sSafariZoneNorth_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneNorth_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7923,8 +7923,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_WEST),
-        .mapNum = MAP_NUM(SAFARI_ZONE_WEST),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_WEST),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_WEST),
         .landMonsInfo = &sSafariZoneWest_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneWest_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7933,8 +7933,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SAFARI_ZONE_WEST),
-        .mapNum = MAP_NUM(SAFARI_ZONE_WEST),
+        .mapGroup = MAP_GROUP(MAP_SAFARI_ZONE_WEST),
+        .mapNum = MAP_NUM(MAP_SAFARI_ZONE_WEST),
         .landMonsInfo = &sSafariZoneWest_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSafariZoneWest_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -7943,8 +7943,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CAVE_1F),
-        .mapNum = MAP_NUM(CERULEAN_CAVE_1F),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CAVE_1F),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CAVE_1F),
         .landMonsInfo = &sCeruleanCave1F_FireRed_LandMonsInfo,
         .waterMonsInfo = &sCeruleanCave1F_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = &sCeruleanCave1F_FireRed_RockSmashMonsInfo,
@@ -7953,8 +7953,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CAVE_1F),
-        .mapNum = MAP_NUM(CERULEAN_CAVE_1F),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CAVE_1F),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CAVE_1F),
         .landMonsInfo = &sCeruleanCave1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sCeruleanCave1F_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = &sCeruleanCave1F_LeafGreen_RockSmashMonsInfo,
@@ -7963,8 +7963,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CAVE_2F),
-        .mapNum = MAP_NUM(CERULEAN_CAVE_2F),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CAVE_2F),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CAVE_2F),
         .landMonsInfo = &sCeruleanCave2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sCeruleanCave2F_FireRed_RockSmashMonsInfo,
@@ -7973,8 +7973,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CAVE_2F),
-        .mapNum = MAP_NUM(CERULEAN_CAVE_2F),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CAVE_2F),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CAVE_2F),
         .landMonsInfo = &sCeruleanCave2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sCeruleanCave2F_LeafGreen_RockSmashMonsInfo,
@@ -7983,8 +7983,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CAVE_B1F),
-        .mapNum = MAP_NUM(CERULEAN_CAVE_B1F),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CAVE_B1F),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CAVE_B1F),
         .landMonsInfo = &sCeruleanCaveB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = &sCeruleanCaveB1F_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = &sCeruleanCaveB1F_FireRed_RockSmashMonsInfo,
@@ -7993,8 +7993,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CAVE_B1F),
-        .mapNum = MAP_NUM(CERULEAN_CAVE_B1F),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CAVE_B1F),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CAVE_B1F),
         .landMonsInfo = &sCeruleanCaveB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sCeruleanCaveB1F_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = &sCeruleanCaveB1F_LeafGreen_RockSmashMonsInfo,
@@ -8003,8 +8003,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROCK_TUNNEL_1F),
-        .mapNum = MAP_NUM(ROCK_TUNNEL_1F),
+        .mapGroup = MAP_GROUP(MAP_ROCK_TUNNEL_1F),
+        .mapNum = MAP_NUM(MAP_ROCK_TUNNEL_1F),
         .landMonsInfo = &sRockTunnel1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8013,8 +8013,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROCK_TUNNEL_1F),
-        .mapNum = MAP_NUM(ROCK_TUNNEL_1F),
+        .mapGroup = MAP_GROUP(MAP_ROCK_TUNNEL_1F),
+        .mapNum = MAP_NUM(MAP_ROCK_TUNNEL_1F),
         .landMonsInfo = &sRockTunnel1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8023,8 +8023,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROCK_TUNNEL_B1F),
-        .mapNum = MAP_NUM(ROCK_TUNNEL_B1F),
+        .mapGroup = MAP_GROUP(MAP_ROCK_TUNNEL_B1F),
+        .mapNum = MAP_NUM(MAP_ROCK_TUNNEL_B1F),
         .landMonsInfo = &sRockTunnelB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sRockTunnelB1F_FireRed_RockSmashMonsInfo,
@@ -8033,8 +8033,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROCK_TUNNEL_B1F),
-        .mapNum = MAP_NUM(ROCK_TUNNEL_B1F),
+        .mapGroup = MAP_GROUP(MAP_ROCK_TUNNEL_B1F),
+        .mapNum = MAP_NUM(MAP_ROCK_TUNNEL_B1F),
         .landMonsInfo = &sRockTunnelB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sRockTunnelB1F_LeafGreen_RockSmashMonsInfo,
@@ -8043,8 +8043,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_1F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_1F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_1F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_1F),
         .landMonsInfo = &sSeafoamIslands1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8053,8 +8053,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_1F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_1F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_1F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_1F),
         .landMonsInfo = &sSeafoamIslands1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8063,8 +8063,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B1F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B1F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B1F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B1F),
         .landMonsInfo = &sSeafoamIslandsB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8073,8 +8073,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B1F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B1F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B1F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B1F),
         .landMonsInfo = &sSeafoamIslandsB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8083,8 +8083,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B2F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B2F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B2F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B2F),
         .landMonsInfo = &sSeafoamIslandsB2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8093,8 +8093,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B2F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B2F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B2F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B2F),
         .landMonsInfo = &sSeafoamIslandsB2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8103,8 +8103,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B3F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B3F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B3F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B3F),
         .landMonsInfo = &sSeafoamIslandsB3F_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSeafoamIslandsB3F_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8113,8 +8113,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B3F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B3F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B3F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B3F),
         .landMonsInfo = &sSeafoamIslandsB3F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSeafoamIslandsB3F_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8123,8 +8123,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B4F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B4F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B4F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B4F),
         .landMonsInfo = &sSeafoamIslandsB4F_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSeafoamIslandsB4F_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8133,8 +8133,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEAFOAM_ISLANDS_B4F),
-        .mapNum = MAP_NUM(SEAFOAM_ISLANDS_B4F),
+        .mapGroup = MAP_GROUP(MAP_SEAFOAM_ISLANDS_B4F),
+        .mapNum = MAP_NUM(MAP_SEAFOAM_ISLANDS_B4F),
         .landMonsInfo = &sSeafoamIslandsB4F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSeafoamIslandsB4F_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8143,8 +8143,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_3F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_3F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_3F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_3F),
         .landMonsInfo = &sPokemonTower3F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8153,8 +8153,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_3F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_3F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_3F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_3F),
         .landMonsInfo = &sPokemonTower3F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8163,8 +8163,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_4F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_4F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_4F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_4F),
         .landMonsInfo = &sPokemonTower4F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8173,8 +8173,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_4F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_4F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_4F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_4F),
         .landMonsInfo = &sPokemonTower4F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8183,8 +8183,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_5F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_5F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_5F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_5F),
         .landMonsInfo = &sPokemonTower5F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8193,8 +8193,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_5F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_5F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_5F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_5F),
         .landMonsInfo = &sPokemonTower5F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8203,8 +8203,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_6F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_6F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_6F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_6F),
         .landMonsInfo = &sPokemonTower6F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8213,8 +8213,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_6F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_6F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_6F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_6F),
         .landMonsInfo = &sPokemonTower6F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8223,8 +8223,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_7F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_7F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_7F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_7F),
         .landMonsInfo = &sPokemonTower7F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8233,8 +8233,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POKEMON_TOWER_7F),
-        .mapNum = MAP_NUM(POKEMON_TOWER_7F),
+        .mapGroup = MAP_GROUP(MAP_POKEMON_TOWER_7F),
+        .mapNum = MAP_NUM(MAP_POKEMON_TOWER_7F),
         .landMonsInfo = &sPokemonTower7F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8243,8 +8243,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(POWER_PLANT),
-        .mapNum = MAP_NUM(POWER_PLANT),
+        .mapGroup = MAP_GROUP(MAP_POWER_PLANT),
+        .mapNum = MAP_NUM(MAP_POWER_PLANT),
         .landMonsInfo = &sPowerPlant_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8253,8 +8253,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(POWER_PLANT),
-        .mapNum = MAP_NUM(POWER_PLANT),
+        .mapGroup = MAP_GROUP(MAP_POWER_PLANT),
+        .mapNum = MAP_NUM(MAP_POWER_PLANT),
         .landMonsInfo = &sPowerPlant_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8263,8 +8263,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_EXTERIOR),
-        .mapNum = MAP_NUM(MT_EMBER_EXTERIOR),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_EXTERIOR),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_EXTERIOR),
         .landMonsInfo = &sMtEmberExterior_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberExterior_FireRed_RockSmashMonsInfo,
@@ -8273,8 +8273,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_EXTERIOR),
-        .mapNum = MAP_NUM(MT_EMBER_EXTERIOR),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_EXTERIOR),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_EXTERIOR),
         .landMonsInfo = &sMtEmberExterior_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberExterior_LeafGreen_RockSmashMonsInfo,
@@ -8283,8 +8283,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_1F),
-        .mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_1F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_SUMMIT_PATH_1F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_SUMMIT_PATH_1F),
         .landMonsInfo = &sMtEmberSummitPath1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8293,8 +8293,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_1F),
-        .mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_1F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_SUMMIT_PATH_1F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_SUMMIT_PATH_1F),
         .landMonsInfo = &sMtEmberSummitPath1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8303,8 +8303,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_2F),
-        .mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_2F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_SUMMIT_PATH_2F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_SUMMIT_PATH_2F),
         .landMonsInfo = &sMtEmberSummitPath2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberSummitPath2F_FireRed_RockSmashMonsInfo,
@@ -8313,8 +8313,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_2F),
-        .mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_2F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_SUMMIT_PATH_2F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_SUMMIT_PATH_2F),
         .landMonsInfo = &sMtEmberSummitPath2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberSummitPath2F_LeafGreen_RockSmashMonsInfo,
@@ -8323,8 +8323,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_3F),
-        .mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_3F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_SUMMIT_PATH_3F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_SUMMIT_PATH_3F),
         .landMonsInfo = &sMtEmberSummitPath3F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8333,8 +8333,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_SUMMIT_PATH_3F),
-        .mapNum = MAP_NUM(MT_EMBER_SUMMIT_PATH_3F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_SUMMIT_PATH_3F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_SUMMIT_PATH_3F),
         .landMonsInfo = &sMtEmberSummitPath3F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8343,8 +8343,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_1F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_1F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_1F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_1F),
         .landMonsInfo = &sMtEmberRubyPath1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPath1F_FireRed_RockSmashMonsInfo,
@@ -8353,8 +8353,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_1F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_1F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_1F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_1F),
         .landMonsInfo = &sMtEmberRubyPath1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPath1F_LeafGreen_RockSmashMonsInfo,
@@ -8363,8 +8363,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B1F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B1F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B1F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B1F),
         .landMonsInfo = &sMtEmberRubyPathB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB1F_FireRed_RockSmashMonsInfo,
@@ -8373,8 +8373,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B1F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B1F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B1F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B1F),
         .landMonsInfo = &sMtEmberRubyPathB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB1F_LeafGreen_RockSmashMonsInfo,
@@ -8383,8 +8383,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B2F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B2F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B2F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B2F),
         .landMonsInfo = &sMtEmberRubyPathB2F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo,
@@ -8393,8 +8393,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B2F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B2F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B2F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B2F),
         .landMonsInfo = &sMtEmberRubyPathB2F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB2F_LeafGreen_RockSmashMonsInfo,
@@ -8403,8 +8403,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B3F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B3F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B3F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B3F),
         .landMonsInfo = &sMtEmberRubyPathB3F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB3F_FireRed_RockSmashMonsInfo,
@@ -8413,8 +8413,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B3F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B3F),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B3F),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B3F),
         .landMonsInfo = &sMtEmberRubyPathB3F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB3F_LeafGreen_RockSmashMonsInfo,
@@ -8423,8 +8423,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B1F_STAIRS),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B1F_STAIRS),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B1F_STAIRS),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B1F_STAIRS),
         .landMonsInfo = &sMtEmberRubyPathB1FStairs_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB1FStairs_FireRed_RockSmashMonsInfo,
@@ -8433,8 +8433,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B1F_STAIRS),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B1F_STAIRS),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B1F_STAIRS),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B1F_STAIRS),
         .landMonsInfo = &sMtEmberRubyPathB1FStairs_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB1FStairs_LeafGreen_RockSmashMonsInfo,
@@ -8443,8 +8443,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B2F_STAIRS),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B2F_STAIRS),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B2F_STAIRS),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B2F_STAIRS),
         .landMonsInfo = &sMtEmberRubyPathB2FStairs_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB2FStairs_FireRed_RockSmashMonsInfo,
@@ -8453,8 +8453,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B2F_STAIRS),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B2F_STAIRS),
+        .mapGroup = MAP_GROUP(MAP_MT_EMBER_RUBY_PATH_B2F_STAIRS),
+        .mapNum = MAP_NUM(MAP_MT_EMBER_RUBY_PATH_B2F_STAIRS),
         .landMonsInfo = &sMtEmberRubyPathB2FStairs_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB2FStairs_LeafGreen_RockSmashMonsInfo,
@@ -8463,8 +8463,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(THREE_ISLAND_BERRY_FOREST),
-        .mapNum = MAP_NUM(THREE_ISLAND_BERRY_FOREST),
+        .mapGroup = MAP_GROUP(MAP_THREE_ISLAND_BERRY_FOREST),
+        .mapNum = MAP_NUM(MAP_THREE_ISLAND_BERRY_FOREST),
         .landMonsInfo = &sThreeIslandBerryForest_FireRed_LandMonsInfo,
         .waterMonsInfo = &sThreeIslandBerryForest_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8473,8 +8473,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(THREE_ISLAND_BERRY_FOREST),
-        .mapNum = MAP_NUM(THREE_ISLAND_BERRY_FOREST),
+        .mapGroup = MAP_GROUP(MAP_THREE_ISLAND_BERRY_FOREST),
+        .mapNum = MAP_NUM(MAP_THREE_ISLAND_BERRY_FOREST),
         .landMonsInfo = &sThreeIslandBerryForest_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sThreeIslandBerryForest_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8483,8 +8483,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
         .landMonsInfo = &sFourIslandIcefallCaveEntrance_FireRed_LandMonsInfo,
         .waterMonsInfo = &sFourIslandIcefallCaveEntrance_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8493,8 +8493,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE),
         .landMonsInfo = &sFourIslandIcefallCaveEntrance_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sFourIslandIcefallCaveEntrance_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8503,8 +8503,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_1F),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_1F),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_1F),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_1F),
         .landMonsInfo = &sFourIslandIcefallCave1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8513,8 +8513,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_1F),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_1F),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_1F),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_1F),
         .landMonsInfo = &sFourIslandIcefallCave1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8523,8 +8523,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_B1F),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_B1F),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F),
         .landMonsInfo = &sFourIslandIcefallCaveB1F_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8533,8 +8533,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_B1F),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_B1F),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F),
         .landMonsInfo = &sFourIslandIcefallCaveB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8543,8 +8543,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_BACK),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_BACK),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK),
         .landMonsInfo = &sFourIslandIcefallCaveBack_FireRed_LandMonsInfo,
         .waterMonsInfo = &sFourIslandIcefallCaveBack_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8553,8 +8553,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND_ICEFALL_CAVE_BACK),
-        .mapNum = MAP_NUM(FOUR_ISLAND_ICEFALL_CAVE_BACK),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK),
         .landMonsInfo = &sFourIslandIcefallCaveBack_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sFourIslandIcefallCaveBack_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8563,8 +8563,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_PATTERN_BUSH),
-        .mapNum = MAP_NUM(SIX_ISLAND_PATTERN_BUSH),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_PATTERN_BUSH),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_PATTERN_BUSH),
         .landMonsInfo = &sSixIslandPatternBush_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8573,8 +8573,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_PATTERN_BUSH),
-        .mapNum = MAP_NUM(SIX_ISLAND_PATTERN_BUSH),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_PATTERN_BUSH),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_PATTERN_BUSH),
         .landMonsInfo = &sSixIslandPatternBush_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8583,8 +8583,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM1),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM1),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM1),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM1),
         .landMonsInfo = &sFiveIslandLostCaveRoom1_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8593,8 +8593,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM1),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM1),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM1),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM1),
         .landMonsInfo = &sFiveIslandLostCaveRoom1_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8603,8 +8603,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM2),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM2),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM2),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM2),
         .landMonsInfo = &sFiveIslandLostCaveRoom2_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8613,8 +8613,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM2),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM2),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM2),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM2),
         .landMonsInfo = &sFiveIslandLostCaveRoom2_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8623,8 +8623,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM3),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM3),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM3),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM3),
         .landMonsInfo = &sFiveIslandLostCaveRoom3_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8633,8 +8633,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM3),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM3),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM3),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM3),
         .landMonsInfo = &sFiveIslandLostCaveRoom3_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8643,8 +8643,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM4),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM4),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM4),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM4),
         .landMonsInfo = &sFiveIslandLostCaveRoom4_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8653,8 +8653,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM4),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM4),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM4),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM4),
         .landMonsInfo = &sFiveIslandLostCaveRoom4_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8663,8 +8663,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM5),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM5),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM5),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM5),
         .landMonsInfo = &sFiveIslandLostCaveRoom5_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8673,8 +8673,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM5),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM5),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM5),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM5),
         .landMonsInfo = &sFiveIslandLostCaveRoom5_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8683,8 +8683,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM6),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM6),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM6),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM6),
         .landMonsInfo = &sFiveIslandLostCaveRoom6_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8693,8 +8693,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM6),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM6),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM6),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM6),
         .landMonsInfo = &sFiveIslandLostCaveRoom6_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8703,8 +8703,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM7),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM7),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM7),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM7),
         .landMonsInfo = &sFiveIslandLostCaveRoom7_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8713,8 +8713,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM7),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM7),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM7),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM7),
         .landMonsInfo = &sFiveIslandLostCaveRoom7_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8723,8 +8723,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM8),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM8),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM8),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM8),
         .landMonsInfo = &sFiveIslandLostCaveRoom8_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8733,8 +8733,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM8),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM8),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM8),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM8),
         .landMonsInfo = &sFiveIslandLostCaveRoom8_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8743,8 +8743,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM9),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM9),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM9),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM9),
         .landMonsInfo = &sFiveIslandLostCaveRoom9_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8753,8 +8753,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM9),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM9),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM9),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM9),
         .landMonsInfo = &sFiveIslandLostCaveRoom9_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8763,8 +8763,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM10),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM10),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM10),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM10),
         .landMonsInfo = &sFiveIslandLostCaveRoom10_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8773,8 +8773,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM10),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM10),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM10),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM10),
         .landMonsInfo = &sFiveIslandLostCaveRoom10_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8783,8 +8783,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM11),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM11),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM11),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM11),
         .landMonsInfo = &sFiveIslandLostCaveRoom11_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8793,8 +8793,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM11),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM11),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM11),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM11),
         .landMonsInfo = &sFiveIslandLostCaveRoom11_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8803,8 +8803,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM12),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM12),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM12),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM12),
         .landMonsInfo = &sFiveIslandLostCaveRoom12_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8813,8 +8813,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM12),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM12),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM12),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM12),
         .landMonsInfo = &sFiveIslandLostCaveRoom12_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8823,8 +8823,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM13),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM13),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM13),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM13),
         .landMonsInfo = &sFiveIslandLostCaveRoom13_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8833,8 +8833,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM13),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM13),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM13),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM13),
         .landMonsInfo = &sFiveIslandLostCaveRoom13_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8843,8 +8843,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM14),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM14),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM14),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM14),
         .landMonsInfo = &sFiveIslandLostCaveRoom14_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8853,8 +8853,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_LOST_CAVE_ROOM14),
-        .mapNum = MAP_NUM(FIVE_ISLAND_LOST_CAVE_ROOM14),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_LOST_CAVE_ROOM14),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_LOST_CAVE_ROOM14),
         .landMonsInfo = &sFiveIslandLostCaveRoom14_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8863,8 +8863,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ONE_ISLAND_KINDLE_ROAD),
-        .mapNum = MAP_NUM(ONE_ISLAND_KINDLE_ROAD),
+        .mapGroup = MAP_GROUP(MAP_ONE_ISLAND_KINDLE_ROAD),
+        .mapNum = MAP_NUM(MAP_ONE_ISLAND_KINDLE_ROAD),
         .landMonsInfo = &sOneIslandKindleRoad_FireRed_LandMonsInfo,
         .waterMonsInfo = &sOneIslandKindleRoad_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = &sOneIslandKindleRoad_FireRed_RockSmashMonsInfo,
@@ -8873,8 +8873,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ONE_ISLAND_KINDLE_ROAD),
-        .mapNum = MAP_NUM(ONE_ISLAND_KINDLE_ROAD),
+        .mapGroup = MAP_GROUP(MAP_ONE_ISLAND_KINDLE_ROAD),
+        .mapNum = MAP_NUM(MAP_ONE_ISLAND_KINDLE_ROAD),
         .landMonsInfo = &sOneIslandKindleRoad_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sOneIslandKindleRoad_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = &sOneIslandKindleRoad_LeafGreen_RockSmashMonsInfo,
@@ -8883,8 +8883,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ONE_ISLAND_TREASURE_BEACH),
-        .mapNum = MAP_NUM(ONE_ISLAND_TREASURE_BEACH),
+        .mapGroup = MAP_GROUP(MAP_ONE_ISLAND_TREASURE_BEACH),
+        .mapNum = MAP_NUM(MAP_ONE_ISLAND_TREASURE_BEACH),
         .landMonsInfo = &sOneIslandTreasureBeach_FireRed_LandMonsInfo,
         .waterMonsInfo = &sOneIslandTreasureBeach_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8893,8 +8893,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ONE_ISLAND_TREASURE_BEACH),
-        .mapNum = MAP_NUM(ONE_ISLAND_TREASURE_BEACH),
+        .mapGroup = MAP_GROUP(MAP_ONE_ISLAND_TREASURE_BEACH),
+        .mapNum = MAP_NUM(MAP_ONE_ISLAND_TREASURE_BEACH),
         .landMonsInfo = &sOneIslandTreasureBeach_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sOneIslandTreasureBeach_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8903,8 +8903,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(TWO_ISLAND_CAPE_BRINK),
-        .mapNum = MAP_NUM(TWO_ISLAND_CAPE_BRINK),
+        .mapGroup = MAP_GROUP(MAP_TWO_ISLAND_CAPE_BRINK),
+        .mapNum = MAP_NUM(MAP_TWO_ISLAND_CAPE_BRINK),
         .landMonsInfo = &sTwoIslandCapeBrink_FireRed_LandMonsInfo,
         .waterMonsInfo = &sTwoIslandCapeBrink_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8913,8 +8913,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(TWO_ISLAND_CAPE_BRINK),
-        .mapNum = MAP_NUM(TWO_ISLAND_CAPE_BRINK),
+        .mapGroup = MAP_GROUP(MAP_TWO_ISLAND_CAPE_BRINK),
+        .mapNum = MAP_NUM(MAP_TWO_ISLAND_CAPE_BRINK),
         .landMonsInfo = &sTwoIslandCapeBrink_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sTwoIslandCapeBrink_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8923,8 +8923,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(THREE_ISLAND_BOND_BRIDGE),
-        .mapNum = MAP_NUM(THREE_ISLAND_BOND_BRIDGE),
+        .mapGroup = MAP_GROUP(MAP_THREE_ISLAND_BOND_BRIDGE),
+        .mapNum = MAP_NUM(MAP_THREE_ISLAND_BOND_BRIDGE),
         .landMonsInfo = &sThreeIslandBondBridge_FireRed_LandMonsInfo,
         .waterMonsInfo = &sThreeIslandBondBridge_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8933,8 +8933,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(THREE_ISLAND_BOND_BRIDGE),
-        .mapNum = MAP_NUM(THREE_ISLAND_BOND_BRIDGE),
+        .mapGroup = MAP_GROUP(MAP_THREE_ISLAND_BOND_BRIDGE),
+        .mapNum = MAP_NUM(MAP_THREE_ISLAND_BOND_BRIDGE),
         .landMonsInfo = &sThreeIslandBondBridge_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sThreeIslandBondBridge_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8943,8 +8943,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(THREE_ISLAND_PORT),
-        .mapNum = MAP_NUM(THREE_ISLAND_PORT),
+        .mapGroup = MAP_GROUP(MAP_THREE_ISLAND_PORT),
+        .mapNum = MAP_NUM(MAP_THREE_ISLAND_PORT),
         .landMonsInfo = &sThreeIslandPort_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8953,8 +8953,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(THREE_ISLAND_PORT),
-        .mapNum = MAP_NUM(THREE_ISLAND_PORT),
+        .mapGroup = MAP_GROUP(MAP_THREE_ISLAND_PORT),
+        .mapNum = MAP_NUM(MAP_THREE_ISLAND_PORT),
         .landMonsInfo = &sThreeIslandPort_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -8963,8 +8963,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_RESORT_GORGEOUS),
-        .mapNum = MAP_NUM(FIVE_ISLAND_RESORT_GORGEOUS),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_RESORT_GORGEOUS),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_RESORT_GORGEOUS),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFiveIslandResortGorgeous_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8973,8 +8973,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_RESORT_GORGEOUS),
-        .mapNum = MAP_NUM(FIVE_ISLAND_RESORT_GORGEOUS),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_RESORT_GORGEOUS),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_RESORT_GORGEOUS),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFiveIslandResortGorgeous_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8983,8 +8983,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_WATER_LABYRINTH),
-        .mapNum = MAP_NUM(FIVE_ISLAND_WATER_LABYRINTH),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_WATER_LABYRINTH),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_WATER_LABYRINTH),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFiveIslandWaterLabyrinth_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -8993,8 +8993,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_WATER_LABYRINTH),
-        .mapNum = MAP_NUM(FIVE_ISLAND_WATER_LABYRINTH),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_WATER_LABYRINTH),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_WATER_LABYRINTH),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFiveIslandWaterLabyrinth_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9003,8 +9003,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_MEADOW),
-        .mapNum = MAP_NUM(FIVE_ISLAND_MEADOW),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_MEADOW),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_MEADOW),
         .landMonsInfo = &sFiveIslandMeadow_FireRed_LandMonsInfo,
         .waterMonsInfo = &sFiveIslandMeadow_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9013,8 +9013,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_MEADOW),
-        .mapNum = MAP_NUM(FIVE_ISLAND_MEADOW),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_MEADOW),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_MEADOW),
         .landMonsInfo = &sFiveIslandMeadow_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sFiveIslandMeadow_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9023,8 +9023,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_MEMORIAL_PILLAR),
-        .mapNum = MAP_NUM(FIVE_ISLAND_MEMORIAL_PILLAR),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_MEMORIAL_PILLAR),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_MEMORIAL_PILLAR),
         .landMonsInfo = &sFiveIslandMemorialPillar_FireRed_LandMonsInfo,
         .waterMonsInfo = &sFiveIslandMemorialPillar_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9033,8 +9033,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND_MEMORIAL_PILLAR),
-        .mapNum = MAP_NUM(FIVE_ISLAND_MEMORIAL_PILLAR),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND_MEMORIAL_PILLAR),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND_MEMORIAL_PILLAR),
         .landMonsInfo = &sFiveIslandMemorialPillar_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sFiveIslandMemorialPillar_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9043,8 +9043,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_OUTCAST_ISLAND),
-        .mapNum = MAP_NUM(SIX_ISLAND_OUTCAST_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_OUTCAST_ISLAND),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_OUTCAST_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSixIslandOutcastIsland_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9053,8 +9053,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_OUTCAST_ISLAND),
-        .mapNum = MAP_NUM(SIX_ISLAND_OUTCAST_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_OUTCAST_ISLAND),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_OUTCAST_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSixIslandOutcastIsland_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9063,8 +9063,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_GREEN_PATH),
-        .mapNum = MAP_NUM(SIX_ISLAND_GREEN_PATH),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_GREEN_PATH),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_GREEN_PATH),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSixIslandGreenPath_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9073,8 +9073,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_GREEN_PATH),
-        .mapNum = MAP_NUM(SIX_ISLAND_GREEN_PATH),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_GREEN_PATH),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_GREEN_PATH),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSixIslandGreenPath_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9083,8 +9083,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_WATER_PATH),
-        .mapNum = MAP_NUM(SIX_ISLAND_WATER_PATH),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_WATER_PATH),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_WATER_PATH),
         .landMonsInfo = &sSixIslandWaterPath_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSixIslandWaterPath_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9093,8 +9093,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_WATER_PATH),
-        .mapNum = MAP_NUM(SIX_ISLAND_WATER_PATH),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_WATER_PATH),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_WATER_PATH),
         .landMonsInfo = &sSixIslandWaterPath_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSixIslandWaterPath_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9103,8 +9103,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_RUIN_VALLEY),
-        .mapNum = MAP_NUM(SIX_ISLAND_RUIN_VALLEY),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_RUIN_VALLEY),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_RUIN_VALLEY),
         .landMonsInfo = &sSixIslandRuinValley_FireRed_LandMonsInfo,
         .waterMonsInfo = &sSixIslandRuinValley_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9113,8 +9113,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_RUIN_VALLEY),
-        .mapNum = MAP_NUM(SIX_ISLAND_RUIN_VALLEY),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_RUIN_VALLEY),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_RUIN_VALLEY),
         .landMonsInfo = &sSixIslandRuinValley_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sSixIslandRuinValley_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9123,8 +9123,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TRAINER_TOWER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TRAINER_TOWER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TRAINER_TOWER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TRAINER_TOWER),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSevenIslandTrainerTower_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9133,8 +9133,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TRAINER_TOWER),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TRAINER_TOWER),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TRAINER_TOWER),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TRAINER_TOWER),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSevenIslandTrainerTower_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9143,8 +9143,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
         .landMonsInfo = &sSevenIslandSevaultCanyonEntrance_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9153,8 +9153,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE),
         .landMonsInfo = &sSevenIslandSevaultCanyonEntrance_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9163,8 +9163,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_SEVAULT_CANYON),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_SEVAULT_CANYON),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_SEVAULT_CANYON),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_SEVAULT_CANYON),
         .landMonsInfo = &sSevenIslandSevaultCanyon_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sSevenIslandSevaultCanyon_FireRed_RockSmashMonsInfo,
@@ -9173,8 +9173,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_SEVAULT_CANYON),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_SEVAULT_CANYON),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_SEVAULT_CANYON),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_SEVAULT_CANYON),
         .landMonsInfo = &sSevenIslandSevaultCanyon_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sSevenIslandSevaultCanyon_LeafGreen_RockSmashMonsInfo,
@@ -9183,8 +9183,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSevenIslandTanobyRuins_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9193,8 +9193,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SEVEN_ISLAND_TANOBY_RUINS),
-        .mapNum = MAP_NUM(SEVEN_ISLAND_TANOBY_RUINS),
+        .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS),
+        .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sSevenIslandTanobyRuins_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9203,8 +9203,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE1),
-        .mapNum = MAP_NUM(ROUTE1),
+        .mapGroup = MAP_GROUP(MAP_ROUTE1),
+        .mapNum = MAP_NUM(MAP_ROUTE1),
         .landMonsInfo = &sRoute1_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9213,8 +9213,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE1),
-        .mapNum = MAP_NUM(ROUTE1),
+        .mapGroup = MAP_GROUP(MAP_ROUTE1),
+        .mapNum = MAP_NUM(MAP_ROUTE1),
         .landMonsInfo = &sRoute1_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9223,8 +9223,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE2),
-        .mapNum = MAP_NUM(ROUTE2),
+        .mapGroup = MAP_GROUP(MAP_ROUTE2),
+        .mapNum = MAP_NUM(MAP_ROUTE2),
         .landMonsInfo = &sRoute2_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9233,8 +9233,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE2),
-        .mapNum = MAP_NUM(ROUTE2),
+        .mapGroup = MAP_GROUP(MAP_ROUTE2),
+        .mapNum = MAP_NUM(MAP_ROUTE2),
         .landMonsInfo = &sRoute2_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9243,8 +9243,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE3),
-        .mapNum = MAP_NUM(ROUTE3),
+        .mapGroup = MAP_GROUP(MAP_ROUTE3),
+        .mapNum = MAP_NUM(MAP_ROUTE3),
         .landMonsInfo = &sRoute3_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9253,8 +9253,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE3),
-        .mapNum = MAP_NUM(ROUTE3),
+        .mapGroup = MAP_GROUP(MAP_ROUTE3),
+        .mapNum = MAP_NUM(MAP_ROUTE3),
         .landMonsInfo = &sRoute3_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9263,8 +9263,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE4),
-        .mapNum = MAP_NUM(ROUTE4),
+        .mapGroup = MAP_GROUP(MAP_ROUTE4),
+        .mapNum = MAP_NUM(MAP_ROUTE4),
         .landMonsInfo = &sRoute4_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute4_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9273,8 +9273,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE4),
-        .mapNum = MAP_NUM(ROUTE4),
+        .mapGroup = MAP_GROUP(MAP_ROUTE4),
+        .mapNum = MAP_NUM(MAP_ROUTE4),
         .landMonsInfo = &sRoute4_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute4_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9283,8 +9283,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE5),
-        .mapNum = MAP_NUM(ROUTE5),
+        .mapGroup = MAP_GROUP(MAP_ROUTE5),
+        .mapNum = MAP_NUM(MAP_ROUTE5),
         .landMonsInfo = &sRoute5_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9293,8 +9293,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE5),
-        .mapNum = MAP_NUM(ROUTE5),
+        .mapGroup = MAP_GROUP(MAP_ROUTE5),
+        .mapNum = MAP_NUM(MAP_ROUTE5),
         .landMonsInfo = &sRoute5_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9303,8 +9303,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE6),
-        .mapNum = MAP_NUM(ROUTE6),
+        .mapGroup = MAP_GROUP(MAP_ROUTE6),
+        .mapNum = MAP_NUM(MAP_ROUTE6),
         .landMonsInfo = &sRoute6_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute6_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9313,8 +9313,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE6),
-        .mapNum = MAP_NUM(ROUTE6),
+        .mapGroup = MAP_GROUP(MAP_ROUTE6),
+        .mapNum = MAP_NUM(MAP_ROUTE6),
         .landMonsInfo = &sRoute6_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute6_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9323,8 +9323,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE7),
-        .mapNum = MAP_NUM(ROUTE7),
+        .mapGroup = MAP_GROUP(MAP_ROUTE7),
+        .mapNum = MAP_NUM(MAP_ROUTE7),
         .landMonsInfo = &sRoute7_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9333,8 +9333,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE7),
-        .mapNum = MAP_NUM(ROUTE7),
+        .mapGroup = MAP_GROUP(MAP_ROUTE7),
+        .mapNum = MAP_NUM(MAP_ROUTE7),
         .landMonsInfo = &sRoute7_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9343,8 +9343,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE8),
-        .mapNum = MAP_NUM(ROUTE8),
+        .mapGroup = MAP_GROUP(MAP_ROUTE8),
+        .mapNum = MAP_NUM(MAP_ROUTE8),
         .landMonsInfo = &sRoute8_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9353,8 +9353,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE8),
-        .mapNum = MAP_NUM(ROUTE8),
+        .mapGroup = MAP_GROUP(MAP_ROUTE8),
+        .mapNum = MAP_NUM(MAP_ROUTE8),
         .landMonsInfo = &sRoute8_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9363,8 +9363,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE9),
-        .mapNum = MAP_NUM(ROUTE9),
+        .mapGroup = MAP_GROUP(MAP_ROUTE9),
+        .mapNum = MAP_NUM(MAP_ROUTE9),
         .landMonsInfo = &sRoute9_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9373,8 +9373,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE9),
-        .mapNum = MAP_NUM(ROUTE9),
+        .mapGroup = MAP_GROUP(MAP_ROUTE9),
+        .mapNum = MAP_NUM(MAP_ROUTE9),
         .landMonsInfo = &sRoute9_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9383,8 +9383,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE10),
-        .mapNum = MAP_NUM(ROUTE10),
+        .mapGroup = MAP_GROUP(MAP_ROUTE10),
+        .mapNum = MAP_NUM(MAP_ROUTE10),
         .landMonsInfo = &sRoute10_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute10_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9393,8 +9393,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE10),
-        .mapNum = MAP_NUM(ROUTE10),
+        .mapGroup = MAP_GROUP(MAP_ROUTE10),
+        .mapNum = MAP_NUM(MAP_ROUTE10),
         .landMonsInfo = &sRoute10_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute10_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9403,8 +9403,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE11),
-        .mapNum = MAP_NUM(ROUTE11),
+        .mapGroup = MAP_GROUP(MAP_ROUTE11),
+        .mapNum = MAP_NUM(MAP_ROUTE11),
         .landMonsInfo = &sRoute11_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute11_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9413,8 +9413,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE11),
-        .mapNum = MAP_NUM(ROUTE11),
+        .mapGroup = MAP_GROUP(MAP_ROUTE11),
+        .mapNum = MAP_NUM(MAP_ROUTE11),
         .landMonsInfo = &sRoute11_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute11_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9423,8 +9423,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE12),
-        .mapNum = MAP_NUM(ROUTE12),
+        .mapGroup = MAP_GROUP(MAP_ROUTE12),
+        .mapNum = MAP_NUM(MAP_ROUTE12),
         .landMonsInfo = &sRoute12_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute12_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9433,8 +9433,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE12),
-        .mapNum = MAP_NUM(ROUTE12),
+        .mapGroup = MAP_GROUP(MAP_ROUTE12),
+        .mapNum = MAP_NUM(MAP_ROUTE12),
         .landMonsInfo = &sRoute12_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute12_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9443,8 +9443,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE13),
-        .mapNum = MAP_NUM(ROUTE13),
+        .mapGroup = MAP_GROUP(MAP_ROUTE13),
+        .mapNum = MAP_NUM(MAP_ROUTE13),
         .landMonsInfo = &sRoute13_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute13_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9453,8 +9453,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE13),
-        .mapNum = MAP_NUM(ROUTE13),
+        .mapGroup = MAP_GROUP(MAP_ROUTE13),
+        .mapNum = MAP_NUM(MAP_ROUTE13),
         .landMonsInfo = &sRoute13_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute13_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9463,8 +9463,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE14),
-        .mapNum = MAP_NUM(ROUTE14),
+        .mapGroup = MAP_GROUP(MAP_ROUTE14),
+        .mapNum = MAP_NUM(MAP_ROUTE14),
         .landMonsInfo = &sRoute14_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9473,8 +9473,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE14),
-        .mapNum = MAP_NUM(ROUTE14),
+        .mapGroup = MAP_GROUP(MAP_ROUTE14),
+        .mapNum = MAP_NUM(MAP_ROUTE14),
         .landMonsInfo = &sRoute14_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9483,8 +9483,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE15),
-        .mapNum = MAP_NUM(ROUTE15),
+        .mapGroup = MAP_GROUP(MAP_ROUTE15),
+        .mapNum = MAP_NUM(MAP_ROUTE15),
         .landMonsInfo = &sRoute15_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9493,8 +9493,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE15),
-        .mapNum = MAP_NUM(ROUTE15),
+        .mapGroup = MAP_GROUP(MAP_ROUTE15),
+        .mapNum = MAP_NUM(MAP_ROUTE15),
         .landMonsInfo = &sRoute15_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9503,8 +9503,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE16),
-        .mapNum = MAP_NUM(ROUTE16),
+        .mapGroup = MAP_GROUP(MAP_ROUTE16),
+        .mapNum = MAP_NUM(MAP_ROUTE16),
         .landMonsInfo = &sRoute16_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9513,8 +9513,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE16),
-        .mapNum = MAP_NUM(ROUTE16),
+        .mapGroup = MAP_GROUP(MAP_ROUTE16),
+        .mapNum = MAP_NUM(MAP_ROUTE16),
         .landMonsInfo = &sRoute16_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9523,8 +9523,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE17),
-        .mapNum = MAP_NUM(ROUTE17),
+        .mapGroup = MAP_GROUP(MAP_ROUTE17),
+        .mapNum = MAP_NUM(MAP_ROUTE17),
         .landMonsInfo = &sRoute17_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9533,8 +9533,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE17),
-        .mapNum = MAP_NUM(ROUTE17),
+        .mapGroup = MAP_GROUP(MAP_ROUTE17),
+        .mapNum = MAP_NUM(MAP_ROUTE17),
         .landMonsInfo = &sRoute17_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9543,8 +9543,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE18),
-        .mapNum = MAP_NUM(ROUTE18),
+        .mapGroup = MAP_GROUP(MAP_ROUTE18),
+        .mapNum = MAP_NUM(MAP_ROUTE18),
         .landMonsInfo = &sRoute18_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9553,8 +9553,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE18),
-        .mapNum = MAP_NUM(ROUTE18),
+        .mapGroup = MAP_GROUP(MAP_ROUTE18),
+        .mapNum = MAP_NUM(MAP_ROUTE18),
         .landMonsInfo = &sRoute18_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9563,8 +9563,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE19),
-        .mapNum = MAP_NUM(ROUTE19),
+        .mapGroup = MAP_GROUP(MAP_ROUTE19),
+        .mapNum = MAP_NUM(MAP_ROUTE19),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sRoute19_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9573,8 +9573,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE19),
-        .mapNum = MAP_NUM(ROUTE19),
+        .mapGroup = MAP_GROUP(MAP_ROUTE19),
+        .mapNum = MAP_NUM(MAP_ROUTE19),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sRoute19_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9583,8 +9583,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE20),
-        .mapNum = MAP_NUM(ROUTE20),
+        .mapGroup = MAP_GROUP(MAP_ROUTE20),
+        .mapNum = MAP_NUM(MAP_ROUTE20),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sRoute20_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9593,8 +9593,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE20),
-        .mapNum = MAP_NUM(ROUTE20),
+        .mapGroup = MAP_GROUP(MAP_ROUTE20),
+        .mapNum = MAP_NUM(MAP_ROUTE20),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sRoute20_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9603,8 +9603,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE21_NORTH),
-        .mapNum = MAP_NUM(ROUTE21_NORTH),
+        .mapGroup = MAP_GROUP(MAP_ROUTE21_NORTH),
+        .mapNum = MAP_NUM(MAP_ROUTE21_NORTH),
         .landMonsInfo = &sRoute21North_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute21North_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9613,8 +9613,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE21_NORTH),
-        .mapNum = MAP_NUM(ROUTE21_NORTH),
+        .mapGroup = MAP_GROUP(MAP_ROUTE21_NORTH),
+        .mapNum = MAP_NUM(MAP_ROUTE21_NORTH),
         .landMonsInfo = &sRoute21North_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute21North_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9623,8 +9623,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE21_SOUTH),
-        .mapNum = MAP_NUM(ROUTE21_SOUTH),
+        .mapGroup = MAP_GROUP(MAP_ROUTE21_SOUTH),
+        .mapNum = MAP_NUM(MAP_ROUTE21_SOUTH),
         .landMonsInfo = &sRoute21South_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute21South_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9633,8 +9633,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE21_SOUTH),
-        .mapNum = MAP_NUM(ROUTE21_SOUTH),
+        .mapGroup = MAP_GROUP(MAP_ROUTE21_SOUTH),
+        .mapNum = MAP_NUM(MAP_ROUTE21_SOUTH),
         .landMonsInfo = &sRoute21South_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute21South_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9643,8 +9643,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE22),
-        .mapNum = MAP_NUM(ROUTE22),
+        .mapGroup = MAP_GROUP(MAP_ROUTE22),
+        .mapNum = MAP_NUM(MAP_ROUTE22),
         .landMonsInfo = &sRoute22_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute22_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9653,8 +9653,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE22),
-        .mapNum = MAP_NUM(ROUTE22),
+        .mapGroup = MAP_GROUP(MAP_ROUTE22),
+        .mapNum = MAP_NUM(MAP_ROUTE22),
         .landMonsInfo = &sRoute22_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute22_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9663,8 +9663,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE23),
-        .mapNum = MAP_NUM(ROUTE23),
+        .mapGroup = MAP_GROUP(MAP_ROUTE23),
+        .mapNum = MAP_NUM(MAP_ROUTE23),
         .landMonsInfo = &sRoute23_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute23_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9673,8 +9673,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE23),
-        .mapNum = MAP_NUM(ROUTE23),
+        .mapGroup = MAP_GROUP(MAP_ROUTE23),
+        .mapNum = MAP_NUM(MAP_ROUTE23),
         .landMonsInfo = &sRoute23_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute23_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9683,8 +9683,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE24),
-        .mapNum = MAP_NUM(ROUTE24),
+        .mapGroup = MAP_GROUP(MAP_ROUTE24),
+        .mapNum = MAP_NUM(MAP_ROUTE24),
         .landMonsInfo = &sRoute24_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute24_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9693,8 +9693,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE24),
-        .mapNum = MAP_NUM(ROUTE24),
+        .mapGroup = MAP_GROUP(MAP_ROUTE24),
+        .mapNum = MAP_NUM(MAP_ROUTE24),
         .landMonsInfo = &sRoute24_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute24_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9703,8 +9703,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ROUTE25),
-        .mapNum = MAP_NUM(ROUTE25),
+        .mapGroup = MAP_GROUP(MAP_ROUTE25),
+        .mapNum = MAP_NUM(MAP_ROUTE25),
         .landMonsInfo = &sRoute25_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute25_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9713,8 +9713,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ROUTE25),
-        .mapNum = MAP_NUM(ROUTE25),
+        .mapGroup = MAP_GROUP(MAP_ROUTE25),
+        .mapNum = MAP_NUM(MAP_ROUTE25),
         .landMonsInfo = &sRoute25_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute25_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9723,8 +9723,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(PALLET_TOWN),
-        .mapNum = MAP_NUM(PALLET_TOWN),
+        .mapGroup = MAP_GROUP(MAP_PALLET_TOWN),
+        .mapNum = MAP_NUM(MAP_PALLET_TOWN),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sPalletTown_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9733,8 +9733,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(PALLET_TOWN),
-        .mapNum = MAP_NUM(PALLET_TOWN),
+        .mapGroup = MAP_GROUP(MAP_PALLET_TOWN),
+        .mapNum = MAP_NUM(MAP_PALLET_TOWN),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sPalletTown_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9743,8 +9743,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(VIRIDIAN_CITY),
-        .mapNum = MAP_NUM(VIRIDIAN_CITY),
+        .mapGroup = MAP_GROUP(MAP_VIRIDIAN_CITY),
+        .mapNum = MAP_NUM(MAP_VIRIDIAN_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sViridianCity_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9753,8 +9753,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(VIRIDIAN_CITY),
-        .mapNum = MAP_NUM(VIRIDIAN_CITY),
+        .mapGroup = MAP_GROUP(MAP_VIRIDIAN_CITY),
+        .mapNum = MAP_NUM(MAP_VIRIDIAN_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sViridianCity_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9763,8 +9763,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CITY),
-        .mapNum = MAP_NUM(CERULEAN_CITY),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CITY),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sCeruleanCity_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9773,8 +9773,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(CERULEAN_CITY),
-        .mapNum = MAP_NUM(CERULEAN_CITY),
+        .mapGroup = MAP_GROUP(MAP_CERULEAN_CITY),
+        .mapNum = MAP_NUM(MAP_CERULEAN_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sCeruleanCity_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9783,8 +9783,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(VERMILION_CITY),
-        .mapNum = MAP_NUM(VERMILION_CITY),
+        .mapGroup = MAP_GROUP(MAP_VERMILION_CITY),
+        .mapNum = MAP_NUM(MAP_VERMILION_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sVermilionCity_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9793,8 +9793,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(VERMILION_CITY),
-        .mapNum = MAP_NUM(VERMILION_CITY),
+        .mapGroup = MAP_GROUP(MAP_VERMILION_CITY),
+        .mapNum = MAP_NUM(MAP_VERMILION_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sVermilionCity_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9803,8 +9803,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(CELADON_CITY),
-        .mapNum = MAP_NUM(CELADON_CITY),
+        .mapGroup = MAP_GROUP(MAP_CELADON_CITY),
+        .mapNum = MAP_NUM(MAP_CELADON_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sCeladonCity_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9813,8 +9813,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(CELADON_CITY),
-        .mapNum = MAP_NUM(CELADON_CITY),
+        .mapGroup = MAP_GROUP(MAP_CELADON_CITY),
+        .mapNum = MAP_NUM(MAP_CELADON_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sCeladonCity_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9823,8 +9823,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FUCHSIA_CITY),
-        .mapNum = MAP_NUM(FUCHSIA_CITY),
+        .mapGroup = MAP_GROUP(MAP_FUCHSIA_CITY),
+        .mapNum = MAP_NUM(MAP_FUCHSIA_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFuchsiaCity_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9833,8 +9833,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FUCHSIA_CITY),
-        .mapNum = MAP_NUM(FUCHSIA_CITY),
+        .mapGroup = MAP_GROUP(MAP_FUCHSIA_CITY),
+        .mapNum = MAP_NUM(MAP_FUCHSIA_CITY),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFuchsiaCity_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9843,8 +9843,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(CINNABAR_ISLAND),
-        .mapNum = MAP_NUM(CINNABAR_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_CINNABAR_ISLAND),
+        .mapNum = MAP_NUM(MAP_CINNABAR_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sCinnabarIsland_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9853,8 +9853,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(CINNABAR_ISLAND),
-        .mapNum = MAP_NUM(CINNABAR_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_CINNABAR_ISLAND),
+        .mapNum = MAP_NUM(MAP_CINNABAR_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sCinnabarIsland_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9863,8 +9863,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(ONE_ISLAND),
-        .mapNum = MAP_NUM(ONE_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_ONE_ISLAND),
+        .mapNum = MAP_NUM(MAP_ONE_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sOneIsland_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9873,8 +9873,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(ONE_ISLAND),
-        .mapNum = MAP_NUM(ONE_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_ONE_ISLAND),
+        .mapNum = MAP_NUM(MAP_ONE_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sOneIsland_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9883,8 +9883,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND),
-        .mapNum = MAP_NUM(FOUR_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFourIsland_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9893,8 +9893,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FOUR_ISLAND),
-        .mapNum = MAP_NUM(FOUR_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_FOUR_ISLAND),
+        .mapNum = MAP_NUM(MAP_FOUR_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFourIsland_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9903,8 +9903,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND),
-        .mapNum = MAP_NUM(FIVE_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFiveIsland_FireRed_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9913,8 +9913,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(FIVE_ISLAND),
-        .mapNum = MAP_NUM(FIVE_ISLAND),
+        .mapGroup = MAP_GROUP(MAP_FIVE_ISLAND),
+        .mapNum = MAP_NUM(MAP_FIVE_ISLAND),
         .landMonsInfo = NULL,
         .waterMonsInfo = &sFiveIsland_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo = NULL,
@@ -9923,8 +9923,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9933,8 +9933,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_2_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9943,8 +9943,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_3_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9953,8 +9953,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_4_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9963,8 +9963,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_5_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9973,8 +9973,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_6_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9983,8 +9983,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_7_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -9993,8 +9993,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_8_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10003,8 +10003,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef FIRERED
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_9_FireRed_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10013,8 +10013,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10023,8 +10023,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_2_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10033,8 +10033,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_3_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10043,8 +10043,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_4_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10053,8 +10053,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_5_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10063,8 +10063,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_6_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10073,8 +10073,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_7_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10083,8 +10083,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_8_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10093,8 +10093,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 #endif
 #ifdef LEAFGREEN
     {
-        .mapGroup = MAP_GROUP(SIX_ISLAND_ALTERING_CAVE),
-        .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
+        .mapGroup = MAP_GROUP(MAP_SIX_ISLAND_ALTERING_CAVE),
+        .mapNum = MAP_NUM(MAP_SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo = &sSixIslandAlteringCave_9_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,
@@ -10102,8 +10102,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
     },
 #endif
     {
-        .mapGroup = MAP_GROUP(UNDEFINED),
-        .mapNum = MAP_NUM(UNDEFINED),
+        .mapGroup = MAP_GROUP(MAP_UNDEFINED),
+        .mapNum = MAP_NUM(MAP_UNDEFINED),
         .landMonsInfo = NULL,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = NULL,

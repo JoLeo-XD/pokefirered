@@ -3830,7 +3830,7 @@ u8 *GetMapNameSummary(u8 *dst0, u16 mapsec)
     u8 *dst;
     u16 idx;
 	u16 fill = 18;
-    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_SPECIAL_AREA - MAPSECS_KANTO)
+    if ((idx = mapsec - KANTO_MAPSEC_START) <= MAPSEC_SPECIAL_AREA - KANTO_MAPSEC_START)
 		dst = StringCopy(dst0, sMapNames[idx]);
     else
         return StringFill(dst0, CHAR_SPACE, fill);

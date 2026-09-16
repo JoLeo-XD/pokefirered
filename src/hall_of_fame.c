@@ -847,12 +847,12 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
     ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[1], STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_HOFNumber);
 
-    if (gTasks[taskId].data[0] <= 0)
-        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONCancel_BBUTTONNext, 0, 0, TRUE);
-    else if (gTasks[taskId].data[0] >= gTasks[taskId].data[2])
+    //if (gTasks[taskId].data[0] <= 0)
+    //    TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONCancel_BBUTTONNext, 0, 0, TRUE);
+    //else if (gTasks[taskId].data[0] >= gTasks[taskId].data[2])
         TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONCancel, 0, 0, TRUE);
-    else
-        TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONNext, 0, 0, TRUE);
+    //else
+    //    TopBarWindowPrintTwoStrings(gStringVar4, gText_UPDOWNPick_ABUTTONPrev_BBUTTONNext, 0, 0, TRUE);
 
     gTasks[taskId].func = Task_HofPC_PrintMonInfo;
 }
@@ -894,7 +894,7 @@ static void Task_HofPC_HandleInput(u8 taskId)
 {
     u16 i;
 
-    if (JOY_NEW(A_BUTTON))
+    if (JOY_NEW(DPAD_LEFT))
     {
         if (gTasks[taskId].data[0] != 0) // prepare another team to view
         {
@@ -921,7 +921,7 @@ static void Task_HofPC_HandleInput(u8 taskId)
             gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
         }
     }
-    else if (JOY_NEW(B_BUTTON))
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         if (gTasks[taskId].data[0] != gTasks[taskId].data[2]) // prepare another team to view
         {
@@ -947,6 +947,15 @@ static void Task_HofPC_HandleInput(u8 taskId)
             }
             gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
         }
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        if (IsCryPlayingOrClearCrySongs())
+        {
+            StopCryAndClearCrySongs();
+            m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
+        }
+        gTasks[taskId].func = Task_HofPC_HandlePaletteOnExit;
     }
     else if (JOY_NEW(DPAD_UP) && gTasks[taskId].data[3] != 0) // change mon -1
     {

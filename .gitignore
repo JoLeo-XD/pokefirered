@@ -21,6 +21,8 @@
 *.id0
 *.id1
 *.id2
+*.hwlatfont
+*.fwlatfont
 *.latfont
 *.lz
 *.map
@@ -42,8 +44,17 @@ build/
 cmake-build-*
 ld_script_ruby.txt
 ld_script_sapphire.txt
+sound/**/*.bin
+sound/songs/midi/*.s
+src/data/heal_locations.h
+src/data/items.h
+src/data/wild_encounters.h
+src/data/region_map/region_map_entries.h
+src/data/region_map/region_map_entry_strings.h
+src/data/region_map/porymap_config.json
 tags
 tools/agbcc
+tools/aif2pcm
 tools/binutils
 types_*.taghl
 !.github/calcrom/calcrom.pl
@@ -53,3 +64,7 @@ prefabs.json
 .vscode/*.*
 *.js
 *.sym
+build-cmake-*/
+.cache/
+CMakeLists.txt
+compile_commands.json

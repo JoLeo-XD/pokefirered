@@ -1965,7 +1965,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_MEW] =
     {
-        .categoryName = _("NOVA ESPÉCIE"),
+        .categoryName = _("NÚPERO"),
         .height = 4,
         .weight = 40,
         .description = gMewPokedexText,

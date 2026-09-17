@@ -131,7 +131,7 @@ gControlsGuide_Text_Intro::
 gControlsGuide_Text_DPad::
     .string "Movimenta a personagem.\n"
     .string "Também usado para escolher\n"
-    .string "dentre dados variados.$"
+    .string "dentre opções variadas.$"
 
 gControlsGuide_Text_AButton::
     .string "Use para confirmar uma escolha,\n"

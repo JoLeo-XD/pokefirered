@@ -6,6 +6,8 @@ Route16_MapScripts::
 
 Route16_OnResume::
 	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, Route16_EventScript_RemoveSnorlax
+	call_if_unset FLAG_SYS_NATIONAL_DEX, Route16_EventScript_HideRecurringSnorlax
+	call_if_unset FLAG_HIDE_ROUTE_16_SNORLAX, Route16_EventScript_HideRecurringSnorlax
 	end
 
 Route16_EventScript_RemoveSnorlax::
@@ -50,6 +52,35 @@ Route16_EventScript_Snorlax::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route16_EventScript_FoughtSnorlax
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route16_EventScript_FoughtSnorlax
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route16_EventScript_FoughtSnorlax
+	release
+	end
+
+Route16_EventScript_HideRecurringSnorlax::
+    setflag FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX
+    end
+
+Route16_EventScript_Recurring_Snorlax::
+	lock
+	faceplayer
+	goto_if_unset FLAG_GOT_POKE_FLUTE, Route12_EventScript_SnorlaxNoPokeFlute
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	msgbox Text_AnotherSnorlaxHasAppeared, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route12_EventScript_DontUsePokeFlute
+	call EventScript_AwakenSnorlax
+	random 13
+	setwildbattlerandomlevel SPECIES_SNORLAX, 41, VAR_RESULT
+	waitse
+	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	dowildbattle
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route12_EventScript_FoughtSnorlax
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route12_EventScript_FoughtSnorlax
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route12_EventScript_FoughtSnorlax
 	release
 	end
 

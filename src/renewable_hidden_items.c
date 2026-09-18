@@ -158,6 +158,74 @@ static const struct RenewableHiddenItemData sRenewableHiddenItems[] = {
         }
     },
     {
+        .mapGroup = MAP_GROUP(MAP_ROUTE12),
+        .mapNum = MAP_NUM(MAP_ROUTE12),
+        .rare = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .uncommon = {
+            HIDDEN_ID(FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX),
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .common = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        }
+    },
+    {
+        .mapGroup = MAP_GROUP(MAP_ROUTE16),
+        .mapNum = MAP_NUM(MAP_ROUTE16),
+        .rare = {
+            HIDDEN_ID(FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX),
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .uncommon = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .common = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        }
+    },
+    {
         .mapGroup = MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS),
         .mapNum = MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS),
         .rare = {

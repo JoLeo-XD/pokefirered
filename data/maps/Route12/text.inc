@@ -11,6 +11,11 @@ Text_SnorlaxReturnedToMountains::
     .string "It gave a huge yawn…\l"
     .string "And returned to the mountains.$"
 
+Text_AnotherSnorlaxHasAppeared::
+    .string "It seems like another\n"
+    .string "SNORLAX has appeared…\p"
+    .string "Want to use the POKé FLUTE?$"
+
 Text_WantToUsePokeFlute::
     .string "Want to use the POKé FLUTE?$"
 

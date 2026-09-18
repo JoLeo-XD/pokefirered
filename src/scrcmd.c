@@ -1942,6 +1942,21 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext * ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_setwildbattlerandomlevel(struct ScriptContext *ctx)
+{
+    u16 species = ScriptReadHalfword(ctx);
+    u8 baseLevel = ScriptReadByte(ctx);
+    u16 varId = ScriptReadHalfword(ctx);
+    u16 item = ScriptReadHalfword(ctx);
+    u16 level = baseLevel + VarGet(varId);
+
+    if (level > MAX_LEVEL)
+        level = MAX_LEVEL;
+
+    CreateScriptedWildMon(species, level, item);
+    return FALSE;
+}
+
 bool8 ScrCmd_dowildbattle(struct ScriptContext * ctx)
 {
     StartScriptedWildBattle();

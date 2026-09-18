@@ -1360,3 +1360,9 @@ Text_TestMsg::
 	.include "data/text/save.inc"
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
+
+	.include "data/maps/FarawayIsland_Interior/scripts.inc"
+	.include "data/maps/FarawayIsland_Interior/text.inc"
+
+	.include "data/maps/FarawayIsland_Entrance/scripts.inc"
+	.include "data/maps/FarawayIsland_Entrance/text.inc"

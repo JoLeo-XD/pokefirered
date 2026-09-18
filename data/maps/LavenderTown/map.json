@@ -116,6 +116,13 @@
       "elevation": 0,
       "dest_map": "MAP_LAVENDER_TOWN_MART",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 16,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_FARAWAY_ISLAND_ENTRANCE",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

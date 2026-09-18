@@ -321,6 +321,8 @@ gSpecials::
 	def_special ShakeScreen
 	def_special StartGroudonKyogreBattle
 	def_special StartLegendaryBattle
+	def_special SetMewAboveGrass
+	def_special DestroyMewEmergingGrassSprite
 	def_special StartRegiBattle
 	def_special SetUpTrainerMovement
 	def_special NullFieldSpecial

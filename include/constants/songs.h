@@ -346,12 +346,13 @@
 #define MUS_POKE_FLUTE            338 // MUS_POKEFUE
 #define MUS_VS_DEOXYS             339 // MUS_VS_DEO
 #define MUS_VS_MEWTWO             340 // MUS_VS_MYU2
-#define MUS_VS_LEGEND             341 // MUS_VS_DEN
-#define MUS_ENCOUNTER_GYM_LEADER  342 // MUS_EXEYE
-#define MUS_ENCOUNTER_DEOXYS      343 // MUS_DEOEYE
-#define MUS_TRAINER_TOWER         344 // MUS_T_TOWER
-#define MUS_SLOW_PALLET           345 // MUS_SLOWMASARA
-#define MUS_TEACHY_TV_MENU        346 // MUS_TVNOIZE
+#define MUS_VS_MEW                341 // MUS_VS_MYU
+#define MUS_VS_LEGEND             342 // MUS_VS_DEN
+#define MUS_ENCOUNTER_GYM_LEADER  343 // MUS_EXEYE
+#define MUS_ENCOUNTER_DEOXYS      344 // MUS_DEOEYE
+#define MUS_TRAINER_TOWER         345 // MUS_T_TOWER
+#define MUS_SLOW_PALLET           346 // MUS_SLOWMASARA
+#define MUS_TEACHY_TV_MENU        347 // MUS_TVNOIZE
 
 #define MUS_NONE                    0xFFFF
 

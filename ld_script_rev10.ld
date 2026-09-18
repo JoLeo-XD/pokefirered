@@ -960,6 +960,7 @@ SECTIONS {
         sound/songs/midi/mus_poke_flute.o(.rodata);
         sound/songs/midi/mus_vs_deoxys.o(.rodata);
         sound/songs/midi/mus_vs_mewtwo.o(.rodata);
+        sound/songs/midi/mus_vs_mew.o(.rodata);
         sound/songs/midi/mus_vs_legend.o(.rodata);
         sound/songs/midi/mus_encounter_gym_leader.o(.rodata);
         sound/songs/midi/mus_encounter_deoxys.o(.rodata);

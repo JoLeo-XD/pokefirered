@@ -1176,6 +1176,10 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
         (*delayCounter)--;
         if (*delayCounter == 0)
         {
+            // Chooses a new species to play the cry of, then plays it. Originally, the species was chosen once and never changed,
+            // but this caused the same cry to play over and over again in areas with multiple wild Pokémon. Oversight?
+            // But then again, it updates the species every time the player enters a new map, so maybe it was intentional... Hard to say.
+            ChooseAmbientCrySpecies();
             PlayAmbientCry();
             *state = 2;
         }
@@ -1187,7 +1191,75 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
 
 static void ChooseAmbientCrySpecies(void)
 {
+    u16 mapId = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+
     sAmbientCrySpecies = GetLocalWildMon(&sIsAmbientCryWaterMon);
+
+    switch (mapId)
+    {
+    case MAP_SEAFOAM_ISLANDS_B3F:
+        if (!FlagGet(FLAG_FOUGHT_ARTICUNO))
+            if (Random() % 256 < 1)
+                sAmbientCrySpecies = SPECIES_ARTICUNO;
+        break;
+    case MAP_SEAFOAM_ISLANDS_B4F:
+        if (!FlagGet(FLAG_FOUGHT_ARTICUNO))
+            if (Random() % 128 < 1)
+                sAmbientCrySpecies = SPECIES_ARTICUNO;
+        break;
+    case MAP_POWER_PLANT:
+        if (!FlagGet(FLAG_FOUGHT_ZAPDOS))
+            if (Random() % 128 < 1)
+                sAmbientCrySpecies = SPECIES_ZAPDOS;
+        break;
+    case MAP_MT_EMBER_SUMMIT_PATH_2F:
+        if (!FlagGet(FLAG_FOUGHT_MOLTRES))
+            if (Random() % 256 < 1)
+                sAmbientCrySpecies = SPECIES_MOLTRES;
+        break;
+    case MAP_MT_EMBER_SUMMIT_PATH_3F:
+        if (!FlagGet(FLAG_FOUGHT_MOLTRES))
+            if (Random() % 128 < 1)
+                sAmbientCrySpecies = SPECIES_MOLTRES;
+        break;
+    case MAP_MT_EMBER_SUMMIT:
+        if (!FlagGet(FLAG_FOUGHT_MOLTRES))
+            if (Random() % 64 < 1)
+                sAmbientCrySpecies = SPECIES_MOLTRES;
+        break;
+    case MAP_CERULEAN_CAVE_1F:
+        if (!FlagGet(FLAG_FOUGHT_MEWTWO))
+            if (Random() % 256 < 1)
+                sAmbientCrySpecies = SPECIES_MEWTWO;
+        break;
+    case MAP_CERULEAN_CAVE_B1F:
+        if (!FlagGet(FLAG_FOUGHT_MEWTWO))
+            if (Random() % 128 < 1)
+                sAmbientCrySpecies = SPECIES_MEWTWO;
+        break;
+    case MAP_NAVEL_ROCK_SUMMIT_PATH_5F:
+        if (!FlagGet(FLAG_FOUGHT_HO_OH))
+            if (Random() % 128 < 1)
+                sAmbientCrySpecies = SPECIES_HO_OH;
+        break;
+    case MAP_NAVEL_ROCK_SUMMIT:
+        if (!FlagGet(FLAG_FOUGHT_HO_OH))
+            if (Random() % 64 < 1)
+                sAmbientCrySpecies = SPECIES_HO_OH;
+        break;
+    case MAP_NAVEL_ROCK_BASE_PATH_B11F:
+        if (!FlagGet(FLAG_FOUGHT_LUGIA))
+            if (Random() % 128 < 1)
+                sAmbientCrySpecies = SPECIES_LUGIA;
+        break;
+    case MAP_NAVEL_ROCK_BASE:
+        if (!FlagGet(FLAG_FOUGHT_LUGIA))
+            if (Random() % 64 < 1)
+                sAmbientCrySpecies = SPECIES_LUGIA;
+        break;
+    default:
+        break;
+    }
 }
 
 bool32 Overworld_MusicCanOverrideMapMusic(u16 music)

@@ -343,16 +343,17 @@
 #define MUS_SEVII_123             335 // MUS_NANA123
 #define MUS_SEVII_45              336 // MUS_NANA45
 #define MUS_SEVII_67              337 // MUS_NANA67
-#define MUS_POKE_FLUTE            338 // MUS_POKEFUE
-#define MUS_VS_DEOXYS             339 // MUS_VS_DEO
-#define MUS_VS_MEWTWO             340 // MUS_VS_MYU2
-#define MUS_VS_MEW                341 // MUS_VS_MYU
-#define MUS_VS_LEGEND             342 // MUS_VS_DEN
-#define MUS_ENCOUNTER_GYM_LEADER  343 // MUS_EXEYE
-#define MUS_ENCOUNTER_DEOXYS      344 // MUS_DEOEYE
-#define MUS_TRAINER_TOWER         345 // MUS_T_TOWER
-#define MUS_SLOW_PALLET           346 // MUS_SLOWMASARA
-#define MUS_TEACHY_TV_MENU        347 // MUS_TVNOIZE
+#define MUS_FARAWAY_ISLAND        338 // MUS_SAIHATE
+#define MUS_POKE_FLUTE            339 // MUS_POKEFUE
+#define MUS_VS_DEOXYS             340 // MUS_VS_DEO
+#define MUS_VS_MEWTWO             341 // MUS_VS_MYU2
+#define MUS_VS_MEW                342 // MUS_VS_MYU
+#define MUS_VS_LEGEND             343 // MUS_VS_DEN
+#define MUS_ENCOUNTER_GYM_LEADER  344 // MUS_EXEYE
+#define MUS_ENCOUNTER_DEOXYS      345 // MUS_DEOEYE
+#define MUS_TRAINER_TOWER         346 // MUS_T_TOWER
+#define MUS_SLOW_PALLET           347 // MUS_SLOWMASARA
+#define MUS_TEACHY_TV_MENU        348 // MUS_TVNOIZE
 
 #define MUS_NONE                    0xFFFF
 

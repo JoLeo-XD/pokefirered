@@ -337,6 +337,7 @@ gSongTable::
 	song mus_sevii_123, 0, 0
 	song mus_sevii_45, 0, 0
 	song mus_sevii_67, 0, 0
+	song mus_faraway_island, 0, 0
 	song mus_poke_flute, 2, 2
 	song mus_vs_deoxys, 0, 0
 	song mus_vs_mewtwo, 0, 0

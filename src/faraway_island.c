@@ -5,6 +5,7 @@
 #include "fieldmap.h"
 #include "metatile_behavior.h"
 #include "sprite.h"
+#include "faraway_island.h"
 #include "constants/map_event_ids.h"
 #include "constants/map_groups.h"
 #include "constants/maps.h"

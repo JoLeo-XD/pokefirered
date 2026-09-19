@@ -8,6 +8,7 @@
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
+#include "faraway_island.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "quest_log.h"
@@ -4308,7 +4309,24 @@ static bool8 CopyablePlayerMovement_GoSpeed0(struct ObjectEvent *objectEvent, st
     s16 y;
 
     direction = playerDirection;
-    direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+    if (ObjectEventIsFarawayIslandMew(objectEvent))
+    {
+        direction = GetMewMoveDirection();
+        if (direction == DIR_NONE)
+        {
+            direction = playerDirection;
+            direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+            ObjectEventMoveDestCoords(objectEvent, direction, &x, &y);
+            ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
+            objectEvent->singleMovementActive = TRUE;
+            sprite->data[1] = 2;
+            return TRUE;
+        }
+    }
+    else
+    {
+        direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+    }
     ObjectEventMoveDestCoords(objectEvent, direction, &x, &y);
     ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkNormalMovementAction(direction));
     if (GetCollisionAtCoords(objectEvent, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
@@ -4327,7 +4345,24 @@ static bool8 CopyablePlayerMovement_GoSpeed1(struct ObjectEvent *objectEvent, st
     s16 y;
 
     direction = playerDirection;
-    direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+    if (ObjectEventIsFarawayIslandMew(objectEvent))
+    {
+        direction = GetMewMoveDirection();
+        if (direction == DIR_NONE)
+        {
+            direction = playerDirection;
+            direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+            ObjectEventMoveDestCoords(objectEvent, direction, &x, &y);
+            ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
+            objectEvent->singleMovementActive = TRUE;
+            sprite->data[1] = 2;
+            return TRUE;
+        }
+    }
+    else
+    {
+        direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+    }
     ObjectEventMoveDestCoords(objectEvent, direction, &x, &y);
     ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkFastMovementAction(direction));
     if (GetCollisionAtCoords(objectEvent, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
@@ -4346,7 +4381,24 @@ static bool8 CopyablePlayerMovement_GoSpeed2(struct ObjectEvent *objectEvent, st
     s16 y;
 
     direction = playerDirection;
-    direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+    if (ObjectEventIsFarawayIslandMew(objectEvent))
+    {
+        direction = GetMewMoveDirection();
+        if (direction == DIR_NONE)
+        {
+            direction = playerDirection;
+            direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+            ObjectEventMoveDestCoords(objectEvent, direction, &x, &y);
+            ObjectEventSetSingleMovement(objectEvent, sprite, GetFaceDirectionMovementAction(direction));
+            objectEvent->singleMovementActive = TRUE;
+            sprite->data[1] = 2;
+            return TRUE;
+        }
+    }
+    else
+    {
+        direction = GetCopyDirection(gInitialMovementTypeFacingDirections[objectEvent->movementType], objectEvent->directionSequenceIndex, direction);
+    }
     ObjectEventMoveDestCoords(objectEvent, direction, &x, &y);
     ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkFasterMovementAction(direction));
     if (GetCollisionAtCoords(objectEvent, x, y, direction) || (tileCallback != NULL && !tileCallback(MapGridGetMetatileBehaviorAt(x, y))))
@@ -8687,6 +8739,9 @@ static void (*const sGroundEffectFuncs[])(struct ObjectEvent *objEvent, struct S
 static void DoFlaggedGroundEffects(struct ObjectEvent *objEvent, struct Sprite *sprite, u32 flags)
 {
     u8 i;
+
+    if (ObjectEventIsFarawayIslandMew(objEvent) == TRUE && !ShouldMewShakeGrass(objEvent))
+        return;
 
     if (objEvent->localId == LOCALID_CAMERA && objEvent->invisible)
         return;

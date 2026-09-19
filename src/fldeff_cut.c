@@ -3,6 +3,7 @@
 #include "event_object_lock.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
+#include "faraway_island.h"
 #include "fieldmap.h"
 #include "field_camera.h"
 #include "field_specials.h"
@@ -20,6 +21,8 @@
 
 #define CUT_GRASS_SPRITE_COUNT 8
 #define CUT_SIDE 3
+
+extern const u8 FarawayIsland_Interior_EventScript_HideMewWhenGrassCut[];
 
 static EWRAM_DATA u8 *sCutGrassSpriteArrayPtr = NULL;
 static EWRAM_DATA bool8 sScheduleOpenDottedHole = FALSE;
@@ -285,6 +288,9 @@ static void SpriteCallback_CutGrass_Cleanup(struct Sprite *sprite)
     Free(sCutGrassSpriteArrayPtr);
     ClearPlayerHeldMovementAndUnfreezeObjectEvents();
     UnlockPlayerFieldControls();
+
+    if (IsMewPlayingHideAndSeek() == TRUE)
+        ScriptContext_SetupScript(FarawayIsland_Interior_EventScript_HideMewWhenGrassCut);
 }
 
 static void FieldMoveCallback_CutTree(void)

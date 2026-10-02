@@ -1,0 +1,30 @@
+FarawayIsland_Exterior_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, FarawayIsland_Exterior_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, FarawayIsland_Exterior_OnTransition
+	.byte 0
+
+FarawayIsland_Exterior_OnLoad::
+	call_if_unset FLAG_FARAWAY_ISLAND_SHOW_CLOUDS, FarawayIsland_Exterior_EventScript_ClearWeather
+	end
+
+FarawayIsland_Exterior_OnTransition::
+	setflag FLAG_ARRIVED_ON_FARAWAY_ISLAND
+	end
+
+FarawayIsland_Exterior_EventScript_SetCloudsWeather::
+	release
+	setweather WEATHER_SUNNY_CLOUDS
+	doweather
+	setflag FLAG_FARAWAY_ISLAND_SHOW_CLOUDS
+	end
+
+FarawayIsland_Exterior_EventScript_ClearWeather::
+	release
+	setweather WEATHER_NONE
+	doweather
+	clearflag FLAG_FARAWAY_ISLAND_SHOW_CLOUDS
+	end
+
+FarawayIsland_Exterior_EventScript_Sign::
+	msgbox FarawayIsland_Exterior_Text_Sign, MSGBOX_SIGN
+	end

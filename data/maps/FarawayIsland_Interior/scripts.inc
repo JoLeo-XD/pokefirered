@@ -39,8 +39,9 @@ FarawayIsland_Interior_OnTransition:
 	end
 
 FarawayIsland_Interior_EventScript_TryShowMew::
-	goto_if_set FLAG_FOUGHT_MEW, EventScript_Return
+	goto_if_set FLAG_DEFEATED_MEW, EventScript_Return
 	clearflag FLAG_HIDE_MEW
+	clearflag FLAG_RAN_MEW
 	setvar VAR_TEMP_1, 0
 	return
 
@@ -142,12 +143,13 @@ FarawayIsland_Interior_EventScript_Mew::
 	end
 
 FarawayIsland_Interior_EventScript_MewDefeated::
-	setflag FLAG_FOUGHT_MEW
+	setflag FLAG_DEFEATED_MEW
 	setvar VAR_0x8004, SPECIES_MEW
-	goto EventScript_MonFlewAway
+	goto EventScript_MonWontBeBack
 	end
 
 FarawayIsland_Interior_EventScript_PlayerOrMewRan::
+	setflag FLAG_RAN_MEW
 	setvar VAR_0x8004, SPECIES_MEW
 	goto EventScript_MonFlewAway
 	end

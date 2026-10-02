@@ -1,5 +1,5 @@
 
-FarawayIsland_Entrance_Text_Sign::
+FarawayIsland_Exterior_Text_Sign::
     .string "The writing is fading as if it was\n"
     .string "written a long time ago…\p"
     .string "“…ber, 6th day\n"

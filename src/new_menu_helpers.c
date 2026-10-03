@@ -645,6 +645,13 @@ void DisplayItemMessageOnField(u8 taskId, u8 fontId, const u8 *string, TaskFunc 
     CopyWindowToVram(0, COPYWIN_FULL);
 }
 
+void DisplayItemMessageOnFieldColor(u8 taskId, u8 fontId, u8 textColor, const u8 *string, TaskFunc callback)
+{
+    LoadStdWindowFrameGfx();
+    DisplayMessageAndContinueTaskColor(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, fontId, GetTextSpeedSetting(), textColor, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY, string, callback);
+    CopyWindowToVram(0, COPYWIN_FULL);
+}
+
 void DisplayYesNoMenuDefaultYes(void)
 {
     CreateYesNoMenu(&sYesNo_WindowTemplate, FONT_NORMAL, 0, 2, STD_WINDOW_BASE_TILE_NUM, STD_WINDOW_PALETTE_NUM, 0);

@@ -741,6 +741,7 @@ void TrySetCursorFistAnim(void)
 void InitCanReleaseMonVars(void)
 {
     u16 knownMoveFlags;
+    u32 monFriendship;
     if (sIsMonBeingMoved)
     {
         gStorage->tempMon = gStorage->movingMon;
@@ -768,9 +769,16 @@ void InitCanReleaseMonVars(void)
     gStorage->restrictedMoveList[1] = MOVE_DIVE;
     gStorage->restrictedMoveList[2] = MOVES_COUNT;
     knownMoveFlags = GetMonData(&gStorage->tempMon, MON_DATA_KNOWN_MOVES, (u8 *)gStorage->restrictedMoveList);
+    monFriendship = GetMonData(&gStorage->tempMon, MON_DATA_FRIENDSHIP);
     gStorage->isSurfMon = knownMoveFlags & 1;
     gStorage->isDiveMon = (knownMoveFlags >> 1) & 1;
-    if (gStorage->isSurfMon || gStorage->isDiveMon)
+
+    if (monFriendship >= 250)
+    {
+        gStorage->releaseMonStatusResolved = TRUE;
+        gStorage->releaseMonStatus = RELEASE_MON_NOT_ALLOWED_FRIENDSHIP;
+    }
+    else if (gStorage->isSurfMon || gStorage->isDiveMon)
         gStorage->releaseMonStatusResolved = FALSE;
     else
     {

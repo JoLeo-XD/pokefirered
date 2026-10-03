@@ -232,6 +232,12 @@ static const u8 sContextMenuItems_CheckGiveTossCancel[] = {
     ITEMMENUACTION_CANCEL
 };
 
+static const u8 sContextMenuItems_GiveCancel[] = {
+    ITEMMENUACTION_GIVE,
+    ITEMMENUACTION_CANCEL,
+    ITEMMENUACTION_DUMMY
+};
+
 static const u8 sContextMenuItems_GiveIfNotKeyItemPocket[][2] = {
     {
         ITEMMENUACTION_GIVE,
@@ -1024,6 +1030,15 @@ void DisplayItemMessageInBag(u8 taskId, u8 fontId, const u8 * string, TaskFunc f
     ScheduleBgCopyTilemapToVram(0);
 }
 
+void DisplayItemMessageInBagColor(u8 taskId, u8 fontId, u8 textColor, const u8 * string, TaskFunc followUpFunc)
+{
+    s16 *data = gTasks[taskId].data;
+    data[10] = OpenBagWindow(5);
+    FillWindowPixelBuffer(data[10], PIXEL_FILL(1));
+    DisplayMessageAndContinueTaskColor(taskId, data[10], 0x06D, 0x0D, fontId, GetTextSpeedSetting(), textColor, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY, string, followUpFunc);
+    ScheduleBgCopyTilemapToVram(0);
+}
+
 void ItemMenu_SetExitCallback(MainCallback cb)
 {
     sBagMenuDisplay->exitCB = cb;
@@ -1032,6 +1047,17 @@ void ItemMenu_SetExitCallback(MainCallback cb)
 static u8 GetSelectedItemIndex(u8 pocket)
 {
     return gBagMenuState.cursorPos[pocket] + gBagMenuState.itemsAbove[pocket];
+}
+
+static bool8 ItemIsMasterBall(u16 itemId)
+{
+    switch (itemId)
+    {
+    case ITEM_MASTER_BALL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
 }
 
 static void Task_BagMenu_HandleInput(u8 taskId)
@@ -1410,8 +1436,16 @@ static void OpenContextMenu(u8 taskId)
                     sContextMenuItemsBuffer[0] = ITEMMENUACTION_USE;
                 break;
             case OPEN_BAG_POKEBALLS:
-                sContextMenuItemsPtr = sContextMenuItems_Field[gBagMenuState.pocket];
-                sContextMenuNumItems = 3;
+                if (ItemIsMasterBall(gSpecialVar_ItemId) == TRUE)
+                {
+                    sContextMenuItemsPtr = sContextMenuItems_GiveCancel;
+                    sContextMenuNumItems = 2;
+                }
+                else
+                {
+                    sContextMenuItemsPtr = sContextMenuItems_Field[gBagMenuState.pocket];
+                    sContextMenuNumItems = 3;
+                }
                 break;
             }
         }
@@ -1801,7 +1835,7 @@ static void Task_ItemContext_Sell(u8 taskId)
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_OhNoICantBuyThat);
-        DisplayItemMessageInBag(taskId, GetDialogBoxFontId(), gStringVar4, Task_ReturnToBagFromContextMenu);
+        DisplayItemMessageInBagColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_ReturnToBagFromContextMenu);
     }
     else
     {
@@ -1817,7 +1851,7 @@ static void Task_ItemContext_Sell(u8 taskId)
                 data[2] = 99;
             CopyItemName(gSpecialVar_ItemId, gStringVar1);
             StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSell);
-            DisplayItemMessageInBag(taskId, GetDialogBoxFontId(), gStringVar4, Task_InitSaleQuantitySelectInterface);
+            DisplayItemMessageInBagColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_InitSaleQuantitySelectInterface);
         }
     }
 }
@@ -1842,7 +1876,7 @@ static void Task_PrintSaleConfirmationText(u8 taskId)
     s16 *data = gTasks[taskId].data;
     ConvertIntToDecimalStringN(gStringVar3, ItemId_GetPrice(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1])) / 2 * data[8], STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_ICanPayThisMuch_WouldThatBeOkay);
-    DisplayItemMessageInBag(taskId, GetDialogBoxFontId(), gStringVar4, Task_ShowSellYesNoMenu);
+    DisplayItemMessageInBagColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_ShowSellYesNoMenu);
 }
 
 static void Task_ShowSellYesNoMenu(u8 taskId)

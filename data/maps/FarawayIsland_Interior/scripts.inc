@@ -176,6 +176,7 @@ FarawayIsland_Interior_EventScript_FoundMewEast::
 
 FarawayIsland_Interior_EventScript_HideMewWhenGrassCut::
 	lockall
+	playse SE_M_TELEPORT
 	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_MEW
 	removeobject LOCALID_FARAWAY_ISLAND_MEW

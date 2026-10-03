@@ -15,13 +15,15 @@ PowerPlant_EventScript_TryRemoveStaticMon::
 
 PowerPlant_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_POWER_PLANT
-	call_if_unset FLAG_FOUGHT_ZAPDOS, PowerPlant_EventScript_ShowZapdos
+	call_if_unset FLAG_CAUGHT_ZAPDOS, PowerPlant_EventScript_TryShowZapdos
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_1, PowerPlant_EventScript_ShowElectrode1
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_2, PowerPlant_EventScript_ShowElectrode2
 	end
 
-PowerPlant_EventScript_ShowZapdos::
+PowerPlant_EventScript_TryShowZapdos::
+	goto_if_set FLAG_DEFEATED_ZAPDOS, EventScript_Return
 	clearflag FLAG_HIDE_ZAPDOS
+	clearflag FLAG_RAN_ZAPDOS
 	return
 
 PowerPlant_EventScript_ShowElectrode1::
@@ -54,16 +56,18 @@ PowerPlant_EventScript_Zapdos::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, PowerPlant_EventScript_DefeatedZapdos
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, PowerPlant_EventScript_RanFromZapdos
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, PowerPlant_EventScript_RanFromZapdos
-	setflag FLAG_FOUGHT_ZAPDOS
+	setflag FLAG_CAUGHT_ZAPDOS
 	release
 	end
 
 PowerPlant_EventScript_DefeatedZapdos::
-	setflag FLAG_FOUGHT_ZAPDOS
-	goto EventScript_RemoveStaticMon
+	setflag FLAG_DEFEATED_ZAPDOS
+	setvar VAR_0x8004, SPECIES_ZAPDOS
+	goto EventScript_MonWontBeBack
 	end
 
 PowerPlant_EventScript_RanFromZapdos::
+	setflag FLAG_RAN_ZAPDOS
 	setvar VAR_0x8004, SPECIES_ZAPDOS
 	goto EventScript_MonFlewAway
 	end

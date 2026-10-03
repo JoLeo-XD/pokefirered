@@ -131,6 +131,8 @@ enum
     MSG_WAS_DEPOSITED,
     MSG_BOX_IS_FULL,
     MSG_RELEASE_POKE,
+    MSG_MAY_NOT_COME_BACK,
+    MSG_REALLY_RELEASE_POKE,
     MSG_WAS_RELEASED,
     MSG_BYE_BYE,
     MSG_MARK_POKE,
@@ -142,8 +144,10 @@ enum
     MSG_CONTINUE_BOX,
     MSG_CAME_BACK,
     MSG_WORRIED,
+    MSG_MISSED_YOU,
     MSG_SURPRISE,
     MSG_PLEASE_REMOVE_MAIL,
+    MSG_REMOVE_MASTER_BALL,
     MSG_IS_SELECTED2,
     MSG_GIVE_TO_MON,
     MSG_PLACED_IN_BAG,
@@ -283,6 +287,8 @@ static const struct StorageMessage sMessages[] = {
     [MSG_WAS_DEPOSITED]        = {gText_PkmnWasDeposited,        MSG_FMT_MON_NAME_1},
     [MSG_BOX_IS_FULL]          = {gText_BoxIsFull2,              MSG_FMT_NONE},
     [MSG_RELEASE_POKE]         = {gText_ReleaseThisPokemon,      MSG_FMT_NONE},
+    [MSG_MAY_NOT_COME_BACK]    = {gText_MayNotComeBack,          MSG_FMT_NONE},
+    [MSG_REALLY_RELEASE_POKE]  = {gText_ReallyReleaseThisPokemon, MSG_FMT_NONE},
     [MSG_WAS_RELEASED]         = {gText_PkmnWasReleased,         MSG_FMT_RELEASE_MON_1},
     [MSG_BYE_BYE]              = {gText_ByeByePkmn,              MSG_FMT_RELEASE_MON_3},
     [MSG_MARK_POKE]            = {gText_MarkYourPkmn,            MSG_FMT_NONE},
@@ -294,8 +300,10 @@ static const struct StorageMessage sMessages[] = {
     [MSG_CONTINUE_BOX]         = {gText_ContinueBoxOperations,   MSG_FMT_NONE},
     [MSG_CAME_BACK]            = {gText_PkmnCameBack,            MSG_FMT_MON_NAME_1},
     [MSG_WORRIED]              = {gText_WasItWorriedAboutYou,    MSG_FMT_NONE},
+    [MSG_MISSED_YOU]           = {gText_MaybeItMissedYou,        MSG_FMT_NONE},
     [MSG_SURPRISE]             = {gText_FourEllipsesExclamation, MSG_FMT_NONE},
     [MSG_PLEASE_REMOVE_MAIL]   = {gText_PleaseRemoveTheMail,     MSG_FMT_NONE},
+    [MSG_REMOVE_MASTER_BALL]   = {gText_RemoveTheMasterBall,     MSG_FMT_NONE},
     [MSG_IS_SELECTED2]         = {gText_PkmnIsSelected,          MSG_FMT_ITEM_NAME},
     [MSG_GIVE_TO_MON]          = {gText_GiveToAPkmn,             MSG_FMT_NONE},
     [MSG_PLACED_IN_BAG]        = {gText_PlacedItemInBag,         MSG_FMT_ITEM_NAME},
@@ -388,6 +396,17 @@ static const struct SpriteTemplate sSpriteTemplate_Waveform = {
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
 };
+
+static bool8 ItemIsMasterBall(u16 itemId)
+{
+    switch (itemId)
+    {
+    case ITEM_MASTER_BALL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
 
 static void VBlankCB_PokeStorage(void)
 {
@@ -1012,6 +1031,8 @@ static void Task_OnSelectedMon(u8 taskId)
                 gStorage->state = 5;
             else if (ItemIsMail(gStorage->displayMonItemId))
                 gStorage->state = 4;
+            else if (ItemIsMasterBall(gStorage->displayMonItemId))
+                gStorage->state = 7;
             else
             {
                 PlaySE(SE_SELECT);
@@ -1061,6 +1082,11 @@ static void Task_OnSelectedMon(u8 taskId)
     case 4:
         PlaySE(SE_FAILURE);
         PrintStorageMessage(MSG_PLEASE_REMOVE_MAIL);
+        gStorage->state = 6;
+        break;
+    case 7:
+        PlaySE(SE_FAILURE);
+        PrintStorageMessage(MSG_REMOVE_MASTER_BALL);
         gStorage->state = 6;
         break;
     case 6:
@@ -1270,6 +1296,28 @@ static void Task_ReleaseMon(u8 taskId)
             SetPokeStorageTask(Task_PokeStorageMain);
             break;
         case 0:
+            PrintStorageMessage(MSG_MAY_NOT_COME_BACK);
+            gStorage->state++;
+            break;
+        }
+        break;
+    case 2:
+        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
+        {
+            PrintStorageMessage(MSG_REALLY_RELEASE_POKE);
+            ShowYesNoWindow(1);
+            gStorage->state++;
+        }
+        break;
+    case 3:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case MENU_B_PRESSED:
+        case 1:
+            ClearBottomWindow();
+            SetPokeStorageTask(Task_PokeStorageMain);
+            break;
+        case 0:
             ClearBottomWindow();
             InitCanReleaseMonVars();
             InitReleaseMon();
@@ -1277,7 +1325,7 @@ static void Task_ReleaseMon(u8 taskId)
             break;
         }
         break;
-    case 2:
+    case 4:
         RunCanReleaseMon();
         if (!TryHideReleaseMon())
         {
@@ -1290,28 +1338,32 @@ static void Task_ReleaseMon(u8 taskId)
                     gStorage->state++;
                     break;
                 }
-                else if (canReleaseStatus == RELEASE_MON_NOT_ALLOWED)
+                else if (canReleaseStatus == RELEASE_MON_NOT_ALLOWED || canReleaseStatus == RELEASE_MON_NOT_ALLOWED_FRIENDSHIP)
                 {
-                    gStorage->state = 8; // Can't release the mon.
+                    if (canReleaseStatus == RELEASE_MON_NOT_ALLOWED_FRIENDSHIP)
+                        gStorage->cameBackThroughFriendship = TRUE;
+                    else
+                        gStorage->cameBackThroughFriendship = FALSE;
+                    gStorage->state = 10; // Can't release the mon.
                     break;
                 }
             }
         }
         break;
-    case 3:
+    case 5:
         ReleaseMon();
         RefreshDisplayMonData();
         PrintStorageMessage(MSG_WAS_RELEASED);
         gStorage->state++;
         break;
-    case 4:
+    case 6:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageMessage(MSG_BYE_BYE);
             gStorage->state++;
         }
         break;
-    case 5:
+    case 7:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
@@ -1322,10 +1374,10 @@ static void Task_ReleaseMon(u8 taskId)
                 gStorage->state++;
             }
             else
-                gStorage->state = 7;
+                gStorage->state = 9;
         }
         break;
-    case 6:
+    case 8:
         if (GetNumPartySpritesCompacting() == 0)
         {
             DoTrySetDisplayMonData();
@@ -1334,22 +1386,22 @@ static void Task_ReleaseMon(u8 taskId)
             gStorage->state++;
         }
         break;
-    case 7:
+    case 9:
         SetPokeStorageTask(Task_PokeStorageMain);
         break;
-    case 8:
+    case 10:
         // Start "can't release" sequence
         PrintStorageMessage(MSG_WAS_RELEASED);
         gStorage->state++;
         break;
-    case 9:
+    case 11:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             PrintStorageMessage(MSG_SURPRISE);
             gStorage->state++;
         }
         break;
-    case 10:
+    case 12:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
@@ -1357,7 +1409,7 @@ static void Task_ReleaseMon(u8 taskId)
             gStorage->state++;
         }
         break;
-    case 11:
+    case 13:
         if (!ResetReleaseMonSpritePtr())
         {
             TrySetCursorFistAnim();
@@ -1365,14 +1417,17 @@ static void Task_ReleaseMon(u8 taskId)
             gStorage->state++;
         }
         break;
-    case 12:
+    case 14:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
-            PrintStorageMessage(MSG_WORRIED);
+            if (gStorage->cameBackThroughFriendship)
+                PrintStorageMessage(MSG_MISSED_YOU);
+            else
+                PrintStorageMessage(MSG_WORRIED);
             gStorage->state++;
         }
         break;
-    case 13:
+    case 15:
         if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
         {
             ClearBottomWindow();
@@ -2594,7 +2649,13 @@ static void PrintStorageMessage(u8 id)
 
 static void ShowYesNoWindow(s8 cursorPos)
 {
+// Original would already start the cursor at "NO" rather than "YES", so providing the argument "0" wouldn't move it, and providing "1"
+// wouldn't move it either since it is set to not wrap around. Thus making the cursor position argument effectively pointless.
+#ifdef BUGFIX
+    CreateYesNoMenu(&sYesNoWindowTemplate, FONT_NORMAL_COPY_1, 0, 2, 11, 14, 0);
+#else
     CreateYesNoMenu(&sYesNoWindowTemplate, FONT_NORMAL_COPY_1, 0, 2, 11, 14, 1);
+#endif
     Menu_MoveCursorNoWrapAround(cursorPos);
 }
 

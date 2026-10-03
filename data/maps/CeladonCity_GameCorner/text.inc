@@ -123,6 +123,9 @@ CeladonCity_GameCorner_Text_SwitchBehindPosterPushIt::
     .string "A switch behind the poster!?\n"
     .string "Let's push it!$"
 
+CeladonCity_GameCorner_Text_SmellsOfTeamRocket::
+    .string "Smells of TEAM ROCKET…$"
+
 CeladonCity_GameCorner_Text_CoinCaseIsRequired::
     .string "A COIN CASE is required…$"
 

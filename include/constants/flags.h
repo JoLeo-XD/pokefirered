@@ -4,7 +4,7 @@
 #include "constants/trainers.h"
 
 // Temporary Flags
-// These temporary flags are are cleared every time a map is loaded. They are used
+// These temporary flags are cleared every time a map is loaded. They are used
 // for things like shortening an NPCs introduction text if the player already spoke
 // to them once.
 #define TEMP_FLAGS_START 0x0
@@ -121,7 +121,7 @@
 #define FLAG_HIDE_UNION_ROOM_PLAYER_7                      0x069
 #define FLAG_HIDE_UNION_ROOM_PLAYER_8                      0x06A
 #define FLAG_HIDE_CINNABAR_SEAGALLOP                       0x06B
-#define FLAG_HIDE_SAFFRON_FAN_CLUB_BLACK_BELT               0x06C
+#define FLAG_HIDE_SAFFRON_FAN_CLUB_BLACK_BELT              0x06C
 #define FLAG_HIDE_SAFFRON_FAN_CLUB_ROCKER                  0x06D
 #define FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN                   0x06E
 #define FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY                  0x06F
@@ -132,15 +132,15 @@
 #define FLAG_HIDE_TWO_ISLAND_GAME_CORNER_BIKER             0x074
 #define FLAG_HIDE_TWO_ISLAND_GAME_CORNER_LOSTELLE          0x075
 #define FLAG_HIDE_LOSTELLE_IN_HER_HOME                     0x076
-#define FLAG_0x077                                         0x077
-#define FLAG_0x078                                         0x078
+#define FLAG_HIDE_MEW                                      0x077
+#define FLAG_HIDE_MYSTERIOUS_GUY                           0x078
 #define FLAG_HIDE_THREE_ISLAND_BIKERS                      0x079
 #define FLAG_HIDE_LOSTELLE_IN_BERRY_FOREST                 0x07A
 #define FLAG_HIDE_TWO_ISLAND_WOMAN                         0x07B
 #define FLAG_HIDE_TWO_ISLAND_BEAUTY                        0x07C
 #define FLAG_HIDE_TWO_ISLAND_POKE_MANIAC                   0x07D
 #define FLAG_HIDE_THREE_ISLAND_ANTIBIKERS                  0x07E
-#define FLAG_0x07F                                         0x07F
+#define FLAG_HIDE_CINNABAR_FISHERMAN                       0x07F
 #define FLAG_HIDE_ROUTE_16_SNORLAX                         0x080
 #define FLAG_HIDE_MEWTWO                                   0x081
 #define FLAG_HIDE_ARTICUNO                                 0x082
@@ -188,9 +188,9 @@
 #define FLAG_HIDE_LORELEIS_HOUSE_LAPRAS_DOLL               0x0AC
 #define FLAG_HIDE_MISC_KANTO_ROCKETS                       0x0AD
 #define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE
+#define FLAG_HIDE_VERMILION_CITY_CAPTAIN                   0x0AF
 
 // Unused?
-#define FLAG_0x0AF               0x0AF
 #define FLAG_0x0B0               0x0B0
 #define FLAG_0x0B1               0x0B1
 #define FLAG_0x0B2               0x0B2
@@ -610,7 +610,7 @@
 #define FLAG_BOUGHT_MAGIKARP                             0x249
 #define FLAG_DID_ZYNX_TRADE                              0x24A
 #define FLAG_DID_MS_NIDO_TRADE                           0x24B
-#define FLAG_0x24C                                       0x24C
+#define FLAG_GOT_GOOD_ROD_FROM_CINNABAR                  0x24C
 #define FLAG_DID_CH_DING_TRADE                           0x24D
 #define FLAG_GOT_TM38_FROM_BLAINE                        0x24E
 #define FLAG_OAK_SKIP_22_RIVAL_CHECK                     0x24F
@@ -724,10 +724,10 @@
 #define NUM_WONDER_CARD_FLAGS                            (1 + FLAG_WONDER_CARD_UNUSED_17 - FLAG_RECEIVED_AURORA_TICKET)
 
 #define FLAG_GOT_POWDER_JAR                              0x2BB
-#define FLAG_FOUGHT_MEWTWO                               0x2BC
-#define FLAG_FOUGHT_MOLTRES                              0x2BD
-#define FLAG_FOUGHT_ARTICUNO                             0x2BE
-#define FLAG_FOUGHT_ZAPDOS                               0x2BF
+#define FLAG_CAUGHT_MEWTWO                               0x2BC
+#define FLAG_CAUGHT_MOLTRES                              0x2BD
+#define FLAG_CAUGHT_ARTICUNO                             0x2BE
+#define FLAG_CAUGHT_ZAPDOS                               0x2BF
 #define FLAG_TUTOR_DOUBLE_EDGE                           0x2C0
 #define FLAG_TUTOR_THUNDER_WAVE                          0x2C1
 #define FLAG_TUTOR_ROCK_SLIDE                            0x2C2
@@ -764,13 +764,13 @@
 #define FLAG_LEARNED_ALL_MOVES_AT_CAPE_BRINK             0x2E1
 #define FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL            0x2E2
 #define FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE             0x2E3
-#define FLAG_FOUGHT_DEOXYS                               0x2E4
-#define FLAG_0x2E5                                       0x2E5
-#define FLAG_0x2E6                                       0x2E6
-#define FLAG_0x2E7                                       0x2E7
-#define FLAG_0x2E8                                       0x2E8
+#define FLAG_CAUGHT_DEOXYS                               0x2E4
+#define FLAG_DEFEATED_MEWTWO                             0x2E5
+#define FLAG_DEFEATED_ARTICUNO                           0x2E6
+#define FLAG_DEFEATED_ZAPDOS                             0x2E7
+#define FLAG_DEFEATED_MOLTRES                            0x2E8
 #define FLAG_0x2E9                                       0x2E9
-#define FLAG_0x2EA                                       0x2EA
+#define FLAG_FARAWAY_ISLAND_SHOW_CLOUDS                  0x2EA
 #define FLAG_0x2EB                                       0x2EB
 #define FLAG_REVIVED_DOME                                0x2EC
 #define FLAG_REVIVED_HELIX                               0x2ED
@@ -778,12 +778,12 @@
 #define FLAG_GOT_HM06                                    0x2EF
 #define FLAG_SHOWN_MYSTIC_TICKET                         0x2F0
 #define FLAG_SHOWN_AURORA_TICKET                         0x2F1
-#define FLAG_FOUGHT_LUGIA                                0x2F2
-#define FLAG_FOUGHT_HO_OH                                0x2F3
+#define FLAG_CAUGHT_LUGIA                                0x2F2
+#define FLAG_CAUGHT_HO_OH                                0x2F3
 #define FLAG_OAK_SAW_DEX_COMPLETION                      0x2F4
-#define FLAG_LUGIA_FLEW_AWAY                             0x2F5
-#define FLAG_HO_OH_FLEW_AWAY                             0x2F6
-#define FLAG_DEOXYS_FLEW_AWAY                            0x2F7
+#define FLAG_DEFEATED_LUGIA                              0x2F5
+#define FLAG_DEFEATED_HO_OH                              0x2F6
+#define FLAG_DEFEATED_DEOXYS                             0x2F7
 #define FLAG_TALKED_TO_TEA_LADY_AFTER_HOF                0x2F8
 #define FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION            0x2F9
 #define FLAG_GOT_EVERSTONE_FROM_OAKS_AIDE                0x2FA
@@ -794,20 +794,20 @@
 #define FLAG_OAKS_RATING_IS_VIA_PC                       0x2FF
 #define FLAG_ARRIVED_ON_FARAWAY_ISLAND                   0x300
 #define FLAG_CAUGHT_MEW                                  0x301
-#define FLAG_FOUGHT_MEW                                  0x302
-#define FLAG_HIDE_MEW                                    0x303
+#define FLAG_DEFEATED_MEW                                0x302
+#define FLAG_0x303                                       0x303
+#define FLAG_RAN_MEWTWO                                  0x304
+#define FLAG_RAN_ARTICUNO                                0x305
+#define FLAG_RAN_ZAPDOS                                  0x306
+#define FLAG_RAN_MOLTRES                                 0x307
+#define FLAG_RAN_LUGIA                                   0x308
+#define FLAG_RAN_HO_OH                                   0x309
+#define FLAG_RAN_DEOXYS                                  0x30A
+#define FLAG_RAN_MEW                                     0x30B
+#define FLAG_SHOWN_OLD_SEA_MAP                           0x30C
+#define FLAG_HAS_ENTERED_CERULEAN_CAVE                   0x30D
 
 // Unused?
-#define FLAG_0x304               0x304
-#define FLAG_0x305               0x305
-#define FLAG_0x306               0x306
-#define FLAG_0x307               0x307
-#define FLAG_0x308               0x308
-#define FLAG_0x309               0x309
-#define FLAG_0x30A               0x30A
-#define FLAG_0x30B               0x30B
-#define FLAG_0x30C               0x30C
-#define FLAG_0x30D               0x30D
 #define FLAG_0x30E               0x30E
 #define FLAG_0x30F               0x30F
 #define FLAG_0x310               0x310
@@ -1069,7 +1069,7 @@
 #define FLAG_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL                        (FLAG_HIDDEN_ITEMS_START +  37)
 #define FLAG_HIDDEN_ITEM_VICTORY_ROAD_1F_FULL_RESTORE                      (FLAG_HIDDEN_ITEMS_START +  38)
 #define FLAG_HIDDEN_ITEM_CERULEAN_CAVE_1F_ULTRA_BALL                       (FLAG_HIDDEN_ITEMS_START +  39)
-#define FLAG_HIDDEN_ITEM_UNUSED_0x28                                       (FLAG_HIDDEN_ITEMS_START +  40)
+#define FLAG_HIDDEN_ITEM_POKEMON_MANSION_1F_GREAT_BALL                     (FLAG_HIDDEN_ITEMS_START +  40)
 #define FLAG_HIDDEN_ITEM_ROUTE11_ESCAPE_ROPE                               (FLAG_HIDDEN_ITEMS_START +  41)
 #define FLAG_HIDDEN_ITEM_ROUTE12_HYPER_POTION                              (FLAG_HIDDEN_ITEMS_START +  42)
 #define FLAG_HIDDEN_ITEM_UNUSED_0x2B                                       (FLAG_HIDDEN_ITEMS_START +  43)
@@ -1222,12 +1222,10 @@
 #define FLAG_HIDDEN_ITEM_SSANNE_EXTERIOR_LAVA_COOKIE                       (FLAG_HIDDEN_ITEMS_START + 190)
 #define FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX                               (FLAG_HIDDEN_ITEMS_START + 191)
 #define FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX                               (FLAG_HIDDEN_ITEMS_START + 192)
+#define FLAG_HIDDEN_ITEM_FARAWAY_ISLAND_PREMIER_BALLS                      (FLAG_HIDDEN_ITEMS_START + 193)
+#define FLAG_HIDDEN_ITEM_FARAWAY_ISLAND_LEPPA_BERRY                        (FLAG_HIDDEN_ITEMS_START + 194)
 
 // Unused hidden item flags
-#define FLAG_UNUSED_0x4A7               0x4A7 // Unused Flag
-#define FLAG_UNUSED_0x4A8               0x4A8 // Unused Flag
-#define FLAG_UNUSED_0x4A9               0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA               0x4AA // Unused Flag
 #define FLAG_UNUSED_0x4AB               0x4AB // Unused Flag
 #define FLAG_UNUSED_0x4AC               0x4AC // Unused Flag
 #define FLAG_UNUSED_0x4AD               0x4AD // Unused Flag
@@ -1409,6 +1407,7 @@
 #define FLAG_SYS_UNLOCKED_TANOBY_RUINS                              (SYS_FLAGS + 0x49)
 #define FLAG_ENABLE_SHIP_NAVEL_ROCK                                 (SYS_FLAGS + 0x4A)
 #define FLAG_ENABLE_SHIP_BIRTH_ISLAND                               (SYS_FLAGS + 0x4B)
+#define FLAG_ENABLE_SHIP_FARAWAY_ISLAND                             (SYS_FLAGS + 0x4C)
 
 // World Map Flags
 #define FLAG_WORLD_MAP_PALLET_TOWN                                  (SYS_FLAGS + 0x90)

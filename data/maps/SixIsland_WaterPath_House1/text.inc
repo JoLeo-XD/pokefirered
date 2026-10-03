@@ -14,6 +14,10 @@ SixIsland_WaterPath_House1_Text_ItsXInchesDeserveReward::
     .string "I've never seen anything like this!\l"
     .string "You deserve a reward!$"
 
+SixIsland_WaterPath_House1_Text_Obtained5NestBalls::
+    .string "Obtained 5 NEST BALLS from\n"
+    .string "the HERACROSS enthusiast!$"
+
 SixIsland_WaterPath_House1_Text_WantToSeeBiggerOne::
     .string "I want to see a much, much bigger\n"
     .string "HERACROSS than that one.\p"

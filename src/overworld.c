@@ -1159,7 +1159,11 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
     switch (*state)
     {
     case 0:
-        if (sAmbientCrySpecies == SPECIES_NONE)
+        if (sAmbientCrySpecies == SPECIES_NONE &&
+            gMapHeader.regionMapSectionId != MAPSEC_NAVEL_ROCK &&
+            gMapHeader.regionMapSectionId != MAPSEC_BIRTH_ISLAND &&
+            gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND &&
+            gMapHeader.regionMapSectionId != MAPSEC_MT_EMBER)
             *state = 4;
         else
             *state = 1;
@@ -1192,70 +1196,119 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
 static void ChooseAmbientCrySpecies(void)
 {
     u16 mapId = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+    bool8 articunoIsGone = FlagGet(FLAG_CAUGHT_ARTICUNO) || FlagGet(FLAG_DEFEATED_ARTICUNO) || FlagGet(FLAG_RAN_ARTICUNO);
+    bool8 zapdosIsGone = FlagGet(FLAG_CAUGHT_ZAPDOS) || FlagGet(FLAG_DEFEATED_ZAPDOS) || FlagGet(FLAG_RAN_ZAPDOS);
+    bool8 moltresIsGone = FlagGet(FLAG_CAUGHT_MOLTRES) || FlagGet(FLAG_DEFEATED_MOLTRES) || FlagGet(FLAG_RAN_MOLTRES);
+    bool8 mewtwoIsGone = FlagGet(FLAG_CAUGHT_MEWTWO) || FlagGet(FLAG_DEFEATED_MEWTWO) || FlagGet(FLAG_RAN_MEWTWO);
+    bool8 hoohIsGone = FlagGet(FLAG_CAUGHT_HO_OH) || FlagGet(FLAG_DEFEATED_HO_OH) || FlagGet(FLAG_RAN_HO_OH);
+    bool8 lugiaIsGone = FlagGet(FLAG_CAUGHT_LUGIA) || FlagGet(FLAG_DEFEATED_LUGIA) || FlagGet(FLAG_RAN_LUGIA);
+    bool8 deoxysIsGone = FlagGet(FLAG_CAUGHT_DEOXYS) || FlagGet(FLAG_DEFEATED_DEOXYS) || FlagGet(FLAG_RAN_DEOXYS);
+    bool8 mewIsGone = FlagGet(FLAG_CAUGHT_MEW) || FlagGet(FLAG_DEFEATED_MEW) || FlagGet(FLAG_RAN_MEW);
+    bool8 marowakIsGone = VarGet(VAR_MAP_SCENE_POKEMON_TOWER_6F) > 0;
+    bool8 route12SnorlaxIsGone = FlagGet(FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX) && FlagGet(FLAG_HIDE_ROUTE_12_SNORLAX);
+    bool8 route16SnorlaxIsGone = FlagGet(FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX) && FlagGet(FLAG_HIDE_ROUTE_16_SNORLAX);
 
     sAmbientCrySpecies = GetLocalWildMon(&sIsAmbientCryWaterMon);
 
+    //Special case for Lengendary Mon (+ other event Mon, like Marowak and Snorlax). Won't play their cry if they are gone.
+    //The rarity is based on proximity to the Mon's location (in terms of map, not true distance). The closer you are, the more likely it is to hear its cry.
     switch (mapId)
     {
+    case MAP_POKEMON_TOWER_5F:
+        if (!marowakIsGone && Random() % AMBIENT_CRY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_MAROWAK;
+        break;
+    case MAP_POKEMON_TOWER_6F:
+        if (!marowakIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_MAROWAK;
+        break;
+    case MAP_ROUTE12:
+        if (!route12SnorlaxIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_SNORLAX;
+        break;
+    case MAP_ROUTE16:
+        if (!route16SnorlaxIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_SNORLAX;
+        break;
     case MAP_SEAFOAM_ISLANDS_B3F:
-        if (!FlagGet(FLAG_FOUGHT_ARTICUNO))
-            if (Random() % 256 < 1)
-                sAmbientCrySpecies = SPECIES_ARTICUNO;
+        if (!articunoIsGone && Random() % AMBIENT_CRY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_ARTICUNO;
         break;
     case MAP_SEAFOAM_ISLANDS_B4F:
-        if (!FlagGet(FLAG_FOUGHT_ARTICUNO))
-            if (Random() % 128 < 1)
-                sAmbientCrySpecies = SPECIES_ARTICUNO;
+        if (!articunoIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_ARTICUNO;
         break;
     case MAP_POWER_PLANT:
-        if (!FlagGet(FLAG_FOUGHT_ZAPDOS))
-            if (Random() % 128 < 1)
-                sAmbientCrySpecies = SPECIES_ZAPDOS;
+        if (!zapdosIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_ZAPDOS;
+        break;
+    case MAP_MT_EMBER_EXTERIOR:
+        if (!moltresIsGone && Random() % AMBIENT_CRY_VERY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_MOLTRES;
         break;
     case MAP_MT_EMBER_SUMMIT_PATH_2F:
-        if (!FlagGet(FLAG_FOUGHT_MOLTRES))
-            if (Random() % 256 < 1)
-                sAmbientCrySpecies = SPECIES_MOLTRES;
+        if (!moltresIsGone && Random() % AMBIENT_CRY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_MOLTRES;
         break;
     case MAP_MT_EMBER_SUMMIT_PATH_3F:
-        if (!FlagGet(FLAG_FOUGHT_MOLTRES))
-            if (Random() % 128 < 1)
-                sAmbientCrySpecies = SPECIES_MOLTRES;
+        if (!moltresIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_MOLTRES;
         break;
     case MAP_MT_EMBER_SUMMIT:
-        if (!FlagGet(FLAG_FOUGHT_MOLTRES))
-            if (Random() % 64 < 1)
-                sAmbientCrySpecies = SPECIES_MOLTRES;
+        if (!moltresIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+            sAmbientCrySpecies = SPECIES_MOLTRES;
         break;
     case MAP_CERULEAN_CAVE_1F:
-        if (!FlagGet(FLAG_FOUGHT_MEWTWO))
-            if (Random() % 256 < 1)
-                sAmbientCrySpecies = SPECIES_MEWTWO;
+        if (!mewtwoIsGone && Random() % AMBIENT_CRY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_MEWTWO;
         break;
     case MAP_CERULEAN_CAVE_B1F:
-        if (!FlagGet(FLAG_FOUGHT_MEWTWO))
-            if (Random() % 128 < 1)
-                sAmbientCrySpecies = SPECIES_MEWTWO;
+        if (!mewtwoIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_MEWTWO;
+        break;
+    case MAP_NAVEL_ROCK_FORK:
+        if (Random() % AMBIENT_CRY_VERY_RARE < 1)
+        {
+            if (!hoohIsGone)
+            {
+                sAmbientCrySpecies = SPECIES_HO_OH;
+            }
+        }
+        else if (Random() % AMBIENT_CRY_VERY_RARE == 1)
+        {
+            if (!lugiaIsGone)
+            {
+                sAmbientCrySpecies = SPECIES_LUGIA;
+            }
+        }
         break;
     case MAP_NAVEL_ROCK_SUMMIT_PATH_5F:
-        if (!FlagGet(FLAG_FOUGHT_HO_OH))
-            if (Random() % 128 < 1)
-                sAmbientCrySpecies = SPECIES_HO_OH;
+        if (!hoohIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_HO_OH;
         break;
     case MAP_NAVEL_ROCK_SUMMIT:
-        if (!FlagGet(FLAG_FOUGHT_HO_OH))
-            if (Random() % 64 < 1)
-                sAmbientCrySpecies = SPECIES_HO_OH;
+        if (!hoohIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+            sAmbientCrySpecies = SPECIES_HO_OH;
         break;
     case MAP_NAVEL_ROCK_BASE_PATH_B11F:
-        if (!FlagGet(FLAG_FOUGHT_LUGIA))
-            if (Random() % 128 < 1)
-                sAmbientCrySpecies = SPECIES_LUGIA;
+        if (!lugiaIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+            sAmbientCrySpecies = SPECIES_LUGIA;
         break;
     case MAP_NAVEL_ROCK_BASE:
-        if (!FlagGet(FLAG_FOUGHT_LUGIA))
-            if (Random() % 64 < 1)
-                sAmbientCrySpecies = SPECIES_LUGIA;
+        if (!lugiaIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+            sAmbientCrySpecies = SPECIES_LUGIA;
+        break;
+    case MAP_BIRTH_ISLAND_EXTERIOR:
+        if (!deoxysIsGone && Random() % AMBIENT_CRY_VERY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_DEOXYS;
+        break;
+    case MAP_FARAWAY_ISLAND_EXTERIOR:
+        if (!mewIsGone && Random() % AMBIENT_CRY_RARE < 1)
+            sAmbientCrySpecies = SPECIES_MEW;
+        break;
+    case MAP_FARAWAY_ISLAND_INTERIOR:
+        if (!mewIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+            sAmbientCrySpecies = SPECIES_MEW;
         break;
     default:
         break;
@@ -1266,7 +1319,10 @@ bool32 Overworld_MusicCanOverrideMapMusic(u16 music)
 {
     if (music == MUS_CYCLING || music == MUS_SURF)
     {
-        if (gMapHeader.regionMapSectionId == MAPSEC_KANTO_VICTORY_ROAD || gMapHeader.regionMapSectionId == MAPSEC_ROUTE_23 || gMapHeader.regionMapSectionId == MAPSEC_INDIGO_PLATEAU)
+        if (gMapHeader.regionMapSectionId == MAPSEC_KANTO_VICTORY_ROAD ||
+            gMapHeader.regionMapSectionId == MAPSEC_ROUTE_23 ||
+            gMapHeader.regionMapSectionId == MAPSEC_INDIGO_PLATEAU ||
+            gMapHeader.regionMapSectionId == MAPSEC_CERULEAN_CAVE)
             return FALSE;
     }
     return TRUE;

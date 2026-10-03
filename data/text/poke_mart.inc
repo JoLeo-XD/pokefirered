@@ -1,28 +1,28 @@
 Text_MayIHelpYou::
-	.string "Hi, there!\n"
-	.string "May I help you?$"
+	.string "Olá!\n"
+	.string "Como posso ajudar?$"
 
 Text_FillOutQuestionnaire::
-	.string "There is a questionnaire.\n"
-	.string "Would you like to fill it out?$"
+	.string "Há um questionário.\n"
+	.string "Você quer preenchê-lo?$"
 
 Text_QuestionnaireThankYou::
-	.string "Thank you for taking the time to\n"
-	.string "fill out our questionnaire.\p"
-	.string "Your feedback will be used for\n"
-	.string "future reference.$"
+	.string "Agradecemos por dedicar seu tempo\n"
+	.string "para preencher o questionário.\p"
+	.string "Sua opinião será guardada e usada\n"
+	.string "como referência no futuro.$"
 
 Text_YouKnowThoseWords::
-	.string "Oh, hello!\n"
-	.string "You know those words?\p"
-	.string "That means you must know about\n"
-	.string "the MYSTERY GIFT.\p"
-	.string "From now on, you should be\n"
-	.string "receiving MYSTERY GIFTS!$"
+	.string "Ah, olá!\n"
+	.string "Você conhece essas palavras?\p"
+	.string "Significa que já deve conhecer\n"
+	.string "o PRESENTE MISTERIOSO.\p"
+	.string "Daqui em diante, você pode estar\n"
+	.string "recebendo PRESENTES MISTERIOSOS!$"
 
 Text_YouCanAccessMysteryGift::
-	.string "Once you save your game, you can\n"
-	.string "access the MYSTERY GIFT.$"
+	.string "Assim que salvar o jogo, você pode\n"
+	.string "acessar o PRESENTE MISTERIOSO.$"
 
 Text_ThankYouForAccessingMysteryGift::
 	.string "Thank you for accessing the\n"

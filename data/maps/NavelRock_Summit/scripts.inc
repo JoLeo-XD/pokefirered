@@ -4,20 +4,23 @@ NavelRock_Summit_MapScripts::
 	.byte 0
 
 NavelRock_Summit_OnTransition::
-	call_if_set FLAG_FOUGHT_HO_OH, NavelRock_Summit_EventScript_HideHoOh
-	call_if_unset FLAG_FOUGHT_HO_OH, NavelRock_Summit_EventScript_TryShowHoOh
+	call_if_set FLAG_CAUGHT_HO_OH, NavelRock_Summit_EventScript_HideHoOh
+	call_if_unset FLAG_CAUGHT_HO_OH, NavelRock_Summit_EventScript_TryShowHoOh
 	end
 
 NavelRock_Summit_EventScript_HideHoOh::
+	setweather WEATHER_NONE
+	doweather
 	setvar VAR_TEMP_1, 1
 	setflag FLAG_HIDE_HO_OH
 	return
 
 NavelRock_Summit_EventScript_TryShowHoOh::
 	setvar VAR_TEMP_1, 1
-	goto_if_set FLAG_HO_OH_FLEW_AWAY, EventScript_Return
+	goto_if_set FLAG_DEFEATED_HO_OH, EventScript_Return
 	setvar VAR_TEMP_1, 0
 	clearflag FLAG_HIDE_HO_OH
+	clearflag FLAG_RAN_HO_OH
 	return
 
 NavelRock_Summit_OnResume::
@@ -43,7 +46,7 @@ NavelRock_Summit_EventScript_HoOh::
 	applymovement LOCALID_CAMERA, Movement_CameraPanUp
 	waitmovement 0
 	delay 50
-	setweather 0
+	setweather WEATHER_NONE
 	doweather
 	waitse
 	playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER
@@ -67,17 +70,20 @@ NavelRock_Summit_EventScript_HoOh::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, NavelRock_Summit_EventScript_DefeatedHoOh
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NavelRock_Summit_EventScript_RanFromHoOh
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NavelRock_Summit_EventScript_RanFromHoOh
-	setflag FLAG_FOUGHT_HO_OH
+	setflag FLAG_CAUGHT_HO_OH
 	releaseall
 	end
 
 NavelRock_Summit_EventScript_DefeatedHoOh::
-	setflag FLAG_HO_OH_FLEW_AWAY
+	setflag FLAG_DEFEATED_HO_OH
 	setvar VAR_0x8004, SPECIES_HO_OH
-	goto EventScript_MonFlewAway
+	call EventScript_MonWontBeBack
+	resetweather
+	doweather
 	end
 
 NavelRock_Summit_EventScript_RanFromHoOh::
+	setflag FLAG_RAN_HO_OH
 	setvar VAR_0x8004, SPECIES_HO_OH
 	goto EventScript_MonFlewAway
 	end

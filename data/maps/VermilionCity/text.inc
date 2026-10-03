@@ -101,6 +101,87 @@ VermilionCity_Text_OhAuroraTicketTakeYouToBirthIsland::
     .string "We'll be happy to take you to\n"
     .string "BIRTH ISLAND anytime.$"
 
+VermilionCity_Text_AhoyYouGotSomethingForMe::
+    .string "Ahoy! You got something for me?\p"
+    .string "…Hm? What is this?\n"
+    .string "I can barely make it out.\p"
+    .string "That's…! You're saying you want me\n"
+    .string "to take you there?\p"
+    .string "I'm sorry, but this is way too far!\n"
+    .string "Even our best SEAGALLOP ferries\l"
+    .string "would take far too long.\p"
+    .string "You might need to ask someone else.$"
+
+VermilionCity_Text_CaptainIsThatYou::
+    .string "CAPTAIN! Is that you?\p"
+    .string "I didn't think you'd be back so soon!\n"
+    .string "Has the cruise been cancelled?\p"
+    .string "$"
+
+VermilionCity_Text_ThereHaveBeenComplications::
+    .string "CAPTAIN: Oh, not at all!\p"
+    .string "It's just that there have been\n"
+    .string "some complications along the way,\l"
+    .string "so we had make a detour back to\l"
+    .string "VERMILION CITY.\p"
+    .string "Is something the matter?\n"
+    .string "I didn't interupt anything did I?$"
+
+VermilionCity_Text_WhyIfItIsntPlayer::
+    .string "Why, if it isn't the kid that\n"
+    .string "helped me out that time!\p"
+    .string "Sorry, didn't recognize you at first!\n"
+    .string "Have you been doing well?\p"
+    .string "… … …! That map…!\n"
+    .string "I didn't think it still existed!\p"
+    .string "$"
+
+VermilionCity_Text_YouKnowOfThisMapCaptain::
+    .string "You know of this map, CAPTAIN?\p"
+    .string "$"
+
+VermilionCity_Text_WellItsALongStory::
+    .string "CAPTAIN: Well… It's a long story.\p"
+    .string "$"
+
+VermilionCity_Text_HowDidYouGetIt::
+    .string "How did you get your hands on\n"
+    .string "this, anyway?\p"
+    .string "… …You know, I suppose it doesn't\n"
+    .string "matter. I can see that you are a\l"
+    .string "kind-hearted person. In fact…\p"
+    .string "You wish to go there, don't you?\p"
+    .string "Since you've helped me before, I\n"
+    .string "think I'll do you another favor.\p"
+    .string "You see, we actually own a special\n"
+    .string "ferry, the SEAGALLOP HI-SPEED 15,\l"
+    .string "which only a select few people\l"
+    .string "know about, including myself.\p"
+    .string "It should be able to take you\n"
+    .string "there no problem.\p"
+    .string "I'd be happy to take you there\n"
+    .string "myself, but unfortunately, I must\l"
+    .string "go back to the S.S. ANNE.\p"
+    .string "$"
+
+VermilionCity_Text_ThisSailorHowever::
+    .string "This sailor here, however, is a good\n"
+    .string "friend of mine, isn't that right?\p"
+    .string "Here are the keys to the SEAGALLOP\n"
+    .string "HI-SPEED 15.$"
+
+VermilionCity_Text_IMustGoNow::
+    .string "I must go now. Sorry I couldn't stay\n"
+    .string "for longer…\p"
+    .string "In fact, I only left to take a\n"
+    .string "breather, haha! Rather nice timing\l"
+    .string "on my part too, wouldn't you say?\p"
+    .string "Well, good luck, you two!$"
+
+VermilionCity_Text_WellYouHeardTheMan::
+    .string "Well, you heard the man!\n"
+    .string "Shall we get going?$"
+
 VermilionCity_Text_BoardSeagallopFerry::
     .string "Would you like to board\n"
     .string "a SEAGALLOP ferry?$"
@@ -115,6 +196,12 @@ VermilionCity_Text_Seagallop12Departing::
     .string "Okay, everything's in order for you\n"
     .string "to board a special ferry.\p"
     .string "SEAGALLOP HI-SPEED 12 will be\n"
+    .string "departing immediately.$"
+
+VermilionCity_Text_Seagallop15Departing::
+    .string "Okay, everything's in order for you\n"
+    .string "to board a special ferry.\p"
+    .string "SEAGALLOP HI-SPEED 15 will be\n"
     .string "departing immediately.$"
 
 VermilionCity_Text_Route2AideHasPackageForYou::

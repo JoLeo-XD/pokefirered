@@ -64,6 +64,7 @@ struct ShopData
     /*0x14*/ u16 maxQuantity;
     /*0x16*/ u16 martType:4;    // 0x1 if tm list
              u16 fontId:5;
+             u8  colorId:8;
              u16 itemSlot:2;
              u16 unk16_11:5;
     /*0x18*/ u16 unk18;
@@ -207,9 +208,15 @@ static u8 CreateShopMenu(u8 martType)
     sShopData.martType = GetMartTypeFromItemList(martType);
     sShopData.selectedRow = 0;
     if (ContextNpcGetTextColor() == NPC_TEXT_COLOR_MALE)
+    {
         sShopData.fontId = FONT_MALE;
+        sShopData.colorId = TEXT_COLOR_BLUE;
+    }
     else
+    {
         sShopData.fontId = FONT_FEMALE;
+        sShopData.colorId = TEXT_COLOR_RED;
+    }
 
     sShopMenuWindowId = AddWindow(&sShopMenuWindowTemplate);
     SetStdWindowBorderStyle(sShopMenuWindowId, 0);
@@ -327,7 +334,7 @@ static void Task_ReturnToShopMenu(u8 taskId)
     if (IsWeatherNotFadingIn() != TRUE)
         return;
 
-    DisplayItemMessageOnField(taskId, GetMartFontId(), gText_AnythingElseICanHelp, ShowShopMenuAfterExitingBuyOrSellMenu);
+    DisplayItemMessageOnFieldColor(taskId, GetMartFontId(), GetMartColorId(), gText_AnythingElseICanHelp, ShowShopMenuAfterExitingBuyOrSellMenu);
 }
 
 static void ShowShopMenuAfterExitingBuyOrSellMenu(u8 taskId)
@@ -634,6 +641,11 @@ static void LoadTmHmNameInMart(s32 item)
 u8 GetMartFontId(void)
 {
     return sShopData.fontId;
+}
+
+u8 GetMartColorId(void)
+{
+    return sShopData.colorId;
 }
 
 static void BuyMenuPrintCursor(u8 listTaskId, u8 a1)
@@ -982,7 +994,10 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     PutWindowTilemap(4);
     if (AddBagItem(tItemId, tItemCount) == TRUE)
     {
-        BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
+        if (GetMartFontId() == FONT_MALE)
+            BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYouM, BuyMenuSubtractMoney);
+        else
+            BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYouF, BuyMenuSubtractMoney);
         DebugFunc_PrintPurchaseDetails(taskId);
         RecordItemTransaction(tItemId, tItemCount, QL_EVENT_BOUGHT_ITEM - QL_EVENT_USED_POKEMART);
     }

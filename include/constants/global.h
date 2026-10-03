@@ -18,17 +18,18 @@
 #define VERSION_PLATINUM 12
 #define VERSION_GAMECUBE 15
 
-#define LANGUAGE_JAPANESE 1
-#define LANGUAGE_ENGLISH  2
-#define LANGUAGE_FRENCH   3
-#define LANGUAGE_ITALIAN  4
-#define LANGUAGE_GERMAN   5
-#define LANGUAGE_KOREAN   6 // 6 goes unused but the theory is it was meant to be Korean
-#define LANGUAGE_SPANISH  7
-#define NUM_LANGUAGES     7
+#define LANGUAGE_JAPANESE   1
+#define LANGUAGE_ENGLISH    2
+#define LANGUAGE_FRENCH     3
+#define LANGUAGE_ITALIAN    4
+#define LANGUAGE_GERMAN     5
+#define LANGUAGE_KOREAN     6 // 6 goes unused but the theory is it was meant to be Korean
+#define LANGUAGE_SPANISH    7
+#define LANGUAGE_PORTUGUESE 2
+#define NUM_LANGUAGES       7
 
-#ifdef ENGLISH
-#define GAME_LANGUAGE (LANGUAGE_ENGLISH)
+#ifdef PORTUGUESE
+#define GAME_LANGUAGE (LANGUAGE_PORTUGUESE)
 #endif
 
 // capacities of various saveblock objects

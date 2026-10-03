@@ -1270,7 +1270,7 @@ static void Task_ContextMenu_Sell(u8 taskId)
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_OhNoICantBuyThat);
-        DisplayItemMessageInBerryPouch(taskId, GetDialogBoxFontId(), gStringVar4, Task_BerryPouch_DestroyDialogueWindowAndRefreshListMenu);
+        DisplayItemMessageInBerryPouchColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_BerryPouch_DestroyDialogueWindowAndRefreshListMenu);
     }
     else
     {
@@ -1286,7 +1286,7 @@ static void Task_ContextMenu_Sell(u8 taskId)
                 data[2] = 99;
             CopyItemName(gSpecialVar_ItemId, gStringVar1);
             StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSell);
-            DisplayItemMessageInBerryPouch(taskId, GetDialogBoxFontId(), gStringVar4, Task_Sell_PrintSelectMultipleUI);
+            DisplayItemMessageInBerryPouchColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_Sell_PrintSelectMultipleUI);
         }
     }
 }
@@ -1296,7 +1296,7 @@ static void Task_AskSellMultiple(u8 taskId)
     s16 * data = gTasks[taskId].data;
     ConvertIntToDecimalStringN(gStringVar3, ItemId_GetPrice(BagGetItemIdByPocketPosition(POCKET_BERRY_POUCH, data[1])) / 2 * data[8], STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_ICanPayThisMuch_WouldThatBeOkay);
-    DisplayItemMessageInBerryPouch(taskId, GetDialogBoxFontId(), gStringVar4, Task_SellMultiple_CreateYesNoMenu);
+    DisplayItemMessageInBerryPouchColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_SellMultiple_CreateYesNoMenu);
 }
 
 static void Task_SellMultiple_CreateYesNoMenu(u8 taskId)
@@ -1486,6 +1486,14 @@ void DisplayItemMessageInBerryPouch(u8 taskId, u8 fontId, const u8 * str, TaskFu
     if (sVariableWindowIds[5] == 0xFF)
         sVariableWindowIds[5] = AddWindow(&sWindowTemplates_Variable[5]);
     DisplayMessageAndContinueTask(taskId, sVariableWindowIds[5], 0x013, 0xD, fontId, GetTextSpeedSetting(), str, followUpFunc);
+    ScheduleBgCopyTilemapToVram(2);
+}
+
+void DisplayItemMessageInBerryPouchColor(u8 taskId, u8 fontId, u8 textColor, const u8 * str, TaskFunc followUpFunc)
+{
+    if (sVariableWindowIds[5] == 0xFF)
+        sVariableWindowIds[5] = AddWindow(&sWindowTemplates_Variable[5]);
+    DisplayMessageAndContinueTaskColor(taskId, sVariableWindowIds[5], 0x013, 0xD, fontId, GetTextSpeedSetting(), textColor, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY, str, followUpFunc);
     ScheduleBgCopyTilemapToVram(2);
 }
 

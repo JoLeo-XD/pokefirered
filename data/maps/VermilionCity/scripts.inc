@@ -20,8 +20,31 @@ VermilionCity_Movement_ExitSSAnne::
 	walk_up
 	step_end
 
+VermilionCity_Movement_CaptainWalkUpToSailor::
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_up
+	step_end
+
+VermilionCity_Movement_CaptainBackDown::
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+VermilionCity_Movement_CaptainWalkInPlaceSlowUp::
+	walk_in_place_slow_up
+	step_end
+
 VermilionCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VERMILION_CITY
+	removeobject LOCALID_VERMILION_CAPTAIN
 	call_if_set FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION, VermilionCity_EventScript_HideOaksAide
 	end
 
@@ -68,6 +91,13 @@ VermilionCity_EventScript_CheckHasAuroraTicket::
 	goto EventScript_SetResultTrue
 	end
 
+VermilionCity_EventScript_CheckHasOldSeaMap::
+	goto_if_unset FLAG_ENABLE_SHIP_FARAWAY_ISLAND, EventScript_SetResultFalse
+	checkitem ITEM_OLD_SEA_MAP
+	goto_if_eq VAR_RESULT, FALSE, EventScript_SetResultFalse
+	goto EventScript_SetResultTrue
+	end
+
 VermilionCity_EventScript_CheckSeagallopPresent::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
@@ -83,6 +113,8 @@ VermilionCity_EventScript_ChooseSeagallopDestRainbowPass::
 	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasMysticTicket
 	call VermilionCity_EventScript_CheckHasAuroraTicket
 	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasAuroraTicket
+	call VermilionCity_EventScript_CheckHasOldSeaMap
+	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasOldSeaMap
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	message VermilionCity_Text_BoardSeagallopRainbowPass
 	waitmessage
@@ -92,6 +124,8 @@ VermilionCity_EventScript_ChooseSeagallopDestRainbowPass::
 VermilionCity_EventScript_HasMysticTicket::
 	call VermilionCity_EventScript_CheckHasAuroraTicket
 	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasMysticAndAuroraTickets
+	call VermilionCity_EventScript_CheckHasOldSeaMap
+	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasMysticAndOldSeaMap
 	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
@@ -109,6 +143,8 @@ VermilionCity_EventScript_ShowMysticTicket::
 	return
 
 VermilionCity_EventScript_HasAuroraTicket::
+	call VermilionCity_EventScript_CheckHasOldSeaMap
+	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasAuroraAndOldSeaMap
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
@@ -125,7 +161,90 @@ VermilionCity_EventScript_ShowAuroraTicket::
 	msgbox VermilionCity_Text_OhAuroraTicketTakeYouToBirthIsland
 	return
 
+VermilionCity_EventScript_HasOldSeaMap::
+	goto_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
+	message VermilionCity_Text_BoardSeagallopFerry
+	waitmessage
+	multichoice 13, 6, MULTICHOICE_SEVII_FARAWAY, FALSE
+	switch VAR_RESULT
+	case 0, EventScript_SeviiDestinationsPage1
+	case 1, EventScript_SailToFarawayIsland
+	case 2, EventScript_CancelSail
+	case 127, EventScript_CancelSail
+	end
+
+VermilionCity_EventScript_ShowOldSeaMap::
+	lock
+	setflag FLAG_SHOWN_OLD_SEA_MAP
+	msgbox VermilionCity_Text_AhoyYouGotSomethingForMe, MSGBOX_NPC
+	applymovement LOCALID_VERMILION_FERRY_SAILOR, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_VERMILION_FERRY_SAILOR, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 30
+	playse SE_SS_ANNE_HORN
+	delay 175
+	addobject LOCALID_VERMILION_CAPTAIN
+	applymovement LOCALID_VERMILION_CAPTAIN, VermilionCity_Movement_CaptainWalkUpToSailor
+	waitmovement 0
+	applymovement LOCALID_VERMILION_FERRY_SAILOR, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	message VermilionCity_Text_CaptainIsThatYou
+	waitmessage
+	applymovement LOCALID_VERMILION_CAPTAIN, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	msgbox VermilionCity_Text_ThereHaveBeenComplications, MSGBOX_NPC
+	applymovement LOCALID_VERMILION_CAPTAIN, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	playse SE_PIN
+	applymovement LOCALID_VERMILION_CAPTAIN, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 30
+	message VermilionCity_Text_WhyIfItIsntPlayer
+	waitmessage
+	applymovement LOCALID_VERMILION_FERRY_SAILOR, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	message VermilionCity_Text_YouKnowOfThisMapCaptain
+	waitmessage
+	applymovement LOCALID_VERMILION_CAPTAIN, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	message VermilionCity_Text_WellItsALongStory
+	waitmessage
+	applymovement LOCALID_VERMILION_CAPTAIN, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	message VermilionCity_Text_HowDidYouGetIt
+	waitmessage
+	applymovement LOCALID_VERMILION_CAPTAIN, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	msgbox VermilionCity_Text_ThisSailorHowever, MSGBOX_NPC
+	applymovement LOCALID_VERMILION_CAPTAIN, VermilionCity_Movement_CaptainWalkInPlaceSlowUp
+	waitmovement 0
+	delay 20
+	msgbox VermilionCity_Text_IMustGoNow, MSGBOX_NPC
+	applymovement LOCALID_VERMILION_CAPTAIN, VermilionCity_Movement_CaptainBackDown
+	waitmovement 0
+	removeobject LOCALID_VERMILION_CAPTAIN
+	setflag FLAG_HIDE_VERMILION_CITY_CAPTAIN
+	playse SE_SS_ANNE_HORN
+	delay 175
+	applymovement LOCALID_VERMILION_FERRY_SAILOR, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	msgbox VermilionCity_Text_WellYouHeardTheMan, MSGBOX_NPC
+	fadenewbgm MUS_NONE
+	release
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	setvar VAR_0x8006, SEAGALLOP_FARAWAY_ISLAND
+	goto EventScript_SetSail
+	end
+
 VermilionCity_EventScript_HasMysticAndAuroraTickets::
+	call VermilionCity_EventScript_CheckHasOldSeaMap
+	goto_if_eq VAR_RESULT, TRUE, VermilionCity_EventScript_HasAllTicketsAndMap
 	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
@@ -136,6 +255,50 @@ VermilionCity_EventScript_HasMysticAndAuroraTickets::
 	case 1, EventScript_SailToNavelRock
 	case 2, EventScript_SailToBirthIsland
 	case 3, EventScript_CancelSail
+	case 127, EventScript_CancelSail
+	end
+
+VermilionCity_EventScript_HasMysticAndOldSeaMap::
+	goto_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
+	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
+	message VermilionCity_Text_BoardSeagallopFerry
+	waitmessage
+	multichoice 13, 5, MULTICHOICE_SEVII_NAVEL_FARAWAY, FALSE
+	switch VAR_RESULT
+	case 0, EventScript_SeviiDestinationsPage1
+	case 1, EventScript_SailToNavelRock
+	case 2, EventScript_SailToFarawayIsland
+	case 3, EventScript_CancelSail
+	case 127, EventScript_CancelSail
+	end
+
+VermilionCity_EventScript_HasAuroraAndOldSeaMap::
+	goto_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
+	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
+	message VermilionCity_Text_BoardSeagallopFerry
+	waitmessage
+	multichoice 13, 5, MULTICHOICE_SEVII_BIRTH_FARAWAY, FALSE
+	switch VAR_RESULT
+	case 0, EventScript_SeviiDestinationsPage1
+	case 1, EventScript_SailToBirthIsland
+	case 2, EventScript_SailToFarawayIsland
+	case 3, EventScript_CancelSail
+	case 127, EventScript_CancelSail
+	end
+
+VermilionCity_EventScript_HasAllTicketsAndMap::
+	goto_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
+	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
+	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
+	message VermilionCity_Text_BoardSeagallopFerry
+	waitmessage
+	multichoice 13, 3, MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY, FALSE
+	switch VAR_RESULT
+	case 0, EventScript_SeviiDestinationsPage1
+	case 1, EventScript_SailToNavelRock
+	case 2, EventScript_SailToBirthIsland
+	case 3, EventScript_SailToFarawayIsland
+	case 4, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 
@@ -150,6 +313,13 @@ EventScript_SailToBirthIsland::
 	msgbox VermilionCity_Text_Seagallop12Departing
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	setvar VAR_0x8006, SEAGALLOP_BIRTH_ISLAND
+	goto EventScript_SetSail
+	end
+
+EventScript_SailToFarawayIsland::
+	msgbox VermilionCity_Text_Seagallop15Departing
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	setvar VAR_0x8006, SEAGALLOP_FARAWAY_ISLAND
 	goto EventScript_SetSail
 	end
 

@@ -52,6 +52,10 @@ Route12_FishingHouse_Text_WhoaXInchesTakeThis::
     .string "You must take this.\n"
     .string "I insist!$"
 
+Route12_FishingHouse_Text_Obtained5NetBalls::
+    .string "Obtained 5 NET BALLS from\n"
+    .string "the FISHING GURU's brother!$"
+
 Route12_FishingHouse_Text_LookForwardToGreaterRecords::
     .string "I'll look forward to seeing greater\n"
     .string "records from you!$"

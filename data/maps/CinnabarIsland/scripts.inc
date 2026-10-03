@@ -6,9 +6,16 @@ CinnabarIsland_MapScripts::
 CinnabarIsland_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_CINNABAR_ISLAND
 	call CinnabarIsland_EventScript_CheckUnlockGym
+	call_if_set FLAG_GOT_SUPER_ROD, CinnabarIsland_EventScript_TryHideFisher
+	call_if_set FLAG_GOT_GOOD_ROD, CinnabarIsland_EventScript_TryHideFisher
 	call_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND, 1, CinnabarIsland_EventScript_ReadyObjectsSailToOneIsland
 	call_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND, 3, CinnabarIsland_EventScript_ReadyObjectsReturnFromSeviiIslands
 	call_if_eq VAR_MAP_SCENE_CINNABAR_ISLAND_2, 1, CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter
+	end
+
+CinnabarIsland_EventScript_TryHideFisher::
+	goto_if_set FLAG_GOT_GOOD_ROD_FROM_CINNABAR, EventScript_Return
+	setflag FLAG_HIDE_CINNABAR_FISHERMAN
 	end
 
 CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter::
@@ -318,6 +325,79 @@ CinnabarIsland_EventScript_GymDoorLocked::
 	applymovement LOCALID_PLAYER, CinnabarIsland_Movement_ForcePlayerFromDoor
 	waitmovement 0
 	releaseall
+	end
+
+CinnabarIsland_EventScript_Fisher::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_GOOD_ROD_FROM_CINNABAR, CinnabarIsland_EventScript_FisherAlreadyReceivedGoodRod
+	msgbox CinnabarIsland_Text_IslandsAreOneOfMyFavoriteThings, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, CinnabarIsland_EventScript_LikesFishing
+	goto_if_eq VAR_RESULT, NO, CinnabarIsland_EventScript_DislikesFishing
+	end
+
+CinnabarIsland_EventScript_LikesFishing::
+	message CinnabarIsland_Text_YouDoGrand
+	waitmessage
+	checkitem ITEM_OLD_ROD
+	call_if_eq VAR_RESULT, TRUE, CinnabarIsland_EventScript_LikesFishingOldRod
+	call_if_eq VAR_RESULT, FALSE, CinnabarIsland_EventScript_LikesFishingNoRod
+	message CinnabarIsland_Text_ItDefinitelyIsntTheGreatest
+	waitmessage
+	goto CinnabarIsland_EventScript_FisherEnd
+	end
+
+CinnabarIsland_EventScript_LikesFishingOldRod::
+	msgbox CinnabarIsland_Text_LikesFishingOldRod, MSGBOX_NPC
+	giveitem_msg CinnabarIsland_Text_ReceivedGoodRod, ITEM_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD_FROM_CINNABAR
+	return
+
+CinnabarIsland_EventScript_LikesFishingNoRod::
+	msgbox CinnabarIsland_Text_LikesFishingNoRod, MSGBOX_NPC
+	giveitem_msg CinnabarIsland_Text_ReceivedGoodRod, ITEM_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD_FROM_CINNABAR
+	return
+
+CinnabarIsland_EventScript_DislikesFishing::
+	message CinnabarIsland_Text_YouDontHowCome
+	waitmessage
+	checkitem ITEM_OLD_ROD
+	call_if_eq VAR_RESULT, TRUE, CinnabarIsland_EventScript_DislikesFishingOldRod
+	call_if_eq VAR_RESULT, FALSE, CinnabarIsland_EventScript_DislikesFishingNoRod
+	message CinnabarIsland_Text_ItDefinitelyIsntTheGreatest
+	waitmessage
+	goto CinnabarIsland_EventScript_FisherEnd
+	end
+
+CinnabarIsland_EventScript_DislikesFishingOldRod::
+	msgbox CinnabarIsland_Text_DislikesFishingOldRod, MSGBOX_NPC
+	giveitem_msg CinnabarIsland_Text_ReceivedGoodRod, ITEM_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD_FROM_CINNABAR
+	return
+
+CinnabarIsland_EventScript_DislikesFishingNoRod::
+	msgbox CinnabarIsland_Text_DislikesFishingNoRod, MSGBOX_NPC
+	giveitem_msg CinnabarIsland_Text_ReceivedGoodRod, ITEM_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD_FROM_CINNABAR
+	return
+
+CinnabarIsland_EventScript_FisherEnd::
+	msgbox CinnabarIsland_Text_WellBeSeeingYou, MSGBOX_NPC
+	applymovement LOCALID_CINNABAR_FISHER, Common_Movement_FaceDown
+	waitmovement
+	release
+	end
+
+CinnabarIsland_EventScript_FisherAlreadyReceivedGoodRod::
+	msgbox CinnabarIsland_Text_SoIsMyGoodRodHelping, MSGBOX_NPC
+	applymovement LOCALID_CINNABAR_FISHER, Common_Movement_FaceDown
+	waitmovement
+	release
 	end
 
 CinnabarIsland_Movement_ForcePlayerFromDoor::

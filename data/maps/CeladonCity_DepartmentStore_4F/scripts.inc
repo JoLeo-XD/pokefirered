@@ -1,5 +1,12 @@
+.set FEMALE_CLERK,   FLAG_TEMP_2
+
 CeladonCity_DepartmentStore_4F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_DepartmentStore_4F_OnTransition
 	.byte 0
+
+CeladonCity_DepartmentStore_4F_OnTransition::
+	setflag FEMALE_CLERK
+	end
 
 CeladonCity_DepartmentStore_4F_EventScript_Man::
 	msgbox CeladonCity_DepartmentStore_4F_Text_GettingPokeDollAsPresent, MSGBOX_NPC

@@ -5,4 +5,5 @@ FarawayIsland_Exterior_Text_Sign::
     .string "“…ber, 6th day\n"
     .string "If any human…sets foot here…\l"
     .string "again…et it be a kindhearted pers…\l"
-    .string "…ith that hope, I depar…”$"
+    .string "…ith that hope, I depar…\p"
+    .string "Signed …ji”$"

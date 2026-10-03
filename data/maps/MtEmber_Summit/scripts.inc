@@ -14,11 +14,13 @@ MtEmber_Summit_EventScript_TryRemoveMoltres::
 	return
 
 MtEmber_Summit_OnTransition::
-	call_if_unset FLAG_FOUGHT_MOLTRES, MtEmber_Summit_EventScript_ShowMoltres
+	call_if_unset FLAG_CAUGHT_MOLTRES, MtEmber_Summit_EventScript_TryShowMoltres
 	end
 
-MtEmber_Summit_EventScript_ShowMoltres::
+MtEmber_Summit_EventScript_TryShowMoltres::
+	goto_if_set FLAG_DEFEATED_MOLTRES, EventScript_Return
 	clearflag FLAG_HIDE_MOLTRES
+	clearflag FLAG_RAN_MOLTRES
 	return
 
 MtEmber_Summit_EventScript_Moltres::
@@ -43,16 +45,18 @@ MtEmber_Summit_EventScript_Moltres::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MtEmber_Summit_EventScript_DefeatedMoltres
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MtEmber_Summit_EventScript_RanFromMoltres
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MtEmber_Summit_EventScript_RanFromMoltres
-	setflag FLAG_FOUGHT_MOLTRES
+	setflag FLAG_CAUGHT_MOLTRES
 	release
 	end
 
 MtEmber_Summit_EventScript_DefeatedMoltres::
-	setflag FLAG_FOUGHT_MOLTRES
-	goto EventScript_RemoveStaticMon
+	setflag FLAG_DEFEATED_MOLTRES
+	setvar VAR_0x8004, SPECIES_MOLTRES
+	goto EventScript_MonWontBeBack
 	end
 
 MtEmber_Summit_EventScript_RanFromMoltres::
+	setflag FLAG_RAN_MOLTRES
 	setvar VAR_0x8004, SPECIES_MOLTRES
 	goto EventScript_MonFlewAway
 	end

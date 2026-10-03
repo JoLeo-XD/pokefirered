@@ -166,6 +166,7 @@ static void TMCase_Print(u8 windowId, u8 fontId, const u8 * str, u8 x, u8 y, u8 
 static void TMCase_SetWindowBorder1(u8 windowId);
 static void TMCase_SetWindowBorder2(u8 windowId);
 static void PrintMessageWithFollowupTask(u8 taskId, u8 fontId, const u8 * str, TaskFunc func);
+static void PrintMessageWithFollowupTaskColor(u8 taskId, u8 fontId, u8 textColor, const u8 * str, TaskFunc func);
 static void PrintTitle(void);
 static void DrawMoveInfoLabels(void);
 static void PlaceHMTileInWindow(u8 windowId, u8 x, u8 y);
@@ -1163,7 +1164,7 @@ static void Task_SelectedTMHM_Sell(u8 taskId)
         // Can't sell TM/HMs with no price (by default this is just the HMs)
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_OhNoICantBuyThat);
-        PrintMessageWithFollowupTask(taskId, GetDialogBoxFontId(), gStringVar4, CloseMessageAndReturnToList);
+        PrintMessageWithFollowupTaskColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, CloseMessageAndReturnToList);
     }
     else
     {
@@ -1179,7 +1180,7 @@ static void Task_SelectedTMHM_Sell(u8 taskId)
                 tQuantityOwned = 99;
             CopyItemName(gSpecialVar_ItemId, gStringVar1);
             StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSell);
-            PrintMessageWithFollowupTask(taskId, GetDialogBoxFontId(), gStringVar4, Task_InitQuantitySelectUI);
+            PrintMessageWithFollowupTaskColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_InitQuantitySelectUI);
         }
     }
 }
@@ -1190,7 +1191,7 @@ static void Task_AskConfirmSaleWithAmount(u8 taskId)
 
     ConvertIntToDecimalStringN(gStringVar3, ItemId_GetPrice(BagGetItemIdByPocketPosition(POCKET_TM_CASE, tSelection)) / 2 * tQuantitySelected, STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_ICanPayThisMuch_WouldThatBeOkay);
-    PrintMessageWithFollowupTask(taskId, GetDialogBoxFontId(), gStringVar4, Task_PlaceYesNoBox);
+    PrintMessageWithFollowupTaskColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_PlaceYesNoBox);
 }
 
 static void Task_PlaceYesNoBox(u8 taskId)
@@ -1419,7 +1420,7 @@ static void Task_Pokedude_Run(u8 taskId)
         break;
     case 8:
         SetDescriptionWindowShade(1);
-        PrintMessageWithFollowupTask(taskId, FONT_MALE, gPokedudeText_TMTypes, NULL);
+        PrintMessageWithFollowupTaskColor(taskId, FONT_MALE, TEXT_COLOR_BLUE, gPokedudeText_TMTypes, NULL);
         gTasks[taskId].func = Task_Pokedude_Run;
         tPokedudeState++;
         break;
@@ -1441,7 +1442,7 @@ static void Task_Pokedude_Run(u8 taskId)
         break;
     case 18:
         SetDescriptionWindowShade(1);
-        PrintMessageWithFollowupTask(taskId, FONT_MALE, gPokedudeText_ReadTMDescription, NULL);
+        PrintMessageWithFollowupTaskColor(taskId, FONT_MALE, TEXT_COLOR_BLUE, gPokedudeText_ReadTMDescription, NULL);
         gTasks[taskId].func = Task_Pokedude_Run; // this function
         tPokedudeState++;
         break;
@@ -1519,6 +1520,12 @@ static void TMCase_SetWindowBorder2(u8 windowId)
 static void PrintMessageWithFollowupTask(u8 taskId, u8 fontId, const u8 * str, TaskFunc func)
 {
     DisplayMessageAndContinueTask(taskId, WIN_MESSAGE, 0x64, 0x0B, fontId, GetTextSpeedSetting(), str, func);
+    ScheduleBgCopyTilemapToVram(1);
+}
+
+static void PrintMessageWithFollowupTaskColor(u8 taskId, u8 fontId, u8 textColor, const u8 * str, TaskFunc func)
+{
+    DisplayMessageAndContinueTaskColor(taskId, WIN_MESSAGE, 0x64, 0x0B, fontId, GetTextSpeedSetting(), textColor, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY, str, func);
     ScheduleBgCopyTilemapToVram(1);
 }
 

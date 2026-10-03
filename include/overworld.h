@@ -27,6 +27,12 @@
 #define MOVEMENT_MODE_FROZEN 1
 #define MOVEMENT_MODE_SCRIPTED 2
 
+#define AMBIENT_CRY_COMMON 32
+#define AMBIENT_CRY_UNCOMMON 128
+#define AMBIENT_CRY_RARE 256
+#define AMBIENT_CRY_VERY_RARE 512
+#define AMBIENT_CRY_UBER_RARE 1024
+
 struct LinkPlayerObjectEvent
 {
     u8 active;

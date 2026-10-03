@@ -393,8 +393,15 @@ CeladonCity_GameCorner_EventScript_SlotMachineNoCoinCase::
 
 CeladonCity_GameCorner_EventScript_Poster::
 	lockall
+	goto_if_set FLAG_OPENED_ROCKET_HIDEOUT, CeladonCity_GameCorner_EventScript_PosterAlreadyOpen
 	msgbox CeladonCity_GameCorner_Text_SwitchBehindPosterPushIt
-	call_if_unset FLAG_OPENED_ROCKET_HIDEOUT, CeladonCity_GameCorner_EventScript_OpenRocketHideout
+	call CeladonCity_GameCorner_EventScript_OpenRocketHideout
+	releaseall
+	end
+
+CeladonCity_GameCorner_EventScript_PosterAlreadyOpen::
+	lockall
+	msgbox CeladonCity_GameCorner_Text_SmellsOfTeamRocket
 	releaseall
 	end
 

@@ -1,5 +1,12 @@
+.set FEMALE_CLERK,   FLAG_TEMP_2
+
 VermilionCity_Mart_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, VermilionCity_Mart_OnTransition
 	.byte 0
+
+VermilionCity_Mart_OnTransition::
+	setflag FEMALE_CLERK
+	end
 
 VermilionCity_Mart_EventScript_CooltrainerF::
 	msgbox VermilionCity_Mart_Text_MonsGoodOrBadDependingOnTrainer, MSGBOX_NPC
@@ -7,6 +14,20 @@ VermilionCity_Mart_EventScript_CooltrainerF::
 
 VermilionCity_Mart_EventScript_BaldingMan::
 	msgbox VermilionCity_Mart_Text_TeamRocketAreWickedPeople, MSGBOX_NPC
+	end
+
+VermilionCity_Mart_EventScript_Youngster::
+	lock
+	faceplayer
+	checkplayergender
+	goto_if_eq VAR_RESULT, FEMALE, VermilionCity_Mart_EventScript_YoungsterFemalePlayer
+	msgbox VermilionCity_Mart_Text_ThatStoreClerkOverThere, MSGBOX_NPC
+	release
+	end
+
+VermilionCity_Mart_EventScript_YoungsterFemalePlayer::
+	msgbox VermilionCity_Mart_Text_WhereAreAllTheseGirlsComingFrom, MSGBOX_NPC
+	release
 	end
 
 VermilionCity_Mart_EventScript_Clerk::

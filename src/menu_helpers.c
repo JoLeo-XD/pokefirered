@@ -32,6 +32,20 @@ void DisplayMessageAndContinueTask(u8 taskId, u8 windowId, u16 tileNum, u8 palet
     gTasks[taskId].func = Task_ContinueTaskAfterMessagePrints;
 }
 
+void DisplayMessageAndContinueTaskColor(u8 taskId, u8 windowId, u16 tileNum, u8 paletteNum, u8 fontId, u8 textSpeed, u8 textColor, u8 bgColor, u8 shadowColor, const u8 *string, void *taskFunc)
+{
+    sMessageWindowId = windowId;
+    DrawDialogFrameWithCustomTileAndPalette(windowId, TRUE, tileNum, paletteNum);
+
+    if (string != gStringVar4)
+        StringExpandPlaceholders(gStringVar4, string);
+
+    gTextFlags.canABSpeedUpPrint = 1;
+    AddTextPrinterParameterized2(windowId, fontId, gStringVar4, textSpeed, NULL, textColor, bgColor, shadowColor);
+    sMessageNextTask = taskFunc;
+    gTasks[taskId].func = Task_ContinueTaskAfterMessagePrints;
+}
+
 bool16 RunTextPrinters_CheckActive(u8 textPrinterId)
 {
     RunTextPrinters();
@@ -240,4 +254,12 @@ u8 GetDialogBoxFontId(void)
         return FONT_MALE;
     else
         return FONT_FEMALE;
+}
+
+u8 GetDialogBoxColorId(void)
+{
+    if (ContextNpcGetTextColor() == NPC_TEXT_COLOR_MALE)
+        return TEXT_COLOR_BLUE;
+    else
+        return TEXT_COLOR_RED;
 }

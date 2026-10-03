@@ -1,5 +1,12 @@
+.set FEMALE_CLERK,   FLAG_TEMP_2
+
 ThreeIsland_Mart_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, ThreeIsland_Mart_OnTransition
 	.byte 0
+
+ThreeIsland_Mart_OnTransition::
+	setflag FEMALE_CLERK
+	end
 
 ThreeIsland_Mart_EventScript_Clerk::
 	goto_if_questlog EventScript_ReleaseEnd

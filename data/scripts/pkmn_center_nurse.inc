@@ -1,13 +1,24 @@
 EventScript_PkmnCenterNurse::
 	goto_if_questlog EventScript_ReleaseEnd
-	message Text_WelcomeWantToHealPkmn
-	waitmessage
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, EventScript_PkmnCenterNurseMalePlayer
+	call_if_eq VAR_RESULT, FEMALE, EventScript_PkmnCenterNurseFemalePlayer
 	multichoice 19, 8, MULTICHOICE_YES_NO, FALSE | (TRUE << 1)
 	switch VAR_RESULT
 	case 0, EventScript_PkmnCenterNurse_HealPkmn
 	case 1 EventScript_PkmnCenterNurse_Goodbye
 	case SCR_MENU_CANCEL, EventScript_PkmnCenterNurse_Goodbye
 	end
+
+EventScript_PkmnCenterNurseMalePlayer::
+	message Text_WelcomeWantToHealPkmnM
+	waitmessage
+	return
+
+EventScript_PkmnCenterNurseFemalePlayer::
+	message Text_WelcomeWantToHealPkmnF
+	waitmessage
+	return
 
 EventScript_PkmnCenterNurse_HealPkmn::
 	incrementgamestat GAME_STAT_USED_POKECENTER

@@ -9,10 +9,15 @@ EventScript_Questionnaire::
 	faceplayer
 	specialvar VAR_0x8008, GetMartClerkObjectId
 	textcolor NPC_TEXT_COLOR_MALE
+	call_if_set FLAG_TEMP_2, EventScript_FemaleClerk
 	goto_if_eq VAR_0x8004, 0, EventScript_EnableMysteryGift
 	goto_if_eq VAR_RESULT, 0, EventScript_DeclineQuestionnaire
 	goto_if_eq VAR_RESULT, 1, EventScript_TookQuestionnaire
 	end
+
+EventScript_FemaleClerk::
+	textcolor NPC_TEXT_COLOR_FEMALE
+	return
 
 EventScript_EnableMysteryGift::
 	applymovement VAR_0x8008, Common_Movement_FaceDown

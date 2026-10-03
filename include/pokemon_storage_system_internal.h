@@ -100,6 +100,7 @@ enum {
 enum
 {
     RELEASE_MON_NOT_ALLOWED,
+    RELEASE_MON_NOT_ALLOWED_FRIENDSHIP,
     RELEASE_MON_ALLOWED,
     RELEASE_MON_UNDETERMINED = -1,
 };
@@ -402,6 +403,7 @@ struct PokemonStorageSystemData
     s8 releaseBoxPos;
     u16 releaseCheckState;
     u16 restrictedMoveList[3];
+    bool8 cameBackThroughFriendship;
     u8 summaryLastIndex;
     u8 summaryCursorPos;
     u8 summaryScreenMode;

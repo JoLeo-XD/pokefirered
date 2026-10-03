@@ -153,7 +153,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding2",
+      "secondary_tileset": "gTileset_GenericBuilding1",
       "border_filepath": "data/layouts/House4/border.bin",
       "blockdata_filepath": "data/layouts/House4/map.bin"
     },
@@ -4382,28 +4382,52 @@
       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa/map.bin"
     },
     {
-      "id": "LAYOUT_FARAWAY_ISLAND_ENTRANCE",
-      "name": "FarawayIsland_Entrance_Layout",
+      "id": "LAYOUT_FARAWAY_ISLAND_EXTERIOR",
+      "name": "FarawayIsland_Exterior_Layout",
       "width": 34,
       "height": 46,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands123",
-      "border_filepath": "data/layouts/FarawayIsland_Entrance/border.bin",
-      "blockdata_filepath": "data/layouts/FarawayIsland_Entrance/map.bin"
+      "secondary_tileset": "gTileset_FarawayIsland",
+      "border_filepath": "data/layouts/FarawayIsland_Exterior/border.bin",
+      "blockdata_filepath": "data/layouts/FarawayIsland_Exterior/map.bin"
     },
     {
       "id": "LAYOUT_FARAWAY_ISLAND_INTERIOR",
       "name": "FarawayIsland_Interior_Layout",
       "width": 29,
       "height": 26,
-      "border_width": 3,
+      "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_ViridianForest",
+      "secondary_tileset": "gTileset_FarawayIsland",
       "border_filepath": "data/layouts/FarawayIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Interior/map.bin"
+    },
+    {
+      "id": "LAYOUT_FARAWAY_ISLAND_HARBOR",
+      "name": "FarawayIsland_Harbor_Layout",
+      "width": 17,
+      "height": 13,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_IslandHarbor",
+      "border_filepath": "data/layouts/FarawayIsland_Harbor/border.bin",
+      "blockdata_filepath": "data/layouts/FarawayIsland_Harbor/map.bin"
+    },
+    {
+      "id": "LAYOUT_HOUSE_PC",
+      "name": "HousePC",
+      "width": 11,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding1",
+      "border_filepath": "data/layouts/HousePC/border.bin",
+      "blockdata_filepath": "data/layouts/HousePC/map.bin"
     }
   ]
 }

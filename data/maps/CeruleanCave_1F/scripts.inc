@@ -4,4 +4,5 @@ CeruleanCave_1F_MapScripts::
 
 CeruleanCave_1F_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_CERULEAN_CAVE_1F
+	setflag FLAG_HAS_ENTERED_CERULEAN_CAVE
 	end

@@ -4,17 +4,20 @@ NavelRock_Base_MapScripts::
 	.byte 0
 
 NavelRock_Base_OnTransition::
-	call_if_set FLAG_FOUGHT_LUGIA, NavelRock_Base_EventScript_HideLugia
-	call_if_unset FLAG_FOUGHT_LUGIA, NavelRock_Base_EventScript_TryShowLugia
+	call_if_set FLAG_CAUGHT_LUGIA, NavelRock_Base_EventScript_HideLugia
+	call_if_unset FLAG_CAUGHT_LUGIA, NavelRock_Base_EventScript_TryShowLugia
 	end
 
 NavelRock_Base_EventScript_HideLugia::
+	setweather WEATHER_NONE
+	doweather
 	setflag FLAG_HIDE_LUGIA
 	return
 
 NavelRock_Base_EventScript_TryShowLugia::
-	goto_if_set FLAG_LUGIA_FLEW_AWAY, EventScript_Return
+	goto_if_set FLAG_DEFEATED_LUGIA, EventScript_Return
 	clearflag FLAG_HIDE_LUGIA
+	clearflag FLAG_RAN_LUGIA
 	return
 
 NavelRock_Base_OnResume::
@@ -49,6 +52,8 @@ NavelRock_Base_EventScript_Lugia::
 	special ShakeScreen
 	delay 30
 	delay 50
+	setweather WEATHER_NONE
+	doweather
 	waitse
 	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
 	waitmoncry
@@ -62,17 +67,18 @@ NavelRock_Base_EventScript_Lugia::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, NavelRock_Base_EventScript_DefeatedLugia
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, NavelRock_Base_EventScript_RanFromLugia
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, NavelRock_Base_EventScript_RanFromLugia
-	setflag FLAG_FOUGHT_LUGIA
+	setflag FLAG_CAUGHT_LUGIA
 	release
 	end
 
 NavelRock_Base_EventScript_DefeatedLugia::
-	setflag FLAG_LUGIA_FLEW_AWAY
+	setflag FLAG_DEFEATED_LUGIA
 	setvar VAR_0x8004, SPECIES_LUGIA
-	goto EventScript_MonFlewAway
+	goto EventScript_MonWontBeBack
 	end
 
 NavelRock_Base_EventScript_RanFromLugia::
+	setflag FLAG_RAN_LUGIA
 	setvar VAR_0x8004, SPECIES_LUGIA
 	goto EventScript_MonFlewAway
 	end

@@ -5,6 +5,15 @@ EventScript_RemoveStaticMon::
     release
     end
 
+EventScript_MonWontBeBack::
+    fadescreen FADE_TO_BLACK
+    removeobject VAR_LAST_TALKED
+    fadescreen FADE_FROM_BLACK
+    bufferspeciesname STR_VAR_1, VAR_0x8004
+    msgbox Text_MonWontBeBack
+    release
+    return
+
 EventScript_MonFlewAway::
     fadescreen FADE_TO_BLACK
     removeobject VAR_LAST_TALKED

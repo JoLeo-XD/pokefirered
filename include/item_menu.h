@@ -33,6 +33,7 @@ void ItemMenu_StartFadeToExitCallback(u8 taskId);
 void Bag_BeginCloseWin0Animation(void);
 void ItemMenu_SetExitCallback(void (*)(void));
 void DisplayItemMessageInBag(u8 taskId, u8 fontId, const u8 * string, TaskFunc followUpFunc);
+void DisplayItemMessageInBagColor(u8 taskId, u8 fontId, u8 textColor, const u8 * string, TaskFunc followUpFunc);
 void Task_ReturnToBagFromContextMenu(u8 taskId);
 void CB2_BagMenuFromBattle(void);
 void InitOldManBag(void);

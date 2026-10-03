@@ -438,10 +438,38 @@ static const struct MenuAction sMultichoiceList_SeviiBirth[] = {
     { gOtherText_Exit }
 };
 
+static const struct MenuAction sMultichoiceList_SeviiFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
 static const struct MenuAction sMultichoiceList_SeviiNavelBirth[] = {
     { gText_SeviiIslands },
     { gText_NavelRock },
     { gText_BirthIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sMultichoiceList_SeviiNavelFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_NavelRock },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sMultichoiceList_SeviiBirthFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_BirthIsland },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sMultichoiceList_SeviiNavelBirthFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_NavelRock },
+    { gText_BirthIsland },
+    { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
@@ -475,12 +503,6 @@ static const struct MenuAction sMultichoiceList_SeagallopV12[] = {
 
 static const struct MenuAction sMultichoiceList_SeagallopVermilion[] = {
     { gText_Vermilion },
-    { gOtherText_Exit }
-};
-
-static const struct MenuAction sMultichoiceList_62[] = {
-    { gText_Multichoice_Empty1 },
-    { gText_Multichoice_Empty2 },
     { gOtherText_Exit }
 };
 
@@ -559,13 +581,16 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_TRADE_COLOSSEUM_BLANK]                      = MULTICHOICE(sMultichoiceList_TradeColosseumBlank),
     [MULTICHOICE_SEVII_NAVEL]                                = MULTICHOICE(sMultichoiceList_SeviiNavel),
     [MULTICHOICE_SEVII_BIRTH]                                = MULTICHOICE(sMultichoiceList_SeviiBirth),
+    [MULTICHOICE_SEVII_FARAWAY]                              = MULTICHOICE(sMultichoiceList_SeviiFaraway),
     [MULTICHOICE_SEVII_NAVEL_BIRTH]                          = MULTICHOICE(sMultichoiceList_SeviiNavelBirth),
+    [MULTICHOICE_SEVII_NAVEL_FARAWAY]                        = MULTICHOICE(sMultichoiceList_SeviiNavelFaraway),
+    [MULTICHOICE_SEVII_BIRTH_FARAWAY]                        = MULTICHOICE(sMultichoiceList_SeviiBirthFaraway),
+    [MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY]                  = MULTICHOICE(sMultichoiceList_SeviiNavelBirthFaraway),
     [MULTICHOICE_SEAGALLOP_123]                              = MULTICHOICE(sMultichoiceList_Seagallop123),
     [MULTICHOICE_SEAGALLOP_V23]                              = MULTICHOICE(sMultichoiceList_SeagallopV23),
     [MULTICHOICE_SEAGALLOP_V13]                              = MULTICHOICE(sMultichoiceList_SeagallopV13),
     [MULTICHOICE_SEAGALLOP_V12]                              = MULTICHOICE(sMultichoiceList_SeagallopV12),
     [MULTICHOICE_SEAGALLOP_VERMILION]                        = MULTICHOICE(sMultichoiceList_SeagallopVermilion),
-    [MULTICHOICE_62]                                         = MULTICHOICE(sMultichoiceList_62),
     [MULTICHOICE_JOIN_OR_LEAD]                               = MULTICHOICE(sMultichoiceList_JoinOrLead),
     [MULTICHOICE_TRAINER_TOWER_MODE]                         = MULTICHOICE(sMultichoiceList_TrainerTowerMode),
 };

@@ -4,6 +4,8 @@
 #define MB_NORMAL 0x00
 #define MB_UNUSED_01 0x01
 #define MB_TALL_GRASS 0x02
+#define MB_LONG_GRASS 0x03
+#define MB_LONG_GRASS_SOUTH_EDGE 0x04
 //
 #define MB_CAVE 0x08
 //

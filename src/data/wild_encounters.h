@@ -418,7 +418,7 @@ const struct WildPokemon sMtMoonB1F_FireRed_LandMons[] =
     { 5, 5, SPECIES_PARAS },
     { 6, 6, SPECIES_PARAS },
     { 9, 9, SPECIES_PARAS },
-    { 10, 10, SPECIES_PARAS },
+    { 14, 14, SPECIES_PARASECT },
 };
 
 const struct WildPokemonInfo sMtMoonB1F_FireRed_LandMonsInfo = { 5, sMtMoonB1F_FireRed_LandMons };
@@ -438,7 +438,7 @@ const struct WildPokemon sMtMoonB1F_LeafGreen_LandMons[] =
     { 5, 5, SPECIES_PARAS },
     { 6, 6, SPECIES_PARAS },
     { 9, 9, SPECIES_PARAS },
-    { 10, 10, SPECIES_PARAS },
+    { 14, 14, SPECIES_PARASECT },
 };
 
 const struct WildPokemonInfo sMtMoonB1F_LeafGreen_LandMonsInfo = { 5, sMtMoonB1F_LeafGreen_LandMons };
@@ -458,7 +458,7 @@ const struct WildPokemon sMtMoonB2F_FireRed_LandMons[] =
     { 11, 11, SPECIES_ZUBAT },
     { 11, 11, SPECIES_ZUBAT },
     { 11, 11, SPECIES_ZUBAT },
-    { 12, 12, SPECIES_CLEFAIRY },
+    { 20, 20, SPECIES_CLEFABLE },
 };
 
 const struct WildPokemonInfo sMtMoonB2F_FireRed_LandMonsInfo = { 7, sMtMoonB2F_FireRed_LandMons };
@@ -478,7 +478,7 @@ const struct WildPokemon sMtMoonB2F_LeafGreen_LandMons[] =
     { 11, 11, SPECIES_ZUBAT },
     { 11, 11, SPECIES_ZUBAT },
     { 11, 11, SPECIES_ZUBAT },
-    { 12, 12, SPECIES_CLEFAIRY },
+    { 20, 20, SPECIES_CLEFABLE },
 };
 
 const struct WildPokemonInfo sMtMoonB2F_LeafGreen_LandMonsInfo = { 7, sMtMoonB2F_LeafGreen_LandMons };
@@ -633,8 +633,8 @@ const struct WildPokemon sVictoryRoad2F_FireRed_LandMons[] =
     { 46, 46, SPECIES_GOLBAT },
     { 46, 46, SPECIES_MAROWAK },
     { 46, 46, SPECIES_MACHOKE },
-    { 48, 48, SPECIES_MACHOKE },
     { 48, 48, SPECIES_MAROWAK },
+    { 52, 52, SPECIES_NIDOKING },
 };
 
 const struct WildPokemonInfo sVictoryRoad2F_FireRed_LandMonsInfo = { 7, sVictoryRoad2F_FireRed_LandMons };
@@ -653,8 +653,8 @@ const struct WildPokemon sVictoryRoad2F_LeafGreen_LandMons[] =
     { 46, 46, SPECIES_GOLBAT },
     { 46, 46, SPECIES_MAROWAK },
     { 46, 46, SPECIES_MACHOKE },
-    { 48, 48, SPECIES_MACHOKE },
     { 48, 48, SPECIES_MAROWAK },
+    { 52, 52, SPECIES_NIDOQUEEN },
 };
 
 const struct WildPokemonInfo sVictoryRoad2F_LeafGreen_LandMonsInfo = { 7, sVictoryRoad2F_LeafGreen_LandMons };
@@ -963,7 +963,7 @@ const struct WildPokemon sSafariZoneEast_FireRed_LandMons[] =
     { 25, 25, SPECIES_PARASECT },
     { 22, 22, SPECIES_PARAS },
     { 25, 25, SPECIES_KANGASKHAN },
-    { 22, 22, SPECIES_PARAS },
+    { 40, 40, SPECIES_NIDOKING },
     { 28, 28, SPECIES_SCYTHER },
 };
 
@@ -1008,7 +1008,7 @@ const struct WildPokemon sSafariZoneEast_LeafGreen_LandMons[] =
     { 25, 25, SPECIES_PARASECT },
     { 22, 22, SPECIES_PARAS },
     { 25, 25, SPECIES_KANGASKHAN },
-    { 22, 22, SPECIES_PARAS },
+    { 40, 40, SPECIES_NIDOQUEEN },
     { 28, 28, SPECIES_PINSIR },
 };
 
@@ -1268,8 +1268,8 @@ const struct WildPokemon sCeruleanCave1F_FireRed_FishingMons[] =
     { 15, 25, SPECIES_POLIWAG },
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
-    { 15, 25, SPECIES_PSYDUCK },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 15, 35, SPECIES_PSYDUCK },
+    { 40, 50, SPECIES_POLIWRATH },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_FireRed_FishingMonsInfo = { 20, sCeruleanCave1F_FireRed_FishingMons };
@@ -1323,8 +1323,8 @@ const struct WildPokemon sCeruleanCave1F_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_POLIWAG },
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
-    { 15, 25, SPECIES_SLOWPOKE },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 15, 35, SPECIES_SLOWPOKE },
+    { 40, 50, SPECIES_POLIWRATH },
 };
 
 const struct WildPokemonInfo sCeruleanCave1F_LeafGreen_FishingMonsInfo = { 20, sCeruleanCave1F_LeafGreen_FishingMons };
@@ -1438,8 +1438,8 @@ const struct WildPokemon sCeruleanCaveB1F_FireRed_FishingMons[] =
     { 15, 25, SPECIES_POLIWAG },
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
-    { 15, 25, SPECIES_PSYDUCK },
     { 25, 35, SPECIES_GYARADOS },
+    { 30, 50, SPECIES_CLOYSTER },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_FireRed_FishingMonsInfo = { 20, sCeruleanCaveB1F_FireRed_FishingMons };
@@ -1493,8 +1493,8 @@ const struct WildPokemon sCeruleanCaveB1F_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_POLIWAG },
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
-    { 15, 25, SPECIES_SLOWPOKE },
     { 25, 35, SPECIES_GYARADOS },
+    { 30, 50, SPECIES_STARMIE },
 };
 
 const struct WildPokemonInfo sCeruleanCaveB1F_LeafGreen_FishingMonsInfo = { 20, sCeruleanCaveB1F_LeafGreen_FishingMons };
@@ -2113,8 +2113,8 @@ const struct WildPokemon sPowerPlant_FireRed_LandMons[] =
     { 34, 34, SPECIES_MAGNETON },
     { 26, 26, SPECIES_PIKACHU },
     { 32, 32, SPECIES_ELECTABUZZ },
-    { 26, 26, SPECIES_PIKACHU },
     { 35, 35, SPECIES_ELECTABUZZ },
+    { 30, 30, SPECIES_RAICHU },
 };
 
 const struct WildPokemonInfo sPowerPlant_FireRed_LandMonsInfo = { 7, sPowerPlant_FireRed_LandMons };
@@ -2133,8 +2133,8 @@ const struct WildPokemon sPowerPlant_LeafGreen_LandMons[] =
     { 34, 34, SPECIES_MAGNETON },
     { 26, 26, SPECIES_PIKACHU },
     { 31, 31, SPECIES_MAGNETON },
-    { 26, 26, SPECIES_PIKACHU },
     { 34, 34, SPECIES_MAGNETON },
+    { 32, 32, SPECIES_RAICHU },
 };
 
 const struct WildPokemonInfo sPowerPlant_LeafGreen_LandMonsInfo = { 7, sPowerPlant_LeafGreen_LandMons };
@@ -2254,7 +2254,7 @@ const struct WildPokemon sMtEmberSummitPath2F_FireRed_LandMons[] =
     { 40, 40, SPECIES_MACHOKE },
     { 40, 40, SPECIES_MACHOKE },
     { 40, 40, SPECIES_MACHOKE },
-    { 40, 40, SPECIES_MACHOKE },
+    { 38, 38, SPECIES_ARCANINE },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath2F_FireRed_LandMonsInfo = { 7, sMtEmberSummitPath2F_FireRed_LandMons };
@@ -2284,7 +2284,7 @@ const struct WildPokemon sMtEmberSummitPath2F_LeafGreen_LandMons[] =
     { 40, 40, SPECIES_MACHOKE },
     { 40, 40, SPECIES_MACHOKE },
     { 40, 40, SPECIES_MACHOKE },
-    { 40, 40, SPECIES_MACHOKE },
+    { 38, 38, SPECIES_NINETALES },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath2F_LeafGreen_LandMonsInfo = { 7, sMtEmberSummitPath2F_LeafGreen_LandMons };
@@ -2314,7 +2314,7 @@ const struct WildPokemon sMtEmberSummitPath3F_FireRed_LandMons[] =
     { 37, 37, SPECIES_GEODUDE },
     { 39, 39, SPECIES_MACHOP },
     { 37, 37, SPECIES_GEODUDE },
-    { 39, 39, SPECIES_MACHOP },
+    { 40, 40, SPECIES_ARCANINE },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath3F_FireRed_LandMonsInfo = { 7, sMtEmberSummitPath3F_FireRed_LandMons };
@@ -2334,7 +2334,7 @@ const struct WildPokemon sMtEmberSummitPath3F_LeafGreen_LandMons[] =
     { 37, 37, SPECIES_GEODUDE },
     { 39, 39, SPECIES_MACHOP },
     { 37, 37, SPECIES_GEODUDE },
-    { 39, 39, SPECIES_MACHOP },
+    { 40, 40, SPECIES_NINETALES },
 };
 
 const struct WildPokemonInfo sMtEmberSummitPath3F_LeafGreen_LandMonsInfo = { 7, sMtEmberSummitPath3F_LeafGreen_LandMons };
@@ -2711,9 +2711,9 @@ const struct WildPokemon sThreeIslandBerryForest_FireRed_LandMons[] =
     { 34, 34, SPECIES_DROWZEE },
     { 35, 35, SPECIES_EXEGGCUTE },
     { 31, 31, SPECIES_PSYDUCK },
-    { 37, 37, SPECIES_VENOMOTH },
+    { 38, 38, SPECIES_VENOMOTH },
     { 37, 37, SPECIES_HYPNO },
-    { 40, 40, SPECIES_VENOMOTH },
+    { 38, 38, SPECIES_BELLOSSOM },
     { 40, 40, SPECIES_HYPNO },
 };
 
@@ -4998,9 +4998,9 @@ const struct WildPokemon sRoute4_FireRed_LandMons[] =
     { 12, 12, SPECIES_SPEAROW },
     { 12, 12, SPECIES_RATTATA },
     { 10, 10, SPECIES_MANKEY },
-    { 8, 8, SPECIES_EKANS },
-    { 12, 12, SPECIES_MANKEY },
     { 12, 12, SPECIES_EKANS },
+    { 12, 12, SPECIES_MANKEY },
+    { 20, 20, SPECIES_WIGGLYTUFF },
 };
 
 const struct WildPokemonInfo sRoute4_FireRed_LandMonsInfo = { 21, sRoute4_FireRed_LandMons };
@@ -5043,9 +5043,9 @@ const struct WildPokemon sRoute4_LeafGreen_LandMons[] =
     { 12, 12, SPECIES_SPEAROW },
     { 12, 12, SPECIES_RATTATA },
     { 10, 10, SPECIES_MANKEY },
-    { 8, 8, SPECIES_SANDSHREW },
-    { 12, 12, SPECIES_MANKEY },
     { 12, 12, SPECIES_SANDSHREW },
+    { 12, 12, SPECIES_MANKEY },
+    { 20, 20, SPECIES_WIGGLYTUFF },
 };
 
 const struct WildPokemonInfo sRoute4_LeafGreen_LandMonsInfo = { 21, sRoute4_LeafGreen_LandMons };
@@ -5700,7 +5700,7 @@ const struct WildPokemon sRoute14_FireRed_LandMons[] =
     { 23, 23, SPECIES_DITTO },
     { 29, 29, SPECIES_PIDGEOTTO },
     { 23, 23, SPECIES_DITTO },
-    { 29, 29, SPECIES_PIDGEOTTO },
+    { 31, 31, SPECIES_VILEPLUME },
 };
 
 const struct WildPokemonInfo sRoute14_FireRed_LandMonsInfo = { 21, sRoute14_FireRed_LandMons };
@@ -5720,7 +5720,7 @@ const struct WildPokemon sRoute14_LeafGreen_LandMons[] =
     { 23, 23, SPECIES_DITTO },
     { 29, 29, SPECIES_PIDGEOTTO },
     { 23, 23, SPECIES_DITTO },
-    { 29, 29, SPECIES_PIDGEOTTO },
+    { 31, 31, SPECIES_VICTREEBEL },
 };
 
 const struct WildPokemonInfo sRoute14_LeafGreen_LandMonsInfo = { 21, sRoute14_LeafGreen_LandMons };
@@ -6281,8 +6281,8 @@ const struct WildPokemon sRoute23_FireRed_LandMons[] =
     { 44, 44, SPECIES_ARBOK },
     { 32, 32, SPECIES_SPEAROW },
     { 42, 42, SPECIES_FEAROW },
-    { 32, 32, SPECIES_SPEAROW },
-    { 44, 44, SPECIES_FEAROW },
+    { 32, 32, SPECIES_NIDOQUEEN },
+    { 44, 44, SPECIES_NIDOKING },
 };
 
 const struct WildPokemonInfo sRoute23_FireRed_LandMonsInfo = { 21, sRoute23_FireRed_LandMons };
@@ -6326,8 +6326,8 @@ const struct WildPokemon sRoute23_LeafGreen_LandMons[] =
     { 44, 44, SPECIES_SANDSLASH },
     { 32, 32, SPECIES_SPEAROW },
     { 42, 42, SPECIES_FEAROW },
-    { 32, 32, SPECIES_SPEAROW },
-    { 44, 44, SPECIES_FEAROW },
+    { 32, 32, SPECIES_NIDOKING },
+    { 44, 44, SPECIES_NIDOQUEEN },
 };
 
 const struct WildPokemonInfo sRoute23_LeafGreen_LandMonsInfo = { 21, sRoute23_LeafGreen_LandMons };
@@ -6560,7 +6560,7 @@ const struct WildPokemon sPalletTown_FireRed_FishingMons[] =
     { 15, 25, SPECIES_SHELLDER },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_SEADRA },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 25, 35, SPECIES_CLOYSTER },
 };
 
 const struct WildPokemonInfo sPalletTown_FireRed_FishingMonsInfo = { 10, sPalletTown_FireRed_FishingMons };
@@ -6588,7 +6588,7 @@ const struct WildPokemon sPalletTown_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_STARYU },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_KINGLER },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 25, 35, SPECIES_STARMIE },
 };
 
 const struct WildPokemonInfo sPalletTown_LeafGreen_FishingMonsInfo = { 10, sPalletTown_LeafGreen_FishingMons };
@@ -6615,8 +6615,8 @@ const struct WildPokemon sViridianCity_FireRed_FishingMons[] =
     { 15, 25, SPECIES_POLIWAG },
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
-    { 15, 25, SPECIES_PSYDUCK },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 20, 30, SPECIES_PSYDUCK },
+    { 25, 35, SPECIES_POLIWRATH },
 };
 
 const struct WildPokemonInfo sViridianCity_FireRed_FishingMonsInfo = { 10, sViridianCity_FireRed_FishingMons };
@@ -6643,8 +6643,8 @@ const struct WildPokemon sViridianCity_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_POLIWAG },
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
-    { 15, 25, SPECIES_SLOWPOKE },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 20, 30, SPECIES_SLOWPOKE },
+    { 25, 35, SPECIES_POLIWRATH },
 };
 
 const struct WildPokemonInfo sViridianCity_LeafGreen_FishingMonsInfo = { 10, sViridianCity_LeafGreen_FishingMons };

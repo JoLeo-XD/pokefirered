@@ -60,18 +60,19 @@ static const struct BgTemplate sBGTemplates[] = {
 };
 
 static const s8 sSeag[][4] = {
-                                   // Map                     X     Y
-    [SEAGALLOP_VERMILION_CITY]  = {MAP(MAP_VERMILION_CITY),      0x17, 0x20},
-    [SEAGALLOP_ONE_ISLAND]      = {MAP(MAP_ONE_ISLAND_HARBOR),   0x08, 0x05},
-    [SEAGALLOP_TWO_ISLAND]      = {MAP(MAP_TWO_ISLAND_HARBOR),   0x08, 0x05},
-    [SEAGALLOP_THREE_ISLAND]    = {MAP(MAP_THREE_ISLAND_HARBOR), 0x08, 0x05},
-    [SEAGALLOP_FOUR_ISLAND]     = {MAP(MAP_FOUR_ISLAND_HARBOR),  0x08, 0x05},
-    [SEAGALLOP_FIVE_ISLAND]     = {MAP(MAP_FIVE_ISLAND_HARBOR),  0x08, 0x05},
-    [SEAGALLOP_SIX_ISLAND]      = {MAP(MAP_SIX_ISLAND_HARBOR),   0x08, 0x05},
-    [SEAGALLOP_SEVEN_ISLAND]    = {MAP(MAP_SEVEN_ISLAND_HARBOR), 0x08, 0x05},
-    [SEAGALLOP_CINNABAR_ISLAND] = {MAP(MAP_CINNABAR_ISLAND),     0x15, 0x07},
-    [SEAGALLOP_NAVEL_ROCK]      = {MAP(MAP_NAVEL_ROCK_HARBOR),   0x08, 0x05},
-    [SEAGALLOP_BIRTH_ISLAND]    = {MAP(MAP_BIRTH_ISLAND_HARBOR), 0x08, 0x05}
+                                // Map                             X     Y
+    [SEAGALLOP_VERMILION_CITY]  = {MAP(MAP_VERMILION_CITY),        0x17, 0x20},
+    [SEAGALLOP_ONE_ISLAND]      = {MAP(MAP_ONE_ISLAND_HARBOR),     0x08, 0x05},
+    [SEAGALLOP_TWO_ISLAND]      = {MAP(MAP_TWO_ISLAND_HARBOR),     0x08, 0x05},
+    [SEAGALLOP_THREE_ISLAND]    = {MAP(MAP_THREE_ISLAND_HARBOR),   0x08, 0x05},
+    [SEAGALLOP_FOUR_ISLAND]     = {MAP(MAP_FOUR_ISLAND_HARBOR),    0x08, 0x05},
+    [SEAGALLOP_FIVE_ISLAND]     = {MAP(MAP_FIVE_ISLAND_HARBOR),    0x08, 0x05},
+    [SEAGALLOP_SIX_ISLAND]      = {MAP(MAP_SIX_ISLAND_HARBOR),     0x08, 0x05},
+    [SEAGALLOP_SEVEN_ISLAND]    = {MAP(MAP_SEVEN_ISLAND_HARBOR),   0x08, 0x05},
+    [SEAGALLOP_CINNABAR_ISLAND] = {MAP(MAP_CINNABAR_ISLAND),       0x15, 0x07},
+    [SEAGALLOP_NAVEL_ROCK]      = {MAP(MAP_NAVEL_ROCK_HARBOR),     0x08, 0x05},
+    [SEAGALLOP_BIRTH_ISLAND]    = {MAP(MAP_BIRTH_ISLAND_HARBOR),   0x08, 0x05},
+    [SEAGALLOP_FARAWAY_ISLAND]  = {MAP(MAP_FARAWAY_ISLAND_HARBOR), 0x08, 0x05}
 };
 
 // Bitpacked array.  In the commented section, right-most bit is the
@@ -95,7 +96,8 @@ static const u16 sTravelDirectionMatrix[] = {
     [SEAGALLOP_SEVEN_ISLAND]    = 0x440, // 10001000000
     [SEAGALLOP_CINNABAR_ISLAND] = 0x7ff, // 11111111111
     [SEAGALLOP_NAVEL_ROCK]      = 0x6e0, // 11011100000
-    [SEAGALLOP_BIRTH_ISLAND]    = 0x000  // 00000000000
+    [SEAGALLOP_BIRTH_ISLAND]    = 0x000, // 00000000000
+    [SEAGALLOP_FARAWAY_ISLAND]  = 0x7ff  // 11111111111
 };
 
 static const union AnimCmd sSpriteAnims_Ferry_WB[] = {
@@ -461,14 +463,17 @@ u8 GetSeagallopNumber(void)
     if (originId == SEAGALLOP_CINNABAR_ISLAND || destId == SEAGALLOP_CINNABAR_ISLAND)
         return 1;
 
-    if (originId == SEAGALLOP_VERMILION_CITY || destId == SEAGALLOP_VERMILION_CITY)
-        return 7;
-
     if (originId == SEAGALLOP_NAVEL_ROCK || destId == SEAGALLOP_NAVEL_ROCK)
         return 10;
 
     if (originId == SEAGALLOP_BIRTH_ISLAND || destId == SEAGALLOP_BIRTH_ISLAND)
         return 12;
+
+    if (originId == SEAGALLOP_FARAWAY_ISLAND || destId == SEAGALLOP_FARAWAY_ISLAND)
+        return 15;
+
+    if (originId == SEAGALLOP_VERMILION_CITY || destId == SEAGALLOP_VERMILION_CITY)
+        return 7;
 
     if ((originId == SEAGALLOP_ONE_ISLAND 
       || originId == SEAGALLOP_TWO_ISLAND 

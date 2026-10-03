@@ -20,7 +20,7 @@
 #include "constants/metatile_labels.h"
 
 #define CUT_GRASS_SPRITE_COUNT 8
-#define CUT_SIDE 3
+#define CUT_RADIUS 1
 
 extern const u8 FarawayIsland_Interior_EventScript_HideMewWhenGrassCut[];
 
@@ -64,6 +64,21 @@ static const u16 sCutGrassMetatileMapping[][2] = {
     }, {
         METATILE_ID(ViridianForest, HugeTreeTopMiddle_Grass),
         METATILE_ID(ViridianForest, HugeTreeTopMiddle_Mowed)
+    }, {
+        METATILE_ID(FarawayIsland, Plain_Long_Grass_Root),
+        METATILE_ID(General, Plain_Mowed)
+    }, {
+        METATILE_ID(FarawayIsland, Plain_Long_Grass),
+        METATILE_ID(General, Plain_Mowed)
+    }, {
+        METATILE_ID(FarawayIsland, ThinTreeTop_Long_Grass_Root),
+        METATILE_ID(General, ThinTreeTop_Mowed)
+    }, {
+        METATILE_ID(FarawayIsland, WideTreeTopLeft_Long_Grass_Root),
+        METATILE_ID(General, WideTreeTopLeft_Mowed)
+    }, {
+        METATILE_ID(FarawayIsland, WideTreeTopRight_Long_Grass_Root),
+        METATILE_ID(General, WideTreeTopRight_Mowed)
     }, {
         0xffff,
         0xffff
@@ -122,6 +137,7 @@ bool8 SetUpFieldMove_Cut(void)
 {
     s16 x, y;
     u8 i, j;
+    u16 tileBehavior;
     sScheduleOpenDottedHole = FALSE;
     if (CutMoveRuinValleyCheck() == TRUE)
     {
@@ -142,19 +158,23 @@ bool8 SetUpFieldMove_Cut(void)
     {
         PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
     
-        for (i = 0; i < CUT_SIDE; i++)
+        for (i = 0; i < CUT_RADIUS * 2 + 1; i++)
         {
-            y = gPlayerFacingPosition.y - 1 + i;
-            for (j = 0; j < CUT_SIDE; j++)
+            y = gPlayerFacingPosition.y - CUT_RADIUS + i;
+            for (j = 0; j < CUT_RADIUS * 2 + 1; j++)
             {
-                x = gPlayerFacingPosition.x - 1 + j;
+                x = gPlayerFacingPosition.x - CUT_RADIUS + j;
+                tileBehavior = MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_BEHAVIOR);
                 if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
                 {
                     if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
                     {
-                        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-                        gPostMenuFieldCallback = FieldCallback_CutGrass;
-                        return TRUE;
+                        if (i != CUT_RADIUS * 2 || !MetatileBehavior_IsLongGrass(tileBehavior))
+                        {
+                            gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+                            gPostMenuFieldCallback = FieldCallback_CutGrass;
+                            return TRUE;
+                        }
                     }
                 }
             }
@@ -203,6 +223,9 @@ static void FieldMoveCallback_CutGrass(void)
 bool8 FldEff_CutGrass(void)
 {
     u8 i, j;
+    u16 tileBehavior;
+    u16 tileBehaviorAbove;
+    u16 tileBehavior2Above;
     s16 x, y;
     u8 pos;
 
@@ -211,15 +234,38 @@ bool8 FldEff_CutGrass(void)
     pos = gFieldEffectArguments[1] - 1;
     PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
 
-    for (i = 0; i < CUT_SIDE; i++)
+    for (i = 0; i < CUT_RADIUS * 2 + 1; i++)
     {
-        y = gPlayerFacingPosition.y - 1 + i;
-        for (j = 0; j < CUT_SIDE; j++)
+        y = gPlayerFacingPosition.y - CUT_RADIUS + i;
+        for (j = 0; j < CUT_RADIUS * 2 + 1; j++)
         {
-            x = gPlayerFacingPosition.x - 1 + j;
+            x = gPlayerFacingPosition.x - CUT_RADIUS + j;
             if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
             {
-                if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
+                tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+                tileBehaviorAbove = MapGridGetMetatileBehaviorAt(x, y - 1);
+                tileBehavior2Above = MapGridGetMetatileBehaviorAt(x, y - 2);
+                if (MetatileBehavior_IsLongGrassRoot(tileBehavior))
+                {
+                    if (MetatileBehavior_IsLongGrass(tileBehaviorAbove))
+                    {
+                        if (MetatileBehavior_IsLongGrass(tileBehavior2Above))
+                            MapGridSetMetatileIdAt(x, y - 1, METATILE_ID(FarawayIsland, Plain_Long_Grass_Root));
+                        else
+                            SetCutGrassMetatileAt(x, y - 1);
+                    }
+                    SetCutGrassMetatileAt(x, y);
+                    EnableObjectGroundEffectsByXY(x, y);
+                }
+                else if (MetatileBehavior_IsLongGrass(tileBehavior))
+                {
+                    if (MetatileBehavior_IsLongGrass(tileBehavior2Above))
+                        MapGridSetMetatileIdAt(x, y - 1, METATILE_ID(FarawayIsland, Plain_Long_Grass_Root));
+                    else
+                        SetCutGrassMetatileAt(x, y - 1);
+                    EnableObjectGroundEffectsByXY(x, y);
+                }
+                else if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
                 {
                     SetCutGrassMetatileAt(x, y);
                     EnableObjectGroundEffectsByXY(x, y);

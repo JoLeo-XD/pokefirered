@@ -1,3 +1,5 @@
+.set SPOKE_TO_MYSTERIOUS_GUY,   FLAG_TEMP_2
+
 LavenderTown_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LavenderTown_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -5,7 +7,14 @@ LavenderTown_PokemonCenter_1F_MapScripts::
 
 LavenderTown_PokemonCenter_1F_OnTransition::
 	setrespawn HEAL_LOCATION_LAVENDER_TOWN
+	setflag FLAG_HIDE_MYSTERIOUS_GUY
+	call_if_set FLAG_HAS_ENTERED_CERULEAN_CAVE, LavenderTown_PokemonCenter_1F_EventScript_TryShowMysteriousGuy
 	end
+
+LavenderTown_PokemonCenter_1F_EventScript_TryShowMysteriousGuy::
+	goto_if_set FLAG_ENABLE_SHIP_FARAWAY_ISLAND, EventScript_Return
+	clearflag FLAG_HIDE_MYSTERIOUS_GUY
+	return
 
 LavenderTown_PokemonCenter_1F_EventScript_Nurse::
 	lock
@@ -23,5 +32,91 @@ LavenderTown_PokemonCenter_1F_EventScript_Lass::
 	end
 
 LavenderTown_PokemonCenter_1F_EventScript_Youngster::
+	goto_if_set SPOKE_TO_MYSTERIOUS_GUY, LavenderTown_PokemonCenter_1F_EventScript_YoungsterSpokeToGuy
 	msgbox LavenderTown_PokemonCenter_1F_Text_PeoplePayForCuboneSkulls, MSGBOX_NPC
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_YoungsterSpokeToGuy::
+	msgbox LavenderTown_PokemonCenter_1F_Text_WereYouTalkingToYourself, MSGBOX_NPC
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuy::
+	setvar VAR_0x8004, SPECIES_MEWTWO
+	specialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID
+	goto_if_eq VAR_RESULT, TRUE, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyHasOwnMewtwoInParty
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_eq VAR_RESULT, TRUE, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyHasOtherMewtwoInParty
+	goto_if_set FLAG_RAN_MEWTWO, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyRanFromMewtwo
+	goto_if_set FLAG_DEFEATED_MEWTWO, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyFoughtMewtwo
+	goto_if_set FLAG_CAUGHT_MEWTWO, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyCaughtMewtwo
+	msgbox LavenderTown_PokemonCenter_1F_Text_SomeoneShouldDoSomething, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyRanFromMewtwo::
+	setflag SPOKE_TO_MYSTERIOUS_GUY
+	msgbox LavenderTown_PokemonCenter_1F_Text_YouSawItButYouRanFromIt, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyFoughtMewtwo::
+	setflag SPOKE_TO_MYSTERIOUS_GUY
+	msgbox LavenderTown_PokemonCenter_1F_Text_YouBeatItAndItRan, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyCaughtMewtwo::
+	setflag SPOKE_TO_MYSTERIOUS_GUY
+	msgbox LavenderTown_PokemonCenter_1F_Text_ImNotSoSureIBelieveYou, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyHasOtherMewtwoInParty::
+	msgbox LavenderTown_PokemonCenter_1F_Text_NotYourMewtwo, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyHasOwnMewtwoInParty::
+	goto_if_unset FLAG_CAUGHT_MEWTWO, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyCheating
+	setflag SPOKE_TO_MYSTERIOUS_GUY
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	msgbox LavenderTown_PokemonCenter_1F_Text_SoYouManagedToCatchIt, MSGBOX_NPC
+	checkitemspace ITEM_OLD_SEA_MAP
+	goto_if_eq VAR_RESULT, FALSE, LavenderTown_PokemonCenter_1F_EventScript_NoRoomForReward
+	additem ITEM_OLD_SEA_MAP
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgreceiveditem LavenderTown_PokemonCenter_1F_Text_ReceivedOldSeaMap, ITEM_OLD_SEA_MAP, 1, MUS_OBTAIN_KEY_ITEM
+	waitmessage
+	textcolor NPC_TEXT_COLOR_MALE
+	msgbox LavenderTown_PokemonCenter_1F_Text_FindAWayToGetToThisIsland, MSGBOX_NPC
+	fadeoutbgm 0
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MYSTERIOUS_GUY
+	fadescreen FADE_FROM_BLACK
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgbox LavenderTown_PokemonCenter_1F_Text_TheMysteriousGuyDisappeared, MSGBOX_SIGN
+	waitmessage
+	fadeinbgm 0
+	setflag FLAG_ENABLE_SHIP_FARAWAY_ISLAND
+	release
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_NoRoomForReward::
+	msgbox LavenderTown_PokemonCenter_1F_Text_CarryingTooManyItems, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	end
+
+LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyCheating::
+	msgbox LavenderTown_PokemonCenter_1F_Text_YoureNotCheatingAreYou, MSGBOX_NPC
+	applymovement LOCALID_MYSTERIOUS_GUY, Common_Movement_FaceOriginalDirection
+	waitmovement 0
 	end

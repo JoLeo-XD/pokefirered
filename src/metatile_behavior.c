@@ -63,7 +63,9 @@ bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsPokeGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS)
+    if (metatileBehavior == MB_TALL_GRASS ||
+        metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS ||
+        metatileBehavior == MB_LONG_GRASS)
         return TRUE;
     else
         return FALSE;
@@ -437,7 +439,22 @@ bool8 MetatileBehavior_IsTallGrass(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsLongGrass(u8 metatileBehavior) { return FALSE; }
+bool8 MetatileBehavior_IsLongGrass(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_LONG_GRASS)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsLongGrassRoot(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsAshGrass(u8 metatileBehavior) { return FALSE; }
 bool8 MetatileBehavior_IsFootprints(u8 metatileBehavior) { return FALSE; }
 bool8 MetatileBehavior_IsBridge(u8 metatileBehavior) { return FALSE; }
@@ -694,7 +711,8 @@ bool8 MetatileBehavior_IsSeaweed(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsRunningDisallowed(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_RUNNING_DISALLOWED)
+    if (metatileBehavior == MB_RUNNING_DISALLOWED
+     || metatileBehavior == MB_LONG_GRASS)
         return TRUE;
     else
         return FALSE;

@@ -60,15 +60,18 @@
 #define MULTICHOICE_TRADE_COLOSSEUM_BLANK                      53
 #define MULTICHOICE_SEVII_NAVEL                                54
 #define MULTICHOICE_SEVII_BIRTH                                55
-#define MULTICHOICE_SEVII_NAVEL_BIRTH                          56
-#define MULTICHOICE_SEAGALLOP_123                              57
-#define MULTICHOICE_SEAGALLOP_V23                              58
-#define MULTICHOICE_SEAGALLOP_V13                              59
-#define MULTICHOICE_SEAGALLOP_V12                              60
-#define MULTICHOICE_SEAGALLOP_VERMILION                        61
-#define MULTICHOICE_62                                         62
-#define MULTICHOICE_JOIN_OR_LEAD                               63
-#define MULTICHOICE_TRAINER_TOWER_MODE                         64
+#define MULTICHOICE_SEVII_FARAWAY                              56
+#define MULTICHOICE_SEVII_NAVEL_BIRTH                          57
+#define MULTICHOICE_SEVII_NAVEL_FARAWAY                        58
+#define MULTICHOICE_SEVII_BIRTH_FARAWAY                        59
+#define MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY                  60
+#define MULTICHOICE_SEAGALLOP_123                              61
+#define MULTICHOICE_SEAGALLOP_V23                              62
+#define MULTICHOICE_SEAGALLOP_V13                              63
+#define MULTICHOICE_SEAGALLOP_V12                              64
+#define MULTICHOICE_SEAGALLOP_VERMILION                        65
+#define MULTICHOICE_JOIN_OR_LEAD                               67
+#define MULTICHOICE_TRAINER_TOWER_MODE                         68
 
 #define MULTICHOICE_NONE                                      255
 

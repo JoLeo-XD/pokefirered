@@ -35,6 +35,16 @@
 // gTileset_DepartmentStore
 #define METATILE_DepartmentStore_ElevatorDoor  0x28D
 
+// gTileset_FarawayIsland
+#define METATILE_FarawayIsland_Door                              0x297
+#define METATILE_FarawayIsland_GameCornerDoor                    0x29B
+#define METATILE_FarawayIsland_Plain_Long_Grass                  0x3B4
+#define METATILE_FarawayIsland_Plain_Long_Grass_Root             0x3B3
+#define METATILE_FarawayIsland_PokeCenterDoor                    0x2EB
+#define METATILE_FarawayIsland_ThinTreeTop_Long_Grass_Root       0x3B6
+#define METATILE_FarawayIsland_WideTreeTopLeft_Long_Grass_Root   0x3B7
+#define METATILE_FarawayIsland_WideTreeTopRight_Long_Grass_Root  0x3B8
+
 // gTileset_FuchsiaCity
 #define METATILE_FuchsiaCity_Door                           0x2BF
 #define METATILE_FuchsiaCity_SafariZoneDoor                 0x2D2

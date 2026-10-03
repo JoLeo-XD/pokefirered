@@ -746,3 +746,14 @@ const struct Tileset gTileset_HallOfFame =
     .callback = NULL,
 };
 
+
+const struct Tileset gTileset_FarawayIsland =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_FarawayIsland,
+    .palettes = gTilesetPalettes_FarawayIsland,
+    .metatiles = gMetatiles_FarawayIsland,
+    .metatileAttributes = gMetatileAttributes_FarawayIsland,
+    .callback = NULL,
+};

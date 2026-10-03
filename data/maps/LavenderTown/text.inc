@@ -10,6 +10,12 @@ LavenderTown_Text_JustImaginingWhiteHand::
     .string "That white hand on your shoulder…\n"
     .string "I'm just imagining it.$"
 
+LavenderTown_Text_YouThinkYouveSeenAGhost::
+    .string "Do you believe in ghosts?\p"
+    .string "…You think you've seen a ghost?\p"
+    .string "Hahaha, as if!\p"
+    .string "…Why do you look so shaken up?$"
+
 LavenderTown_Text_TownKnownAsMonGraveSite::
     .string "This town is known as the grave\n"
     .string "site of POKéMON.\p"

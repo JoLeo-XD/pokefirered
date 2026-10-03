@@ -139,6 +139,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Moltres;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Articuno;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mewtwo;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mew;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Event_Mew;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Entei;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Suicune;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Raikou;
@@ -294,6 +295,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_ARTICUNO]                 = &gObjectEventGraphicsInfo_Articuno,
     [OBJ_EVENT_GFX_MEWTWO]                   = &gObjectEventGraphicsInfo_Mewtwo,
     [OBJ_EVENT_GFX_MEW]                      = &gObjectEventGraphicsInfo_Mew,
+    [OBJ_EVENT_GFX_EVENT_MEW]                = &gObjectEventGraphicsInfo_Event_Mew,
     [OBJ_EVENT_GFX_ENTEI]                    = &gObjectEventGraphicsInfo_Entei,
     [OBJ_EVENT_GFX_SUICUNE]                  = &gObjectEventGraphicsInfo_Suicune,
     [OBJ_EVENT_GFX_RAIKOU]                   = &gObjectEventGraphicsInfo_Raikou,

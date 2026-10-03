@@ -124,6 +124,7 @@ const u16 gObjectEventPic_Moltres[] = INCBIN_U16("graphics/object_events/pics/po
 const u16 gObjectEventPic_Articuno[] = INCBIN_U16("graphics/object_events/pics/pokemon/articuno.4bpp");
 const u16 gObjectEventPic_Mewtwo[] = INCBIN_U16("graphics/object_events/pics/pokemon/mewtwo.4bpp");
 const u16 gObjectEventPic_Mew[] = INCBIN_U16("graphics/object_events/pics/pokemon/mew.4bpp");
+const u16 gObjectEventPic_Event_Mew[] = INCBIN_U16("graphics/object_events/pics/pokemon/event_mew.4bpp");
 const u16 gObjectEventPic_Entei[] = INCBIN_U16("graphics/object_events/pics/pokemon/entei.4bpp");
 const u16 gObjectEventPic_Raikou[] = INCBIN_U16("graphics/object_events/pics/pokemon/raikou.4bpp");
 const u16 gObjectEventPic_Suicune[] = INCBIN_U16("graphics/object_events/pics/pokemon/suicune.4bpp");

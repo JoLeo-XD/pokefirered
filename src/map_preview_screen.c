@@ -305,6 +305,14 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
         .palptr = sMoneanChamberMapPreviewPalette
+    },
+    [MPS_FARAWAY_ISLAND] = {
+        .mapsec = MAPSEC_FARAWAY_ISLAND,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_SEAFOAM_ISLANDS_1F,
+        .tilesptr = sSeafoamIslandsMapPreviewTiles,
+        .tilemapptr = sSeafoamIslandsMapPreviewTilemap,
+        .palptr = sSeafoamIslandsMapPreviewPalette
     }
 };
 

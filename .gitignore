@@ -69,3 +69,6 @@ build-cmake-*/
 .cache/
 CMakeLists.txt
 compile_commands.json
+config error.txt
+*.ase
+graphics/map_preview/tiles.png

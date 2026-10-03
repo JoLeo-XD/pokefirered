@@ -834,7 +834,7 @@ Text_WelcomeTimeCapsule::
 	.string "TIME CAPSULE.$"
 
 Text_PleaseComeAgain::
-	.string "Please come again!$"
+	.string "Volte sempre!$"
 
 @ Unused
 Text_HavingDiscountSaleToday::
@@ -852,11 +852,11 @@ Text_MakingPreparations::
 	.string "じゅんびちゅうです！$"
 
 Text_WantWhichFloor::
-	.string "Which floor do you want?$"
+	.string "Quer ir a qual andar?$"
 
 Text_BagItemCanBeRegistered::
-	.string "An item in the BAG can be\n"
-	.string "registered to SELECT for easy use.$"
+	.string "Um item na BOLSA pode ser marcado\n"
+	.string "ao botão SELECT para fácil uso.$"
 
 @ Unused (email from R/S Rivals computer)
 Text_TrainerSchoolEmail::
@@ -882,25 +882,30 @@ Text_GiveNicknameToReceivedMon::
 	.string "{STR_VAR_2} you received?$"
 
 gText_PkmnFainted3::
-	.string "{STR_VAR_1} fainted…\p"
+	.string "{STR_VAR_1} desmaiou…\p"
 	.string "$"
 
-Text_WelcomeWantToHealPkmn::
-	.string "Welcome to our POKéMON CENTER!\p"
-	.string "Would you like me to heal your\n"
-	.string "POKéMON back to perfect health?$"
+Text_WelcomeWantToHealPkmnM::
+	.string "Bem-vindo ao nosso CENTRO POKéMON!\p"
+	.string "Gostaria que eu cure seus POKéMONS\n"
+	.string "de volta a saúde?$"
+
+Text_WelcomeWantToHealPkmnF::
+	.string "Bem-vinda ao nosso CENTRO POKéMON!\p"
+	.string "Gostaria que eu cure seus POKéMONS\n"
+	.string "de volta a saúde?$"
 
 Text_TakeYourPkmnForFewSeconds::
-	.string "Okay, I'll take your POKéMON for a\n"
-	.string "few seconds.$"
+	.string "Tudo bem, só vou pegar seus\n"
+	.string "POKéMONS por uns segundinhos.$"
 
 Text_WeHopeToSeeYouAgain::
-	.string "We hope to see you again!$"
+	.string "Esperamos que tenha sucesso!$"
 
 Text_RestoredPkmnToFullHealth::
-	.string "Thank you for waiting.\n"
-	.string "We've restored your POKéMON to\l"
-	.string "full health.$"
+	.string "Obrigada por aguardar.\n"
+	.string "Seus POKéMONS agora estão\l"
+	.string "perfeitamente saudáveis de novo.$"
 
 	.include "data/text/surf.inc"
 
@@ -960,7 +965,7 @@ Text_VoiceRangOutDontRunAway::
 	.string "Someone's voice rang out,\n"
 	.string "“Don't run away!”$"
 
-@ Uncear what the below unused JP texts were for
+@ Unclear what the below unused JP texts were for
 Text_IdLikeToSeeRequest::
 	.string "えっとー\n"
 	.string "{STR_VAR_2}が　みてみたいなー\p"
@@ -988,6 +993,10 @@ Text_TheDoorIsOpen::
 	.include "data/text/pc_transfer.inc"
 	.include "data/text/white_out.inc"
 	.include "data/text/poke_mart.inc"
+
+Text_MonWontBeBack::
+	.string "Looks like the {STR_VAR_1} won't\n"
+	.string "be back for a while…$"
 
 Text_MonFlewAway::
 	.string "The {STR_VAR_1} flew away!$"
@@ -1364,5 +1373,8 @@ Text_TestMsg::
 	.include "data/maps/FarawayIsland_Interior/scripts.inc"
 	.include "data/maps/FarawayIsland_Interior/text.inc"
 
-	.include "data/maps/FarawayIsland_Entrance/scripts.inc"
-	.include "data/maps/FarawayIsland_Entrance/text.inc"
+	.include "data/maps/FarawayIsland_Exterior/scripts.inc"
+	.include "data/maps/FarawayIsland_Exterior/text.inc"
+
+	.include "data/maps/FarawayIsland_Harbor/scripts.inc"
+	.include "data/maps/FarawayIsland_Harbor/text.inc"

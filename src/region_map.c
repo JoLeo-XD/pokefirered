@@ -581,6 +581,7 @@ static const u8 sSeviiMapsecs[3][30] = {
         MAPSEC_TANOBY_CHAMBERS,
         MAPSEC_TANOBY_KEY,
         MAPSEC_BIRTH_ISLAND,
+        MAPSEC_FARAWAY_ISLAND,
         MAPSEC_MONEAN_CHAMBER,
         MAPSEC_LIPTOO_CHAMBER,
         MAPSEC_WEEPTH_CHAMBER,
@@ -660,7 +661,7 @@ static const struct DungeonMapInfo sDungeonInfo[] = {
         .desc = gText_RegionMap_AreaDesc_PokemonMansion
     }, {
         .id = MAPSEC_KANTO_SAFARI_ZONE,
-        .name = sMapsecName_ZONA_SAFARI,
+        .name = sMapsecName_ZONA_SAF__RI,
         .desc = gText_RegionMap_AreaDesc_SafariZone
     }, {
         .id = MAPSEC_ROCK_TUNNEL,

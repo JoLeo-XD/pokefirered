@@ -355,22 +355,22 @@ ifneq ($(NODEP),1)
 endif
 
 $(OBJ_DIR)/sym_bss.ld: sym_bss.txt
-	$(RAMSCRGEN) .bss $< ENGLISH > $@
+	$(RAMSCRGEN) .bss $< PORTUGUESE > $@
 
 $(OBJ_DIR)/sym_bss_rev10.ld: sym_bss_rev10.txt
-	$(RAMSCRGEN) .bss $< ENGLISH > $@
+	$(RAMSCRGEN) .bss $< PORTUGUESE > $@
 
 $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
-	$(RAMSCRGEN) COMMON $< ENGLISH -c $(C_BUILDDIR),common_syms > $@
+	$(RAMSCRGEN) COMMON $< PORTUGUESE -c $(C_BUILDDIR),common_syms > $@
 
 $(OBJ_DIR)/sym_common_rev10.ld: sym_common_rev10.txt $(C_OBJS) $(wildcard common_syms/*.txt)
-	$(RAMSCRGEN) COMMON $< ENGLISH -c $(C_BUILDDIR),common_syms > $@
+	$(RAMSCRGEN) COMMON $< PORTUGUESE -c $(C_BUILDDIR),common_syms > $@
 
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
-	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
+	$(RAMSCRGEN) ewram_data $< PORTUGUESE > $@
 
 $(OBJ_DIR)/sym_ewram_rev10.ld: sym_ewram_rev10.txt
-	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
+	$(RAMSCRGEN) ewram_data $< PORTUGUESE > $@
 
 # Linker script
 ifeq ($(MODERN),0)

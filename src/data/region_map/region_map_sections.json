@@ -650,7 +650,7 @@
     },
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
-      "name": "ZONA SAFARI",
+      "name": "ZONA SAFÁRI",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -834,7 +834,7 @@
     },
     {
       "id": "MAPSEC_RESORT_GORGEOUS",
-      "name": "RESORT DESLUMBRANTE",
+      "name": "RESORT LUXUOSO",
       "x": 16,
       "y": 9,
       "width": 3,
@@ -1123,6 +1123,22 @@
     {
       "id": "MAPSEC_EMBER_SPA",
       "name": "SPA DAS BRASAS",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_FARAWAY_ISLAND_HARBOR",
+      "name": "PORTO DA ILHA REMOTA",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_FARAWAY_ISLAND",
+      "name": "FARAWAY ISLAND",
       "x": 0,
       "y": 0,
       "width": 1,

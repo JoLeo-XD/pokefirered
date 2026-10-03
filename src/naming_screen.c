@@ -1899,7 +1899,7 @@ static bool8 AddTextCharacter(void)
 		{
 			sNamingScreen->textBuffer[index] = CHAR_u_ACUTE; // Change to "ú"
 		}
-		// Play sound effect without doing anything
+		// Play sound effect without adding anything
 		else
 		{
 			PlaySE(SE_SELECT);
@@ -1923,7 +1923,7 @@ static bool8 AddTextCharacter(void)
 		{
 			sNamingScreen->textBuffer[index] = CHAR_a_GRAVE; // Change to "à"
 		}
-		// Play sound effect without doing anything
+		// Play sound effect without adding anything
 		else
 		{
 			PlaySE(SE_SELECT);
@@ -1971,7 +1971,7 @@ static bool8 AddTextCharacter(void)
 		{
 			sNamingScreen->textBuffer[index] = CHAR_o_CIRCUMFLEX; // Change to "ô"
 		}
-		// Play sound effect without doing anything
+		// Play sound effect without adding anything
 		else
 		{
 			PlaySE(SE_SELECT);
@@ -2008,7 +2008,7 @@ static bool8 AddTextCharacter(void)
 		{
 			sNamingScreen->textBuffer[index] = CHAR_o_TILDE; // Change to "õ"
 		}
-		// Play sound effect without doing anything
+		// Play sound effect without adding anything
 		else
 		{
 			PlaySE(SE_SELECT);
@@ -2028,7 +2028,7 @@ static bool8 AddTextCharacter(void)
 		{
 			sNamingScreen->textBuffer[index] = CHAR_u_DIAERESIS; // Change to "ú"
 		}
-		// Play sound effect without doing anything
+		// Play sound effect without adding anything
 		else
 		{
 			PlaySE(SE_SELECT);

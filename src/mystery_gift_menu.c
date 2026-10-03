@@ -470,7 +470,7 @@ void PrintMysteryGiftOrEReaderTopMenu(bool8 isEReader, bool32 useCancel)
     FillWindowPixelBuffer(0, 0x00);
     if (!isEReader)
     {
-        options = useCancel == TRUE ? gText_PickOKExit : gText_PickOKCancel;
+        options = useCancel == TRUE ? gText_PickOKExit2 : gText_PickOKCancel;
         AddTextPrinterParameterized4(0, FONT_NORMAL, 2, 2, 0, 0, sTextColors_TopMenu, 0, gText_MysteryGift2);
         width = 222 - GetStringWidth(FONT_SMALL, options, 0);
         AddTextPrinterParameterized4(0, FONT_SMALL, width, 2, 0, 0, sTextColors_TopMenu, 0, options);

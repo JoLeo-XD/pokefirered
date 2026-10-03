@@ -316,7 +316,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_CombineFourWordsOrPhrases,
         .instructionsText2 = gText_AndMakeYourProfile,
         .confirmText1 = gText_YourProfile,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayM
     }, {
         .type = EASY_CHAT_TYPE_BATTLE_START,
         .numColumns = 2,
@@ -326,7 +326,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_MakeMessageSixPhrases,
         .instructionsText2 = gText_MaxTwoTwelveLetterPhrases,
         .confirmText1 = gText_YourFeelingAtTheBattlesStart,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayN
     }, {
         .type = EASY_CHAT_TYPE_BATTLE_WON,
         .numColumns = 2,
@@ -336,7 +336,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_MakeMessageSixPhrases,
         .instructionsText2 = gText_MaxTwoTwelveLetterPhrases,
         .confirmText1 = gText_WhatYouSayIfYouWin,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayN
     }, {
         .type = EASY_CHAT_TYPE_BATTLE_LOST,
         .numColumns = 2,
@@ -346,7 +346,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_MakeMessageSixPhrases,
         .instructionsText2 = gText_MaxTwoTwelveLetterPhrases,
         .confirmText1 = gText_WhatYouSayIfYouLose,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayN
     }, {
         .type = EASY_CHAT_TYPE_MAIL,
         .numColumns = 2,
@@ -356,7 +356,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_CombineNineWordsOrPhrases,
         .instructionsText2 = gText_AndMakeAMessage,
         .confirmText1 = gText_TheMailMessage,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayF
     }, {
         .type = EASY_CHAT_TYPE_MAIL_NO_CONFIRM,
         .numColumns = 2,
@@ -373,7 +373,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_ChangeJustOneWordOrPhrase,
         .instructionsText2 = gText_AndImproveTheBardsSong,
         .confirmText1 = gText_TheNewSong,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayF
     }, {
         .type = EASY_CHAT_TYPE_INTERVIEW,
         .numColumns = 2,
@@ -383,7 +383,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_FindWordsThatDescribeYour,
         .instructionsText2 = gText_FeelingsRightNow,
         .confirmText1 = gText_TheAnswer,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayF
     }, {
         .type = EASY_CHAT_TYPE_TRENDY_PHRASE,
         .numColumns = 2,
@@ -393,7 +393,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_CombineTwoWordsOrPhrases,
         .instructionsText2 = gText_AndMakeATrendySaying,
         .confirmText1 = gText_TheTrendySaying,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayM
     }, {
         .type = EASY_CHAT_TYPE_QUESTIONNAIRE,
         .numColumns = 2,
@@ -403,7 +403,7 @@ static const struct EasyChatScreenTemplate sEasyChatScreenTemplates[] = {
         .instructionsText1 = gText_CombineFourWordsOrPhrases,
         .instructionsText2 = gText_AndFillOutTheQuestionnaire,
         .confirmText1 = gText_TheAnswer,
-        .confirmText2 = gText_IsAsShownOkay
+        .confirmText2 = gText_IsAsShownOkayF
     }
 };
 

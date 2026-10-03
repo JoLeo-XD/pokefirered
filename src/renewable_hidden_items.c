@@ -158,6 +158,40 @@ static const struct RenewableHiddenItemData sRenewableHiddenItems[] = {
         }
     },
     {
+        .mapGroup = MAP_GROUP(MAP_ROUTE6),
+        .mapNum = MAP_NUM(MAP_ROUTE6),
+        .rare = {
+            HIDDEN_ID(FLAG_HIDDEN_ITEM_ROUTE6_RARE_CANDY),
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .uncommon = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .common = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        }
+    },
+    {
         .mapGroup = MAP_GROUP(MAP_ROUTE12),
         .mapNum = MAP_NUM(MAP_ROUTE12),
         .rare = {
@@ -284,6 +318,40 @@ static const struct RenewableHiddenItemData sRenewableHiddenItems[] = {
         },
         .common = {
             NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        }
+    },
+    {
+        .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_1F),
+        .mapNum = MAP_NUM(MAP_POKEMON_MANSION_1F),
+        .rare = {
+            HIDDEN_ID(FLAG_HIDDEN_ITEM_POKEMON_MANSION_1F_GREAT_BALL),
+            HIDDEN_ID(FLAG_HIDDEN_ITEM_POKEMON_MANSION_1F_MOON_STONE),
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .uncommon = {
+            HIDDEN_ID(FLAG_HIDDEN_ITEM_POKEMON_MANSION_1F_GREAT_BALL),
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .common = {
+            HIDDEN_ID(FLAG_HIDDEN_ITEM_POKEMON_MANSION_1F_GREAT_BALL),
             NO_ITEM,
             NO_ITEM,
             NO_ITEM,

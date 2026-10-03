@@ -9,5 +9,9 @@
 	.else
 	.ifdef GERMAN
 	.equiv GAME_LANGUAGE, 5
+	.else
+	.ifdef PORTUGUESE
+	.equiv GAME_LANGUAGE, 7
+	.endif
 	.endif
 	.endif

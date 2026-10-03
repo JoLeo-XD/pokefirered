@@ -2,7 +2,9 @@
 
 GAME_VERSION  ?= FIRERED
 GAME_REVISION ?= 0
-GAME_LANGUAGE ?= ENGLISH
+GAME_LANGUAGE ?= PORTUGUESE
+BUGFIX ?= 1
+UBFIX ?= 1
 
 # Builds the ROM using a modern compiler
 MODERN        ?= 0
@@ -53,6 +55,6 @@ ifeq ($(MODERN),1)
 endif
 
 # Language
-ifeq ($(GAME_LANGUAGE),ENGLISH)
-  GAME_CODE  := $(GAME_CODE)E
+ifeq ($(GAME_LANGUAGE),PORTUGUESE)
+  GAME_CODE  := $(GAME_CODE)P
 endif

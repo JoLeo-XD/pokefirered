@@ -51,7 +51,7 @@ static const u8 sMapsecName_ESTRADA_DA_VIT__RIA[] = _("ESTRADA DA VITÓRIA");
 static const u8 sMapsecName_ESCONDERIJO_ROCKET[] = _("ESCONDERIJO ROCKET");
 static const u8 sMapsecName_CIA__SILPH[] = _("CIA. SILPH");
 static const u8 sMapsecName_MANS__O_POK__MON[] = _("MANSÃO POKéMON");
-static const u8 sMapsecName_ZONA_SAFARI[] = _("ZONA SAFARI");
+static const u8 sMapsecName_ZONA_SAF__RI[] = _("ZONA SAFÁRI");
 static const u8 sMapsecName_LIGA_POK__MON[] = _("LIGA POKéMON");
 static const u8 sMapsecName_T__NEL_DE_ROCHA[] = _("TÚNEL DE ROCHA");
 static const u8 sMapsecName_ILHAS_ESPUMA[] = _("ILHAS ESPUMA");
@@ -74,7 +74,7 @@ static const u8 sMapsecName_SEVII_ILHA_6[] = _("SEVII ILHA 6");
 static const u8 sMapsecName_SEVII_ILHA_7[] = _("SEVII ILHA 7");
 static const u8 sMapsecName_SEVII_ILHA_8[] = _("SEVII ILHA 8");
 static const u8 sMapsecName_SEVII_ILHA_9[] = _("SEVII ILHA 9");
-static const u8 sMapsecName_RESORT_DESLUMBRANTE[] = _("RESORT DESLUMBRANTE");
+static const u8 sMapsecName_RESORT_LUXUOSO[] = _("RESORT LUXUOSO");
 static const u8 sMapsecName_LABIRINTO_D___GUA[] = _("LABIRINTO D'ÁGUA");
 static const u8 sMapsecName_PRADO_DA_ILHA_CINCO[] = _("PRADO DA ILHA CINCO");
 static const u8 sMapsecName_PILAR_MEMORIAL[] = _("PILAR MEMORIAL");
@@ -110,6 +110,8 @@ static const u8 sMapsecName_C__MARA_HIBENCO[] = _("CÂMARA HIBENCO");
 static const u8 sMapsecName_C__MARA_IREXIS[] = _("CÂMARA IREXIS");
 static const u8 sMapsecName_C__MARA_HEPTIA[] = _("CÂMARA HEPTIA");
 static const u8 sMapsecName_SPA_DAS_BRASAS[] = _("SPA DAS BRASAS");
+static const u8 sMapsecName_PORTO_DA_ILHA_REMOTA[] = _("PORTO DA ILHA REMOTA");
+static const u8 sMapsecName_FARAWAY_ISLAND[] = _("FARAWAY ISLAND");
 static const u8 sMapsecName_DEPT__CELADON[] = _("DEPT. CELADON");
 
 #endif // GUARD_DATA_REGION_MAP_REGION_MAP_ENTRY_STRINGS_H

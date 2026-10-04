@@ -12,11 +12,12 @@
 #include "trig.h"
 
 //------------------------------------------------------------------------------
-// WEATHER_SUNNY_CLOUDS
+// WEATHER_SUNNY_CLOUDS / WEATHER_HIGH_UP_CLOUDS
 //------------------------------------------------------------------------------
 
-static void CreateCloudSprites(void);
+static void CreateCloudSprites(bool8 flipped);
 static void DestroyCloudSprites(void);
+static void Clouds_MainInternal(bool8 flipped);
 static void UpdateCloudSprite(struct Sprite *);
 
 // The clouds are positioned on the map's grid.
@@ -78,6 +79,11 @@ void Clouds_InitVars(void)
         Weather_SetBlendCoeffs(0, 16);
 }
 
+void CloudsFlipped_InitVars(void)
+{
+    Clouds_InitVars();
+}
+
 void Clouds_InitAll(void)
 {
     Clouds_InitVars();
@@ -85,12 +91,29 @@ void Clouds_InitAll(void)
         Clouds_Main();
 }
 
+void CloudsFlipped_InitAll(void)
+{
+    CloudsFlipped_InitVars();
+    while (!gWeatherPtr->weatherGfxLoaded)
+        CloudsFlipped_Main();
+}
+
 void Clouds_Main(void)
+{
+    Clouds_MainInternal(FALSE);
+}
+
+void CloudsFlipped_Main(void)
+{
+    Clouds_MainInternal(TRUE);
+}
+
+static void Clouds_MainInternal(bool8 flipped)
 {
     switch (gWeatherPtr->initStep)
     {
     case 0:
-        CreateCloudSprites();
+        CreateCloudSprites(flipped);
         gWeatherPtr->initStep++;
         break;
     case 1:
@@ -146,7 +169,7 @@ bool8 Sunny_Finish(void)
     return FALSE;
 }
 
-static void CreateCloudSprites(void)
+static void CreateCloudSprites(bool8 flipped)
 {
     u16 i;
     u8 spriteId;
@@ -166,6 +189,12 @@ static void CreateCloudSprites(void)
             sprite = gWeatherPtr->sprites.s1.cloudSprites[i];
             SetSpritePosToMapCoords(sCloudSpriteMapCoords[i].x + 7, sCloudSpriteMapCoords[i].y + 7, &sprite->x, &sprite->y);
             sprite->coordOffsetEnabled = TRUE;
+            sprite->data[1] = flipped;
+            if (flipped)
+            {
+                sprite->hFlip = TRUE;
+                sprite->vFlip = TRUE;
+            }
         }
         else
         {
@@ -195,10 +224,15 @@ static void DestroyCloudSprites(void)
 
 static void UpdateCloudSprite(struct Sprite *sprite)
 {
-    // Move 1 pixel left every 2 frames.
+    // Move 1 pixel every 2 frames.
     sprite->data[0] = (sprite->data[0] + 1) & 1;
     if (sprite->data[0])
-        sprite->x--;
+    {
+        if (sprite->data[1])
+            sprite->x++;
+        else
+            sprite->x--;
+    }
 }
 
 //------------------------------------------------------------------------------

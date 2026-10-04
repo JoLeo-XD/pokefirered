@@ -757,3 +757,14 @@ const struct Tileset gTileset_FarawayIsland =
     .metatileAttributes = gMetatileAttributes_FarawayIsland,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_RoofTop =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RoofTop,
+    .palettes = gTilesetPalettes_RoofTop,
+    .metatiles = gMetatiles_RoofTop,
+    .metatileAttributes = gMetatileAttributes_RoofTop,
+    .callback = NULL,
+};

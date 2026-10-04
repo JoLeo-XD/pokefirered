@@ -1426,3 +1426,22 @@ const u16 gTilesetPalettes_FarawayIsland[][16] =
 };
 
 const u32 gTilesetTiles_FarawayIsland[] = INCBIN_U32("data/tilesets/secondary/faraway_island/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_RoofTop[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/roof_top/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_RoofTop[] = INCBIN_U32("data/tilesets/secondary/roof_top/tiles.4bpp.lz");

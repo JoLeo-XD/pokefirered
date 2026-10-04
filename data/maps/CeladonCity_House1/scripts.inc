@@ -2,13 +2,33 @@ CeladonCity_House1_MapScripts::
 	.byte 0
 
 CeladonCity_House1_EventScript_RocketChief::
+	goto_if_set FLAG_DEFEATED_LEADER_GIOVANNI, CeladonCity_House1_EventScript_RocketChiefRocketDisbanded
 	msgbox CeladonCity_House1_Text_SlotsReelInTheDough, MSGBOX_NPC
 	end
 
 CeladonCity_House1_EventScript_Rocket1::
+	goto_if_set FLAG_DEFEATED_LEADER_GIOVANNI, CeladonCity_House1_EventScript_Rocket1RocketDisbanded
 	msgbox CeladonCity_House1_Text_ShippedMonsAsSlotPrizes, MSGBOX_NPC
 	end
 
 CeladonCity_House1_EventScript_Rocket2::
+	goto_if_set FLAG_DEFEATED_LEADER_GIOVANNI, CeladonCity_House1_EventScript_Rocket2RocketDisbanded
+	goto_if_set FLAG_OPENED_ROCKET_HIDEOUT, CeladonCity_House1_EventScript_Rocket2PosterOpen
 	msgbox CeladonCity_House1_Text_DontTouchGameCornerPoster, MSGBOX_NPC
+	end
+
+CeladonCity_House1_EventScript_Rocket2PosterOpen::
+	msgbox CeladonCity_House1_Text_WhatDoYouWantKid, MSGBOX_NPC
+	end
+
+CeladonCity_House1_EventScript_RocketChiefRocketDisbanded::
+	msgbox CeladonCity_House1_Text_CalmDownYouTwo, MSGBOX_NPC
+	end
+
+CeladonCity_House1_EventScript_Rocket1RocketDisbanded::
+	msgbox CeladonCity_House1_Text_TheRocketsDisbanded, MSGBOX_NPC
+	end
+
+CeladonCity_House1_EventScript_Rocket2RocketDisbanded::
+	msgbox CeladonCity_House1_Text_DoYouHaveSomethingToDoWithThis, MSGBOX_NPC
 	end

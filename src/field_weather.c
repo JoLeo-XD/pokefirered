@@ -81,6 +81,8 @@ static const struct WeatherCallbacks sWeatherFuncs[] = {
     {Drought_InitVars, Drought_Main, Drought_InitAll, Drought_Finish},
     {Downpour_InitVars, Thunderstorm_Main, Downpour_InitAll, Thunderstorm_Finish},
     {Bubbles_InitVars, Bubbles_Main, Bubbles_InitAll, Bubbles_Finish},
+    {None_Init, None_Main, None_Init, None_Finish},
+    {CloudsFlipped_InitVars, CloudsFlipped_Main, CloudsFlipped_InitAll, Clouds_Finish},
 };
 
 static void (*const sWeatherPalStateFuncs[])(void) = {

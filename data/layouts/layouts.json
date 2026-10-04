@@ -2025,7 +2025,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Condominiums",
+      "secondary_tileset": "gTileset_RoofTop",
       "border_filepath": "data/layouts/CeladonCity_Condominiums_Roof/border.bin",
       "blockdata_filepath": "data/layouts/CeladonCity_Condominiums_Roof/map.bin"
     },

@@ -6,5 +6,5 @@ PalletTown_PlayersHouse_2F_Text_PlayedWithNES::
 PalletTown_PlayersHouse_2F_Text_PressLRForHelp::
     .string "Há um aviso na parede…\p"
     .string "Quando se perder, peça AJUDA!\n"
-    .string "Aperte o botão L ou R!$"
+    .string "Aperte os botões L e R juntos!$"
 

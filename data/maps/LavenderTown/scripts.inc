@@ -11,20 +11,26 @@ LavenderTown_OnTransition::
 LavenderTown_EventScript_LittleGirl::
 	lock
 	faceplayer
-	goto_if_set FLAG_ENABLE_SHIP_FARAWAY_ISLAND, LavenderTown_EventScript_LittleGirlSeenGhost
 	msgbox LavenderTown_Text_DoYouBelieveInGhosts, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, LavenderTown_EventScript_LittleGirlBelieve
+	goto_if_set FLAG_ENABLE_SHIP_FARAWAY_ISLAND, LavenderTown_EventScript_LittleGirlSeenGhostDontBelieve
 	msgbox LavenderTown_Text_JustImaginingWhiteHand
 	release
 	end
 
 LavenderTown_EventScript_LittleGirlBelieve::
+	goto_if_set FLAG_ENABLE_SHIP_FARAWAY_ISLAND, LavenderTown_EventScript_LittleGirlSeenGhost
 	msgbox LavenderTown_Text_SoThereAreBelievers
 	release
 	end
 
 LavenderTown_EventScript_LittleGirlSeenGhost::
 	msgbox LavenderTown_Text_YouThinkYouveSeenAGhost
+	release
+	end
+
+LavenderTown_EventScript_LittleGirlSeenGhostDontBelieve::
+	msgbox LavenderTown_Text_YouDontSoundSoSure
 	release
 	end
 

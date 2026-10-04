@@ -1,37 +1,55 @@
 # Change Log vs Upstream
 
 This is a workspace snapshot comparison against `pret/pokefirered` at
-`upstream/master` (`c75f3523`, merge base with this branch). The local branch
-contains 31 commits beyond that baseline. At the time of analysis, the
-workspace differed in 1,109 tracked paths (845 added, 261 modified, 3 deleted)
-and contained 42 untracked paths. This includes both committed fork changes and
-current uncommitted workspace changes; it is not a clean-branch-only summary.
+`upstream/master` (`037335f4`, merge base with this branch). The local branch
+contains 40 commits beyond that baseline. The workspace differs in 1,148
+tracked paths (884 added, 261 modified, 3 deleted) and has no non-ignored
+untracked paths. This includes both committed fork changes and current
+uncommitted workspace changes; it is not a clean-branch-only summary.
 
 ## Main Changes
 
 - **Portuguese localization:** Set Portuguese as the default game language and
-  add its game code/language handling. Translate in-game text, map dialogue,
+  add its game code and language handling. Translate in-game text, map dialogue,
   item, move, species, trainer, and region names; update character/font and
-  interface graphics for localized text. The README now describes the
-  Portuguese FireRed/LeafGreen project.
+  interface graphics for localized text. All 376 item records now have
+  Portuguese name and description fields; entries awaiting translation retain
+  the English text as a placeholder. The README now describes the Portuguese
+  FireRed/LeafGreen project.
 - **Gameplay and quality-of-life changes:** Add Emerald-style inherited-nature
-  handling, allow the party Select button to swap Pokemon, add a
-  recurring Snorlax encounter, adjust Hall of Fame PC behavior, and add special
-  ambient-cry handling. Includes battle-message, daycare, field movement, and
-  map/event fixes.
-- **Faraway Island and Mew:** Add island map/event content and Mew encounter and
-  overworld behavior, with supporting map layouts, tileset and character
-  graphics, Old Sea Map item graphics, and island/Mew music. Some of the new
-  map and graphics files are currently untracked in the workspace.
+  handling, let the party Select button swap Pokemon, add a recurring Snorlax
+  encounter, and adjust Hall of Fame PC behavior. Add ambient-cry
+  randomization with special handling for legendary and static encounters.
+  Change the Help System shortcut to require L and R together. Expand Pokémon
+  breeding compatibility to include Pokémon in the same evolution line, rather
+  than just matching the specific species in the daycare center. Also update
+  battle messages, field movement, maps/events, Poké Mart text colors for male
+  and female shop clerks, and the Pokemon release flow, not allowing release when
+  a Pokémon has Friendship of 250 or higher.
+- **Faraway Island and Mew:** Complete the Old Sea Map event: after Mewtwo is
+  caught, a mysterious NPC in the Lavender Town Pokemon Center appears and gives
+  the map to unlock the ship route to Faraway Island. Add the island's exterior,
+  harbor, and interior, along with Mew's step-driven hide-and-seek movement and
+  encounter. Supporting assets include map layouts, tilesets, character and
+  Old Sea Map graphics, and island/Mew music.
 - **Maps and game data:** Update map layouts, map definitions, scripts, and text
-  across Kanto and the Sevii Islands. Expand or revise wild encounters, item
-  data, regional map data, trainer/Pokedex text, and gender-specific Pokemon
-  sprite assets (so far not implemented in-game).
+  across Kanto and the Sevii Islands. Add stone-evolution Pokemon to wild
+  encounter tables at a 1% rate, and revise item data, regional map data,
+  trainer/Pokedex text, and event encounters. Add gender-specific Pokemon
+  sprite assets; these are not yet used in-game.
 - **Audio:** Update song and voice-group registrations. Notable additions include Mew
-  battle music and Faraway Island music.
+  battle music and Faraway Island music. Uses the Abandoned Ship theme from RSE, much
+  like in Emerald.
 - **Build and tooling:** Add Poryscript build integration and its tool/config
   files, update Portuguese linker-symbol generation and related build
   configuration, and adjust spritesheet/build rules.
+
+## To-do
+
+- Implement the gender-difference Pokemon sprites in-game.
+- Add later-generation Poke Ball inheritance rules to the breeding system.
+- Allow the L and R buttons to be used for field item shortcuts, like Select.
+- Update the move relearner to include moves from a Pokemon's pre-evolutions.
 
 ## File Areas
 
@@ -45,15 +63,8 @@ current uncommitted workspace changes; it is not a clean-branch-only summary.
   groups
 - `tools/` and `spritesheet_rules.mk`
 
-## Workspace-Only Files
+## Workspace Status
 
-The 42 untracked paths comprise 6 Faraway Island/HousePC layout files, 6 map
-files for Faraway Island Exterior and Harbor, 19 Faraway Island tileset files,
-6 graphics assets (Old Sea Map, map preview, and bike-stop sprites), 3 local
-tool executables, one local ROM image, and `config error.txt`. The map, tileset,
-and graphics files appear to be project content; the executables, ROM image,
-and error text are local build or diagnostic artifacts. These files are not
-part of the tracked history yet.
-
-Three tracked files were removed: `.gitignore` files under `tools/gbafix`,
+There are currently no non-ignored untracked paths. Three tracked files were
+removed relative to the baseline: `.gitignore` files under `tools/gbafix`,
 `tools/gbagfx`, and `tools/wav2agb`.

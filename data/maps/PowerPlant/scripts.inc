@@ -35,18 +35,18 @@ PowerPlant_EventScript_ShowElectrode2::
 	return
 
 PowerPlant_EventScript_Zapdos::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	lock
 	faceplayer
 	setwildbattle SPECIES_ZAPDOS, 50
 	waitse
 	playmoncry SPECIES_ZAPDOS, CRY_MODE_ENCOUNTER
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	waitbuttonpress
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle

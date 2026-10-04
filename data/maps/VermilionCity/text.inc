@@ -107,7 +107,7 @@ VermilionCity_Text_AhoyYouGotSomethingForMe::
     .string "I can barely make it out.\p"
     .string "That's…! You're saying you want me\n"
     .string "to take you there?\p"
-    .string "I'm sorry, but this is way too far!\n"
+    .string "I'm sorry, but this is too far southwest!\n"
     .string "Even our best SEAGALLOP ferries\l"
     .string "would take far too long.\p"
     .string "You might need to ask someone else.$"

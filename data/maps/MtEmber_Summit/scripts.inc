@@ -24,18 +24,18 @@ MtEmber_Summit_EventScript_TryShowMoltres::
 	return
 
 MtEmber_Summit_EventScript_Moltres::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	lock
 	faceplayer
 	setwildbattle SPECIES_MOLTRES, 50
 	waitse
 	playmoncry SPECIES_MOLTRES, CRY_MODE_ENCOUNTER
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	waitbuttonpress
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle

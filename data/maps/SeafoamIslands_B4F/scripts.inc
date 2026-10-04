@@ -154,18 +154,18 @@ SeafoamIslands_B4F_Movement_WalkUp::
 	step_end
 
 SeafoamIslands_B4F_EventScript_Articuno::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	lock
 	faceplayer
 	setwildbattle SPECIES_ARTICUNO, 50
 	waitse
 	playmoncry SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	waitbuttonpress
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle

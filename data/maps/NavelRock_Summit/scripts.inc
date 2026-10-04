@@ -34,8 +34,6 @@ NavelRock_Summit_EventScript_TryRemoveHoOh::
 	return
 
 NavelRock_Summit_EventScript_HoOh::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	lockall
 	setvar VAR_TEMP_1, 1
 	special SpawnCameraObject
@@ -60,6 +58,8 @@ NavelRock_Summit_EventScript_HoOh::
 	applymovement LOCALID_NAVEL_ROCK_HO_OH, Movement_HoOhApproach
 	waitmovement 0
 	special RemoveCameraObject
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	seteventmon SPECIES_HO_OH, 70
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle

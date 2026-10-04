@@ -20,12 +20,13 @@ uncommitted workspace changes; it is not a clean-branch-only summary.
   handling, let the party Select button swap Pokémon, add a recurring Snorlax
   encounter, and adjust Hall of Fame PC behavior. Add ambient-cry
   randomization with special handling for legendary and static encounters.
+  Electric type Pokémon can now no longer be paralysed through any means.
   Change the Help System shortcut to require L and R together. Expand Pokémon
   breeding compatibility to include Pokémon in the same evolution line, rather
   than just matching the specific species in the daycare center. Also update
-  battle messages, field movement, maps/events, Poké Mart text colors for male
-  and female shop clerks, and the Pokémon release flow, not allowing release when
-  a Pokémon has Friendship of 250 or higher.
+  battle messages, maps/events, Poké Mart text colors for male  and female
+  shop clerks, and the Pokémon release flow, not allowing release when a
+  Pokémon has Friendship of 250 or higher.
 - **Faraway Island and Mew:** Complete the Old Sea Map event: after Mewtwo is
   caught, a mysterious NPC in the Lavender Town Pokémon Center appears and gives
   the map to unlock the ship route to Faraway Island. Add the island's exterior,

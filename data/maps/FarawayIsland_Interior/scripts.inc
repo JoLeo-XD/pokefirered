@@ -128,6 +128,8 @@ FarawayIsland_Interior_EventScript_Mew::
 	special DestroyMewEmergingGrassSprite
 	delay 40
 	waitmoncry
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	seteventmon SPECIES_MEW, 30
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle

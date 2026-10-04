@@ -42,8 +42,6 @@ BirthIsland_Exterior_EventScript_TryRemoveDeoxys::
 BirthIsland_Exterior_EventScript_Triangle::
 	lock
 	faceplayer
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	special DoDeoxysTriangleInteraction
 	waitstate
 	switch VAR_RESULT
@@ -80,6 +78,8 @@ BirthIsland_Exterior_EventScript_Deoxys::
 	playmoncry SPECIES_DEOXYS, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	setvar VAR_LAST_TALKED, LOCALID_BIRTH_ISLAND_DEOXYS
 	seteventmon SPECIES_DEOXYS, 30
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE

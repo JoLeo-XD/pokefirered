@@ -41,6 +41,8 @@ LavenderTown_PokemonCenter_1F_EventScript_YoungsterSpokeToGuy::
 	end
 
 LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuy::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	setvar VAR_0x8004, SPECIES_MEWTWO
 	specialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID
 	goto_if_eq VAR_RESULT, TRUE, LavenderTown_PokemonCenter_1F_EventScript_MysteriousGuyHasOwnMewtwoInParty

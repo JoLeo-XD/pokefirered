@@ -16,19 +16,19 @@ Route12_EventScript_Snorlax::
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_POKE_FLUTE, Route12_EventScript_SnorlaxNoPokeFlute
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	msgbox Text_WantToUsePokeFlute, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route12_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
-	setwildbattle SPECIES_SNORLAX, 30
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	setflag FLAG_HIDE_ROUTE_12_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	setflag FLAG_WOKE_UP_ROUTE_12_SNORLAX
+	setwildbattle SPECIES_SNORLAX, 30
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome
@@ -46,18 +46,19 @@ Route12_EventScript_Recurring_Snorlax::
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_POKE_FLUTE, Route12_EventScript_SnorlaxNoPokeFlute
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	msgbox Text_AnotherSnorlaxHasAppeared, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route12_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
 	random 9
-	setwildbattlerandomlevel SPECIES_SNORLAX, 35, VAR_RESULT
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	setflag FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	setwildbattlerandomlevel SPECIES_SNORLAX, 35, VAR_RESULT
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome

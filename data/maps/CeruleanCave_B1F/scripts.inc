@@ -24,17 +24,17 @@ CeruleanCave_B1F_EventScript_TryShowMewtwo::
 	return
 
 CeruleanCave_B1F_EventScript_Mewtwo::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	lock
 	faceplayer
 	waitse
 	playmoncry SPECIES_MEWTWO, CRY_MODE_ENCOUNTER
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 	message CeruleanCave_B1F_Text_Mew
 	waitmessage
 	waitmoncry
 	delay 20
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	waitbuttonpress
 	setwildbattle SPECIES_MEWTWO, 70
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE

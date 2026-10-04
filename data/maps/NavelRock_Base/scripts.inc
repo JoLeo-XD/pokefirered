@@ -31,8 +31,6 @@ NavelRock_Base_EventScript_TryRemoveLugia::
 	return
 
 NavelRock_Base_EventScript_Lugia::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	lock
 	faceplayer
 	waitse
@@ -58,6 +56,8 @@ NavelRock_Base_EventScript_Lugia::
 	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
 	waitmoncry
 	delay 20
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	seteventmon SPECIES_LUGIA, 70
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle

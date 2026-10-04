@@ -34,18 +34,18 @@ Route16_EventScript_Snorlax::
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_POKE_FLUTE, Route16_EventScript_SnorlaxNoPokeFlute
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
 	msgbox Text_WantToUsePokeFlute, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route16_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
-	setwildbattle SPECIES_SNORLAX, 30
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	setflag FLAG_HIDE_ROUTE_16_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	setwildbattle SPECIES_SNORLAX, 30
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome
@@ -62,25 +62,26 @@ Route16_EventScript_HideRecurringSnorlax::
 Route16_EventScript_Recurring_Snorlax::
 	lock
 	faceplayer
-	goto_if_unset FLAG_GOT_POKE_FLUTE, Route12_EventScript_SnorlaxNoPokeFlute
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
+	goto_if_unset FLAG_GOT_POKE_FLUTE, Route16_EventScript_SnorlaxNoPokeFlute
 	msgbox Text_AnotherSnorlaxHasAppeared, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Route12_EventScript_DontUsePokeFlute
+	goto_if_eq VAR_RESULT, NO, Route16_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
-	random 13
-	setwildbattlerandomlevel SPECIES_SNORLAX, 41, VAR_RESULT
+	random 10
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	setflag FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	setwildbattlerandomlevel SPECIES_SNORLAX, 41, VAR_RESULT
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route12_EventScript_FoughtSnorlax
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route12_EventScript_FoughtSnorlax
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route12_EventScript_FoughtSnorlax
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route16_EventScript_FoughtSnorlax
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route16_EventScript_FoughtSnorlax
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route16_EventScript_FoughtSnorlax
 	release
 	end
 

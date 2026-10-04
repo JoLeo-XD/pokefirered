@@ -46,6 +46,7 @@ uncommitted workspace changes; it is not a clean-branch-only summary.
 
 ## To-do
 
+- Actually work on the translation (important).
 - Implement the gender-difference Pokémon sprites in-game.
 - Add later-generation Poke Ball inheritance rules to the breeding system.
 - Allow the L and R buttons to be used for field item shortcuts, like Select.

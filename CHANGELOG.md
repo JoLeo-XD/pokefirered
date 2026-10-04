@@ -17,25 +17,25 @@ uncommitted workspace changes; it is not a clean-branch-only summary.
   the English text as a placeholder. The README now describes the Portuguese
   FireRed/LeafGreen project.
 - **Gameplay and quality-of-life changes:** Add Emerald-style inherited-nature
-  handling, let the party Select button swap Pokemon, add a recurring Snorlax
+  handling, let the party Select button swap Pokémon, add a recurring Snorlax
   encounter, and adjust Hall of Fame PC behavior. Add ambient-cry
   randomization with special handling for legendary and static encounters.
   Change the Help System shortcut to require L and R together. Expand Pokémon
   breeding compatibility to include Pokémon in the same evolution line, rather
   than just matching the specific species in the daycare center. Also update
   battle messages, field movement, maps/events, Poké Mart text colors for male
-  and female shop clerks, and the Pokemon release flow, not allowing release when
+  and female shop clerks, and the Pokémon release flow, not allowing release when
   a Pokémon has Friendship of 250 or higher.
 - **Faraway Island and Mew:** Complete the Old Sea Map event: after Mewtwo is
-  caught, a mysterious NPC in the Lavender Town Pokemon Center appears and gives
+  caught, a mysterious NPC in the Lavender Town Pokémon Center appears and gives
   the map to unlock the ship route to Faraway Island. Add the island's exterior,
   harbor, and interior, along with Mew's step-driven hide-and-seek movement and
   encounter. Supporting assets include map layouts, tilesets, character and
   Old Sea Map graphics, and island/Mew music.
 - **Maps and game data:** Update map layouts, map definitions, scripts, and text
-  across Kanto and the Sevii Islands. Add stone-evolution Pokemon to wild
+  across Kanto and the Sevii Islands. Add stone-evolution Pokémon to wild
   encounter tables at a 1% rate, and revise item data, regional map data,
-  trainer/Pokedex text, and event encounters. Add gender-specific Pokemon
+  trainer/Pokedex text, and event encounters. Add gender-specific Pokémon
   sprite assets; these are not yet used in-game.
 - **Audio:** Update song and voice-group registrations. Notable additions include Mew
   battle music and Faraway Island music. Uses the Abandoned Ship theme from RSE, much
@@ -46,10 +46,10 @@ uncommitted workspace changes; it is not a clean-branch-only summary.
 
 ## To-do
 
-- Implement the gender-difference Pokemon sprites in-game.
+- Implement the gender-difference Pokémon sprites in-game.
 - Add later-generation Poke Ball inheritance rules to the breeding system.
 - Allow the L and R buttons to be used for field item shortcuts, like Select.
-- Update the move relearner to include moves from a Pokemon's pre-evolutions.
+- Update the move relearner to include moves from a Pokémon's pre-evolutions.
 
 ## File Areas
 
@@ -58,7 +58,7 @@ uncommitted workspace changes; it is not a clean-branch-only summary.
   `data/event_scripts.s`, and game-data tables under `src/data/`
 - `src/` and `include/`, especially battle, daycare, field, menu, storage, and
   Faraway Island code
-- `graphics/`, including UI/font assets, map assets, Pokemon sprites, and Mew
+- `graphics/`, including UI/font assets, map assets, Pokémon sprites, and Mew
 - `sound/`, including `direct_sound_samples/`, `songs/`, song tables, and voice
   groups
 - `tools/` and `spritesheet_rules.mk`

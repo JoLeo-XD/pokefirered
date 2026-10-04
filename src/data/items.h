@@ -79,7 +79,7 @@ const struct Item gItems[] = {
         .battleUseFunc = NULL,
         .secondaryId = 0
     }, {
-        .name = _("MASTER BALL"),
+        .name = _("BOLA MESTRA"),
         .itemId = ITEM_MASTER_BALL,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
@@ -94,7 +94,7 @@ const struct Item gItems[] = {
         .battleUseFunc = BattleUseFunc_PokeBallEtc,
         .secondaryId = 0
     }, {
-        .name = _("ULTRA BALL"),
+        .name = _("ULTRA BOLA"),
         .itemId = ITEM_ULTRA_BALL,
         .price = 1200,
         .holdEffect = HOLD_EFFECT_NONE,
@@ -109,7 +109,7 @@ const struct Item gItems[] = {
         .battleUseFunc = BattleUseFunc_PokeBallEtc,
         .secondaryId = 1
     }, {
-        .name = _("GREAT BALL"),
+        .name = _("GRANDE BOLA"),
         .itemId = ITEM_GREAT_BALL,
         .price = 600,
         .holdEffect = HOLD_EFFECT_NONE,
@@ -124,7 +124,7 @@ const struct Item gItems[] = {
         .battleUseFunc = BattleUseFunc_PokeBallEtc,
         .secondaryId = 2
     }, {
-        .name = _("POKé BALL"),
+        .name = _("POKé BOLA"),
         .itemId = ITEM_POKE_BALL,
         .price = 200,
         .holdEffect = HOLD_EFFECT_NONE,
@@ -139,7 +139,7 @@ const struct Item gItems[] = {
         .battleUseFunc = BattleUseFunc_PokeBallEtc,
         .secondaryId = 3
     }, {
-        .name = _("SAFARI BALL"),
+        .name = _("BOLA SAFÁRI"),
         .itemId = ITEM_SAFARI_BALL,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
@@ -154,7 +154,7 @@ const struct Item gItems[] = {
         .battleUseFunc = BattleUseFunc_PokeBallEtc,
         .secondaryId = 4
     }, {
-        .name = _("NET BALL"),
+        .name = _("BOLA REDE"),
         .itemId = ITEM_NET_BALL,
         .price = 1000,
         .holdEffect = HOLD_EFFECT_NONE,

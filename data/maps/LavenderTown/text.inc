@@ -16,7 +16,7 @@ LavenderTown_Text_YouThinkYouveSeenAGhost::
     .string "…Why do you look so shaken up?$"
 
 LavenderTown_Text_YouDontSoundSoSure::
-    .string "You don't?\n"
+    .string "You don't?\p"
     .string "You don't sound so sure of\n"
     .string "yourself…$"
 

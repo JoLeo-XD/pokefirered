@@ -888,8 +888,10 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 static void Task_HofPC_HandleInput(u8 taskId)
 {
     u16 i;
+    u8 leftButtonPressed = JOY_NEW(DPAD_LEFT) || (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR && JOY_NEW(L_BUTTON));
+    u8 rightButtonPressed = JOY_NEW(DPAD_RIGHT) || (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR && JOY_NEW(R_BUTTON));
 
-    if (JOY_NEW(DPAD_LEFT))
+    if (leftButtonPressed)
     {
         if (gTasks[taskId].data[0] != 0) // prepare another team to view
         {
@@ -907,7 +909,7 @@ static void Task_HofPC_HandleInput(u8 taskId)
             gTasks[taskId].func = Task_HofPC_DrawSpritesPrintText;
         }
     }
-    else if (JOY_NEW(DPAD_RIGHT))
+    else if (rightButtonPressed)
     {
         if (gTasks[taskId].data[0] != gTasks[taskId].data[2]) // prepare another team to view
         {

@@ -251,7 +251,7 @@ static void DrawGenderIcon(void);
 static void DeleteTextCharacter(void);
 static u8 GetTextEntryPosition(void);
 static bool8 AddTextCharacter(void);
-static void BufferCharacter(u8 character);
+static bool8 BufferCharacter(u8 character);
 static void SaveInputText(void);
 static void LoadGfx(void);
 static void CreateHelperTasks(void);
@@ -406,6 +406,102 @@ static const u8 sPageColumnXPos[KBPAGE_COUNT][KBCOL_COUNT] = {
     [KEYBOARD_LETTERS_LOWER] = {0, 10, 20, 42, 52, 62, 72, 94, 104, 123},
     [KEYBOARD_LETTERS_UPPER] = {0, 10, 20, 42, 52, 62, 72, 94, 104, 123},
     [KEYBOARD_SYMBOLS]       = {0, 22, 44, 66, 88, 110}
+};
+
+// The first column is the character that will be replaced, the second column is the character that will replace it
+static const u8 sAccentCharMapping[][2] = {
+    { // Acute accents
+        CHAR_A,            CHAR_A_ACUTE}, {
+        CHAR_A_GRAVE,      CHAR_A_ACUTE}, {
+        CHAR_A_CIRCUMFLEX, CHAR_A_ACUTE}, {
+        CHAR_A_TILDE,      CHAR_A_ACUTE}, {
+        CHAR_E,            CHAR_E_ACUTE}, {
+        CHAR_E_CIRCUMFLEX, CHAR_E_ACUTE}, {
+        CHAR_I,            CHAR_I_ACUTE}, {
+        CHAR_O,            CHAR_O_ACUTE}, {
+        CHAR_O_CIRCUMFLEX, CHAR_O_ACUTE}, {
+        CHAR_O_TILDE,      CHAR_O_ACUTE}, {
+        CHAR_U,            CHAR_U_ACUTE}, {
+        CHAR_U_CIRCUMFLEX, CHAR_U_ACUTE}, {
+        CHAR_U_DIAERESIS,  CHAR_U_ACUTE}, {
+        CHAR_a,            CHAR_a_ACUTE}, {
+        CHAR_a_GRAVE,      CHAR_a_ACUTE}, {
+        CHAR_a_CIRCUMFLEX, CHAR_a_ACUTE}, {
+        CHAR_a_TILDE,      CHAR_a_ACUTE}, {
+        CHAR_e,            CHAR_e_ACUTE}, {
+        CHAR_e_CIRCUMFLEX, CHAR_e_ACUTE}, {
+        CHAR_i,            CHAR_i_ACUTE}, {
+        CHAR_o,            CHAR_o_ACUTE}, {
+        CHAR_o_CIRCUMFLEX, CHAR_o_ACUTE}, {
+        CHAR_o_TILDE,      CHAR_o_ACUTE}, {
+        CHAR_u,            CHAR_u_ACUTE}, {
+        CHAR_u_CIRCUMFLEX, CHAR_u_ACUTE}, {
+        CHAR_u_DIAERESIS,  CHAR_u_ACUTE
+    },
+    { // Grave accents
+        CHAR_A,            CHAR_A_GRAVE}, {
+        CHAR_A_ACUTE,      CHAR_A_GRAVE}, {
+        CHAR_A_CIRCUMFLEX, CHAR_A_GRAVE}, {
+        CHAR_A_TILDE,      CHAR_A_GRAVE}, {
+        CHAR_a,            CHAR_a_GRAVE}, {
+        CHAR_a_ACUTE,      CHAR_a_GRAVE}, {
+        CHAR_a_CIRCUMFLEX, CHAR_a_GRAVE}, {
+        CHAR_a_TILDE,      CHAR_a_GRAVE
+    },
+    { // Circumflex accents
+        CHAR_A,            CHAR_A_CIRCUMFLEX}, {
+        CHAR_A_ACUTE,      CHAR_A_CIRCUMFLEX}, {
+        CHAR_A_GRAVE,      CHAR_A_CIRCUMFLEX}, {
+        CHAR_A_TILDE,      CHAR_A_CIRCUMFLEX}, {
+        CHAR_E,            CHAR_E_CIRCUMFLEX}, {
+        CHAR_E_ACUTE,      CHAR_E_CIRCUMFLEX}, {
+        CHAR_O,            CHAR_O_CIRCUMFLEX}, {
+        CHAR_O_ACUTE,      CHAR_O_CIRCUMFLEX}, {
+        CHAR_O_TILDE,      CHAR_O_CIRCUMFLEX}, {
+        CHAR_U,            CHAR_U_CIRCUMFLEX}, {
+        CHAR_U_ACUTE,      CHAR_U_CIRCUMFLEX}, {
+        CHAR_U_DIAERESIS,  CHAR_U_CIRCUMFLEX}, {
+        CHAR_a,            CHAR_a_CIRCUMFLEX}, {
+        CHAR_a_ACUTE,      CHAR_a_CIRCUMFLEX}, {
+        CHAR_a_GRAVE,      CHAR_a_CIRCUMFLEX}, {
+        CHAR_a_TILDE,      CHAR_a_CIRCUMFLEX}, {
+        CHAR_e,            CHAR_e_CIRCUMFLEX}, {
+        CHAR_e_ACUTE,      CHAR_e_CIRCUMFLEX}, {
+        CHAR_o,            CHAR_o_CIRCUMFLEX}, {
+        CHAR_o_ACUTE,      CHAR_o_CIRCUMFLEX}, {
+        CHAR_o_TILDE,      CHAR_o_CIRCUMFLEX}, {
+        CHAR_u,            CHAR_u_CIRCUMFLEX}, {
+        CHAR_u_ACUTE,      CHAR_u_CIRCUMFLEX}, {
+        CHAR_u_DIAERESIS,  CHAR_u_CIRCUMFLEX
+    },
+    { // Tilde accents
+        CHAR_A,            CHAR_A_TILDE}, {
+        CHAR_A_ACUTE,      CHAR_A_TILDE}, {
+        CHAR_A_GRAVE,      CHAR_A_TILDE}, {
+        CHAR_A_CIRCUMFLEX, CHAR_A_TILDE}, {
+        CHAR_O,            CHAR_O_TILDE}, {
+        CHAR_O_ACUTE,      CHAR_O_TILDE}, {
+        CHAR_O_CIRCUMFLEX, CHAR_O_TILDE}, {
+        CHAR_a,            CHAR_a_TILDE}, {
+        CHAR_a_ACUTE,      CHAR_a_TILDE}, {
+        CHAR_a_GRAVE,      CHAR_a_TILDE}, {
+        CHAR_a_CIRCUMFLEX, CHAR_a_TILDE}, {
+        CHAR_o,            CHAR_o_TILDE}, {
+        CHAR_o_ACUTE,      CHAR_o_TILDE}, {
+        CHAR_o_CIRCUMFLEX, CHAR_o_TILDE
+    },
+    { // Diaeresis accents
+        CHAR_U,            CHAR_U_DIAERESIS}, {
+        CHAR_U_ACUTE,      CHAR_U_DIAERESIS}, {
+        CHAR_U_CIRCUMFLEX, CHAR_U_DIAERESIS}, {
+        CHAR_u,            CHAR_u_DIAERESIS}, {
+        CHAR_u_ACUTE,      CHAR_u_DIAERESIS}, {
+        CHAR_u_CIRCUMFLEX, CHAR_u_DIAERESIS
+    },
+    { // EOS
+        0xff,
+        0xff
+    }
 };
 
 void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback)
@@ -1824,12 +1920,63 @@ static void DeleteTextCharacter(void)
     PlaySE(SE_BALL);
 }
 
+static bool8 SetAccentedCharacterAt(u8 charIndex, u8 accentChar)
+{
+    u8 i = 0;
+    u8 startPoint = CHAR_A_ACUTE;
+    u8 endPoint = CHAR_A_ACUTE;
+    switch (accentChar)
+    {
+        case CHAR_ACUTE:
+            endPoint = CHAR_A_GRAVE;
+            break;
+        case CHAR_GRAVE:
+            startPoint = CHAR_A_GRAVE;
+            endPoint = CHAR_A_CIRCUMFLEX;
+            break;
+        case CHAR_CIRCUMFLEX:
+            startPoint = CHAR_A_CIRCUMFLEX;
+            endPoint = CHAR_A_TILDE;
+            break;
+        case CHAR_TILDE:
+            startPoint = CHAR_A_TILDE;
+            endPoint = CHAR_U_DIAERESIS;
+            break;
+        case CHAR_DIAERESIS:
+            startPoint = CHAR_U_DIAERESIS;
+            endPoint = 0xFF;
+            break;
+    }
+    while (sAccentCharMapping[i][1] != startPoint)
+        i++;
+    while (sAccentCharMapping[i][1] != endPoint)
+    {
+        if (sNamingScreen->textBuffer[charIndex] == sAccentCharMapping[i][0])
+        {
+            sNamingScreen->textBuffer[charIndex] = sAccentCharMapping[i][1];
+            return TRUE;
+        }
+        i++;
+    }
+    return FALSE;
+}
+
+static bool8 BufferCharacter(u8 ch)
+{
+    u8 index = GetTextEntryPosition();
+    if (sNamingScreen->textBuffer[index] == ch) 
+        return TRUE;
+    sNamingScreen->textBuffer[index] = ch;
+    return FALSE;
+}
+
 // Returns TRUE if the text entry is now full
 static bool8 AddTextCharacter(void)
 {
     s16 x;
     s16 y;
 	u8 index;
+    bool8 isSameChar = FALSE;
 
     index = GetPreviousTextCaretPosition();
 	GetCursorPos(&x, &y);
@@ -1838,219 +1985,31 @@ static bool8 AddTextCharacter(void)
 	// only change previous character without inputting another one,
 	// if not input character like normal. Some cases aren't checked
 	// due to not all possibilities actually being used in Portuguese.
-	if (GetCharAtKeyboardPos(x, y) == CHAR_ACUTE) // Check if it's an acute accent mark
-	{
-		// Check if previous character is variant of "A" or "a"
-		if (sNamingScreen->textBuffer[index] == CHAR_A
-		|| sNamingScreen->textBuffer[index] == CHAR_A_GRAVE
-		|| sNamingScreen->textBuffer[index] == CHAR_A_CIRCUMFLEX
-		|| sNamingScreen->textBuffer[index] == CHAR_A_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_A_ACUTE; // Change to "Á"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_a
-		|| sNamingScreen->textBuffer[index] == CHAR_a_GRAVE
-		|| sNamingScreen->textBuffer[index] == CHAR_a_CIRCUMFLEX
-		|| sNamingScreen->textBuffer[index] == CHAR_a_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_a_ACUTE; // Change to "á"
-		}
-		// Check if previous character is variant of "E" or "e"
-		else if (sNamingScreen->textBuffer[index] == CHAR_E
-        || sNamingScreen->textBuffer[index] == CHAR_E_CIRCUMFLEX)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_E_ACUTE; // Change to "É"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_e
-		|| sNamingScreen->textBuffer[index] == CHAR_e_CIRCUMFLEX)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_e_ACUTE; // Change to "é"
-		}
-		// Check if previous character is variant of "I" or "i"
-		else if (sNamingScreen->textBuffer[index] == CHAR_I)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_I_ACUTE; // Change to "Í"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_i)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_i_ACUTE; // Change to "í"
-		}
-		// Check if previous character is variant of "O" or "o"
-		else if (sNamingScreen->textBuffer[index] == CHAR_O
-		|| sNamingScreen->textBuffer[index] == CHAR_O_CIRCUMFLEX
-		|| sNamingScreen->textBuffer[index] == CHAR_O_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_O_ACUTE; // Change to "Ó"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_o
-		|| sNamingScreen->textBuffer[index] == CHAR_o_CIRCUMFLEX
-		|| sNamingScreen->textBuffer[index] == CHAR_o_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_o_ACUTE; // Change to "ó"
-		}
-		// Check if previous character is variant of "U" or "u"
-		else if (sNamingScreen->textBuffer[index] == CHAR_U
-        || sNamingScreen->textBuffer[index] == CHAR_U_DIAERESIS)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_U_ACUTE; // Change to "Ú"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_u
-		|| sNamingScreen->textBuffer[index] == CHAR_u_DIAERESIS)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_u_ACUTE; // Change to "ú"
-		}
-		// Play sound effect without adding anything
-		else
-		{
-			PlaySE(SE_SELECT);
-			return FALSE;
-		}
-	}
-	else if (GetCharAtKeyboardPos(x, y) == CHAR_GRAVE) // Check if it's a grave accent mark (only really used for the letter A)
-	{
-		// Check if previous character is variant of "A" or "a"
-		if (sNamingScreen->textBuffer[index] == CHAR_A
-		|| sNamingScreen->textBuffer[index] == CHAR_A_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_A_CIRCUMFLEX
-		|| sNamingScreen->textBuffer[index] == CHAR_A_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_A_GRAVE; // Change to "À"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_a
-		|| sNamingScreen->textBuffer[index] == CHAR_a_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_a_CIRCUMFLEX
-		|| sNamingScreen->textBuffer[index] == CHAR_a_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_a_GRAVE; // Change to "à"
-		}
-		// Play sound effect without adding anything
-		else
-		{
-			PlaySE(SE_SELECT);
-			return FALSE;
-		}
-	}
-	else if (GetCharAtKeyboardPos(x, y) == CHAR_CIRCUMFLEX) // Check if it's a circumflex accent mark
-	{
-		// Check if previous character is variant of "A" or "a"
-		if (sNamingScreen->textBuffer[index] == CHAR_A
-		|| sNamingScreen->textBuffer[index] == CHAR_A_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_A_GRAVE
-		|| sNamingScreen->textBuffer[index] == CHAR_A_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_A_CIRCUMFLEX; // Change to "Â"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_a
-		|| sNamingScreen->textBuffer[index] == CHAR_a_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_a_GRAVE
-		|| sNamingScreen->textBuffer[index] == CHAR_a_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_a_CIRCUMFLEX; // Change to "â"
-		}
-		// Check if previous character is variant of "E" or "e"
-		else if (sNamingScreen->textBuffer[index] == CHAR_E
-        || sNamingScreen->textBuffer[index] == CHAR_E_ACUTE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_E_CIRCUMFLEX; // Change to "Ê"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_e
-		|| sNamingScreen->textBuffer[index] == CHAR_e_ACUTE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_e_CIRCUMFLEX; // Change to "ê"
-		}
-		// Check if previous character is variant of "O" or "o"
-		else if (sNamingScreen->textBuffer[index] == CHAR_O
-		|| sNamingScreen->textBuffer[index] == CHAR_O_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_O_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_O_CIRCUMFLEX; // Change to "Ô"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_o
-		|| sNamingScreen->textBuffer[index] == CHAR_o_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_o_TILDE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_o_CIRCUMFLEX; // Change to "ô"
-		}
-		// Play sound effect without adding anything
-		else
-		{
-			PlaySE(SE_SELECT);
-			return FALSE;
-		}
-	}
-	else if (GetCharAtKeyboardPos(x, y) == CHAR_TILDE) // Check if it's a tilde
-	{
-		// Check if previous character is variant of "A" or "a"
-		if (sNamingScreen->textBuffer[index] == CHAR_A
-		|| sNamingScreen->textBuffer[index] == CHAR_A_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_A_GRAVE
-		|| sNamingScreen->textBuffer[index] == CHAR_A_CIRCUMFLEX)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_A_TILDE; // Change to "Ã"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_a
-		|| sNamingScreen->textBuffer[index] == CHAR_a_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_a_GRAVE
-		|| sNamingScreen->textBuffer[index] == CHAR_a_CIRCUMFLEX)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_a_TILDE; // Change to "ã"
-		}
-		// Check if previous character is variant of "O" or "o"
-		else if (sNamingScreen->textBuffer[index] == CHAR_O
-		|| sNamingScreen->textBuffer[index] == CHAR_O_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_O_CIRCUMFLEX)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_O_TILDE; // Change to "Õ"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_o
-		|| sNamingScreen->textBuffer[index] == CHAR_o_ACUTE
-		|| sNamingScreen->textBuffer[index] == CHAR_o_CIRCUMFLEX)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_o_TILDE; // Change to "õ"
-		}
-		// Play sound effect without adding anything
-		else
-		{
-			PlaySE(SE_SELECT);
-			return FALSE;
-		}
-	}
-	else if (GetCharAtKeyboardPos(x, y) == CHAR_DIAERESIS) // Check if it's a diaeresis (only really used for the letter U)
-	{
-		// Check if previous character is variant of "U" or "u"
-		if (sNamingScreen->textBuffer[index] == CHAR_U
-        || sNamingScreen->textBuffer[index] == CHAR_U_ACUTE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_U_DIAERESIS; // Change to "Ú"
-		}
-		else if (sNamingScreen->textBuffer[index] == CHAR_u
-		|| sNamingScreen->textBuffer[index] == CHAR_u_ACUTE)
-		{
-			sNamingScreen->textBuffer[index] = CHAR_u_DIAERESIS; // Change to "ú"
-		}
-		// Play sound effect without adding anything
-		else
-		{
-			PlaySE(SE_SELECT);
-			return FALSE;
-		}
-	}
-	else // Input character normally
-		BufferCharacter(GetCharAtKeyboardPos(x, y));
+	switch (GetCharAtKeyboardPos(x, y))
+    {
+        case CHAR_ACUTE:
+        case CHAR_GRAVE:
+        case CHAR_CIRCUMFLEX:
+        case CHAR_TILDE:
+        case CHAR_DIAERESIS:
+            if (!SetAccentedCharacterAt(index, GetCharAtKeyboardPos(x, y)))
+            { // Play sound effect and return FALSE if the previous character can't be accented, regardless of whether the text entry is full or not.
+                PlaySE(SE_SELECT);
+                return FALSE;
+            } break;
+        default: // Input character normally
+            isSameChar = BufferCharacter(GetCharAtKeyboardPos(x, y)); break;
+    }
     DrawTextEntry();
     CopyBgTilemapBufferToVram(3);
     PlaySE(SE_SELECT);
 
     if (GetPreviousTextCaretPosition() != sNamingScreen->template->maxChars - 1)
         return FALSE;
+    else if (isSameChar)
+        return FALSE;
     else
         return TRUE;
-}
-
-static void BufferCharacter(u8 ch)
-{
-    u8 index = GetTextEntryPosition();
-    sNamingScreen->textBuffer[index] = ch;
 }
 
 static void SaveInputText(void)

@@ -45,6 +45,8 @@ u8 RunHelpSystemCallback(void)
     {
     case 0:
         sInHelpSystem = 0;
+        if (gSaveBlock2Ptr->optionsHelpEnabled == FALSE)
+            return 0;
         if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
             return 0;
         if ((JOY_NEW(L_BUTTON) && JOY_HELD(R_BUTTON)) || (JOY_NEW(R_BUTTON) && JOY_HELD(L_BUTTON)))

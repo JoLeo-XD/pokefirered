@@ -49,7 +49,8 @@ u8 RunHelpSystemCallback(void)
             return 0;
         if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
             return 0;
-        if ((JOY_NEW(L_BUTTON) && JOY_HELD(R_BUTTON)) || (JOY_NEW(R_BUTTON) && JOY_HELD(L_BUTTON)))
+        if  ((((JOY_NEW(L_BUTTON) && JOY_HELD(R_BUTTON)) || (JOY_NEW(R_BUTTON) && JOY_HELD(L_BUTTON))) && gHelpSystemToggleWithRButtonDisabled == FALSE)
+            || (JOY_NEW(L_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE))
         {
             if (!HelpSystem_IsSinglePlayer() || !gHelpSystemEnabled)
             {

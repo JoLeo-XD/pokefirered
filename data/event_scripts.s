@@ -852,7 +852,7 @@ Text_MakingPreparations::
 	.string "じゅんびちゅうです！$"
 
 Text_WantWhichFloor::
-	.string "Quer ir a qual andar?$"
+	.string "Quer ir para qual andar?$"
 
 Text_BagItemCanBeRegistered::
 	.string "Um item na BOLSA pode ser marcado\n"
@@ -1070,6 +1070,7 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_HIDE_FAME_CHECKER_LT_SURGE_JOURNAL
 	setflag FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
+	setvar VAR_THIRSTY_GIRL_COOLDOWN_STEP_COUNTER, 1000
 	end
 
 	.include "data/scripts/hall_of_fame.inc"

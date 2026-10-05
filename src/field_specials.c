@@ -660,18 +660,18 @@ static const u16 sResortGorgeousDeluxeRewards[] = {
 
 void IncrementResortGorgeousStepCounter(void)
 {
-    u16 var4035 = VarGet(VAR_RESORT_GOREGEOUS_STEP_COUNTER);
+    u16 var4035 = VarGet(VAR_RESORT_GORGEOUS_STEP_COUNTER);
     if (VarGet(VAR_RESORT_GORGEOUS_REQUESTED_MON) != SPECIES_NONE)
     {
         var4035++;
         if (var4035 >= 250)
         {
             VarSet(VAR_RESORT_GORGEOUS_REQUESTED_MON, 0xFFFF);
-            VarSet(VAR_RESORT_GOREGEOUS_STEP_COUNTER, 0);
+            VarSet(VAR_RESORT_GORGEOUS_STEP_COUNTER, 0);
         }
         else
         {
-            VarSet(VAR_RESORT_GOREGEOUS_STEP_COUNTER, var4035);
+            VarSet(VAR_RESORT_GORGEOUS_STEP_COUNTER, var4035);
         }
     }
 }
@@ -683,7 +683,7 @@ void SampleResortGorgeousMonAndReward(void)
     {
         VarSet(VAR_RESORT_GORGEOUS_REQUESTED_MON, SampleResortGorgeousMon());
         VarSet(VAR_RESORT_GORGEOUS_REWARD, SampleResortGorgeousReward());
-        VarSet(VAR_RESORT_GOREGEOUS_STEP_COUNTER, 0);
+        VarSet(VAR_RESORT_GORGEOUS_STEP_COUNTER, 0);
     }
     StringCopy(gStringVar1, gSpeciesNames[VarGet(VAR_RESORT_GORGEOUS_REQUESTED_MON)]);
 }
@@ -2070,6 +2070,20 @@ void RunMassageCooldownStepCounter(void)
     u16 count = VarGet(VAR_MASSAGE_COOLDOWN_STEP_COUNTER);
     if (count < 500)
         VarSet(VAR_MASSAGE_COOLDOWN_STEP_COUNTER, count + 1);
+}
+
+void RunThirstyGirlCooldownStepCounter(void)
+{
+    u16 count = VarGet(VAR_THIRSTY_GIRL_COOLDOWN_STEP_COUNTER);
+    if (count < 1500)
+        VarSet(VAR_THIRSTY_GIRL_COOLDOWN_STEP_COUNTER, count + 1);
+    else if (count == 1500)
+    {
+        FlagClear(FLAG_GOT_TM16_FROM_THIRSTY_GIRL);
+        FlagClear(FLAG_GOT_TM20_FROM_THIRSTY_GIRL);
+        FlagClear(FLAG_GOT_TM33_FROM_THIRSTY_GIRL);
+        VarSet(VAR_THIRSTY_GIRL_COOLDOWN_STEP_COUNTER, count + 1);
+    }
 }
 
 void DaisyMassageServices(void)

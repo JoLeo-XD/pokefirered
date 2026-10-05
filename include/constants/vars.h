@@ -85,14 +85,16 @@
 // Used by Quest Log.
 #define VAR_QUEST_LOG_MON_COUNTS           0x4027
 #define VAR_WONDER_NEWS_STEP_COUNTER       0x4028
-#define VAR_0x4029                         0x4029
-#define VAR_0x402A                         0x402A
-#define VAR_0x402B                         0x402B
-#define VAR_0x402C                         0x402C
-#define VAR_0x402D                         0x402D
-#define VAR_0x402E                         0x402E
 
-#define VAR_0x402F                         0x402F
+// Step counter set to 1500 at game start. When you get all the TMs from the thirsty girl,
+// it resets to 0. Caps at 1501 (clears the flags at 1500, then goes to 1501 to avoid reclearing).
+#define VAR_THIRSTY_GIRL_COOLDOWN_STEP_COUNTER  0x4029
+#define VAR_0x402A                              0x402A
+#define VAR_0x402B                              0x402B
+#define VAR_0x402C                              0x402C
+#define VAR_0x402D                              0x402D
+#define VAR_0x402E                              0x402E
+#define VAR_0x402F                              0x402F
 
 #define VAR_ICE_STEP_COUNT                 0x4030
 #define VAR_STARTER_MON                    0x4031 // 0: Bulbasaur, 1: Squirtle, 2: Charmander
@@ -100,7 +102,7 @@
 #define VAR_ENIGMA_BERRY_AVAILABLE         0x4033
 
 #define VAR_0x4034                         0x4034
-#define VAR_RESORT_GOREGEOUS_STEP_COUNTER  0x4035
+#define VAR_RESORT_GORGEOUS_STEP_COUNTER   0x4035
 #define VAR_RESORT_GORGEOUS_REQUESTED_MON  0x4036
 #define VAR_PC_BOX_TO_SEND_MON             0x4037
 #define VAR_FANCLUB_FAN_COUNTER            0x4038

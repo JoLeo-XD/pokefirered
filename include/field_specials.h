@@ -20,6 +20,7 @@ u32 GetPlayerTrainerId(void);
 bool8 CutMoveRuinValleyCheck(void);
 void CutMoveOpenDottedHoleDoor(void);
 void RunMassageCooldownStepCounter(void);
+void RunThirstyGirlCooldownStepCounter(void);
 void IncrementResortGorgeousStepCounter(void);
 void IncrementBirthIslandRockStepCount(void);
 void ResetCyclingRoadChallengeData(void);

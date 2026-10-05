@@ -1,11 +1,16 @@
 CeladonCity_DepartmentStore_Roof_Text_ImThirstyGiveHerDrink::
     .string "I'm thirsty!\n"
     .string "I want something to drink!\p"
+    .string "I saw you buy a drink!\n"
+    .string "Can I have one?\p"
 .ifdef BUGFIX @ The localizers missed what should be a textcolor change in the localizations. (Again.)
     .string "{COLOR DARK_GRAY}Give her a drink?$"
 .else @ In the JP games, gender-based text used a different font instead of different colors.
     .string "{FONT_NORMAL}Give her a drink?$"
 .endif
+
+CeladonCity_DepartmentStore_Roof_Text_YoureMean::
+    .string "You're mean!$"
 
 CeladonCity_DepartmentStore_Roof_Text_GiveWhichDrink::
     .string "Give her which drink?$"
@@ -50,9 +55,9 @@ CeladonCity_DepartmentStore_Roof_Text_ExplainTM33::
 CeladonCity_DepartmentStore_Roof_Text_DontHaveSpaceForThis::
     .string "You don't have space for this!$"
 
-CeladonCity_DepartmentStore_Roof_Text_ImNotThirstyAfterAll::
-    .string "No, thank you!\n"
-    .string "I'm not thirsty after all!$"
+CeladonCity_DepartmentStore_Roof_Text_ImNotThatThirstyRightNow::
+    .string "I'm not that thirsty right now!\n"
+    .string "Thank you!$"
 
 CeladonCity_DepartmentStore_Roof_Text_MySisterIsImmature::
     .string "My sister is a TRAINER, believe it\n"

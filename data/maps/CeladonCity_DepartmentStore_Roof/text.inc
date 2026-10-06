@@ -4,7 +4,7 @@ CeladonCity_DepartmentStore_Roof_Text_ImThirstyGiveHerDrink::
     .string "I saw you buy a drink!\n"
     .string "Can I have one?\p"
 .ifdef BUGFIX @ The localizers missed what should be a textcolor change in the localizations. (Again.)
-    .string "{COLOR DARK_GRAY}Give her a drink?$"
+    .string "{FONT_NORMAL}{COLOR DARK_GRAY}Give her a drink?$"
 .else @ In the JP games, gender-based text used a different font instead of different colors.
     .string "{FONT_NORMAL}Give her a drink?$"
 .endif

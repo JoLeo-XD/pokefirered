@@ -1266,17 +1266,23 @@ static void BufferNameForCardBack(void)
 static void PrintNameOnCardBack(void)
 {
     u8 x;
+    u8 fontId;
+
+    if (gSaveBlock2Ptr->playerGender == FEMALE)
+        fontId = FONT_FEMALE;
+    else
+        fontId = FONT_MALE;
 
     if (sTrainerCardDataPtr->cardType == CARD_TYPE_FRLG)
     {
-        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], sTrainerCardBackNameXPositions[sTrainerCardDataPtr->cardType],
+        AddTextPrinterParameterized3(1, fontId, sTrainerCardBackNameXPositions[sTrainerCardDataPtr->cardType],
             sTrainerCardBackNameYPositions[sTrainerCardDataPtr->cardType], sTrainerCardTextColors, TEXT_SKIP_DRAW, sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME]);
     }
     else
     {    
-        x = sTrainerCardBackNameXPositions[sTrainerCardDataPtr->cardType] - GetStringWidth(sTrainerCardFontIds[1], sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], GetFontAttribute(sTrainerCardFontIds[1], FONTATTR_LETTER_SPACING));
+        x = sTrainerCardBackNameXPositions[sTrainerCardDataPtr->cardType] - GetStringWidth(fontId, sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], GetFontAttribute(sTrainerCardFontIds[1], FONTATTR_LETTER_SPACING));
 
-        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], x, sTrainerCardBackNameYPositions[sTrainerCardDataPtr->cardType],
+        AddTextPrinterParameterized3(1, fontId, x, sTrainerCardBackNameYPositions[sTrainerCardDataPtr->cardType],
             sTrainerCardTextColors, TEXT_SKIP_DRAW, sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME]);
     }
 }

@@ -102,6 +102,7 @@ static void HandleTurnActionSelectionState(void);
 static void RunTurnActionsFunctions(void);
 static void SetActionsAndBattlersTurnOrder(void);
 static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void);
+static bool8 TrySetUpFocusPunch(void);
 static void HandleEndTurn_FinishBattle(void);
 static void FreeResetData_ReturnToOvOrDoEvolutions(void);
 static void ReturnFromBattleToOverworld(void);
@@ -3673,22 +3674,6 @@ static void SpecialStatusesClear(void)
 
 static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void)
 {
-    if (!(gHitMarker & HITMARKER_RUN))
-    {
-        while (gBattleStruct->focusPunchBattlerId < gBattlersCount)
-        {
-            gActiveBattler = gBattlerAttacker = gBattleStruct->focusPunchBattlerId;
-            ++gBattleStruct->focusPunchBattlerId;
-            if (gChosenMoveByBattler[gActiveBattler] == MOVE_FOCUS_PUNCH
-             && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
-             && !(gDisableStructs[gBattlerAttacker].truantCounter)
-             && !(gProtectStructs[gActiveBattler].noValidMoves))
-            {
-                BattleScriptExecute(BattleScript_FocusPunchSetUp);
-                return;
-            }
-        }
-    }
     TryClearRageStatuses();
     gCurrentTurnActionNumber = 0;
     {
@@ -3706,8 +3691,39 @@ static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void)
     gBattleResources->battleScriptsStack->size = 0;
 }
 
+static bool8 TrySetUpFocusPunch(void)
+{
+    if (!(gHitMarker & HITMARKER_RUN))
+    {
+        while (gBattleStruct->focusPunchBattlerId < gBattlersCount)
+        {
+            gActiveBattler = gBattlerAttacker = gBattleStruct->focusPunchBattlerId;
+            ++gBattleStruct->focusPunchBattlerId;
+            if (gChosenMoveByBattler[gActiveBattler] == MOVE_FOCUS_PUNCH
+             && gChosenActionByBattler[gActiveBattler] != B_ACTION_SWITCH
+             && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
+             && !(gDisableStructs[gBattlerAttacker].truantCounter)
+             && !(gProtectStructs[gActiveBattler].noValidMoves))
+            {
+                BattleScriptExecute(BattleScript_FocusPunchSetUp);
+                return TRUE;
+            }
+        }
+    }
+    return FALSE;
+}
+
 static void RunTurnActionsFunctions(void)
 {
+    if (gCurrentTurnActionNumber < gBattlersCount
+     && gActionsByTurnOrder[gCurrentTurnActionNumber] == B_ACTION_USE_MOVE
+     && gBattleStruct->focusPunchBattlerId < gBattlersCount)
+    {
+        if (TrySetUpFocusPunch())
+            return;
+        gCurrentActionFuncId = gActionsByTurnOrder[gCurrentTurnActionNumber];
+    }
+
     if (gBattleOutcome != 0)
         gCurrentActionFuncId = B_ACTION_FINISHED;
     *(&gBattleStruct->savedTurnActionNumber) = gCurrentTurnActionNumber;

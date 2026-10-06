@@ -667,8 +667,12 @@ bool8 UpdateVsSeekerStepCounter(void)
 
     if (CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
     {
-        if ((gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) < 100)
+         if ((gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) < 100)
             gSaveBlock1Ptr->trainerRematchStepCounter++;
+#ifdef UBFIX // The game could potentially read a value way off the charts here, so we need to make sure it doesn't go over 100.
+         else
+            gSaveBlock1Ptr->trainerRematchStepCounter = 100;
+#endif
     }
 
     if (FlagGet(FLAG_SYS_VS_SEEKER_CHARGING) == TRUE)

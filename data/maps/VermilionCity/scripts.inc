@@ -186,7 +186,7 @@ VermilionCity_EventScript_ShowOldSeaMap::
 	waitmovement 0
 	delay 30
 	playse SE_SS_ANNE_HORN
-	waitse 0
+	waitse
 	addobject LOCALID_VERMILION_CAPTAIN
 	applymovement LOCALID_VERMILION_CAPTAIN, VermilionCity_Movement_CaptainWalkUpToSailor
 	waitmovement 0
@@ -229,7 +229,7 @@ VermilionCity_EventScript_ShowOldSeaMap::
 	removeobject LOCALID_VERMILION_CAPTAIN
 	setflag FLAG_HIDE_VERMILION_CITY_CAPTAIN
 	playse SE_SS_ANNE_HORN
-	waitse 0
+	waitse
 	applymovement LOCALID_VERMILION_FERRY_SAILOR, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight

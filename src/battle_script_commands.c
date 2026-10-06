@@ -2646,7 +2646,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     else if (gBattleMons[gBattlerAttacker].item != ITEM_NONE
                         || gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY
                         || IS_ITEM_MAIL(gBattleMons[gBattlerTarget].item)
-                        || gBattleMons[gBattlerTarget].item == ITEM_NONE)
+                        || gBattleMons[gBattlerTarget].item == ITEM_NONE
+                        || gBattleMons[gBattlerAttacker].item == ITEM_MASTER_BALL)
                     {
                         gBattlescriptCurrInstr++;
                     }
@@ -2733,7 +2734,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
             case MOVE_EFFECT_KNOCK_OFF:
                 if (gBattleMons[gEffectBattler].ability == ABILITY_STICKY_HOLD)
                 {
-                    if (gBattleMons[gEffectBattler].item == ITEM_NONE)
+                    if (gBattleMons[gEffectBattler].item == ITEM_NONE || IS_ITEM_MAIL(gBattleMons[gEffectBattler].item) || gBattleMons[gEffectBattler].item == ITEM_MASTER_BALL)
                     {
                         gBattlescriptCurrInstr++;
                     }
@@ -2745,7 +2746,7 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     }
                     break;
                 }
-                if (gBattleMons[gEffectBattler].item)
+                if (gBattleMons[gEffectBattler].item && !IS_ITEM_MAIL(gBattleMons[gEffectBattler].item) && gBattleMons[gEffectBattler].item != ITEM_MASTER_BALL)
                 {
                     side = GetBattlerSide(gEffectBattler);
 

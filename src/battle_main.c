@@ -4359,6 +4359,28 @@ static void HandleAction_Run(void)
 
 static void HandleAction_WatchesCarefully(void)
 {
+    u8 safariFleeRate;
+
+    if (gBattleStruct->safariRockThrowCounter)
+    {
+        safariFleeRate = gBattleStruct->safariEscapeFactor * 2;
+        if (safariFleeRate > 20)
+            safariFleeRate = 20;
+    }
+    else if (gBattleStruct->safariBaitThrowCounter != 0)
+    {
+        safariFleeRate = gBattleStruct->safariEscapeFactor / 4;
+        if (safariFleeRate == 0)
+            safariFleeRate = 1;
+    }
+    else
+        safariFleeRate = gBattleStruct->safariEscapeFactor;
+    safariFleeRate *= 5;
+    if ((u8)(Random() % 100) < safariFleeRate)
+    {
+        HandleAction_Run();
+        return;
+    }
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;

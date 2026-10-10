@@ -423,16 +423,35 @@ u16 AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 speed
 void AddTextPrinterDiffStyle(bool8 allowSkippingDelayWithButtonPress)
 {
     u8 color;
+    bool8 isTextColorMale;
+    bool8 isTextColorFemale;
+    u8 fontUsed = FONT_NORMAL;
     void *nptr = NULL;
 
     gTextFlags.canABSpeedUpPrint = allowSkippingDelayWithButtonPress;    
     color = ContextNpcGetTextColor();
-    if (color == NPC_TEXT_COLOR_MALE)
-        AddTextPrinterParameterized2(0, FONT_MALE, gStringVar4, GetTextSpeedSetting(), nptr, TEXT_COLOR_BLUE, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
-    else if (color == NPC_TEXT_COLOR_FEMALE)
-        AddTextPrinterParameterized2(0, FONT_FEMALE, gStringVar4, GetTextSpeedSetting(), nptr, TEXT_COLOR_RED, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    isTextColorMale = color == NPC_TEXT_COLOR_MALE;
+    isTextColorFemale = color == NPC_TEXT_COLOR_FEMALE;
+    if (isTextColorMale)
+        fontUsed = FONT_MALE;
+    else if (isTextColorFemale)
+        fontUsed = FONT_FEMALE;
+    if (gSaveBlock2Ptr->optionsTextMode == OPTIONS_TEXT_MODE_FONTS)
+    {
+        isTextColorMale = FALSE;
+        isTextColorFemale = FALSE;
+    }
+    if (gSaveBlock2Ptr->optionsTextMode == OPTIONS_TEXT_MODE_COLORS_INVERTED)
+    {
+        isTextColorMale = isTextColorFemale;
+        isTextColorFemale = color == NPC_TEXT_COLOR_MALE;
+    }
+    if (isTextColorMale)
+        AddTextPrinterParameterized2(0, fontUsed, gStringVar4, GetTextSpeedSetting(), nptr, TEXT_COLOR_BLUE, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    else if (isTextColorFemale)
+        AddTextPrinterParameterized2(0, fontUsed, gStringVar4, GetTextSpeedSetting(), nptr, TEXT_COLOR_RED, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
     else // NPC_TEXT_COLOR_MON / NPC_TEXT_COLOR_NEUTRAL
-        AddTextPrinterParameterized2(0, FONT_NORMAL, gStringVar4, GetTextSpeedSetting(), nptr, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+        AddTextPrinterParameterized2(0, fontUsed, gStringVar4, GetTextSpeedSetting(), nptr, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
 }
 
 void AddTextPrinterForMessage(bool8 allowSkippingDelayWithButtonPress)

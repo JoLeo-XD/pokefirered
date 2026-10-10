@@ -424,7 +424,7 @@
 	.byte 0x45
 	.endm
 
-	.macro if_random_safari_flee ptr:req
+	.macro nop_if_random_safari_flee ptr:req
 	.byte 0x46
 	.4byte \ptr
 	.endm

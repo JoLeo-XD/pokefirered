@@ -205,9 +205,12 @@ static const struct BgTemplate sShopBuyMenuBgTemplates[4] =
 // Functions
 static u8 CreateShopMenu(u8 martType)
 {
+    bool8 isTextColorMale;
+    
     sShopData.martType = GetMartTypeFromItemList(martType);
     sShopData.selectedRow = 0;
-    if (ContextNpcGetTextColor() == NPC_TEXT_COLOR_MALE)
+    isTextColorMale = ContextNpcGetTextColor() == NPC_TEXT_COLOR_MALE;
+    if (isTextColorMale)
     {
         sShopData.fontId = FONT_MALE;
         sShopData.colorId = TEXT_COLOR_BLUE;
@@ -217,6 +220,15 @@ static u8 CreateShopMenu(u8 martType)
         sShopData.fontId = FONT_FEMALE;
         sShopData.colorId = TEXT_COLOR_RED;
     }
+    if (gSaveBlock2Ptr->optionsTextMode == OPTIONS_TEXT_MODE_COLORS_INVERTED)
+    {
+        if (isTextColorMale)
+            sShopData.colorId = TEXT_COLOR_RED;
+        else
+            sShopData.colorId = TEXT_COLOR_BLUE;
+    }
+    if (gSaveBlock2Ptr->optionsTextMode == OPTIONS_TEXT_MODE_FONTS)
+        sShopData.colorId = TEXT_COLOR_DARK_GREY;
 
     sShopMenuWindowId = AddWindow(&sShopMenuWindowTemplate);
     SetStdWindowBorderStyle(sShopMenuWindowId, 0);

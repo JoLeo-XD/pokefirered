@@ -502,11 +502,17 @@ void Menu_PrintFormatIntlPlayerName(u8 windowId, const u8 * src, u16 x, u16 y)
     StringExpandPlaceholders(gStringVar4, src);
     if (i != 5)
     {
-        AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, 0xFF, NULL);
+        if (gSaveBlock2Ptr->playerGender == MALE)
+            AddTextPrinterParameterized(windowId, FONT_MALE, gStringVar4, x, y, 0xFF, NULL);
+        else
+            AddTextPrinterParameterized(windowId, FONT_FEMALE, gStringVar4, x, y, 0xFF, NULL);
     }
     else
     {
-        AddTextPrinterParameterized5(windowId, FONT_NORMAL, gStringVar4, x, y, 0xFF, NULL, 0, 0);
+        if (gSaveBlock2Ptr->playerGender == MALE)
+            AddTextPrinterParameterized5(windowId, FONT_MALE, gStringVar4, x, y, 0xFF, NULL, 0, 0);
+        else
+            AddTextPrinterParameterized5(windowId, FONT_FEMALE, gStringVar4, x, y, 0xFF, NULL, 0, 0);
     }
 }
 

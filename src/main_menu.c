@@ -620,12 +620,23 @@ static void PrintPlayerName(void)
     s32 i;
     u8 name[PLAYER_NAME_LENGTH + 1];
     u8 *ptr;
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_NORMAL, 2, 18, sTextColor2, -1, gText_Player);
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_NORMAL, 2, 18, sTextColor2, -1, gText_PlayerM);
+    else
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_NORMAL, 2, 18, sTextColor2, -1, gText_PlayerF);
     ptr = name;
     for (i = 0; i < PLAYER_NAME_LENGTH; i++)
         *ptr++ = gSaveBlock2Ptr->playerName[i];
     *ptr = EOS;
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_NORMAL, 62, 18, sTextColor2, -1, name);
+    if (gSaveBlock2Ptr->optionsTextMode != OPTIONS_TEXT_MODE_COLORS)
+    {
+        if (gSaveBlock2Ptr->playerGender == MALE)
+            AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_MALE, 62, 18, sTextColor2, -1, name);
+        else
+            AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_FEMALE, 62, 18, sTextColor2, -1, name);
+    }
+    else
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_NORMAL, 62, 18, sTextColor2, -1, name);
 }
 
 static void PrintPlayTime(void)

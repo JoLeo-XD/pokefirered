@@ -2567,3 +2567,8 @@ static void Task_WingFlapSound(u8 taskId)
     if (data[0] == gSpecialVar_0x8004 - 1)
         DestroyTask(taskId);
 }
+
+u8 GetTextColorMode(void)
+{
+    return gSaveBlock2Ptr->optionsTextMode;
+}

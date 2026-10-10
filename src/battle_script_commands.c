@@ -786,7 +786,7 @@ static const struct PickupItem sPickupItems[] =
     { ITEM_PAMTRE_BERRY, 97 },
     { ITEM_WATMEL_BERRY, 98 },
     { ITEM_DURIN_BERRY, 99 },
-    { ITEM_BELUE_BERRY, 1 },
+    { ITEM_BELUE_BERRY, 100 },
 
 };
 
@@ -1041,6 +1041,11 @@ static void Cmd_accuracycheck(void)
             return;
         if (AccuracyCalcHelper(move))
             return;
+        if (gBattleMoves[move].accuracy == 0)
+        {
+            JumpIfMoveFailed(7, move);
+            return;
+        }
 
         if (gBattleMons[gBattlerTarget].status2 & STATUS2_FORESIGHT)
         {

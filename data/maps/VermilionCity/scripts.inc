@@ -365,13 +365,55 @@ VermilionCity_EventScript_CheckTicket::
 	goto_if_eq VAR_MAP_SCENE_VERMILION_CITY, 3, VermilionCity_EventScript_CheckSeagallopPresentTrigger
 	msgbox VermilionCity_Text_DoYouHaveATicket
 	goto_if_unset FLAG_GOT_SS_TICKET, VermilionCity_EventScript_DontHaveSSTicket
-	msgbox VermilionCity_Text_FlashedSSTicket
+	specialvar VAR_RESULT, GetTextColorMode
+	switch VAR_RESULT
+	case 0, VermilionCity_EventScript_FlashedSSTicketColor
+	case 1, VermilionCity_EventScript_FlashedSSTicketColorless
+	case 3, VermilionCity_EventScript_FlashedSSTicketColorInverted
+	goto VermilionCity_EventScript_FlashedSSTicketColor
+	end
+
+VermilionCity_EventScript_FlashedSSTicketColor::
+	msgbox VermilionCity_Text_FlashedSSTicketColor
+	setvar VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER, 1
+	releaseall
+	end
+
+VermilionCity_EventScript_FlashedSSTicketColorless::
+	msgbox VermilionCity_Text_FlashedSSTicketColorless
+	setvar VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER, 1
+	releaseall
+	end
+
+VermilionCity_EventScript_FlashedSSTicketColorInverted::
+	msgbox VermilionCity_Text_FlashedSSTicketColorInverted
 	setvar VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER, 1
 	releaseall
 	end
 
 VermilionCity_EventScript_DontHaveSSTicket::
-	msgbox VermilionCity_Text_DontHaveNeededSSTicket
+	specialvar VAR_RESULT, GetTextColorMode
+	switch VAR_RESULT
+	case 0, VermilionCity_EventScript_DontHaveNeededSSTicketColor
+	case 1, VermilionCity_EventScript_DontHaveNeededSSTicketColorless
+	case 3, VermilionCity_EventScript_DontHaveNeededSSTicketColorInverted
+	goto VermilionCity_EventScript_FlashedSSTicketColor
+	end
+
+VermilionCity_EventScript_DontHaveNeededSSTicketColor::
+	msgbox VermilionCity_Text_DontHaveNeededSSTicketColor
+	closemessage
+	goto VermilionCity_EventScript_WalkUpPier
+	end
+
+VermilionCity_EventScript_DontHaveNeededSSTicketColorless::
+	msgbox VermilionCity_Text_DontHaveNeededSSTicketColorless
+	closemessage
+	goto VermilionCity_EventScript_WalkUpPier
+	end
+
+VermilionCity_EventScript_DontHaveNeededSSTicketColorInverted::
+	msgbox VermilionCity_Text_DontHaveNeededSSTicketColorInverted
 	closemessage
 	goto VermilionCity_EventScript_WalkUpPier
 	end

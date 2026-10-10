@@ -2298,7 +2298,7 @@ bool8 HelpSystemSubroutine_PrintWelcomeMessage(struct HelpSystemListMenu * helpL
 
 bool8 HelpSystemSubroutine_WelcomeWaitButton(struct HelpSystemListMenu * helpListMenu, struct ListMenuItem * listMenuItemsBuffer)
 {
-    if (JOY_NEW(A_BUTTON))
+    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
         helpListMenu->state = 10;

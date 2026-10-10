@@ -21,9 +21,9 @@ enum
     MENUITEM_BATTLESCENE,
     MENUITEM_BATTLESTYLE,
     MENUITEM_SOUND,
-    MENUITEM_HELPENABLED,
+    MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
-    MENUITEM_CANCEL,
+    MENUITEM_TEXTMODE,
     MENUITEM_COUNT
 };
 
@@ -131,7 +131,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 2, 10, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 4};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -139,9 +139,9 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_BATTLESCENE] = gText_BattleScene,
     [MENUITEM_BATTLESTYLE] = gText_BattleStyle,
     [MENUITEM_SOUND]       = gText_Sound,
-    [MENUITEM_HELPENABLED] = gText_HelpSystem,
+    [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
-    [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
+    [MENUITEM_TEXTMODE]    = gText_TextMode,
 };
 
 static const u8 *const sTextSpeedOptions[] =
@@ -169,10 +169,19 @@ static const u8 *const sSoundOptions[] =
     gText_SoundStereo
 };
 
-static const u8 *const sHelpEnabledOptions[] =
+static const u8 *const sButtonModeOptions[] =
 {
-	gText_HelpSystemDisabled,
-    gText_HelpSystemEnabled
+    gText_ButtonModeNormal,
+	gText_ButtonModeBEqualsWalk,
+    gText_ButtonModeOneHand
+};
+
+static const u8 *const sTextModeOptions[] =
+{
+    gText_TextModeColors,
+	gText_TextModeFonts,
+    gText_TextModeFontsAndColors,
+    gText_TextModeColorsInverted
 };
 
 static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
@@ -209,8 +218,9 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_BATTLESCENE] = gSaveBlock2Ptr->optionsBattleSceneOff;
     sOptionMenuPtr->option[MENUITEM_BATTLESTYLE] = gSaveBlock2Ptr->optionsBattleStyle;
     sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
-    sOptionMenuPtr->option[MENUITEM_HELPENABLED] = gSaveBlock2Ptr->optionsHelpEnabled;
+    sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
+    sOptionMenuPtr->option[MENUITEM_TEXTMODE] = gSaveBlock2Ptr->optionsTextMode;
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
     {
@@ -439,14 +449,14 @@ static u8 OptionMenu_ProcessInput(void)
     else if (JOY_REPT(DPAD_UP))
     {
         if (sOptionMenuPtr->cursorPos == MENUITEM_TEXTSPEED)
-            sOptionMenuPtr->cursorPos = MENUITEM_CANCEL;
+            sOptionMenuPtr->cursorPos = MENUITEM_TEXTMODE;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos - 1;
         return 3;        
     }
     else if (JOY_REPT(DPAD_DOWN))
     {
-        if (sOptionMenuPtr->cursorPos == MENUITEM_CANCEL)
+        if (sOptionMenuPtr->cursorPos == MENUITEM_TEXTMODE)
             sOptionMenuPtr->cursorPos = MENUITEM_TEXTSPEED;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos + 1;
@@ -488,8 +498,8 @@ static void BufferOptionMenuString(u8 selection)
     case MENUITEM_SOUND:
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[selection]]);
         break;
-    case MENUITEM_HELPENABLED:
-        AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sHelpEnabledOptions[sOptionMenuPtr->option[selection]]);
+    case MENUITEM_BUTTONMODE:
+        AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sButtonModeOptions[sOptionMenuPtr->option[selection]]);
         break;
     case MENUITEM_FRAMETYPE:
         StringCopy(str, gText_FrameType);
@@ -497,6 +507,8 @@ static void BufferOptionMenuString(u8 selection)
         StringAppendN(str, buf, 3);
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, str);
         break;
+    case MENUITEM_TEXTMODE:
+        AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sTextModeOptions[sOptionMenuPtr->option[selection]]);
     default:
         break;
     }
@@ -513,8 +525,9 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     gSaveBlock2Ptr->optionsBattleSceneOff = sOptionMenuPtr->option[MENUITEM_BATTLESCENE];
     gSaveBlock2Ptr->optionsBattleStyle = sOptionMenuPtr->option[MENUITEM_BATTLESTYLE];
     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
-    gSaveBlock2Ptr->optionsHelpEnabled = sOptionMenuPtr->option[MENUITEM_HELPENABLED];
+    gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
+    gSaveBlock2Ptr->optionsTextMode = sOptionMenuPtr->option[MENUITEM_TEXTMODE];
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     DestroyTask(taskId);

@@ -485,6 +485,8 @@ static void PlayerNotOnBikeTurningInPlace(u8 direction, u16 heldKeys)
 static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 {
     u8 collision = CheckForPlayerAvatarCollision(direction);
+    bool8 invertRunButton = gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_B_EQUALS_WALK || 
+                            gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND;
 
     if (collision != COLLISION_NONE)
     {
@@ -513,7 +515,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         return;
     }
 
-    if ((heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
+    if ((invertRunButton ? ((heldKeys & B_BUTTON) ^ B_BUTTON) : (heldKeys & B_BUTTON)) && FlagGet(FLAG_SYS_B_DASH)
         && !IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
     {
         if (PlayerIsMovingOnRockStairs(direction))

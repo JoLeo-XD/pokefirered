@@ -1152,6 +1152,16 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
     if (++daycare->stepCounter == 255)
     {
         u32 steps;
+        bool8 fastHatch = FALSE;
+        for (i = 0; i < gPlayerPartyCount; i++)
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) &&
+               !GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG) &&
+               (GetMonAbility(&gPlayerParty[i]) == ABILITY_FLAME_BODY ||
+               GetMonAbility(&gPlayerParty[i]) == ABILITY_MAGMA_ARMOR))
+            {
+                fastHatch = TRUE;
+                break;
+            }
 
         for (i = 0; i < gPlayerPartyCount; i++)
         {
@@ -1163,7 +1173,10 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             steps = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP);
             if (steps != 0)
             {
-                steps -= 1;
+                if (fastHatch && steps > 1)
+                    steps -= 2;
+                else
+                    steps -= 1;
                 SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &steps);
             }
             else // hatch the egg

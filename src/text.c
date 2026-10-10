@@ -829,10 +829,16 @@ u16 RenderText(struct TextPrinter *textPrinter)
             DecompressGlyph_NormalCopy2(currChar, textPrinter->japanese);
             break;
         case FONT_MALE:
-            DecompressGlyph_Male(currChar, textPrinter->japanese);
+            if (gSaveBlock2Ptr->optionsTextMode != OPTIONS_TEXT_MODE_COLORS)
+                DecompressGlyph_Male(currChar, textPrinter->japanese);
+            else
+                DecompressGlyph_Normal(currChar, textPrinter->japanese);
             break;
         case FONT_FEMALE:
-            DecompressGlyph_Female(currChar, textPrinter->japanese);
+            if (gSaveBlock2Ptr->optionsTextMode != OPTIONS_TEXT_MODE_COLORS)
+                DecompressGlyph_Female(currChar, textPrinter->japanese);
+            else
+                DecompressGlyph_Normal(currChar, textPrinter->japanese);
             break;
         }
 

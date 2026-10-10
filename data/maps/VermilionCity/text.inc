@@ -60,15 +60,37 @@ VermilionCity_Text_DoYouHaveATicket::
     .string "Welcome to the S.S. ANNE!\p"
     .string "Excuse me, do you have a ticket?$"
 
-VermilionCity_Text_FlashedSSTicket::
+VermilionCity_Text_FlashedSSTicketColor::
+    .string "{FONT_NORMAL}{COLOR DARK_GREY}{PLAYER} flashed the S.S. TICKET!\p"
+    .string "{FONT_MALE}{COLOR BLUE}Great!\n"
+    .string "Welcome to the S.S. ANNE!$"
+
+VermilionCity_Text_FlashedSSTicketColorless::
     .string "{FONT_NORMAL}{PLAYER} flashed the S.S. TICKET!\p"
     .string "{FONT_MALE}Great!\n"
     .string "Welcome to the S.S. ANNE!$"
 
-VermilionCity_Text_DontHaveNeededSSTicket::
+VermilionCity_Text_FlashedSSTicketColorInverted::
+    .string "{FONT_NORMAL}{COLOR DARK_GREY}{PLAYER} flashed the S.S. TICKET!\p"
+    .string "{FONT_MALE}{COLOR RED}Great!\n"
+    .string "Welcome to the S.S. ANNE!$"
+
+VermilionCity_Text_DontHaveNeededSSTicketColor::
+    .string "{FONT_NORMAL}{COLOR DARK_GREY}{PLAYER} doesn't have the needed\n"
+    .string "S.S. TICKET.\p"
+    .string "{FONT_MALE}{COLOR BLUE}Sorry!\p"
+    .string "You need a ticket to get aboard.$"
+
+VermilionCity_Text_DontHaveNeededSSTicketColorless::
     .string "{FONT_NORMAL}{PLAYER} doesn't have the needed\n"
     .string "S.S. TICKET.\p"
     .string "{FONT_MALE}Sorry!\p"
+    .string "You need a ticket to get aboard.$"
+
+VermilionCity_Text_DontHaveNeededSSTicketColorInverted::
+    .string "{FONT_NORMAL}{COLOR DARK_GREY}{PLAYER} doesn't have the needed\n"
+    .string "S.S. TICKET.\p"
+    .string "{FONT_MALE}{COLOR RED}Sorry!\p"
     .string "You need a ticket to get aboard.$"
 
 VermilionCity_Text_TheShipSetSail::

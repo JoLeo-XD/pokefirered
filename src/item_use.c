@@ -181,11 +181,26 @@ static void Task_WaitFadeIn_CallItemUseOnFieldCB(u8 taskId)
 
 static void DisplayItemMessageInCurrentContext(u8 taskId, bool8 inField, u8 fontId, const u8 *str)
 {
+    u8 textColor = TEXT_COLOR_DARK_GRAY;
+    bool8 isTextColorMale = fontId == FONT_MALE;
+    bool8 isTextColorFemale = fontId == FONT_FEMALE;
+
+    if (gSaveBlock2Ptr->optionsTextMode == OPTIONS_TEXT_MODE_COLORS_INVERTED)
+    {
+        isTextColorMale = isTextColorFemale;
+        isTextColorFemale = fontId == FONT_MALE;
+    }
+    if (isTextColorMale)
+        textColor = TEXT_COLOR_BLUE;
+    else if (isTextColorFemale)
+        textColor = TEXT_COLOR_RED;
+    if (gSaveBlock2Ptr->optionsTextMode == OPTIONS_TEXT_MODE_FONTS)
+        textColor = TEXT_COLOR_DARK_GRAY;
     StringExpandPlaceholders(gStringVar4, str);
     if (inField == FALSE)
-        DisplayItemMessageInBag(taskId, fontId, gStringVar4, Task_ReturnToBagFromContextMenu);
+        DisplayItemMessageInBagColor(taskId, fontId, textColor, gStringVar4, Task_ReturnToBagFromContextMenu);
     else
-        DisplayItemMessageOnField(taskId, fontId, gStringVar4, Task_ItemUse_CloseMessageBoxAndReturnToField);
+        DisplayItemMessageOnFieldColor(taskId, fontId, textColor, gStringVar4, Task_ItemUse_CloseMessageBoxAndReturnToField);
 }
 
 static void PrintNotTheTimeToUseThat(u8 taskId, bool8 inField)

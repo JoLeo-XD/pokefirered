@@ -323,6 +323,27 @@ static void ReadKeys(void)
     gMain.heldKeysRaw = keyInput;
     gMain.heldKeys = gMain.heldKeysRaw;
 
+    // Remap L to A if the One Hand Mode option is enabled.
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
+    {
+        if (JOY_NEW(L_BUTTON))
+            gMain.newKeys |= A_BUTTON;
+
+        if (JOY_HELD(L_BUTTON))
+            gMain.heldKeys |= A_BUTTON;
+    }
+
+    // Remap Select to Start if the One Hand Mode option is enabled.
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
+    {
+        if (JOY_NEW(SELECT_BUTTON))
+            gMain.newKeys |= START_BUTTON;
+
+        if (JOY_HELD(SELECT_BUTTON))
+            gMain.heldKeys |= START_BUTTON;
+    }
+
+
     if (JOY_NEW(gMain.watchedKeysMask))
         gMain.watchedKeysPressed = TRUE;
 }

@@ -112,7 +112,7 @@ static void Cmd_if_doesnt_have_move_with_effect(void);
 static void Cmd_if_any_move_disabled_or_encored(void);
 static void Cmd_if_curr_move_disabled_or_encored(void);
 static void Cmd_flee(void);
-static void Cmd_if_random_safari_flee(void);
+static void Cmd_nop_if_random_safari_flee(void); //No OP
 static void Cmd_watch(void);
 static void Cmd_get_hold_effect(void);
 static void Cmd_get_gender(void);
@@ -216,7 +216,7 @@ static const BattleAICmdFunc sBattleAICmdTable[] =
     Cmd_if_any_move_disabled_or_encored,  // 0x43
     Cmd_if_curr_move_disabled_or_encored, // 0x44
     Cmd_flee,                             // 0x45
-    Cmd_if_random_safari_flee,            // 0x46
+    Cmd_nop_if_random_safari_flee,            // 0x46
     Cmd_watch,                            // 0x47
     Cmd_get_hold_effect,                  // 0x48
     Cmd_get_gender,                       // 0x49
@@ -1710,8 +1710,9 @@ static void Cmd_flee(void)
     AI_THINKING_STRUCT->aiAction |= (AI_ACTION_DONE | AI_ACTION_FLEE | AI_ACTION_DO_NOT_ATTACK); // what matters is AI_ACTION_FLEE being enabled.
 }
 
-static void Cmd_if_random_safari_flee(void)
-{
+static void Cmd_nop_if_random_safari_flee(void)
+{   // Nulled out, since it now checks whether a pokémon flees or not directly in the HandleAction_WatchesCarefully function.
+    /*
     u8 safariFleeRate;
 
     if (gBattleStruct->safariRockThrowCounter)
@@ -1732,6 +1733,7 @@ static void Cmd_if_random_safari_flee(void)
     if ((u8)(Random() % 100) < safariFleeRate)
         sAIScriptPtr = T1_READ_PTR(sAIScriptPtr + 1);
     else
+    */
         sAIScriptPtr += 5;
 }
 

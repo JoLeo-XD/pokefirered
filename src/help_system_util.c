@@ -45,7 +45,7 @@ u8 RunHelpSystemCallback(void)
     {
     case 0:
         sInHelpSystem = 0;
-        if (gSaveBlock2Ptr->optionsHelpEnabled == FALSE)
+        if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
             return 0;
         if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
             return 0;
@@ -560,8 +560,6 @@ void DecompressAndRenderGlyph(u8 fontId, u16 glyph, struct Bitmap *srcBlit, stru
 {
     if (fontId == FONT_SMALL)
         DecompressGlyph_Small(glyph, FALSE);
-    else if (fontId == FONT_FEMALE)
-        DecompressGlyph_Female(glyph, FALSE);
     else
         DecompressGlyph_Normal(glyph, FALSE);
     srcBlit->pixels = gGlyphInfo.pixels;
@@ -576,7 +574,7 @@ void DecompressAndRenderGlyph(u8 fontId, u16 glyph, struct Bitmap *srcBlit, stru
 void HelpSystem_PrintTextInTopLeftCorner(const u8 * str)
 {
     GenerateFontHalfRowLookupTable(TEXT_COLOR_WHITE, TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_DARK_GRAY);
-    HelpSystemRenderText(5, gDecompressionBuffer + 0x3D00, str, 6, 2, 7, 2);
+    HelpSystemRenderText(2, gDecompressionBuffer + 0x3D00, str, 6, 2, 7, 2);
 }
 
 void HelpSystem_PrintTextRightAlign_Row52(const u8 * str)
@@ -658,7 +656,7 @@ s32 HelpSystem_GetMenuInput(void)
         PlaySE(SE_SELECT);
         return -2;
     }
-    else if (JOY_NEW(L_BUTTON | R_BUTTON))
+    else if ((JOY_NEW(L_BUTTON) && JOY_HELD(R_BUTTON)) || (JOY_NEW(R_BUTTON) && JOY_HELD(L_BUTTON)))
     {
         return -6;
     }

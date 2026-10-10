@@ -61,7 +61,7 @@ PalletTown_RivalsHouse_Text_LookingNiceInNoTime::
     .string "DAISY: Okay, I'll get it looking\n"
     .string "nice in no time.$"
 
-PalletTown_RivalsHouse_Text_ThereYouGoAllDone::
+PalletTown_RivalsHouse_Text_ThereYouGoAllDoneColor::
 .ifdef BUGFIX @ The localizers missed what should be a textcolor change in the localizations.
     .string "{FONT_NORMAL}{COLOR DARK_GRAY}{STR_VAR_1} looks dreamily content…\p"
     .string "{FONT_FEMALE}{COLOR RED}DAISY: There you go! All done.\n"
@@ -69,6 +69,25 @@ PalletTown_RivalsHouse_Text_ThereYouGoAllDone::
     .string "{FONT_NORMAL}{STR_VAR_1} looks dreamily content…\p"
     .string "{FONT_FEMALE}DAISY: There you go! All done.\n"
 .endif
+    .string "See? Doesn't it look nice?\p"
+    .string "Giggle…\n"
+    .string "It's such a cute POKéMON.$"
+
+PalletTown_RivalsHouse_Text_ThereYouGoAllDoneColorInverted::
+.ifdef BUGFIX @ The localizers missed what should be a textcolor change in the localizations.
+    .string "{FONT_NORMAL}{COLOR DARK_GRAY}{STR_VAR_1} looks dreamily content…\p"
+    .string "{FONT_FEMALE}{COLOR BLUE}DAISY: There you go! All done.\n"
+.else @ In the JP games, gender-based text used a different font instead of different colors.
+    .string "{FONT_NORMAL}{STR_VAR_1} looks dreamily content…\p"
+    .string "{FONT_FEMALE}DAISY: There you go! All done.\n"
+.endif
+    .string "See? Doesn't it look nice?\p"
+    .string "Giggle…\n"
+    .string "It's such a cute POKéMON.$"
+
+PalletTown_RivalsHouse_Text_ThereYouGoAllDoneColorless::
+    .string "{FONT_NORMAL}{STR_VAR_1} looks dreamily content…\p"
+    .string "{FONT_FEMALE}DAISY: There you go! All done.\n"
     .string "See? Doesn't it look nice?\p"
     .string "Giggle…\n"
     .string "It's such a cute POKéMON.$"

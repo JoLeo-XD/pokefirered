@@ -548,7 +548,7 @@ static void PrintBattleRecords(void)
     left = 0xD0 - GetStringWidth(FONT_NORMAL, gStringVar4, -1);
     AddTextPrinterParameterized4(0, FONT_NORMAL, left / 2, 4, 0, 2, sTextColor, 0, gStringVar4);
     PrintTotalRecord(&gSaveBlock2Ptr->linkBattleRecords);
-    AddTextPrinterParameterized4(0, FONT_NORMAL, 0x54, 0x30, 0, 2, sTextColor, 0, gString_BattleRecords_ColumnHeaders);
+    AddTextPrinterParameterized4(0, FONT_NORMAL, 0x3C, 0x30, 0, 2, sTextColor, 0, gString_BattleRecords_ColumnHeaders);
     for (i = 0; i < LINK_B_RECORDS_COUNT; i++)
         PrintOpponentBattleRecord(&gSaveBlock2Ptr->linkBattleRecords.entries[i], 0x3D + 14 * i);
     CommitWindow(0);

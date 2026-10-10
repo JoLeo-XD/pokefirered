@@ -60,8 +60,29 @@ PalletTown_RivalsHouse_EventScript_GroomMon::
 	waitfanfare
 	special DaisyMassageServices
 	fadescreen FADE_FROM_BLACK
+	specialvar VAR_RESULT, GetTextColorMode
+	switch VAR_RESULT
+	case 0, PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColor
+	case 1, PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColorless
+	case 3, PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColorInverted
+	goto PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColor
+	end
+
+PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColor::
 	special BufferMonNickname
-	msgbox PalletTown_RivalsHouse_Text_ThereYouGoAllDone
+	msgbox PalletTown_RivalsHouse_Text_ThereYouGoAllDoneColor
+	release
+	end
+
+PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColorless::
+	special BufferMonNickname
+	msgbox PalletTown_RivalsHouse_Text_ThereYouGoAllDoneColorless
+	release
+	end
+
+PalletTown_RivalsHouse_EventScript_ThereYouGoAllDoneColorInverted::
+	special BufferMonNickname
+	msgbox PalletTown_RivalsHouse_Text_ThereYouGoAllDoneColorInverted
 	release
 	end
 

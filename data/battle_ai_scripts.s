@@ -3240,7 +3240,6 @@ AI_Roaming_End::
 	end
 
 AI_Safari::
-	if_random_safari_flee AI_Safari_Flee
 	watch
 
 AI_Safari_Flee::

@@ -650,7 +650,8 @@ static void Task_EvolutionScene(u8 taskId)
     }
 
     // check if B Button was held, so the evolution gets stopped
-    if (gMain.heldKeys == B_BUTTON
+    if ((gMain.heldKeys == B_BUTTON
+        || (gMain.heldKeys == SELECT_BUTTON && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
         && gTasks[taskId].tState == EVOSTATE_WAIT_CYCLE_MON_SPRITE
         && gTasks[sEvoGraphicsTaskId].isActive
         && gTasks[taskId].tBits & TASK_BIT_CAN_STOP)
@@ -930,7 +931,11 @@ static void Task_EvolutionScene(u8 taskId)
                 sEvoCursorPos = 0;
                 BattleCreateYesNoCursorAt();
             }
+#ifndef BUGFIX
             if (JOY_NEW(DPAD_DOWN) && sEvoCursorPos == 0)
+#else // Slightly redundant since most D-Pads don't allow you to press both at once anyway. (Except the Joy-Cons, ironically enough)
+            else if (JOY_NEW(DPAD_DOWN) && sEvoCursorPos == 0)
+#endif
             {
                 // Moved onto NO
                 PlaySE(SE_SELECT);
@@ -956,7 +961,13 @@ static void Task_EvolutionScene(u8 taskId)
                         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
                 }
             }
+#ifndef BUGFIX
+            // Very slight oversight allowed the player to be able to press A and B at the same time,
+            // resulting in both conditions executing at once. Thankfully only a visual bug though.
             if (JOY_NEW(B_BUTTON))
+#else
+            else if (JOY_NEW(B_BUTTON))
+#endif
             {
                 // Equivalent to selecting NO
                 HandleBattleWindow(0x17, 8, 0x1D, 0xD, WINDOW_CLEAR);

@@ -1143,8 +1143,8 @@ void Task_HandleChooseMonInput(u8 taskId)
         case B_BUTTON: // also handles pressing A_BUTTON on Cancel
             HandleChooseMonCancel(taskId, slotPtr);
             break;
-        case SELECT_BUTTON: //Shortcut to swap party mons, only works in the field if there is another mon to swap with,
-                            //if the selection is actually a pokemon, and if the action is to choose a mon
+        case SELECT_BUTTON: // Shortcut to swap party mons, only works in the field if there is another mon to swap with,
+                            // if the selection is actually a pokemon, and if the action is to choose a mon
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD
              && *slotPtr != SLOT_CANCEL
              && GetMonData(&gPlayerParty[*slotPtr], MON_DATA_SPECIES) != SPECIES_NONE
@@ -1348,7 +1348,7 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
         }
         break;
     }
-    if (JOY_NEW(SELECT_BUTTON))
+    if (JOY_NEW(SELECT_BUTTON) && gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
     {
         if (gPartyMenu.action == PARTY_ACTION_CHOOSE_MON)
             return SELECT_BUTTON;
@@ -1361,7 +1361,7 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
         }
     }
 
-    if (JOY_NEW(START_BUTTON))
+    if (JOY_NEW(START_BUTTON) || (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND && JOY_NEW(SELECT_BUTTON)))
         return START_BUTTON;
     if (movementDir)
     {
@@ -1370,6 +1370,8 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
     }
     if (JOY_NEW(A_BUTTON) && *slotPtr == SLOT_CANCEL)
         return B_BUTTON;
+    if (JOY_NEW(START_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
+        return A_BUTTON;
     return JOY_NEW(A_BUTTON | B_BUTTON);
 }
 

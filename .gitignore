@@ -14,6 +14,12 @@
 *.sgm
 *.sa1
 *.sg1
+*.sa2
+*.sg2
+*.sa3
+*.sg3
+*.sa4
+*.sg4
 *.gbapal
 *.hwjpnfont
 *.i

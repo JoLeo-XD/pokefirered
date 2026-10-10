@@ -1199,6 +1199,22 @@ static u8 HandleInput_InBox_Normal(void)
         gStorage->cursorVerticalWrap = 0;
         gStorage->cursorHorizontalWrap = 0;
         gStorage->cursorFlipTimer = 0;
+
+        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+        {
+            if (JOY_HELD(L_BUTTON))
+                return INPUT_SCROLL_LEFT;
+            if (JOY_HELD(R_BUTTON))
+                return INPUT_SCROLL_RIGHT;
+        }
+        else
+        {
+            if (JOY_HELD(R_BUTTON) && JOY_HELD(DPAD_LEFT))
+                return INPUT_SCROLL_LEFT;
+            if (JOY_HELD(R_BUTTON) && JOY_HELD(DPAD_RIGHT))
+                return INPUT_SCROLL_RIGHT;
+        }
+
         if (JOY_REPT(DPAD_UP))
         {
             input = INPUT_MOVE_CURSOR;
@@ -1257,7 +1273,8 @@ static u8 HandleInput_InBox_Normal(void)
             break;
         }
 
-        if ((JOY_NEW(A_BUTTON)) && SetSelectionMenuTexts())
+        if ((JOY_NEW(A_BUTTON) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
+            && SetSelectionMenuTexts())
         {
             if (!sInMultiMoveMode)
                 return INPUT_IN_MENU;
@@ -1294,11 +1311,6 @@ static u8 HandleInput_InBox_Normal(void)
         if (JOY_NEW(B_BUTTON))
             return INPUT_PRESSED_B;
 
-        if (JOY_HELD(L_BUTTON))
-            return INPUT_SCROLL_LEFT;
-        if (JOY_HELD(R_BUTTON))
-            return INPUT_SCROLL_RIGHT;
-
         if (JOY_NEW(SELECT_BUTTON))
         {
             ToggleCursorMultiMoveMode();
@@ -1317,7 +1329,7 @@ static u8 HandleInput_InBox_Normal(void)
 
 static u8 HandleInput_InBox_GrabbingMultiple(void)
 {
-    if (JOY_HELD(A_BUTTON))
+    if (JOY_HELD(A_BUTTON) || (JOY_HELD(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
     {
         if (JOY_REPT(DPAD_UP))
         {
@@ -1422,7 +1434,7 @@ static u8 HandleInput_InBox_MovingMultiple(void)
         else
             return INPUT_SCROLL_RIGHT;
     }
-    else if (JOY_NEW(A_BUTTON))
+    else if (JOY_NEW(A_BUTTON) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
     {
         if (MultiMove_CanPlaceSelection())
         {
@@ -1438,10 +1450,20 @@ static u8 HandleInput_InBox_MovingMultiple(void)
 
     else
     {
-        if (JOY_HELD(L_BUTTON))
-            return INPUT_SCROLL_LEFT;
-        if (JOY_HELD(R_BUTTON))
-            return INPUT_SCROLL_RIGHT;
+        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+        {
+            if (JOY_HELD(L_BUTTON))
+                return INPUT_SCROLL_LEFT;
+            if (JOY_HELD(R_BUTTON))
+                return INPUT_SCROLL_RIGHT;
+        }
+        else
+        {
+            if (JOY_HELD(R_BUTTON) && JOY_HELD(DPAD_LEFT))
+                return INPUT_SCROLL_LEFT;
+            if (JOY_HELD(R_BUTTON) && JOY_HELD(DPAD_RIGHT))
+                return INPUT_SCROLL_RIGHT;
+        }
 
         return INPUT_NONE;
     }
@@ -1503,7 +1525,7 @@ static u8 HandleInput_InParty(void)
             break;
         }
 
-        if (JOY_NEW(A_BUTTON))
+        if (JOY_NEW(A_BUTTON) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
         {
             if (sCursorPosition == PARTY_SIZE)
             {
@@ -1600,12 +1622,15 @@ static u8 HandleInput_BoxTitle(void)
         if (JOY_HELD(DPAD_RIGHT))
             return INPUT_SCROLL_RIGHT;
 
-        if (JOY_HELD(L_BUTTON))
-            return INPUT_SCROLL_LEFT;
-        if (JOY_HELD(R_BUTTON))
-            return INPUT_SCROLL_RIGHT;
+        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+        {
+            if (JOY_HELD(L_BUTTON))
+                return INPUT_SCROLL_LEFT;
+            if (JOY_HELD(R_BUTTON))
+                return INPUT_SCROLL_RIGHT;
+        }
 
-        if (JOY_NEW(A_BUTTON))
+        if (JOY_NEW(A_BUTTON) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
         {
             AnimateBoxScrollArrows(FALSE);
             AddBoxMenu();
@@ -1686,7 +1711,7 @@ static u8 HandleInput_OnButtons(void)
             break;
         }
 
-        if (JOY_NEW(A_BUTTON))
+        if (JOY_NEW(A_BUTTON) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
             return cursorPosition == 0 ? INPUT_SHOW_PARTY : INPUT_CLOSE_BOX;
 
         if (JOY_NEW(B_BUTTON))
@@ -2125,7 +2150,7 @@ s16 HandleMenuInput(void)
 
     do
     {
-        if (JOY_NEW(A_BUTTON))
+        if (JOY_NEW(A_BUTTON) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
         {
             input = Menu_GetCursorPos();
             break;

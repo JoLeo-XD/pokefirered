@@ -888,8 +888,8 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 static void Task_HofPC_HandleInput(u8 taskId)
 {
     u16 i;
-    u8 leftButtonPressed = JOY_NEW(DPAD_LEFT) || JOY_NEW(L_BUTTON);
-    u8 rightButtonPressed = JOY_NEW(DPAD_RIGHT) || JOY_NEW(R_BUTTON);
+    u8 leftButtonPressed = JOY_NEW(DPAD_LEFT) || (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND && JOY_NEW(L_BUTTON));
+    u8 rightButtonPressed = JOY_NEW(DPAD_RIGHT) || (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND && JOY_NEW(R_BUTTON));
 
     if (leftButtonPressed)
     {

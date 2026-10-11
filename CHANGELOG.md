@@ -50,6 +50,9 @@ untracked files.
   - Add gender-specific dialogue fonts and options for colors, fonts, both, or
     inverted gender colors. Apply the selected style to dialogue, menus, shops,
     and related map messages.
+  - Set the Bill's PC "Move Pokémon" and "Move Items" options as the default top
+    entries instead of "Withdraw" and "Deposit", which are now at the bottom.
+  - Allow faster left/right scrolling in the item bag and related menu views.
   - Update male/female shop-clerk text styling and add female clerks to several
     shops.
   - A handful of oversights have been revised and fixed. The build now defaults
@@ -69,9 +72,10 @@ untracked files.
   encounter tables at a 1% rate (excluding Eeveelutions), and revise item data,
   regional map data, trainer/Pokédex text, and event encounters. Add
   gender-specific Pokémon sprite assets; these are not yet used in-game. Add the
-  cloud weather effect on Celadon rooftops, and revise other map details and
-  event dialogue, including the S.S. Anne ticket and Daisy's grooming messages
-  to match text styles.
+  cloud weather effect on Celadon rooftops, and add a Cinnabar Island fisherman
+  who gives the player the Good Rod if they do not already have it, preventing a
+  possible softlock. Revise other map details and event dialogue, including the
+  S.S. Anne ticket and Daisy's grooming messages to match text styles.
 - **Audio:** Update song and voice-group registrations. Add Mew battle music and
   Faraway Island music (uses the Abandoned Ship theme from RSE).
 - **Build and tooling:** Add Poryscript build integration and its tool/config

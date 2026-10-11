@@ -3693,21 +3693,24 @@ static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void)
 
 static bool8 TrySetUpFocusPunch(void)
 {
-    if (!(gHitMarker & HITMARKER_RUN))
+    if (gHitMarker & HITMARKER_RUN)
     {
-        while (gBattleStruct->focusPunchBattlerId < gBattlersCount)
+        gBattleStruct->focusPunchBattlerId = gBattlersCount;
+        return FALSE;
+    }
+
+    while (gBattleStruct->focusPunchBattlerId < gBattlersCount)
+    {
+        gActiveBattler = gBattlerAttacker = gBattleStruct->focusPunchBattlerId;
+        ++gBattleStruct->focusPunchBattlerId;
+        if (gChosenMoveByBattler[gActiveBattler] == MOVE_FOCUS_PUNCH
+         && gChosenActionByBattler[gActiveBattler] != B_ACTION_SWITCH
+         && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
+         && !(gDisableStructs[gBattlerAttacker].truantCounter)
+         && !(gProtectStructs[gActiveBattler].noValidMoves))
         {
-            gActiveBattler = gBattlerAttacker = gBattleStruct->focusPunchBattlerId;
-            ++gBattleStruct->focusPunchBattlerId;
-            if (gChosenMoveByBattler[gActiveBattler] == MOVE_FOCUS_PUNCH
-             && gChosenActionByBattler[gActiveBattler] != B_ACTION_SWITCH
-             && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
-             && !(gDisableStructs[gBattlerAttacker].truantCounter)
-             && !(gProtectStructs[gActiveBattler].noValidMoves))
-            {
-                BattleScriptExecute(BattleScript_FocusPunchSetUp);
-                return TRUE;
-            }
+            BattleScriptExecute(BattleScript_FocusPunchSetUp);
+            return TRUE;
         }
     }
     return FALSE;

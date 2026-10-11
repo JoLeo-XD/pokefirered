@@ -492,7 +492,7 @@ void AddTextPrinterParameterized5(u8 windowId, u8 fontId, const u8 *str, u8 x, u
     AddTextPrinter(&printer, speed, callback);
 }
 
-void Menu_PrintFormatIntlPlayerName(u8 windowId, const u8 * src, u16 x, u16 y)
+void Menu_PrintFormatIntlPlayerName(u8 windowId, const u8 * src, u16 x, u16 y, bool8 switchFont)
 {
     s32 i;
 
@@ -502,6 +502,11 @@ void Menu_PrintFormatIntlPlayerName(u8 windowId, const u8 * src, u16 x, u16 y)
     StringExpandPlaceholders(gStringVar4, src);
     if (i != 5)
     {
+        if (!switchFont)
+        {
+            AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, 0xFF, NULL);
+            return;
+        }
         if (gSaveBlock2Ptr->playerGender == MALE)
             AddTextPrinterParameterized(windowId, FONT_MALE, gStringVar4, x, y, 0xFF, NULL);
         else
@@ -509,6 +514,11 @@ void Menu_PrintFormatIntlPlayerName(u8 windowId, const u8 * src, u16 x, u16 y)
     }
     else
     {
+        if (!switchFont)
+        {
+            AddTextPrinterParameterized5(windowId, FONT_NORMAL, gStringVar4, x, y, 0xFF, NULL, 0, 0);
+            return;
+        }
         if (gSaveBlock2Ptr->playerGender == MALE)
             AddTextPrinterParameterized5(windowId, FONT_MALE, gStringVar4, x, y, 0xFF, NULL, 0, 0);
         else

@@ -522,7 +522,7 @@ static const struct ListMenuTemplate sListMenuTemplate_OrderedListMenu = {
     .cursorShadowPal = 3,
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
-    .scrollMultiple = 1,
+    .scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD,
     .fontId = FONT_NORMAL,
     .cursorKind = 0,
 };
@@ -1273,6 +1273,8 @@ static void DexScreen_InitGfxForNumericalOrderList(void)
     template.items = sPokedexScreenData->listItems;
     template.windowId = sPokedexScreenData->numericalOrderWindowId;
     template.totalItems = sPokedexScreenData->orderedDexCount;
+    if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+        template.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
     DexScreen_InitListMenuForOrderedList(&template, sPokedexScreenData->dexOrderId);
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
     DexScreen_PrintStringWithAlignment(gText_PokemonListNoColor, TEXT_CENTER);

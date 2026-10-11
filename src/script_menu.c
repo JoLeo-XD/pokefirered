@@ -1015,7 +1015,7 @@ static void CreatePCMenuWindow(void)
     u8 windowWidth;
     u8 numItems;
     u8 windowId;
-    switch (GetStringTilesWide(gText_SPc))
+    switch (GetStringTilesWide(gText_SPcM))
     {
     default:
         if (FlagGet(FLAG_SYS_POKEDEX_GET))
@@ -1053,8 +1053,11 @@ static void CreatePCMenuWindow(void)
         AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_BillSPc, cursorWidth, 2 , TEXT_SKIP_DRAW, NULL);
     else
         AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_SomeoneSPc, cursorWidth, 2 , TEXT_SKIP_DRAW, NULL);
-    StringExpandPlaceholders(gStringVar4, gText_SPc);
-    Menu_PrintFormatIntlPlayerName(windowId, gStringVar4, cursorWidth, 18);
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        StringExpandPlaceholders(gStringVar4, gText_SPcM);
+    else
+        StringExpandPlaceholders(gStringVar4, gText_SPcF);
+    Menu_PrintFormatIntlPlayerName(windowId, gStringVar4, cursorWidth, 18, FALSE);
     Menu_InitCursor(windowId, FONT_NORMAL, 0, 2, 16, numItems, 0);
     CreateMCMenuInputHandlerTask(FALSE, numItems, windowId, MULTICHOICE_NONE);
     ScheduleBgCopyTilemapToVram(0);

@@ -668,7 +668,10 @@ static void Bag_BuildListMenuTemplate(u8 pocket)
     gMultiuseListMenuTemplate.moveCursorFunc = BagListMenuMoveCursorFunc;
     gMultiuseListMenuTemplate.itemPrintFunc = BagListMenuItemPrintFunc;
     gMultiuseListMenuTemplate.cursorKind = 0;
-    gMultiuseListMenuTemplate.scrollMultiple = 0;
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
+        gMultiuseListMenuTemplate.scrollMultiple = 0;
+    else
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD;
 }
 
 static void BagListMenuGetItemNameColored(u8 *dest, u16 itemId)
@@ -1076,10 +1079,16 @@ static void Task_BagMenu_HandleInput(u8 taskId)
     switch (ProcessPocketSwitchInput(taskId, gBagMenuState.pocket))
     {
     case 1:
-        SwitchPockets(taskId, -1, FALSE);
+        if (gBagMenuState.pocket == 0)
+            SwitchPockets(taskId, NUM_BAG_POCKETS_NO_CASES - 1, FALSE);
+        else
+            SwitchPockets(taskId, -1, FALSE);
         return;
     case 2:
-        SwitchPockets(taskId,  1, FALSE);
+        if (gBagMenuState.pocket == NUM_BAG_POCKETS_NO_CASES - 1)
+            SwitchPockets(taskId, -(NUM_BAG_POCKETS_NO_CASES - 1), FALSE);
+        else
+            SwitchPockets(taskId, 1, FALSE);
         return;
     default:
         if (JOY_NEW(SELECT_BUTTON) && gBagMenuState.location == ITEMMENULOCATION_FIELD)
@@ -1153,17 +1162,17 @@ static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId)
     if (sBagMenuDisplay->pocketSwitchMode != 0)
         return 0;
     lrState = GetLRKeysPressed();
-    if (JOY_NEW(DPAD_LEFT) || lrState == MENU_L_PRESSED)
+    if ((JOY_NEW(DPAD_LEFT) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND) || lrState == MENU_L_PRESSED)
     {
-        if (pocketId == POCKET_ITEMS - 1)
-            return 0;
+        /*if (pocketId == POCKET_ITEMS - 1)
+            return 0;*/
         PlaySE(SE_BAG_POCKET);
         return 1;
     }
-    if (JOY_NEW(DPAD_RIGHT) || lrState == MENU_R_PRESSED)
+    if ((JOY_NEW(DPAD_RIGHT) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND) || lrState == MENU_R_PRESSED)
     {
-        if (pocketId >= POCKET_POKE_BALLS - 1)
-            return 0;
+        /*if (pocketId >= NUM_BAG_POCKETS_NO_CASES - 1)
+            return 0;*/
         PlaySE(SE_BAG_POCKET);
         return 2;
     }
@@ -1202,12 +1211,18 @@ static void Task_AnimateSwitchPockets(u8 taskId)
         case 1:
             gBagMenuState.pocket += tSwitchDir;
             SwitchTaskToFollowupFunc(taskId);
-            SwitchPockets(taskId, -1, TRUE);
+            if (gBagMenuState.pocket == 0)
+                SwitchPockets(taskId, NUM_BAG_POCKETS_NO_CASES - 1, TRUE);
+            else
+                SwitchPockets(taskId, -1, TRUE);
             return;
         case 2:
             gBagMenuState.pocket += tSwitchDir;
             SwitchTaskToFollowupFunc(taskId);
-            SwitchPockets(taskId,  1, TRUE);
+            if (gBagMenuState.pocket == NUM_BAG_POCKETS_NO_CASES - 1)
+                SwitchPockets(taskId, -(NUM_BAG_POCKETS_NO_CASES - 1), TRUE);
+            else
+                SwitchPockets(taskId,  1, TRUE);
             return;
         }
     }

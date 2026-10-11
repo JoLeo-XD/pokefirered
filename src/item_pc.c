@@ -504,7 +504,10 @@ static void ItemPc_BuildListMenuTemplate(void)
     gMultiuseListMenuTemplate.cursorShadowPal = 3;
     gMultiuseListMenuTemplate.moveCursorFunc = ItemPc_MoveCursorFunc;
     gMultiuseListMenuTemplate.itemPrintFunc = ItemPc_ItemPrintFunc;
-    gMultiuseListMenuTemplate.scrollMultiple = 0;
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD;
+    else
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
     gMultiuseListMenuTemplate.cursorKind = 0;
 }
 

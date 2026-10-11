@@ -58,7 +58,6 @@ u8 RunHelpSystemCallback(void)
                 return 0;
             }
             m4aMPlayStop(&gMPlayInfo_SE1);
-            m4aMPlayStop(&gMPlayInfo_SE2);
             PlaySE(SE_HELP_OPEN);
             if (!gDisableHelpSystemVolumeReduce)
                 m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x80);

@@ -199,9 +199,9 @@ s32 ListMenu_ProcessInput(u8 listTaskId)
             leftButton = gMain.newAndRepeatedKeys & DPAD_LEFT;
             rightButton = gMain.newAndRepeatedKeys & DPAD_RIGHT;
             break;
-        case LIST_MULTIPLE_SCROLL_L_R:
-            leftButton = gMain.newAndRepeatedKeys & L_BUTTON;
-            rightButton = gMain.newAndRepeatedKeys & R_BUTTON;
+        case LIST_MULTIPLE_SCROLL_DPAD_L_R:
+            leftButton = gMain.newAndRepeatedKeys & (L_BUTTON | DPAD_LEFT);
+            rightButton = gMain.newAndRepeatedKeys & (R_BUTTON | DPAD_RIGHT);
             break;
         }
         if (leftButton)

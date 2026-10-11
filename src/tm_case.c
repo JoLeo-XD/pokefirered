@@ -673,7 +673,10 @@ static void InitTMCaseListMenuItems(void)
     gMultiuseListMenuTemplate.moveCursorFunc = List_MoveCursorFunc;
     gMultiuseListMenuTemplate.itemPrintFunc = List_ItemPrintFunc;
     gMultiuseListMenuTemplate.cursorKind = 0;
-    gMultiuseListMenuTemplate.scrollMultiple = 0;
+    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD;
+    else
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
 }
 
 static void GetTMNumberAndMoveString(u8 * dest, u16 itemId)

@@ -282,7 +282,7 @@ static s8 PrintStartMenuItems(s8 *cursor_p, u8 nitems)
     {
         if (sStartMenuOrder[i] == STARTMENU_PLAYER || sStartMenuOrder[i] == STARTMENU_PLAYER2)
         {
-            Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable[sStartMenuOrder[i]].text, 8, i * 15);
+            Menu_PrintFormatIntlPlayerName(GetStartMenuWindowId(), sStartMenuActionTable[sStartMenuOrder[i]].text, 8, i * 15, TRUE);
         }
         else
         {
@@ -979,7 +979,7 @@ static void PrintSaveStats(void)
     else
         AddTextPrinterParameterized3(sSaveStatsWindowId, FONT_SMALL, 2, 14, sTextColor_StatName, -1, gSaveStatName_PlayerF);
     SaveStatToString(SAVE_STAT_NAME, gStringVar4, 2);
-    Menu_PrintFormatIntlPlayerName(sSaveStatsWindowId, gStringVar4, 60, 14);
+    Menu_PrintFormatIntlPlayerName(sSaveStatsWindowId, gStringVar4, 60, 14, TRUE);
     AddTextPrinterParameterized3(sSaveStatsWindowId, FONT_SMALL, 2, 28, sTextColor_StatName, -1, gSaveStatName_Badges);
     SaveStatToString(SAVE_STAT_BADGES, gStringVar4, 2);
     AddTextPrinterParameterized3(sSaveStatsWindowId, FONT_SMALL, 60, 28, sTextColor_StatValue, -1, gStringVar4);

@@ -1185,6 +1185,8 @@ static void Task_TryJoinLinkGroup(u8 taskId)
         DrawStdWindowFrame(data->listWindowId, FALSE);
         gMultiuseListMenuTemplate = sListMenuTemplate_UnionRoomGroups;
         gMultiuseListMenuTemplate.windowId = data->listWindowId;
+        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+            gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
         data->listTaskId = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
 
         DrawStdWindowFrame(data->playerNameAndIdWindowId, FALSE);
@@ -2282,6 +2284,8 @@ static void Task_CardOrNewsWithFriend(u8 taskId)
         MG_DrawTextBorder(data->listWindowId);
         gMultiuseListMenuTemplate = sListMenuTemplate_UnionRoomGroups;
         gMultiuseListMenuTemplate.windowId = data->listWindowId;
+        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+            gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
         data->listTaskId = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
 
         MG_DrawTextBorder(data->playerNameAndIdWindowId);
@@ -2447,6 +2451,8 @@ static void Task_CardOrNewsOverWireless(u8 taskId)
             MG_DrawTextBorder(data->listWindowId);
             gMultiuseListMenuTemplate = sListMenuTemplate_UnionRoomGroups;
             gMultiuseListMenuTemplate.windowId = data->listWindowId;
+            if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+                gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
             data->listTaskId = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
 
             CopyBgTilemapBufferToVram(0);

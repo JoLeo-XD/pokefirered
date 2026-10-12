@@ -1268,7 +1268,7 @@ static void PrintNameOnCardBack(void)
     u8 x;
     u8 fontId;
 
-    if (gSaveBlock2Ptr->playerGender == FEMALE)
+    if (sTrainerCardDataPtr->trainerCard.rse.gender == FEMALE)
         fontId = FONT_FEMALE;
     else
         fontId = FONT_MALE;

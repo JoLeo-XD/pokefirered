@@ -57,10 +57,13 @@ and the current branch matches the latest checked-in state for this workspace.
     the BUGFIX and UBFIX settings to be turned on.
 - **Battle fixes and rules:** Resolve the remaining Generation III battle glitches,
   including the Focus Punch and Mail cases, visual glitches, lingering LightningRod,
-  and a broad set of move-logic issues. Flash now reliably always hits, including
-  midair, and lowers accuracy by two stages instead of one; battle-record layout,
-  Quest Log entries, and associated battle messages were revised, and a special
-  message was added for a Pokémon hitting itself via Disobedience.
+  and a broad set of move-logic issues; battle-record layout, Quest Log entries,
+  and associated battle messages were revised, and a special message was added
+  for a Pokémon hitting itself via Disobedience. Improve several HM moves: Flash
+  now always hits, including midair, and lowers accuracy by two stages instead of
+  one; Cut deals double damage to Grass-types and has 25 PP, Fly has 90 power,
+  Strength has a 25% chance to raise the user's Attack, Waterfall can cause flinching,
+  and Rock Smash has 40 power with a 65% chance to lower Defense.
 - **Faraway Island and Mew:** Complete the Old Sea Map event: after Mewtwo is
   caught, an NPC in the Lavender Town Pokémon Center gives the map to unlock the
   ship route to Faraway Island. Add the island's exterior, harbor, and interior,

@@ -103,7 +103,7 @@ static void All_CalculateNItemsAndMaxShowed(void);
 static void Task_BagMenu_HandleInput(u8 taskId);
 static void Task_ItemContextMenuByLocation(u8 taskId);
 static void Bag_FillMessageBoxWithPalette(u32 a0);
-static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId);
+static u8 ProcessPocketSwitchInput(void);
 static void SwitchPockets(u8 taskId, s16 direction, bool16 a2);
 static void Task_AnimateSwitchPockets(u8 taskId);
 static void BeginMovingItemInPocket(u8 taskId, s16 itemIndex);
@@ -671,7 +671,7 @@ static void Bag_BuildListMenuTemplate(u8 pocket)
     if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND)
         gMultiuseListMenuTemplate.scrollMultiple = 0;
     else
-        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD;
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_L_R;
 }
 
 static void BagListMenuGetItemNameColored(u8 *dest, u16 itemId)
@@ -1076,7 +1076,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
         return;
     if (IsActiveOverworldLinkBusy() == TRUE)
         return;
-    switch (ProcessPocketSwitchInput(taskId, gBagMenuState.pocket))
+    switch (ProcessPocketSwitchInput())
     {
     case 1:
         if (gBagMenuState.pocket == 0)
@@ -1156,23 +1156,17 @@ static void Bag_FillMessageBoxWithPalette(u32 a0)
     ScheduleBgCopyTilemapToVram(1);
 }
 
-static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId)
+static u8 ProcessPocketSwitchInput(void)
 {
-    u8 lrState;
     if (sBagMenuDisplay->pocketSwitchMode != 0)
         return 0;
-    lrState = GetLRKeysPressed();
-    if ((JOY_NEW(DPAD_LEFT) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND) || lrState == MENU_L_PRESSED)
+    if (JOY_NEW(DPAD_LEFT))
     {
-        /*if (pocketId == POCKET_ITEMS - 1)
-            return 0;*/
         PlaySE(SE_BAG_POCKET);
         return 1;
     }
-    if ((JOY_NEW(DPAD_RIGHT) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND) || lrState == MENU_R_PRESSED)
+    if (JOY_NEW(DPAD_RIGHT))
     {
-        /*if (pocketId >= NUM_BAG_POCKETS_NO_CASES - 1)
-            return 0;*/
         PlaySE(SE_BAG_POCKET);
         return 2;
     }
@@ -1206,7 +1200,7 @@ static void Task_AnimateSwitchPockets(u8 taskId)
     s16 *data = gTasks[taskId].data;
     if (!MenuHelpers_IsLinkActive() && !BagIsTutorial())
     {
-        switch (ProcessPocketSwitchInput(taskId, gBagMenuState.pocket + tSwitchDir))
+        switch (ProcessPocketSwitchInput())
         {
         case 1:
             gBagMenuState.pocket += tSwitchDir;

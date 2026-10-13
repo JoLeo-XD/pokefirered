@@ -3583,7 +3583,7 @@ static void Task_HandleInput_SelectMove(u8 taskId)
                 return;
             }
         }
-        else if (JOY_NEW(A_BUTTON))
+        else if (JOY_NEW(A_BUTTON) || JOY_NEW(SELECT_BUTTON))
         {
             PlaySE(SE_SELECT);
             if (sMoveSelectionCursorPos == 4)

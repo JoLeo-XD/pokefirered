@@ -131,7 +131,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectNightmare              @ EFFECT_NIGHTMARE
 	.4byte BattleScript_EffectMinimize               @ EFFECT_MINIMIZE
 	.4byte BattleScript_EffectCurse                  @ EFFECT_CURSE
-	.4byte BattleScript_EffectHit                    @ EFFECT_UNUSED_6E
+	.4byte BattleScript_EffectCut                    @ EFFECT_UNUSED_6E
 	.4byte BattleScript_EffectProtect                @ EFFECT_PROTECT
 	.4byte BattleScript_EffectSpikes                 @ EFFECT_SPIKES
 	.4byte BattleScript_EffectForesight              @ EFFECT_FORESIGHT
@@ -1564,6 +1564,14 @@ BattleScript_DoGhostCurse::
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectCut::
+	attackcanceler
+	jumpiftype BS_TARGET, TYPE_GRASS, BattleScript_EffectCutGrass
+	goto BattleScript_HitFromAccCheck
+BattleScript_EffectCutGrass::
+	setbyte sDMG_MULTIPLIER, 2
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectProtect::
 BattleScript_EffectEndure::

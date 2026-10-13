@@ -11,6 +11,7 @@
 #define LIST_NO_MULTIPLE_SCROLL       0
 #define LIST_MULTIPLE_SCROLL_DPAD     1
 #define LIST_MULTIPLE_SCROLL_DPAD_L_R 2
+#define LIST_MULTIPLE_SCROLL_L_R      3
 
 enum
 {

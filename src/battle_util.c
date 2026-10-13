@@ -1208,6 +1208,7 @@ bool8 HandleFaintedMonActions(void)
         case 6:
             if (AbilityBattleEffects(ABILITYEFFECT_INTIMIDATE1, 0, 0, 0, 0)
              || AbilityBattleEffects(ABILITYEFFECT_TRACE, 0, 0, 0, 0)
+             || AbilityBattleEffects(ABILITYEFFECT_IMMUNITY, 0, 0, 0, 0)
              || ItemBattleEffects(ITEMEFFECT_NORMAL, 0, TRUE)
              || AbilityBattleEffects(ABILITYEFFECT_FORECAST, 0, 0, 0, 0))
                 return TRUE;
@@ -2388,7 +2389,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
             side = GetBattlerSide(battler);
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (GetBattlerSide(i) != side && gBattleMons[i].ability == ability)
+                if (GetBattlerSide(i) != side
+                    && !(gAbsentBattlerFlags & gBitTable[i])
+                    && gBattleMons[i].ability == ability)
                 {
                     gLastUsedAbility = ability;
                     effect++;

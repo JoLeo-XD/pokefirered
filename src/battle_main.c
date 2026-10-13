@@ -2895,6 +2895,8 @@ static void TryDoEventsBeforeFirstTurn(void)
         return;
     if (AbilityBattleEffects(ABILITYEFFECT_TRACE, 0, 0, 0, 0) != 0)
         return;
+    if (AbilityBattleEffects(ABILITYEFFECT_IMMUNITY, 0, 0, 0, 0) != 0)
+        return;
     // Check all switch in items having effect from the fastest mon to slowest.
     while (gBattleStruct->switchInItemsCounter < gBattlersCount)
     {
@@ -4072,6 +4074,7 @@ static void HandleAction_UseMove(void)
             if (side != GetBattlerSide(gActiveBattler)
              && *(gBattleStruct->moveTarget + gBattlerAttacker) != gActiveBattler
              && gBattleMons[gActiveBattler].ability == ABILITY_LIGHTNING_ROD
+             && !(gAbsentBattlerFlags & gBitTable[gActiveBattler])
              && GetBattlerTurnOrderNum(gActiveBattler) < var)
                 var = GetBattlerTurnOrderNum(gActiveBattler);
         if (var == 4)

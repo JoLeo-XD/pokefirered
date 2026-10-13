@@ -237,12 +237,11 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE
 
 BattleScript_EffectHit::
-	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
-	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
+	attackcanceler
+	jumpifnotmove MOVE_SURF, BattleScript_HitFromAccCheck
+	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAccCheck
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
 	setbyte sDMG_MULTIPLIER, 2
-BattleScript_HitFromAtkCanceler::
-	attackcanceler
 BattleScript_HitFromAccCheck::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_HitFromAtkString::
@@ -319,8 +318,9 @@ BattleScript_CantMakeAsleep::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPoisonHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_POISON
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectAbsorb::
 	attackcanceler
@@ -362,16 +362,19 @@ BattleScript_AbsorbTryFainting::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectBurnHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_BURN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectFreezeHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_FREEZE
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectParalyzeHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_PARALYSIS
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectExplosion::
 	attackcanceler
@@ -475,22 +478,24 @@ BattleScript_EffectMirrorMove::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackUp::
+	attackcanceler
 	setstatchanger STAT_ATK, 1, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectDefenseUp::
+	attackcanceler
 	setstatchanger STAT_DEF, 1, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectSpecialAttackUp::
+	attackcanceler
 	setstatchanger STAT_SPATK, 1, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectEvasionUp::
+	attackcanceler
 	setstatchanger STAT_EVASION, 1, FALSE
 BattleScript_EffectStatUp::
-	attackcanceler
-BattleScript_EffectStatUpAfterAtkCanceler::
 	attackstring
 	ppreduce
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_StatUpEnd
@@ -516,30 +521,35 @@ BattleScript_StatUp::
 	return
 
 BattleScript_EffectAttackDown::
+	attackcanceler
 	setstatchanger STAT_ATK, 1, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectDefenseDown::
+	attackcanceler
 	setstatchanger STAT_DEF, 1, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectSpeedDown::
+	attackcanceler
 	setstatchanger STAT_SPEED, 1, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectAccuracyDown::
+	attackcanceler
 	setstatchanger STAT_ACC, 1, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectAccuracyDown2::
+	attackcanceler
 	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
 	setstatchanger STAT_ACC, 2, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectEvasionDown::
+	attackcanceler
 	setstatchanger STAT_EVASION, 1, TRUE
 BattleScript_EffectStatDown::
-	attackcanceler
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailedAtkStringPpReduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -672,8 +682,9 @@ BattleScript_EffectConversion::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectFlinchHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_FLINCH
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectRestoreHp::
 	attackcanceler
@@ -723,8 +734,9 @@ BattleScript_ImmunityProtected::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPayDay::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_PAYDAY
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectLightScreen::
 	attackcanceler
@@ -734,8 +746,9 @@ BattleScript_EffectLightScreen::
 	goto BattleScript_PrintReflectLightScreenSafeguardString
 
 BattleScript_EffectTriAttack::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_TRI_ATTACK
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectRest::
 	attackcanceler
@@ -788,6 +801,7 @@ BattleScript_EffectRazorWind::
 
 BattleScript_TwoTurnMovesSecondTurn::
 	attackcanceler
+BattleScript_TwoTurnMovesSecondTurnFromCharging::
 	setmoveeffect MOVE_EFFECT_CHARGING
 	setbyte sB_ANIM_TURN, 1
 	clearstatusfromeffect BS_ATTACKER
@@ -832,13 +846,14 @@ BattleScript_EffectDragonRage::
 	goto BattleScript_HitFromAtkAnimation
 
 BattleScript_EffectTrap::
+	attackcanceler
 	jumpifnotmove MOVE_WHIRLPOOL, BattleScript_DoWrapEffect
 	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_DoWrapEffect
 	orword gHitMarker, HITMARKER_IGNORE_UNDERWATER
 	setbyte sDMG_MULTIPLIER, 2
 BattleScript_DoWrapEffect::
 	setmoveeffect MOVE_EFFECT_WRAP
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectDoubleHit::
 	attackcanceler
@@ -899,10 +914,11 @@ BattleScript_EffectFocusEnergy::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectRecoil::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_RECOIL_25 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	jumpifnotmove MOVE_STRUGGLE, BattleScript_EffectHit
+	jumpifnotmove MOVE_STRUGGLE, BattleScript_HitFromAccCheck
 	incrementgamestat GAME_STAT_USED_STRUGGLE
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectConfuse::
 	attackcanceler
@@ -928,22 +944,27 @@ BattleScript_AlreadyConfused::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackUp2::
+	attackcanceler
 	setstatchanger STAT_ATK, 2, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectDefenseUp2::
+	attackcanceler
 	setstatchanger STAT_DEF, 2, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectSpeedUp2::
+	attackcanceler
 	setstatchanger STAT_SPEED, 2, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectSpecialAttackUp2::
+	attackcanceler
 	setstatchanger STAT_SPATK, 2, FALSE
 	goto BattleScript_EffectStatUp
 
 BattleScript_EffectSpecialDefenseUp2::
+	attackcanceler
 	setstatchanger STAT_SPDEF, 2, FALSE
 	goto BattleScript_EffectStatUp
 
@@ -959,18 +980,22 @@ BattleScript_EffectTransform::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackDown2::
+	attackcanceler
 	setstatchanger STAT_ATK, 2, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectDefenseDown2::
+	attackcanceler
 	setstatchanger STAT_DEF, 2, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectSpeedDown2::
+	attackcanceler
 	setstatchanger STAT_SPEED, 2, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectSpecialDefenseDown2::
+	attackcanceler
 	setstatchanger STAT_SPDEF, 2, TRUE
 	goto BattleScript_EffectStatDown
 
@@ -1041,28 +1066,34 @@ BattleScript_LimberProtected::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackDownHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_ATK_MINUS_1
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectDefenseDownHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_DEF_MINUS_1
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSpeedDownHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSpecialAttackDownHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_SP_ATK_MINUS_1
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSpecialDefenseDownHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_SP_DEF_MINUS_1
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectAccuracyDownHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_ACC_MINUS_1
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSkyAttack::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
@@ -1072,8 +1103,9 @@ BattleScript_EffectSkyAttack::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectConfuseHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_CONFUSION
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectTwineedle::
 	attackcanceler
@@ -1345,8 +1377,9 @@ BattleScript_EffectDestinyBond::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectFlail::
+	attackcanceler
 	remaininghptopower
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSpite::
 	attackcanceler
@@ -1440,8 +1473,9 @@ BattleScript_TripleKickEnd::
 	end
 
 BattleScript_EffectThief::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_STEAL_ITEM
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectMeanLook::
 	attackcanceler
@@ -1479,7 +1513,7 @@ BattleScript_EffectMinimize::
 	attackcanceler
 	setminimize
 	setstatchanger STAT_EVASION, 1, FALSE
-	goto BattleScript_EffectStatUpAfterAtkCanceler
+	goto BattleScript_EffectStatUp
 
 BattleScript_EffectCurse::
 	jumpiftype2 BS_ATTACKER, TYPE_GHOST, BattleScript_GhostCurse
@@ -1679,8 +1713,9 @@ BattleScript_EffectSafeguard::
 	goto BattleScript_PrintReflectLightScreenSafeguardString
 
 BattleScript_EffectThawHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_BURN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectMagnitude::
 	attackcanceler
@@ -1715,8 +1750,9 @@ BattleScript_EffectBatonPass::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectRapidSpin::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_RAPIDSPIN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSonicboom::
 	attackcanceler
@@ -1764,16 +1800,19 @@ BattleScript_EffectSunnyDay::
 	goto BattleScript_MoveWeatherChange
 
 BattleScript_EffectDefenseUpHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_DEF_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectAttackUpHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectAllStatsUpHit::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_ALL_STATS_UP | MOVE_EFFECT_AFFECTS_USER
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectBellyDrum::
 	attackcanceler
@@ -1826,12 +1865,13 @@ BattleScript_SkullBashEnd::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectTwister::
+	attackcanceler
 	jumpifnostatus3 BS_TARGET, STATUS3_ON_AIR, BattleScript_FlinchEffect
 	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
 	setbyte sDMG_MULTIPLIER, 2
 BattleScript_FlinchEffect::
 	setmoveeffect MOVE_EFFECT_FLINCH
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectEarthquake::
 	attackcanceler
@@ -1892,12 +1932,14 @@ BattleScript_EffectFutureSight::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectGust::
-	jumpifnostatus3 BS_TARGET, STATUS3_ON_AIR, BattleScript_EffectHit
+	attackcanceler
+	jumpifnostatus3 BS_TARGET, STATUS3_ON_AIR, BattleScript_HitFromAccCheck
 	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
 	setbyte sDMG_MULTIPLIER, 2
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectStomp::
+	attackcanceler
 	jumpifnostatus3 BS_TARGET, STATUS3_MINIMIZED, BattleScript_FlinchEffect
 	setbyte sDMG_MULTIPLIER, 2
 	goto BattleScript_FlinchEffect
@@ -1913,16 +1955,18 @@ BattleScript_SolarBeamDecideTurn::
 	call BattleScriptFirstChargingTurn
 	goto BattleScript_MoveEnd
 BattleScript_SolarBeamOnFirstTurn::
+	attackcanceler
 	orword gHitMarker, HITMARKER_CHARGING
 	setmoveeffect MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
 	seteffectprimary
 	ppreduce
-	goto BattleScript_TwoTurnMovesSecondTurn
+	goto BattleScript_TwoTurnMovesSecondTurnFromCharging
 
 BattleScript_EffectThunder::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectTeleport::
 	attackcanceler
@@ -2051,7 +2095,7 @@ BattleScript_EffectFakeOut::
 	attackcanceler
 	jumpifnotfirstturn BattleScript_ButItFailedAtkStringPpReduce
 	setmoveeffect MOVE_EFFECT_FLINCH | MOVE_EFFECT_CERTAIN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_ButItFailedAtkStringPpReduce::
 	attackstring
@@ -2251,12 +2295,13 @@ BattleScript_MementoTargetProtectEnd:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectFacade::
+	attackcanceler
 	jumpifstatus BS_ATTACKER, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, BattleScript_FacadeDoubleDmg
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_FacadeDoubleDmg::
 	setbyte sDMG_MULTIPLIER, 2
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectFocusPunch::
 	attackcanceler
@@ -2267,13 +2312,14 @@ BattleScript_EffectFocusPunch::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSmellingsalt::
-	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_EffectHit
+	attackcanceler
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_HitFromAccCheck
 	setmoveeffect MOVE_EFFECT_REMOVE_PARALYSIS | MOVE_EFFECT_CERTAIN
 	jumpifstatus BS_TARGET, STATUS1_PARALYSIS, BattleScript_SmellingsaltDoubleDmg
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 BattleScript_SmellingsaltDoubleDmg::
 	setbyte sDMG_MULTIPLIER, 2
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectFollowMe::
 	attackcanceler
@@ -2387,8 +2433,9 @@ BattleScript_EffectIngrain::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSuperpower::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_ATK_DEF_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectMagicCoat::
 	attackcanceler
@@ -2413,8 +2460,9 @@ BattleScript_EffectRecycle::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectRevenge::
+	attackcanceler
 	doubledamagedealtifdamaged
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectBrickBreak::
 	attackcanceler
@@ -2474,8 +2522,9 @@ BattleScript_PrintAbilityMadeIneffective::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectKnockOff::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_KNOCK_OFF
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectEndeavor::
 	attackcanceler
@@ -2492,8 +2541,9 @@ BattleScript_EffectEndeavor::
 	goto BattleScript_HitFromAtkAnimation
 
 BattleScript_EffectEruption::
+	attackcanceler
 	scaledamagebyhealthratio
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectSkillSwap::
 	attackcanceler
@@ -2562,12 +2612,14 @@ BattleScript_EffectLowKick::
 	goto BattleScript_HitFromCritCalc
 
 BattleScript_EffectSecretPower::
+	attackcanceler
 	getsecretpowereffect
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectDoubleEdge::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_RECOIL_33 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectTeeterDance::
 	attackcanceler
@@ -2636,16 +2688,19 @@ BattleScript_EffectWaterSport::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPoisonFang::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_TOXIC
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectWeatherBall::
+	attackcanceler
 	setweatherballtype
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectOverheat::
+	attackcanceler
 	setmoveeffect MOVE_EFFECT_SP_ATK_TWO_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectTickle::
 	attackcanceler
@@ -2708,8 +2763,9 @@ BattleScript_CosmicPowerEnd::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSkyUppercut::
+	attackcanceler
 	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectBulkUp::
 	attackcanceler
@@ -2888,6 +2944,7 @@ BattleScript_FaintedMonSendOutNew::
 	waitstate
 	resetplayerfainted
 	switchineffects BS_FAINTED
+	moveendcase MOVEEND_IMMUNITY_ABILITIES
 	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_FaintedMonEnd
 	cancelallactions
 BattleScript_FaintedMonEnd::
@@ -2910,6 +2967,7 @@ BattleScript_LinkHandleFaintedMonLoop::
 	switchinanim BS_FAINTED, FALSE
 	waitstate
 	switchineffects BS_FAINTED_LINK_MULTIPLE_1
+	moveendcase MOVEEND_IMMUNITY_ABILITIES
 	jumpifbytenotequal gBattlerFainted, gBattlersCount, BattleScript_LinkHandleFaintedMonLoop
 BattleScript_LinkHandleFaintedMonMultipleEnd::
 	end2
@@ -3744,11 +3802,11 @@ BattleScript_MoveUsedIsConfused::
 	waitmessage B_WAIT_TIME_LONG
 	status2animation BS_ATTACKER, STATUS2_CONFUSION
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, FALSE, BattleScript_MoveUsedIsConfusedRet
+	printstring STRINGID_ITHURTCONFUSION
+	waitmessage B_WAIT_TIME_LONG
 BattleScript_DoSelfConfusionDmg::
 	cancelmultiturnmoves BS_ATTACKER
 	adjustnormaldamage2
-	printstring STRINGID_ITHURTCONFUSION
-	waitmessage B_WAIT_TIME_LONG
 	effectivenesssound
 	hitanimation BS_ATTACKER
 	waitstate
@@ -4143,6 +4201,7 @@ BattleScript_StickyHoldActivates::
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_PKMNSXMADEYINEFFECTIVE
 	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_ColorChangeActivates::
@@ -4207,6 +4266,8 @@ BattleScript_IgnoresAndFallsAsleep::
 
 BattleScript_IgnoresAndHitsItself::
 	printstring STRINGID_PKMNWONTOBEY
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_ITHURTDISOBEDIENCE
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_DoSelfConfusionDmg
 

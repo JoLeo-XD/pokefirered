@@ -2577,6 +2577,7 @@ HornDrillContinue:
 	waitbgfadeout
 	setarg 7, 0xFFFF
 	waitbgfadein
+	blendoff
 	end
 
 HornDrillInContest:
@@ -2822,6 +2823,7 @@ Move_RAGE:
 	createvisualtask AnimTask_ShakeTargetBasedOnMovePowerOrDmg, 2, TRUE, 1, 10, 1, 0
 	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
 	waitforvisualfinish
+	blendoff
 	clearmonbg ANIM_TARGET
 	end
 
@@ -3451,6 +3453,7 @@ Move_MOONLIGHT:
 	waitforvisualfinish
 	call HealingEffect
 	waitforvisualfinish
+	blendoff
 	end
 
 Move_EXTREME_SPEED:
@@ -3803,6 +3806,7 @@ BrickBreakNormal:
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 2, 6, 0, RGB_BLACK
 	waitforvisualfinish
+	blendoff
 	clearmonbg ANIM_TARGET
 	end
 
@@ -3838,6 +3842,7 @@ BrickBreakShatteredWall:
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 2, 6, 0, RGB_BLACK
 	waitforvisualfinish
+	blendoff
 	clearmonbg ANIM_TARGET
 	end
 
@@ -6488,6 +6493,7 @@ Move_WHIRLPOOL:
 	delay 12
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, F_PAL_TARGET, 2, 7, 0, RGB(0, 13, 23)
 	waitforvisualfinish
+	blendoff
 	clearmonbg ANIM_DEF_PARTNER
 	end
 

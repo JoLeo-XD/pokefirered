@@ -2794,7 +2794,7 @@ static void Cmd_seteffectwithchance(void)
         gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;
         SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);
     }
-    else if (Random() % 100 <= percentChance
+    else if (Random() % 100 < percentChance
              && gBattleCommunication[MOVE_EFFECT_BYTE]
              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
@@ -4876,6 +4876,7 @@ static void Cmd_openpartyscreen(void)
         {
             gActiveBattler = battlerId;
             gAbsentBattlerFlags |= gBitTable[gActiveBattler];
+            gBattleMons[gActiveBattler].ability = ABILITY_NONE;
             gHitMarker &= ~HITMARKER_FAINTED(gActiveBattler);
             gBattlescriptCurrInstr = jumpPtr;
         }
@@ -6603,7 +6604,7 @@ static void Cmd_stockpiletobasedamage(void)
         if (gBattleCommunication[MISS_TYPE] != B_MSG_PROTECTED)
         {
             gBattleMoveDamage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove,
-                                                    gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)], 0,
+                                                    gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)], 100,
                                                     0, gBattlerAttacker, gBattlerTarget)
                                 * gDisableStructs[gBattlerAttacker].stockpileCounter;
             gBattleScripting.animTurn = gDisableStructs[gBattlerAttacker].stockpileCounter;

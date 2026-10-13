@@ -334,7 +334,8 @@ static const u8 sText_CantEscape[] = _("Não pôde fugir!\p");
 static const u8 sText_DontLeaveBirch[] = _(""); // Dummied
 static const u8 sText_ButNothingHappened[] = _("Mas nada aconteceu!");
 static const u8 sText_ButItFailed[] = _("Mas falhou!");
-static const u8 sText_ItHurtConfusion[] = _("Se machucou na sua\nconfusão!");
+static const u8 sText_ItHurtConfusion[] = _("Se machucou na\nsua confusão!");
+static const u8 sText_ItHurtDisobedience[] = _("Decidiu se machucar\npor desobediência!");
 static const u8 sText_MirrorMoveFailed[] = _("IMITAR falhou!");
 static const u8 sText_StartedToRain[] = _("Começou a chover!");
 static const u8 sText_DownpourStarted[] = _("Uma garoa começa!"); // corresponds to DownpourText in pokegold and pokecrystal and is used by Rain Dance in GSC
@@ -889,7 +890,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_ST
     [STRINGID_TRAINER1MON1COMEBACK - BATTLESTRINGS_TABLE_START]          = sText_Trainer1RecallPkmn1,
     [STRINGID_TRAINER1WINTEXT - BATTLESTRINGS_TABLE_START]               = sText_Trainer1WinText,
     [STRINGID_TRAINER1MON2COMEBACK - BATTLESTRINGS_TABLE_START]          = sText_Trainer1RecallPkmn2,
-    [STRINGID_TRAINER1MON1AND2COMEBACK - BATTLESTRINGS_TABLE_START]      = sText_Trainer1RecallBoth
+    [STRINGID_TRAINER1MON1AND2COMEBACK - BATTLESTRINGS_TABLE_START]      = sText_Trainer1RecallBoth,
+    [STRINGID_ITHURTDISOBEDIENCE - BATTLESTRINGS_TABLE_START]            = sText_ItHurtDisobedience
 };
 
 const u16 gMissStringIds[] =

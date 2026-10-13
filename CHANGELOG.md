@@ -1,10 +1,8 @@
 # Change Log vs Upstream
 
-This summarizes the local branch and current workspace compared with
-`pret/pokefirered` at `upstream/master` (`037335f4`, the common baseline). It
-includes committed changes and current uncommitted edits. The snapshot differs
-in 1,204 tracked paths (904 added, 297 modified, 3 deleted), not counting
-untracked files.
+This summarizes the local branch compared with `pret/pokefirered` at
+`upstream/master` (`037335f4`, the common baseline). The working tree is clean,
+and the current branch matches the latest checked-in state for this workspace.
 
 ## Main Changes
 
@@ -28,7 +26,7 @@ untracked files.
     line) can also yield each other, like in later generations, as opposed to only
     Nidoran Female being able to have both, as it was originally.
   - Make bred Pokémon start at level 1 and hatch faster when the party includes
-    a Pokémon with Flame Body or Magma Armor.
+    a Pokémon with Flame Body or Magma Armor, like it is in Emerald and onward.
   - Let Select swap Pokémon in the party as a shortcut.
   - Add recurring post-game Snorlax encounters and ambient-cry randomization,
     with special handling for legendary and static encounters.
@@ -57,10 +55,12 @@ untracked files.
     shops.
   - A handful of oversights have been revised and fixed. The build now defaults
     the BUGFIX and UBFIX settings to be turned on.
-- **Battle fixes and rules:** Correct Focus Punch and Mail glitch behavior;
-  enhance Flash so it always hits, including Pokémon in midair, and lowers
-  accuracy by two stages instead of one; update battle-records layout, and
-  revise related battle messages and Quest Log recording.
+- **Battle fixes and rules:** Resolve the remaining Generation III battle glitches,
+  including the Focus Punch and Mail cases, visual glitches, lingering LightningRod,
+  and a broad set of move-logic issues. Flash now reliably always hits, including
+  midair, and lowers accuracy by two stages instead of one; battle-record layout,
+  Quest Log entries, and associated battle messages were revised, and a special
+  message was added for a Pokémon hitting itself via Disobedience.
 - **Faraway Island and Mew:** Complete the Old Sea Map event: after Mewtwo is
   caught, an NPC in the Lavender Town Pokémon Center gives the map to unlock the
   ship route to Faraway Island. Add the island's exterior, harbor, and interior,

@@ -43,7 +43,7 @@ static u8 GetFluteEncounterRateModType(void);
 static void ApplyCleanseTagEncounterRateMod(u32 *rate);
 static bool8 IsLeadMonHoldingCleanseTag(void);
 static u16 WildEncounterRandom(void);
-static void AddToWildEncounterRateBuff(u8 encouterRate);
+static void AddToWildEncounterRateBuff(u8 encounterRate);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex, u32 size, u32 min);
 static bool8 IsAbilityAllowingEncounter(u8 level);
 
@@ -339,11 +339,21 @@ static u32 GenerateUnownPersonalityByNatureLetter(u8 letter, u8 nature, u32 otid
 
     do
     {
-        do
+        if (nature < NUM_NATURES)
         {
-            personality = Random32();
-        } while (GetUnownLetterByPersonalityLoByte(personality) != letter
-                || nature != personality % NUM_NATURES);
+            do
+            {
+                personality = Random32();
+            } while (GetUnownLetterByPersonalityLoByte(personality) != letter
+                    || nature != personality % NUM_NATURES);
+        }
+        else
+        {
+            do
+            {
+                personality = Random32();
+            } while (GetUnownLetterByPersonalityLoByte(personality) != letter);
+        }
         shinyValue = GET_SHINY_VALUE(otid, personality);
         if (rollsTotal > 0) rollsTotal--;
     } while (rollsTotal && shinyValue >= SHINY_ODDS);
@@ -451,6 +461,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
             if (validMonCount != 0 && validMonCount != maxMons)
                 slot = validIndexes[Random() % validMonCount];
         }
+        // increase shiny odds
         else if (ability == ABILITY_ILLUMINATE || ability == ABILITY_ARENA_TRAP)
         {
             rollsTotal += WHITE_FLUTE_ABILITY_ROLLS;

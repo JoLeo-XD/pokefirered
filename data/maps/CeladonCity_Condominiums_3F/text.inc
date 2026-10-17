@@ -25,6 +25,26 @@ CeladonCity_Condominiums_3F_Text_CompletedPokedexCongratulations::
     .string "Congratulations!\l"
     .string "…$"
 
+CeladonCity_Condominiums_3F_Text_ILookForwardToSeeing::
+    .string "I look forward to seeing you\n"
+    .string "complete the NATIONAL POKéDEX!$"
+
+CeladonCity_Condominiums_3F_Text_YouDeserveAReward::
+    .string "You deserve a reward!$"
+
+CeladonCity_Condominiums_3F_Text_ButYourBagIsFull::
+    .string "But your bag is full…$"
+
+CeladonCity_Condominiums_3F_Text_ReceivedShinyCharm::
+    .string "{PLAYER} received a SHINY CHARM!$"
+
+CeladonCity_Condominiums_3F_Text_ReceivedShiny2Charms::
+    .string "{PLAYER} received 2 SHINY CHARM(s)!$"
+
+CeladonCity_Condominiums_3F_Text_ReceivedAnotherShinyCharm::
+    .string "{PLAYER} received another\n"
+    .string "SHINY CHARM!$"
+
 CeladonCity_Condominiums_3F_Text_ItsTheGameProgram::
     .string "It's the game program! Messing with\n"
     .string "it could bug out the game!$"

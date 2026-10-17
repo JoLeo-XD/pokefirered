@@ -180,6 +180,7 @@
 
 #define FIRST_BERRY_INDEX ITEM_CHERI_BERRY
 #define LAST_BERRY_INDEX  ITEM_ENIGMA_BERRY
+#define LAST_BALL_INDEX   ITEM_PREMIER_BALL
 
 #define ITEM_UNUSED_BERRY_1 176
 #define ITEM_UNUSED_BERRY_2 177
@@ -445,8 +446,60 @@
 #define ITEM_RUBY 373
 #define ITEM_SAPPHIRE 374
 #define ITEM_OLD_SEA_MAP 375
+#define ITEM_SHINY_CHARM 376
 
-#define ITEMS_COUNT 376
+#define ITEMS_COUNT 377
+
+#define IS_ITEM_BERRY(itemId)((itemId >= FIRST_BERRY_INDEX && itemId < LAST_BERRY_INDEX))
+#define IS_HELD_ITEM(itemId)(( IS_ITEM_BERRY(itemId)          \
+                            || itemId == ITEM_BERRY_JUICE     \
+                            || itemId == ITEM_BRIGHT_POWDER   \
+                            || itemId == ITEM_LAX_INCENSE     \
+                            || itemId == ITEM_SEA_INCENSE     \
+                            || itemId == ITEM_WHITE_HERB      \
+                            || itemId == ITEM_MACHO_BRACE     \
+                            || itemId == ITEM_EXP_SHARE       \
+                            || itemId == ITEM_LUCKY_EGG       \
+                            || itemId == ITEM_QUICK_CLAW      \
+                            || itemId == ITEM_SOOTHE_BELL     \
+                            || itemId == ITEM_MENTAL_HERB     \
+                            || itemId == ITEM_CHOICE_BAND     \
+                            || itemId == ITEM_KINGS_ROCK      \
+                            || itemId == ITEM_SILVER_POWDER   \
+                            || itemId == ITEM_AMULET_COIN     \
+                            || itemId == ITEM_CLEANSE_TAG     \
+                            || itemId == ITEM_SOUL_DEW        \
+                            || itemId == ITEM_DEEP_SEA_TOOTH  \
+                            || itemId == ITEM_DEEP_SEA_SCALE  \
+                            || itemId == ITEM_SMOKE_BALL      \
+                            || itemId == ITEM_EVERSTONE       \
+                            || itemId == ITEM_FOCUS_BAND      \
+                            || itemId == ITEM_SCOPE_LENS      \
+                            || itemId == ITEM_METAL_COAT      \
+                            || itemId == ITEM_LEFTOVERS       \
+                            || itemId == ITEM_DRAGON_SCALE    \
+                            || itemId == ITEM_LIGHT_BALL      \
+                            || itemId == ITEM_SOFT_SAND       \
+                            || itemId == ITEM_HARD_STONE      \
+                            || itemId == ITEM_MIRACLE_SEED    \
+                            || itemId == ITEM_BLACK_GLASSES   \
+                            || itemId == ITEM_BLACK_BELT      \
+                            || itemId == ITEM_MAGNET          \
+                            || itemId == ITEM_MYSTIC_WATER    \
+                            || itemId == ITEM_SHARP_BEAK      \
+                            || itemId == ITEM_POISON_BARB     \
+                            || itemId == ITEM_NEVER_MELT_ICE  \
+                            || itemId == ITEM_SPELL_TAG       \
+                            || itemId == ITEM_TWISTED_SPOON   \
+                            || itemId == ITEM_CHARCOAL        \
+                            || itemId == ITEM_DRAGON_FANG     \
+                            || itemId == ITEM_SILK_SCARF      \
+                            || itemId == ITEM_UP_GRADE        \
+                            || itemId == ITEM_SHELL_BELL      \
+                            || itemId == ITEM_LUCKY_PUNCH     \
+                            || itemId == ITEM_METAL_POWDER    \
+                            || itemId == ITEM_THICK_CLUB      \
+                            || itemId == ITEM_STICK))
 
 #define ITEM_TO_BERRY(itemId)(((itemId - FIRST_BERRY_INDEX) + 1))
 #define MAIL_NONE 0xFF

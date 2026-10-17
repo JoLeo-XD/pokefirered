@@ -20,6 +20,12 @@ EventScript_ResetLegendaries::
 	clearflag FLAG_DEFEATED_HO_OH
 	clearflag FLAG_DEFEATED_DEOXYS
 	clearflag FLAG_DEFEATED_MEW
+	call_if_set FLAG_DEFEATED_ROAMER, EventScript_ResetRoamer
+	clearflag FLAG_DEFEATED_ROAMER
+	return
+
+EventScript_ResetRoamer::
+	special ResetRoamerActive
 	return
 
 EventScript_ResetEliteFourEnd::

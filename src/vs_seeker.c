@@ -900,6 +900,9 @@ static u8 GetVsSeekerResponseInArea(const struct RematchData * vsSeekerData)
             else
             {
                 rval = Random() % 100; // Even if it's overwritten below, it progresses the RNG.
+                if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_BAD_EGG, 0) && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG, 0))
+                  if (GetMonAbility(&gPlayerParty[0]) == ABILITY_LIGHTNING_ROD)
+                     rval *= 2; // Lead Mon with Lightning Rod halves the chances of trainers saying no
                 response = GetCurVsSeekerResponse(vsSeekerIdx, trainerIdx);
                 if (response == VSSEEKER_SINGLE_RESP_YES)
                     rval = 100; // Definitely yes

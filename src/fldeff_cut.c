@@ -15,17 +15,20 @@
 #include "party_menu.h"
 #include "script.h"
 #include "trig.h"
+#include "constants/abilities.h"
 #include "constants/event_objects.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
 
 #define CUT_GRASS_SPRITE_COUNT 8
 #define CUT_RADIUS 1
+#define CUT_RADIUS_HYPER_CUTTER 2
 
 extern const u8 FarawayIsland_Interior_EventScript_HideMewWhenGrassCut[];
 
 static EWRAM_DATA u8 *sCutGrassSpriteArrayPtr = NULL;
 static EWRAM_DATA bool8 sScheduleOpenDottedHole = FALSE;
+static EWRAM_DATA u8 sCutMonId = 0;
 
 static void FieldCallback_CutGrass(void);
 static void FieldCallback_CutTree(void);
@@ -138,6 +141,9 @@ bool8 SetUpFieldMove_Cut(void)
     s16 x, y;
     u8 i, j;
     u16 tileBehavior;
+    u8 cutRadius = CUT_RADIUS;
+
+    sCutMonId = GetCursorSelectionMonId();
     sScheduleOpenDottedHole = FALSE;
     if (CutMoveRuinValleyCheck() == TRUE)
     {
@@ -157,19 +163,22 @@ bool8 SetUpFieldMove_Cut(void)
     else
     {
         PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
-    
-        for (i = 0; i < CUT_RADIUS * 2 + 1; i++)
+        if (!GetMonData(&gPlayerParty[sCutMonId], MON_DATA_SANITY_IS_EGG, NULL)
+            && GetMonAbility(&gPlayerParty[sCutMonId]) == ABILITY_HYPER_CUTTER)
+            cutRadius = CUT_RADIUS_HYPER_CUTTER;
+
+        for (i = 0; i < cutRadius * 2 + 1; i++)
         {
-            y = gPlayerFacingPosition.y - CUT_RADIUS + i;
-            for (j = 0; j < CUT_RADIUS * 2 + 1; j++)
+            y = gPlayerFacingPosition.y - cutRadius + i;
+            for (j = 0; j < cutRadius * 2 + 1; j++)
             {
-                x = gPlayerFacingPosition.x - CUT_RADIUS + j;
+                x = gPlayerFacingPosition.x - cutRadius + j;
                 tileBehavior = MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_BEHAVIOR);
                 if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
                 {
                     if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
                     {
-                        if (i != CUT_RADIUS * 2 || !MetatileBehavior_IsLongGrass(tileBehavior))
+                        if (i != cutRadius * 2 || !MetatileBehavior_IsLongGrass(tileBehavior))
                         {
                             gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
                             gPostMenuFieldCallback = FieldCallback_CutGrass;
@@ -186,7 +195,7 @@ bool8 SetUpFieldMove_Cut(void)
 static void FieldCallback_CutGrass(void)
 {
     FieldEffectStart(FLDEFF_USE_CUT_ON_GRASS);
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    gFieldEffectArguments[0] = sCutMonId;
 }
 
 bool8 FldEff_UseCutOnGrass(void)
@@ -199,7 +208,7 @@ bool8 FldEff_UseCutOnGrass(void)
 
 static void FieldCallback_CutTree(void)
 {
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    gFieldEffectArguments[0] = sCutMonId;
     ScriptContext_SetupScript(EventScript_FldEffCut);
 }
 
@@ -227,6 +236,7 @@ bool8 FldEff_CutGrass(void)
     u16 tileBehaviorAbove;
     u16 tileBehavior2Above;
     s16 x, y;
+    u8 cutRadius = CUT_RADIUS;
     u8 pos;
 
     i = 0;
@@ -234,12 +244,16 @@ bool8 FldEff_CutGrass(void)
     pos = gFieldEffectArguments[1] - 1;
     PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
 
-    for (i = 0; i < CUT_RADIUS * 2 + 1; i++)
+    if (!GetMonData(&gPlayerParty[sCutMonId], MON_DATA_SANITY_IS_EGG, NULL)
+        && GetMonAbility(&gPlayerParty[sCutMonId]) == ABILITY_HYPER_CUTTER)
+        cutRadius = CUT_RADIUS_HYPER_CUTTER;
+
+    for (i = 0; i < cutRadius * 2 + 1; i++)
     {
-        y = gPlayerFacingPosition.y - CUT_RADIUS + i;
-        for (j = 0; j < CUT_RADIUS * 2 + 1; j++)
+        y = gPlayerFacingPosition.y - cutRadius + i;
+        for (j = 0; j < cutRadius * 2 + 1; j++)
         {
-            x = gPlayerFacingPosition.x - CUT_RADIUS + j;
+            x = gPlayerFacingPosition.x - cutRadius + j;
             if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
             {
                 tileBehavior = MapGridGetMetatileBehaviorAt(x, y);

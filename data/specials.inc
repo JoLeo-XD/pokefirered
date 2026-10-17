@@ -239,6 +239,7 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special GetLeadMonFriendship
+	def_special IsLeadMonAbilityCompoundEyes
 	def_special BattleTowerMapScript2
 	def_special ChooseNextBattleTowerTrainer
 	def_special CheckPartyBattleTowerBanlist
@@ -442,6 +443,7 @@ gSpecials::
 	def_special IsPlayerLeftOfVermilionSailor
 	def_special IsBadEggInParty
 	def_special ReadTrainerTowerAndValidate
+	def_special ResetRoamerActive
 	def_special HasAllMons
 	def_special IsPlayerNotInTrainerTowerLobby
 	def_special BrailleCursorToggle

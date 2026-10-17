@@ -179,6 +179,15 @@ u8 GetLeadMonFriendship(void)
         return 0;
 }
 
+u8 IsLeadMonAbilityCompoundEyes(void)
+{
+    struct Pokemon * pokemon = &gPlayerParty[0];
+    if (!GetMonData(pokemon, MON_DATA_SANITY_IS_EGG, NULL)
+        && GetMonAbility(pokemon) == ABILITY_COMPOUND_EYES)
+        return TRUE;
+    return FALSE;
+}
+
 void ShowTownMap(void)
 {
     QuestLog_CutRecording();

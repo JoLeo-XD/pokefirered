@@ -33,6 +33,52 @@ CeladonCity_Condominiums_3F_EventScript_ShowDiploma::
 	goto_if_questlog EventScript_ReleaseEnd
 	special ShowDiploma
 	waitstate
+	checkitem ITEM_SHINY_CHARM, 1
+	call_if_eq VAR_RESULT, FALSE, CeladonCity_Condominiums_3F_EventScript_GiveShinyCharm
+	specialvar VAR_0x8004, HasAllMons
+	goto_if_eq VAR_0x8004, TRUE, CeladonCity_Condominiums_3F_EventScript_CompletedNationalPokedex
+CeladonCity_Condominiums_3F_EventScript_ShowDiplomaContinue::
+	msgbox CeladonCity_Condominiums_3F_Text_ILookForwardToSeeing
+	release
+	end
+
+CeladonCity_Condominiums_3F_EventScript_GiveShiny2Charms::
+	checkitemspace ITEM_SHINY_CHARM, 2
+	goto_if_eq VAR_RESULT, FALSE, CeladonCity_Condominiums_3F_EventScript_NoRoomForReward
+	additem ITEM_SHINY_CHARM, 2
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgreceiveditem CeladonCity_Condominiums_3F_Text_ReceivedShiny2Charms, ITEM_SHINY_CHARM, 2, MUS_OBTAIN_KEY_ITEM
+	waitmessage
+	goto CeladonCity_Condominiums_3F_EventScript_GiveShinyCharmContinue
+
+CeladonCity_Condominiums_3F_EventScript_GiveShinyCharm::
+	msgbox CeladonCity_Condominiums_3F_Text_YouDeserveAReward
+	specialvar VAR_0x8004, HasAllMons
+	goto_if_eq VAR_0x8004, TRUE, CeladonCity_Condominiums_3F_EventScript_GiveShiny2Charms
+	checkitemspace ITEM_SHINY_CHARM, 1
+	goto_if_eq VAR_RESULT, FALSE, CeladonCity_Condominiums_3F_EventScript_NoRoomForReward
+	additem ITEM_SHINY_CHARM, 1
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgreceiveditem CeladonCity_Condominiums_3F_Text_ReceivedShinyCharm, ITEM_SHINY_CHARM, 1, MUS_OBTAIN_KEY_ITEM
+	waitmessage
+CeladonCity_Condominiums_3F_EventScript_GiveShinyCharmContinue::
+	textcolor NPC_TEXT_COLOR_MALE
+	return
+
+CeladonCity_Condominiums_3F_EventScript_CompletedNationalPokedex::
+	checkitem ITEM_SHINY_CHARM, 2
+	goto_if_eq VAR_RESULT, TRUE, EventScript_ReleaseEnd
+	checkitemspace ITEM_SHINY_CHARM, 1
+	goto_if_eq VAR_RESULT, FALSE, CeladonCity_Condominiums_3F_EventScript_NoRoomForReward
+	additem ITEM_SHINY_CHARM, 1
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgreceiveditem CeladonCity_Condominiums_3F_Text_ReceivedAnotherShinyCharm, ITEM_SHINY_CHARM, 1, MUS_OBTAIN_KEY_ITEM
+	waitmessage
+	release
+	end
+
+CeladonCity_Condominiums_3F_EventScript_NoRoomForReward::
+	msgbox CeladonCity_Condominiums_3F_Text_ButYourBagIsFull
 	release
 	end
 

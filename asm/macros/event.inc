@@ -1437,8 +1437,7 @@
 	.2byte \item
 	.endm
 
-	@ Same as setwildbattle, but reads a random value as 'var' (needs to be given by 'VAR_RESULT',
-	@ otherwise behaves the same as setwildbattle) at runtime and adds it to 'baseLevel'.
+	@ Same as setwildbattle, but reads a value as 'var', chooses between 0 and 'var' - 1, then adds it to 'baseLevel'.
 	.macro setwildbattlerandomlevel species:req, baseLevel:req, var=0, item=ITEM_NONE
 	.byte 0xd5
 	.2byte \species

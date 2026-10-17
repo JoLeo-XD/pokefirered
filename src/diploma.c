@@ -189,7 +189,7 @@ static void Task_DiplomaExit(u8 taskId)
     DestroyTask(taskId);
     FreeAllWindowBuffers();
     FREE_AND_SET_NULL(sDiploma);
-    SetMainCallback2(CB2_ReturnToFieldFromDiploma);
+    SetMainCallback2(CB2_ReturnToFieldContinueScript);
 }
 
 static void DiplomaReset(void)

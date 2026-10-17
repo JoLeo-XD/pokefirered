@@ -4077,7 +4077,7 @@ const struct WildPokemon sFiveIslandResortGorgeous_FireRed_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandResortGorgeous_FireRed_WaterMonsInfo = { 2, sFiveIslandResortGorgeous_FireRed_WaterMons };
@@ -4092,7 +4092,7 @@ const struct WildPokemon sFiveIslandResortGorgeous_FireRed_FishingMons[] =
     { 15, 25, SPECIES_QWILFISH },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_SEADRA },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandResortGorgeous_FireRed_FishingMonsInfo = { 20, sFiveIslandResortGorgeous_FireRed_FishingMons };
@@ -4105,7 +4105,7 @@ const struct WildPokemon sFiveIslandResortGorgeous_LeafGreen_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandResortGorgeous_LeafGreen_WaterMonsInfo = { 2, sFiveIslandResortGorgeous_LeafGreen_WaterMons };
@@ -4120,7 +4120,7 @@ const struct WildPokemon sFiveIslandResortGorgeous_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_REMORAID },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_KINGLER },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandResortGorgeous_LeafGreen_FishingMonsInfo = { 20, sFiveIslandResortGorgeous_LeafGreen_FishingMons };
@@ -4133,7 +4133,7 @@ const struct WildPokemon sFiveIslandWaterLabyrinth_FireRed_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_WaterMonsInfo = { 2, sFiveIslandWaterLabyrinth_FireRed_WaterMons };
@@ -4148,7 +4148,7 @@ const struct WildPokemon sFiveIslandWaterLabyrinth_FireRed_FishingMons[] =
     { 15, 25, SPECIES_QWILFISH },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_SEADRA },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_FishingMonsInfo = { 20, sFiveIslandWaterLabyrinth_FireRed_FishingMons };
@@ -4161,7 +4161,7 @@ const struct WildPokemon sFiveIslandWaterLabyrinth_LeafGreen_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_LeafGreen_WaterMonsInfo = { 2, sFiveIslandWaterLabyrinth_LeafGreen_WaterMons };
@@ -4176,7 +4176,7 @@ const struct WildPokemon sFiveIslandWaterLabyrinth_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_REMORAID },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_KINGLER },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_LeafGreen_FishingMonsInfo = { 20, sFiveIslandWaterLabyrinth_LeafGreen_FishingMons };
@@ -4206,7 +4206,7 @@ const struct WildPokemon sFiveIslandMeadow_FireRed_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_WaterMonsInfo = { 2, sFiveIslandMeadow_FireRed_WaterMons };
@@ -4221,7 +4221,7 @@ const struct WildPokemon sFiveIslandMeadow_FireRed_FishingMons[] =
     { 15, 25, SPECIES_QWILFISH },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_SEADRA },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_FishingMonsInfo = { 20, sFiveIslandMeadow_FireRed_FishingMons };
@@ -4251,7 +4251,7 @@ const struct WildPokemon sFiveIslandMeadow_LeafGreen_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_WaterMonsInfo = { 2, sFiveIslandMeadow_LeafGreen_WaterMons };
@@ -4266,7 +4266,7 @@ const struct WildPokemon sFiveIslandMeadow_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_REMORAID },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_KINGLER },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_LeafGreen_FishingMonsInfo = { 20, sFiveIslandMeadow_LeafGreen_FishingMons };
@@ -4296,7 +4296,7 @@ const struct WildPokemon sFiveIslandMemorialPillar_FireRed_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_WaterMonsInfo = { 2, sFiveIslandMemorialPillar_FireRed_WaterMons };
@@ -4311,7 +4311,7 @@ const struct WildPokemon sFiveIslandMemorialPillar_FireRed_FishingMons[] =
     { 15, 25, SPECIES_QWILFISH },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_SEADRA },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_FishingMonsInfo = { 20, sFiveIslandMemorialPillar_FireRed_FishingMons };
@@ -4341,7 +4341,7 @@ const struct WildPokemon sFiveIslandMemorialPillar_LeafGreen_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_WaterMonsInfo = { 2, sFiveIslandMemorialPillar_LeafGreen_WaterMons };
@@ -4356,7 +4356,7 @@ const struct WildPokemon sFiveIslandMemorialPillar_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_REMORAID },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_KINGLER },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_LeafGreen_FishingMonsInfo = { 20, sFiveIslandMemorialPillar_LeafGreen_FishingMons };
@@ -4588,7 +4588,7 @@ const struct WildPokemon sSixIslandRuinValley_FireRed_WaterMons[] =
     { 10, 20, SPECIES_WOOPER },
     { 15, 25, SPECIES_WOOPER },
     { 20, 25, SPECIES_WOOPER },
-    { 20, 25, SPECIES_WOOPER },
+    { 5, 10, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_FireRed_WaterMonsInfo = { 2, sSixIslandRuinValley_FireRed_WaterMons };
@@ -4603,7 +4603,7 @@ const struct WildPokemon sSixIslandRuinValley_FireRed_FishingMons[] =
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
     { 15, 25, SPECIES_PSYDUCK },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 5, 10, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_FireRed_FishingMonsInfo = { 20, sSixIslandRuinValley_FireRed_FishingMons };
@@ -4633,7 +4633,7 @@ const struct WildPokemon sSixIslandRuinValley_LeafGreen_WaterMons[] =
     { 10, 20, SPECIES_MARILL },
     { 15, 25, SPECIES_MARILL },
     { 20, 25, SPECIES_MARILL },
-    { 20, 25, SPECIES_MARILL },
+    { 5, 10, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_WaterMonsInfo = { 2, sSixIslandRuinValley_LeafGreen_WaterMons };
@@ -4648,7 +4648,7 @@ const struct WildPokemon sSixIslandRuinValley_LeafGreen_FishingMons[] =
     { 20, 30, SPECIES_POLIWHIRL },
     { 15, 25, SPECIES_GYARADOS },
     { 15, 25, SPECIES_SLOWPOKE },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 5, 10, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_LeafGreen_FishingMonsInfo = { 20, sSixIslandRuinValley_LeafGreen_FishingMons };
@@ -4774,7 +4774,7 @@ const struct WildPokemon sSevenIslandSevaultCanyon_FireRed_RockSmashMons[] =
     { 30, 45, SPECIES_GRAVELER },
     { 35, 50, SPECIES_GRAVELER },
     { 30, 40, SPECIES_GEODUDE },
-    { 30, 40, SPECIES_GEODUDE },
+    { 5, 10, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_FireRed_RockSmashMonsInfo = { 25, sSevenIslandSevaultCanyon_FireRed_RockSmashMons };
@@ -4804,7 +4804,7 @@ const struct WildPokemon sSevenIslandSevaultCanyon_LeafGreen_RockSmashMons[] =
     { 30, 45, SPECIES_GRAVELER },
     { 35, 50, SPECIES_GRAVELER },
     { 30, 40, SPECIES_GEODUDE },
-    { 30, 40, SPECIES_GEODUDE },
+    { 5, 10, SPECIES_BELDUM },
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_LeafGreen_RockSmashMonsInfo = { 25, sSevenIslandSevaultCanyon_LeafGreen_RockSmashMons };
@@ -5350,10 +5350,20 @@ const struct WildPokemon sRoute10_FireRed_WaterMons[] =
     { 10, 20, SPECIES_TENTACOOL },
     { 20, 30, SPECIES_TENTACOOL },
     { 30, 35, SPECIES_TENTACOOL },
-    { 35, 40, SPECIES_TENTACOOL },
+    { 30, 40, SPECIES_MAGNEMITE },
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_WaterMonsInfo = { 2, sRoute10_FireRed_WaterMons };
+const struct WildPokemon sRoute10_FireRed_RockSmashMons[] =
+{
+    { 10, 20, SPECIES_GEODUDE },
+    { 20, 30, SPECIES_GEODUDE },
+    { 20, 25, SPECIES_GRAVELER },
+    { 25, 30, SPECIES_GRAVELER },
+    { 30, 40, SPECIES_MAGNETON },
+};
+
+const struct WildPokemonInfo sRoute10_FireRed_RockSmashMonsInfo = { 20, sRoute10_FireRed_RockSmashMons };
 const struct WildPokemon sRoute10_FireRed_FishingMons[] =
 {
     { 5, 5, SPECIES_MAGIKARP },
@@ -5395,10 +5405,20 @@ const struct WildPokemon sRoute10_LeafGreen_WaterMons[] =
     { 10, 20, SPECIES_TENTACOOL },
     { 20, 30, SPECIES_TENTACOOL },
     { 30, 35, SPECIES_TENTACOOL },
-    { 35, 40, SPECIES_TENTACOOL },
+    { 30, 40, SPECIES_MAGNEMITE },
 };
 
 const struct WildPokemonInfo sRoute10_LeafGreen_WaterMonsInfo = { 2, sRoute10_LeafGreen_WaterMons };
+const struct WildPokemon sRoute10_LeafGreen_RockSmashMons[] =
+{
+    { 10, 20, SPECIES_GEODUDE },
+    { 20, 30, SPECIES_GEODUDE },
+    { 20, 25, SPECIES_GRAVELER },
+    { 25, 30, SPECIES_GRAVELER },
+    { 30, 40, SPECIES_ELECTRODE },
+};
+
+const struct WildPokemonInfo sRoute10_LeafGreen_RockSmashMonsInfo = { 50, sRoute10_LeafGreen_RockSmashMons };
 const struct WildPokemon sRoute10_LeafGreen_FishingMons[] =
 {
     { 5, 5, SPECIES_MAGIKARP },
@@ -7049,7 +7069,7 @@ const struct WildPokemon sFiveIsland_FireRed_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIsland_FireRed_WaterMonsInfo = { 1, sFiveIsland_FireRed_WaterMons };
@@ -7064,7 +7084,7 @@ const struct WildPokemon sFiveIsland_FireRed_FishingMons[] =
     { 15, 25, SPECIES_SHELLDER },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_SEADRA },
-    { 25, 35, SPECIES_PSYDUCK },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIsland_FireRed_FishingMonsInfo = { 10, sFiveIsland_FireRed_FishingMons };
@@ -7077,7 +7097,7 @@ const struct WildPokemon sFiveIsland_LeafGreen_WaterMons[] =
     { 5, 15, SPECIES_HOPPIP },
     { 35, 40, SPECIES_TENTACOOL },
     { 35, 40, SPECIES_TENTACRUEL },
-    { 35, 40, SPECIES_TENTACRUEL },
+    { 10, 20, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIsland_LeafGreen_WaterMonsInfo = { 1, sFiveIsland_LeafGreen_WaterMons };
@@ -7092,7 +7112,7 @@ const struct WildPokemon sFiveIsland_LeafGreen_FishingMons[] =
     { 15, 25, SPECIES_STARYU },
     { 15, 25, SPECIES_GYARADOS },
     { 25, 35, SPECIES_KINGLER },
-    { 25, 35, SPECIES_SLOWPOKE },
+    { 15, 25, SPECIES_CHINCHOU },
 };
 
 const struct WildPokemonInfo sFiveIsland_LeafGreen_FishingMonsInfo = { 10, sFiveIsland_LeafGreen_FishingMons };
@@ -9387,7 +9407,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .mapNum = MAP_NUM(MAP_ROUTE10),
         .landMonsInfo = &sRoute10_FireRed_LandMonsInfo,
         .waterMonsInfo = &sRoute10_FireRed_WaterMonsInfo,
-        .rockSmashMonsInfo = NULL,
+        .rockSmashMonsInfo = &sRoute10_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = &sRoute10_FireRed_FishingMonsInfo,
     },
 #endif
@@ -9397,7 +9417,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .mapNum = MAP_NUM(MAP_ROUTE10),
         .landMonsInfo = &sRoute10_LeafGreen_LandMonsInfo,
         .waterMonsInfo = &sRoute10_LeafGreen_WaterMonsInfo,
-        .rockSmashMonsInfo = NULL,
+        .rockSmashMonsInfo = &sRoute10_LeafGreen_RockSmashMonsInfo,
         .fishingMonsInfo = &sRoute10_LeafGreen_FishingMonsInfo,
     },
 #endif

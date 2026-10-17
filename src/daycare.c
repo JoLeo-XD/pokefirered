@@ -641,40 +641,6 @@ static void ClearAllDaycareData(struct DayCare *daycare)
     daycare->stepCounter = 0;
 }
 
-// Determines what the species of an Egg would be based on the given species.
-// It determines this by working backwards through the evolution chain of the
-// given species.
-static u16 GetEggSpecies(u16 species)
-{
-    int i, j, k;
-    bool8 found;
-
-    for (i = 0; i < 3; i++)
-    {
-        found = FALSE;
-        for (j = 1; j < NUM_SPECIES; j++)
-        {
-            for (k = 0; k < EVOS_PER_MON; k++)
-            {
-                if (gEvolutionTable[j][k].targetSpecies == species)
-                {
-                    species = j;
-                    found = TRUE;
-                    break;
-                }
-            }
-
-            if (found)
-                break;
-        }
-
-        if (j == NUM_SPECIES)
-            break;
-    }
-
-    return species;
-}
-
 static s32 GetSlotToInheritNature(struct DayCare *daycare)
 {
     u32 species[DAYCARE_MON_COUNT];
@@ -1641,7 +1607,7 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     for (i = 0; i < NUM_STATS; i++)
         ivs[i] = GetMonData(egg, MON_DATA_HP_IV + i);
 
-//    language = GetMonData(egg, MON_DATA_LANGUAGE);
+    language = GetMonData(egg, MON_DATA_LANGUAGE);
     gameMet = GetMonData(egg, MON_DATA_MET_GAME);
     markings = GetMonData(egg, MON_DATA_MARKINGS);
     pokerus = GetMonData(egg, MON_DATA_POKERUS);
@@ -1660,7 +1626,9 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     SetMonData(temp, MON_DATA_MET_GAME, &gameMet);
     SetMonData(temp, MON_DATA_MARKINGS, &markings);
 
-    friendship = 120;
+    friendship = GetMonData(temp, MON_DATA_FRIENDSHIP);
+    if (friendship < 120)
+        friendship = 120;
     SetMonData(temp, MON_DATA_FRIENDSHIP, &friendship);
     SetMonData(temp, MON_DATA_POKERUS, &pokerus);
     SetMonData(temp, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);

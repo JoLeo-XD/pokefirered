@@ -25,11 +25,15 @@
 #define LANGUAGE_GERMAN     5
 #define LANGUAGE_KOREAN     6 // 6 goes unused but the theory is it was meant to be Korean
 #define LANGUAGE_SPANISH    7
-#define LANGUAGE_PORTUGUESE 2
+#define LANGUAGE_PORTUGUESE 6
 #define NUM_LANGUAGES       7
 
 #ifdef PORTUGUESE
 #define GAME_LANGUAGE (LANGUAGE_PORTUGUESE)
+#endif
+
+#ifdef ENGLISH
+#define GAME_LANGUAGE (LANGUAGE_ENGLISH)
 #endif
 
 // capacities of various saveblock objects

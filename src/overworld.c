@@ -47,6 +47,7 @@
 #include "trainer_pokemon_sprites.h"
 #include "vs_seeker.h"
 #include "wild_encounter.h"
+#include "constants/abilities.h"
 #include "constants/cable_club.h"
 #include "constants/event_objects.h"
 #include "constants/maps.h"
@@ -103,6 +104,7 @@ static EWRAM_DATA struct InitialPlayerAvatarState sInitialPlayerAvatarState = {}
 EWRAM_DATA bool8 gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_OFF;
 static EWRAM_DATA u16 sAmbientCrySpecies = SPECIES_NONE;
 static EWRAM_DATA bool8 sIsAmbientCryWaterMon = FALSE;
+static EWRAM_DATA u8 sRoamerMoveCounter = 0;
 
 ALIGNED(4) EWRAM_DATA bool8 gExitStairsMovementDisabled = FALSE;
 static EWRAM_DATA const struct CreditsOverworldCmd *sCreditsOverworld_Script = NULL;
@@ -348,7 +350,14 @@ static void Overworld_ResetStateOnContinue(void)
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
     ChooseAmbientCrySpecies();
     UpdateLocationHistoryForRoamer();
-    RoamerMoveToOtherLocationSet();
+    if(sRoamerMoveCounter == 0)
+    {
+        RoamerMoveToOtherLocationSet();
+        if (Random() % 2)
+            sRoamerMoveCounter = Random() % 4;
+    }
+    else
+        sRoamerMoveCounter --;
 }
 
 // Routines related to game stats
@@ -776,7 +785,14 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
         ApplyWeatherGammaShiftToPal(paletteIndex);
     InitSecondaryTilesetAnimation();
     UpdateLocationHistoryForRoamer();
-    RoamerMove();
+    if (sRoamerMoveCounter == 0)
+    {
+        RoamerMove();
+        if (Random() % 2)
+            sRoamerMoveCounter = Random() % 4;
+    }
+    else
+        sRoamerMoveCounter--;
     QL_ResetDefeatedWildMonRecord();
     DoCurrentWeather();
     ResetFieldTasksArgs();
@@ -807,7 +823,14 @@ static void LoadMapFromWarp(bool32 unused)
     RunOnTransitionMapScript();
     TryRegenerateRenewableHiddenItems();
     UpdateLocationHistoryForRoamer();
-    RoamerMoveToOtherLocationSet();
+    if(sRoamerMoveCounter == 0)
+    {
+        RoamerMoveToOtherLocationSet();
+        if (Random() % 2)
+            sRoamerMoveCounter = Random() % 4;
+    }
+    else
+        sRoamerMoveCounter --;
     QL_ResetDefeatedWildMonRecord();
     InitMap();
 }
@@ -1152,31 +1175,53 @@ static void PlayAmbientCry(void)
     PlayCry_NormalNoDucking(sAmbientCrySpecies, pan, volume, CRY_PRIORITY_AMBIENT);
 }
 
+// States for UpdateAmbientCry
+enum {
+    AMB_CRY_INIT,
+    AMB_CRY_FIRST,
+    AMB_CRY_RESET,
+    AMB_CRY_WAIT,
+    AMB_CRY_IDLE,
+};
+
+static bool8 IsSwarmInParty(void)
+{
+    u8 i;
+    u8 monsCount = CalculatePlayerPartyCount();
+
+    for (i = 0; i < monsCount; i++)
+    {
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG)
+            && GetMonAbility(&gPlayerParty[i]) == ABILITY_SWARM)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 void UpdateAmbientCry(s16 *state, u16 *delayCounter)
 {
-    u8 i, monsCount, divBy;
-
     switch (*state)
     {
-    case 0:
+    case AMB_CRY_INIT:
         if (sAmbientCrySpecies == SPECIES_NONE &&
             gMapHeader.regionMapSectionId != MAPSEC_NAVEL_ROCK &&
             gMapHeader.regionMapSectionId != MAPSEC_BIRTH_ISLAND &&
             gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND &&
             gMapHeader.regionMapSectionId != MAPSEC_MT_EMBER)
-            *state = 4;
+            *state = AMB_CRY_IDLE;
         else
-            *state = 1;
+            *state = AMB_CRY_FIRST;
         break;
-    case 1:
-        *delayCounter = (Random() % 2400) + 1200;
-        *state = 3;
+    case AMB_CRY_FIRST:
+        *delayCounter = ((Random() % 2400) + 1200) / (IsSwarmInParty() ? 2 : 1);
+        *state = AMB_CRY_WAIT;
         break;
-    case 2:
-        *delayCounter = (Random() % 1200) + 1200;
-        *state = 3;
+    case AMB_CRY_RESET:
+        *delayCounter = ((Random() % 1200) + 1200) / (IsSwarmInParty() ? 2 : 1);
+        *state = AMB_CRY_WAIT;
         break;
-    case 3:
+    case AMB_CRY_WAIT:
         (*delayCounter)--;
         if (*delayCounter == 0)
         {
@@ -1185,10 +1230,10 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
             // But then again, it updates the species every time the player enters a new map, so maybe it was intentional... Hard to say.
             ChooseAmbientCrySpecies();
             PlayAmbientCry();
-            *state = 2;
+            *state = AMB_CRY_RESET;
         }
         break;
-    case 4:
+    case AMB_CRY_IDLE:
         break;
     }
 }

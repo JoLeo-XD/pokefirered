@@ -1653,18 +1653,19 @@ static void DisplaySwitchedHeldItemMessage(u16 item, u16 item2, bool8 keepOpen)
     ScheduleBgCopyTilemapToVram(2);
 }
 
-static void GiveItemToMon(struct Pokemon *mon, u16 item)
+static bool8 GiveItemToMon(struct Pokemon *mon, u16 item)
 {
     u8 itemBytes[2];
 
     if (ItemIsMail(item) == TRUE)
     {
-        if (GiveMailToMon(mon, item) == 0xFF)
-            return;
+        if (GiveMailToMon(mon, item) == MAIL_NONE)
+            return FALSE;
     }
     itemBytes[0] = item;
     itemBytes[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, itemBytes);
+    return TRUE;
 }
 
 static u8 TryTakeMonItem(struct Pokemon *mon)
@@ -3702,7 +3703,7 @@ static void Task_HandleSendMailToPCYesNoInput(u8 taskId)
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
     case 0: // Yes, send to PC
-        if (TakeMailFromMon2(&gPlayerParty[gPartyMenu.slotId]) != 0xFF)
+        if (TakeMailFromMon2(&gPlayerParty[gPartyMenu.slotId]) != MAIL_NONE)
         {
             DisplayPartyMenuMessage(gText_MailSentToPC, FALSE);
             gTasks[taskId].func = Task_UpdateHeldItemSprite;
@@ -5548,8 +5549,16 @@ static void Task_UpdateHeldItemSpriteAndClosePartyMenu(u8 taskId)
 static void CB2_WriteMailToGiveMonFromBag(void)
 {
     u8 mail;
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM);
 
-    GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], gPartyMenu.bagItem);
+    if (!GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], gPartyMenu.bagItem))
+    {
+        ReturnGiveItemToBagOrPC(gPartyMenu.bagItem);
+        RemoveBagItem(item, 1);
+        SetMainCallback2(gPartyMenu.exitCallback);
+        return;
+    }
     mail = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_MAIL);
     DoEasyChatScreen(EASY_CHAT_TYPE_MAIL, gSaveBlock1Ptr->mail[mail].words, CB2_ReturnToPartyOrBagMenuFromWritingMail);
 }
@@ -5676,7 +5685,11 @@ static void TryGiveMailToSelectedMon(u8 taskId)
     }
     else
     {
-        GiveMailToMon2(mon, mail);
+        if (GiveMailToMon2(mon, mail) == MAIL_NONE)
+        {
+            Task_ClosePartyMenu(taskId);
+            return;
+        }
         ClearMailStruct(mail);
         DisplayPartyMenuMessage(gText_MailTransferredFromMailbox, TRUE);
     }

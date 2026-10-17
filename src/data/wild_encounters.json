@@ -13823,9 +13823,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -13878,9 +13878,9 @@
                 "species": "SPECIES_SEADRA"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_PSYDUCK"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -13912,9 +13912,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -13967,9 +13967,9 @@
                 "species": "SPECIES_KINGLER"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_SLOWPOKE"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -14001,9 +14001,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -14056,9 +14056,9 @@
                 "species": "SPECIES_SEADRA"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_PSYDUCK"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -14090,9 +14090,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -14145,9 +14145,9 @@
                 "species": "SPECIES_KINGLER"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_SLOWPOKE"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -14244,9 +14244,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -14299,9 +14299,9 @@
                 "species": "SPECIES_SEADRA"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_PSYDUCK"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -14398,9 +14398,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -14453,9 +14453,9 @@
                 "species": "SPECIES_KINGLER"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_SLOWPOKE"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -14552,9 +14552,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -14607,9 +14607,9 @@
                 "species": "SPECIES_SEADRA"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_PSYDUCK"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -14706,9 +14706,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -14761,9 +14761,9 @@
                 "species": "SPECIES_KINGLER"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_SLOWPOKE"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -15524,9 +15524,9 @@
                 "species": "SPECIES_WOOPER"
               },
               {
-                "min_level": 20,
-                "max_level": 25,
-                "species": "SPECIES_WOOPER"
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_BELDUM"
               }
             ]
           },
@@ -15579,9 +15579,9 @@
                 "species": "SPECIES_PSYDUCK"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_PSYDUCK"
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_BELDUM"
               }
             ]
           }
@@ -15678,9 +15678,9 @@
                 "species": "SPECIES_MARILL"
               },
               {
-                "min_level": 20,
-                "max_level": 25,
-                "species": "SPECIES_MARILL"
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_BELDUM"
               }
             ]
           },
@@ -15733,9 +15733,9 @@
                 "species": "SPECIES_SLOWPOKE"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_SLOWPOKE"
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_BELDUM"
               }
             ]
           }
@@ -16148,9 +16148,9 @@
                 "species": "SPECIES_GEODUDE"
               },
               {
-                "min_level": 30,
-                "max_level": 40,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_BELDUM"
               }
             ]
           }
@@ -16247,9 +16247,9 @@
                 "species": "SPECIES_GEODUDE"
               },
               {
-                "min_level": 30,
-                "max_level": 40,
-                "species": "SPECIES_GEODUDE"
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_BELDUM"
               }
             ]
           }
@@ -18106,9 +18106,39 @@
                 "species": "SPECIES_TENTACOOL"
               },
               {
-                "min_level": 35,
+                "min_level": 30,
                 "max_level": 40,
-                "species": "SPECIES_TENTACOOL"
+                "species": "SPECIES_MAGNEMITE"
+              }
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_MAGNETON"
               }
             ]
           },
@@ -18260,9 +18290,39 @@
                 "species": "SPECIES_TENTACOOL"
               },
               {
-                "min_level": 35,
+                "min_level": 30,
                 "max_level": 40,
-                "species": "SPECIES_TENTACOOL"
+                "species": "SPECIES_MAGNEMITE"
+              }
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 50,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_ELECTRODE"
               }
             ]
           },
@@ -23769,9 +23829,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -23824,9 +23884,9 @@
                 "species": "SPECIES_SEADRA"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_PSYDUCK"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -23858,9 +23918,9 @@
                 "species": "SPECIES_TENTACRUEL"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_TENTACRUEL"
+                "min_level": 10,
+                "max_level": 20,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           },
@@ -23913,9 +23973,9 @@
                 "species": "SPECIES_KINGLER"
               },
               {
-                "min_level": 25,
-                "max_level": 35,
-                "species": "SPECIES_SLOWPOKE"
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }

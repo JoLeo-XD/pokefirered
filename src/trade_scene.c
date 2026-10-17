@@ -1063,7 +1063,7 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
     u16 partnerMail = GetMonData(partnerMon, MON_DATA_MAIL);
 
     // The mail attached to the sent Pokemon no longer exists in your file.
-    if (playerMail != MAIL_NONE)
+    if (playerMail < PARTY_SIZE)
         ClearMailStruct(&gSaveBlock1Ptr->mail[playerMail]);
 
     SWAP(*playerMon, *partnerMon, sTradeAnim->tempMon);
@@ -1075,7 +1075,7 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
         SetMonData(playerMon, MON_DATA_FRIENDSHIP, &friendship);
 
     // Associate your partner's mail with the Pokemon they sent over.
-    if (partnerMail != MAIL_NONE)
+    if (partnerMail < PARTY_SIZE)
         GiveMailToMon2(playerMon, &gLinkPartnerMail[partnerMail]);
 
     UpdatePokedexForReceivedMon(playerPartyIdx);

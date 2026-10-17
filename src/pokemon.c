@@ -1861,44 +1861,150 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     GiveBoxMonInitialMoveset(boxMon);
 }
 
-void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature)
+void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature, u16 rollsTotal)
 {
     u32 personality;
+    u32 shinyValue;
+    u32 otid;
 
-    do
+    otid = gSaveBlock2Ptr->playerTrainerId[0]
+        | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+        | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+        | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+
+    if (rollsTotal)
     {
-        personality = Random32();
+        do
+        {
+            if (nature < NUM_NATURES)
+                do
+                {
+                    personality = Random32();
+                }
+                while (nature != GetNatureFromPersonality(personality));
+            else
+                personality = Random32();
+            shinyValue = GET_SHINY_VALUE(otid, personality);
+            if (rollsTotal > 0) rollsTotal--;
+        } while (rollsTotal && shinyValue >= SHINY_ODDS);
     }
-    while (nature != GetNatureFromPersonality(personality));
+    else // A value of 0 for rollsTotal means it'll make it never be shiny
+    {
+        do
+        {
+            do
+            {
+                personality = Random32();
+            }
+            while (nature != GetNatureFromPersonality(personality));
+            shinyValue = GET_SHINY_VALUE(otid, personality);
+        } while (shinyValue < SHINY_ODDS);
+    }
 
     CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
 }
 
-void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter)
+void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter, u16 rollsTotal)
 {
     u32 personality;
+    u32 shinyValue;
+    u32 otid;
 
-    if ((u8)(unownLetter - 1) < NUM_UNOWN_FORMS)
+    otid = gSaveBlock2Ptr->playerTrainerId[0]
+        | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+        | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+        | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+
+    if (rollsTotal)
     {
-        u16 actualLetter;
-
         do
         {
-            personality = Random32();
-            actualLetter = GET_UNOWN_LETTER(personality);
-        }
-        while (nature != GetNatureFromPersonality(personality)
-            || gender != GetGenderFromSpeciesAndPersonality(species, personality)
-            || actualLetter != unownLetter - 1);
+            if ((u8)(unownLetter - 1) < NUM_UNOWN_FORMS)
+            {
+                u16 actualLetter;
+
+                if (nature < NUM_NATURES)
+                    do
+                    {
+                        personality = Random32();
+                        actualLetter = GET_UNOWN_LETTER(personality);
+                    }
+                    while (nature != GetNatureFromPersonality(personality)
+                        || gender != GetGenderFromSpeciesAndPersonality(species, personality)
+                        || actualLetter != unownLetter - 1);
+                else
+                    do
+                    {
+                        personality = Random32();
+                        actualLetter = GET_UNOWN_LETTER(personality);
+                    }
+                    while (gender != GetGenderFromSpeciesAndPersonality(species, personality)
+                        || actualLetter != unownLetter - 1);
+            }
+            else
+            {
+                if (nature < NUM_NATURES)
+                    do
+                    {
+                        personality = Random32();
+                    }
+                    while (nature != GetNatureFromPersonality(personality)
+                        || gender != GetGenderFromSpeciesAndPersonality(species, personality));
+                else
+                    do
+                    {
+                        personality = Random32();
+                    }
+                    while (gender != GetGenderFromSpeciesAndPersonality(species, personality));
+            }
+            shinyValue = GET_SHINY_VALUE(otid, personality);
+            if (rollsTotal > 0) rollsTotal--;
+        } while (rollsTotal && shinyValue >= SHINY_ODDS);
     }
-    else
+    else // A value of 0 for rollsTotal means it'll make it never be shiny
     {
         do
         {
-            personality = Random32();
-        }
-        while (nature != GetNatureFromPersonality(personality)
-            || gender != GetGenderFromSpeciesAndPersonality(species, personality));
+            if ((u8)(unownLetter - 1) < NUM_UNOWN_FORMS)
+            {
+                u16 actualLetter;
+
+                if (nature < NUM_NATURES)
+                    do
+                    {
+                        personality = Random32();
+                        actualLetter = GET_UNOWN_LETTER(personality);
+                    }
+                    while (nature != GetNatureFromPersonality(personality)
+                        || gender != GetGenderFromSpeciesAndPersonality(species, personality)
+                        || actualLetter != unownLetter - 1);
+                else
+                    do
+                    {
+                        personality = Random32();
+                        actualLetter = GET_UNOWN_LETTER(personality);
+                    }
+                    while (gender != GetGenderFromSpeciesAndPersonality(species, personality)
+                        || actualLetter != unownLetter - 1);
+            }
+            else
+            {
+                if (nature < NUM_NATURES)
+                    do
+                    {
+                        personality = Random32();
+                    }
+                    while (nature != GetNatureFromPersonality(personality)
+                        || gender != GetGenderFromSpeciesAndPersonality(species, personality));
+                else
+                    do
+                    {
+                        personality = Random32();
+                    }
+                    while (gender != GetGenderFromSpeciesAndPersonality(species, personality));
+            }
+            shinyValue = GET_SHINY_VALUE(otid, personality);
+        } while (shinyValue < SHINY_ODDS);
     }
 
     CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
@@ -2471,11 +2577,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         spAttack *= 2;
     if (defenderHoldEffect == HOLD_EFFECT_DEEP_SEA_SCALE && defender->species == SPECIES_CLAMPERL)
         spDefense *= 2;
-    if (attackerHoldEffect == HOLD_EFFECT_LIGHT_BALL && attacker->species == SPECIES_PIKACHU)
+    if (attackerHoldEffect == HOLD_EFFECT_LIGHT_BALL && GetEggSpecies(attacker->species) == SPECIES_PICHU)
         spAttack *= 2;
     if (defenderHoldEffect == HOLD_EFFECT_METAL_POWDER && defender->species == SPECIES_DITTO)
         defense *= 2;
-    if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && (attacker->species == SPECIES_CUBONE || attacker->species == SPECIES_MAROWAK))
+    if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && GetEggSpecies(attacker->species) == SPECIES_CUBONE)
         attack *= 2;
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
         spAttack /= 2;
@@ -3375,6 +3481,8 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
         break;
     case MON_DATA_MAIL:
         SET8(mon->mail);
+        if (mon->mail != MAIL_NONE && mon->mail >= PARTY_SIZE)
+            mon->mail = MAIL_NONE;
         break;
     case MON_DATA_SPECIES_OR_EGG:
         break;
@@ -3893,6 +4001,40 @@ void GetSpeciesName(u8 *name, u16 species)
     }
 
     name[i] = EOS;
+}
+
+// Determines what the species of an Egg would be based on the given species.
+// It determines this by working backwards through the evolution chain of the
+// given species.
+u16 GetEggSpecies(u16 species)
+{
+    int i, j, k;
+    bool8 found;
+
+    for (i = 0; i < 3; i++)
+    {
+        found = FALSE;
+        for (j = 1; j < NUM_SPECIES; j++)
+        {
+            for (k = 0; k < EVOS_PER_MON; k++)
+            {
+                if (gEvolutionTable[j][k].targetSpecies == species)
+                {
+                    species = j;
+                    found = TRUE;
+                    break;
+                }
+            }
+
+            if (found)
+                break;
+        }
+
+        if (j == NUM_SPECIES)
+            break;
+    }
+
+    return species;
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
@@ -6043,6 +6185,14 @@ void SetWildMonHeldItem(void)
     {
         u16 rnd = Random() % 100;
         u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL);
+        u16 chanceNoItem = 45;
+        u16 chanceNotRare = 95;
+        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG, 0)
+            && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES)
+        {
+            chanceNoItem = 20;
+            chanceNotRare = 80;
+        }
         if (gSpeciesInfo[species].itemCommon == gSpeciesInfo[species].itemRare)
         {
             // Both held items are the same, 100% chance to hold item   
@@ -6050,9 +6200,9 @@ void SetWildMonHeldItem(void)
             return;
         }
 
-        if (rnd > 44)
+        if (rnd >= chanceNoItem)
         {
-            if (rnd <= 94)
+            if (rnd < chanceNotRare)
                 SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
             else
                 SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);

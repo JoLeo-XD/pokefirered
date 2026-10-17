@@ -711,7 +711,7 @@ static void CB2_InitBattleInternal(void)
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         CreateNPCTrainerParty(&gEnemyParty[0], gTrainerBattleOpponent_A);
-        SetWildMonHeldItem();
+        if (GetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, NULL) == ITEM_NONE) SetWildMonHeldItem();
     }
 
     gMain.inBattle = TRUE;
@@ -2432,6 +2432,7 @@ void SwitchInClearSetData(void)
     *((u8 *)(&gBattleStruct->choicedMove[gActiveBattler]) + 0) = MOVE_NONE;
     *((u8 *)(&gBattleStruct->choicedMove[gActiveBattler]) + 1) = MOVE_NONE;
 
+    gBattleStruct->usedHeldItems[gActiveBattler] = ITEM_NONE;
     gBattleResources->flags->flags[gActiveBattler] = 0;
     gCurrentMove = MOVE_NONE;
 }
@@ -3963,7 +3964,11 @@ static void ReturnFromBattleToOverworld(void)
 #else
             if ((gBattleOutcome & B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT) // Bug: When Roar is used by roamer, gBattleOutcome is B_OUTCOME_PLAYER_TELEPORTED (5).
 #endif                                                                                  // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
+            {
                 SetRoamerInactive();
+                if (gBattleOutcome != B_OUTCOME_CAUGHT)
+                    FlagSet(FLAG_DEFEATED_ROAMER);
+            }
         }
         m4aSongNumStop(SE_LOW_HEALTH);
         SetMainCallback2(gMain.savedCallback);
@@ -4186,7 +4191,7 @@ static void HandleAction_UseItem(void)
     gBattle_BG0_Y = 0;
     ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
     gLastUsedItem = gBattleBufferB[gBattlerAttacker][1] | (gBattleBufferB[gBattlerAttacker][2] << 8);
-    if (gLastUsedItem <= ITEM_PREMIER_BALL) // is ball
+    if (gLastUsedItem <= LAST_BALL_INDEX) // is ball
     {
         gBattlescriptCurrInstr = gBattlescriptsForBallThrow[gLastUsedItem];
     }
@@ -4314,6 +4319,8 @@ bool8 TryRunFromBattle(u8 battler)
 
 static void HandleAction_Run(void)
 {
+    u8 chosenMoveId;
+
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
@@ -4348,7 +4355,27 @@ static void HandleAction_Run(void)
         }
         else
         {
-            if (gBattleMons[gBattlerAttacker].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
+            if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
+            {
+                gActiveBattler = gBattlerAttacker;
+                if (AreAllMovesUnusable())
+                {
+                    gChosenActionByBattler[gBattlerAttacker] = B_ACTION_USE_MOVE;
+                    gActionsByTurnOrder[gCurrentTurnActionNumber] = B_ACTION_USE_MOVE;
+                    gCurrentActionFuncId = B_ACTION_USE_MOVE;
+                    return;
+                }
+
+                BattleAI_SetupAIData();
+                chosenMoveId = BattleAI_ChooseMoveOrAction();
+                *(gBattleStruct->chosenMovePositions + gBattlerAttacker) = chosenMoveId;
+                gChosenMoveByBattler[gBattlerAttacker] = gBattleMons[gBattlerAttacker].moves[chosenMoveId];
+                *(gBattleStruct->moveTarget + gBattlerAttacker) = GetMoveTarget(gChosenMoveByBattler[gBattlerAttacker], NO_TARGET_OVERRIDE);
+                gChosenActionByBattler[gBattlerAttacker] = B_ACTION_USE_MOVE;
+                gActionsByTurnOrder[gCurrentTurnActionNumber] = B_ACTION_USE_MOVE;
+                gCurrentActionFuncId = B_ACTION_USE_MOVE;
+            }
+            else if (gBattleMons[gBattlerAttacker].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
                 gBattlescriptCurrInstr = BattleScript_PrintFailedToRunString;

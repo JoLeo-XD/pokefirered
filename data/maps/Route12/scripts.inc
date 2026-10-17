@@ -42,14 +42,13 @@ Route12_EventScript_HideRecurringSnorlax::
     setflag FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX
     end
 
-Route12_EventScript_Recurring_Snorlax::
+Route12_EventScript_RecurringSnorlax::
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_POKE_FLUTE, Route12_EventScript_SnorlaxNoPokeFlute
 	msgbox Text_AnotherSnorlaxHasAppeared, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route12_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
-	random 9
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
@@ -58,7 +57,7 @@ Route12_EventScript_Recurring_Snorlax::
 	special QuestLog_CutRecording
 	setflag FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-	setwildbattlerandomlevel SPECIES_SNORLAX, 35, VAR_RESULT
+	setwildbattlerandomlevel SPECIES_SNORLAX, 35, 9
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome

@@ -59,14 +59,21 @@ Route16_EventScript_HideRecurringSnorlax::
     setflag FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX
     end
 
-Route16_EventScript_Recurring_Snorlax::
+Route16_EventScript_RecurringSnorlax::
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_POKE_FLUTE, Route16_EventScript_SnorlaxNoPokeFlute
 	msgbox Text_AnotherSnorlaxHasAppeared, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route16_EventScript_DontUsePokeFlute
+	setvar VAR_0x8004, FALSE
+	setvar VAR_0x8005, 20
+	specialvar VAR_0x8006, IsLeadMonAbilityCompoundEyes
+	call_if_eq VAR_0x8006, TRUE, Route16_EventScript_SnorlaxIncreaseOdds
+	random VAR_0x8005
+	switch VAR_RESULT
+	case 0, Route16_EventScript_SnorlaxSetGiveLeftoversTrue
+Route16_EventScript_RecurringSnorlaxContinue::
 	call EventScript_AwakenSnorlax
-	random 10
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
@@ -75,15 +82,33 @@ Route16_EventScript_Recurring_Snorlax::
 	special QuestLog_CutRecording
 	setflag FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-	setwildbattlerandomlevel SPECIES_SNORLAX, 41, VAR_RESULT
+	call_if_eq VAR_0x8004, FALSE, Route16_EventScript_SnorlaxNoLeftovers
+	call_if_eq VAR_0x8004, TRUE, Route16_EventScript_SnorlaxGiveLeftovers
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route16_EventScript_FoughtSnorlax
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route16_EventScript_FoughtSnorlax
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route16_EventScript_FoughtSnorlax
+	specialvar VAR_0x8007, GetBattleOutcome
+	goto_if_eq VAR_0x8007, B_OUTCOME_WON, Route16_EventScript_FoughtSnorlax
+	goto_if_eq VAR_0x8007, B_OUTCOME_RAN, Route16_EventScript_FoughtSnorlax
+	goto_if_eq VAR_0x8007, B_OUTCOME_PLAYER_TELEPORTED, Route16_EventScript_FoughtSnorlax
 	release
 	end
+
+Route16_EventScript_SnorlaxSetGiveLeftoversTrue::
+	setvar VAR_0x8004, TRUE
+	goto Route16_EventScript_RecurringSnorlaxContinue
+	end
+
+Route16_EventScript_SnorlaxNoLeftovers::
+	setwildbattlerandomlevel SPECIES_SNORLAX, 45, 6
+	return
+
+Route16_EventScript_SnorlaxGiveLeftovers::
+	setwildbattlerandomlevel SPECIES_SNORLAX, 45, 6, ITEM_LEFTOVERS
+	return
+
+Route16_EventScript_SnorlaxIncreaseOdds::
+	setvar VAR_0x8005, 5
+	return
 
 Route16_EventScript_DontUsePokeFlute::
 	release

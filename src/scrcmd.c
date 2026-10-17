@@ -1948,7 +1948,7 @@ bool8 ScrCmd_setwildbattlerandomlevel(struct ScriptContext *ctx)
     u8 baseLevel = ScriptReadByte(ctx);
     u16 varId = ScriptReadHalfword(ctx);
     u16 item = ScriptReadHalfword(ctx);
-    u16 level = baseLevel + VarGet(varId);
+    u16 level = baseLevel + (Random() % VarGet(varId));
 
     if (level > MAX_LEVEL)
         level = MAX_LEVEL;

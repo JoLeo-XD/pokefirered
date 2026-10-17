@@ -1,7 +1,11 @@
 #include "global.h"
+#include "event_data.h"
+#include "item.h"
 #include "random.h"
 #include "overworld.h"
 #include "field_specials.h"
+#include "constants/abilities.h"
+#include "constants/items.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
 
@@ -206,8 +210,47 @@ bool8 IsRoamerAt(u8 mapGroup, u8 mapNum)
 void CreateRoamerMonInstance(void)
 {
     u32 status;
+    u32 otid, personality, shinyValue;
+    u16 rollsTotal = 1;
+    u8 nature;
     struct Pokemon *mon = &gEnemyParty[0];
+
     ZeroEnemyPartyMons();
+    otid = gSaveBlock2Ptr->playerTrainerId[0]
+        | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+        | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+        | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        rollsTotal += SHINY_CHARM_ROLLS;
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 2))
+        rollsTotal += SHINY_CHARM_ROLLS / 2;
+    if (FlagGet(FLAG_SYS_WHITE_FLUTE_ACTIVE) == TRUE
+        || (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_ILLUMINATE || GetMonAbility(&gPlayerParty[0]) == ABILITY_ARENA_TRAP)))
+        rollsTotal += WHITE_FLUTE_ABILITY_ROLLS;
+    if (GET_SHINY_VALUE(otid, ROAMER->personality) >= SHINY_ODDS)
+    {
+        do
+        {
+            if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+            && GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE
+            && !(Random() % 2))
+            {
+                nature = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY) % NUM_NATURES;
+                do
+                {
+                    personality = Random32();
+                }
+                while (nature != personality % NUM_NATURES);
+            }
+            else
+                personality = Random32();
+            shinyValue = GET_SHINY_VALUE(otid, personality);
+            if (rollsTotal > 0) rollsTotal--;
+        } while(rollsTotal && shinyValue >= SHINY_ODDS);
+        ROAMER->personality = personality;
+    }
     CreateMonWithIVsPersonality(mon, ROAMER->species, ROAMER->level, ROAMER->ivs, ROAMER->personality);
 // The roamer's status field is u8, but SetMonData expects status to be u32, so will set the roamer's status
 // using the status field and the following 3 bytes (cool, beauty, and cute).
@@ -248,6 +291,17 @@ void UpdateRoamerHPStatus(struct Pokemon *mon)
 void SetRoamerInactive(void)
 {
     ROAMER->active = FALSE;
+}
+
+void ResetRoamerActive(void)
+{
+    struct Pokemon mon;
+
+    CreateMonWithIVsPersonality(&mon, ROAMER->species, ROAMER->level, ROAMER->ivs, ROAMER->personality);
+    ROAMER->hp = GetMonData(&mon, MON_DATA_MAX_HP);
+    ROAMER->status = 0;
+    ROAMER->active = TRUE;
+    RoamerMoveToOtherLocationSet();
 }
 
 void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)

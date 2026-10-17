@@ -1,8 +1,10 @@
 #include "global.h"
+#include "random.h"
 #include "gflib.h"
 #include "berry.h"
 #include "daycare.h"
 #include "event_data.h"
+#include "item.h"
 #include "load_save.h"
 #include "overworld.h"
 #include "party_menu.h"
@@ -10,6 +12,7 @@
 #include "script_pokemon_util.h"
 #include "constants/items.h"
 #include "constants/pokemon.h"
+#include "constants/abilities.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleTowerParty(void);
@@ -125,12 +128,83 @@ bool8 DoesPartyHaveEnigmaBerry(void)
     return hasItem;
 }
 
+static u8 PickScriptedWildMonNature(void)
+{
+    return GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY) % NUM_NATURES;
+}
+
 void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 {
     u8 heldItem[2];
+    bool32 checkCuteCharm;
+    u16 rollsTotal = 1;
+    u32 otid;
+    u32 personality;
+    u32 shinyValue;
 
     ZeroEnemyPartyMons();
-    CreateMon(&gEnemyParty[0], species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    checkCuteCharm = TRUE;
+    otid = gSaveBlock2Ptr->playerTrainerId[0]
+        | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+        | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+        | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        rollsTotal += SHINY_CHARM_ROLLS;
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 2))
+        rollsTotal += SHINY_CHARM_ROLLS / 2;
+    if (FlagGet(FLAG_SYS_WHITE_FLUTE_ACTIVE) == TRUE
+        || (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_ILLUMINATE || GetMonAbility(&gPlayerParty[0]) == ABILITY_ARENA_TRAP)))
+        rollsTotal += WHITE_FLUTE_ABILITY_ROLLS;
+
+    do
+    {
+        personality = Random32();
+        shinyValue = GET_SHINY_VALUE(otid, personality);
+        if (rollsTotal) rollsTotal--;
+    }
+    while (rollsTotal && shinyValue >= SHINY_ODDS);
+
+    switch (gSpeciesInfo[species].genderRatio)
+    {
+    case MON_MALE:
+    case MON_FEMALE:
+    case MON_GENDERLESS:
+        checkCuteCharm = FALSE;
+        break;
+    }
+
+    if (checkCuteCharm
+        && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTE_CHARM)
+    {
+        u16 leadingMonSpecies = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES);
+        u32 leadingMonPersonality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
+        u8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);
+
+        if (Random() % 3 != 0 || GetEggSpecies(species) == GetEggSpecies(leadingMonSpecies))
+        {
+            if (gender == MON_MALE || gender == MON_FEMALE)
+            {
+                if (gender == MON_FEMALE)
+                    gender = MON_MALE;
+                else if (gender == MON_MALE)
+                    gender = MON_FEMALE;
+                CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, USE_RANDOM_IVS, gender, NUM_NATURES, 0, rollsTotal);
+            }
+            else
+                CreateMon(&gEnemyParty[0], species, level, 32, 1, personality, OT_ID_PLAYER_ID, 0);
+        }
+        else
+            CreateMon(&gEnemyParty[0], species, level, 32, 1, personality, OT_ID_PLAYER_ID, 0);
+    }
+    else if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+        && GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE
+        && Random() % 2 == 0)
+        CreateMonWithNature(&gEnemyParty[0], species, level, USE_RANDOM_IVS, PickScriptedWildMonNature(), rollsTotal);
+    else
+        CreateMon(&gEnemyParty[0], species, level, 32, 1, personality, OT_ID_PLAYER_ID, 0);
     if (item)
     {
         heldItem[0] = item;

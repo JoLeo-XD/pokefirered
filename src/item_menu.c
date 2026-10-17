@@ -225,9 +225,9 @@ static const u8 sContextMenuItems_Field[][4] = {
     }
 };
 
-static const u8 sContextMenuItems_CheckGiveTossCancel[] = {
-    ITEMMENUACTION_CHECK,
+static const u8 sContextMenuItems_GiveCheckTossCancel[] = {
     ITEMMENUACTION_GIVE,
+    ITEMMENUACTION_CHECK,
     ITEMMENUACTION_TOSS,
     ITEMMENUACTION_CANCEL
 };
@@ -1425,7 +1425,7 @@ static void OpenContextMenu(u8 taskId)
             case OPEN_BAG_ITEMS:
                 sContextMenuNumItems = 4;
                 if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
-                    sContextMenuItemsPtr = sContextMenuItems_CheckGiveTossCancel;
+                    sContextMenuItemsPtr = sContextMenuItems_GiveCheckTossCancel;
                 else
                     sContextMenuItemsPtr = sContextMenuItems_Field[gBagMenuState.pocket];
                 break;

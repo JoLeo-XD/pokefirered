@@ -362,6 +362,40 @@ static const struct RenewableHiddenItemData sRenewableHiddenItems[] = {
         }
     },
     {
+        .mapGroup = MAP_GROUP(MAP_MT_MOON_B2F),
+        .mapNum = MAP_NUM(MAP_MT_MOON_B2F),
+        .rare = {
+            HIDDEN_ID(FLAG_HIDDEN_ITEM_MT_MOON_B2F_MOON_STONE),
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .uncommon = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        },
+        .common = {
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM,
+            NO_ITEM
+        }
+    },
+    {
         .mapGroup = MAP_GROUP(MAP_POKEMON_MANSION_1F),
         .mapNum = MAP_NUM(MAP_POKEMON_MANSION_1F),
         .rare = {

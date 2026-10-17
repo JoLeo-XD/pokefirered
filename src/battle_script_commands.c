@@ -2627,7 +2627,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                         && !(gBattleTypeFlags &
                             (BATTLE_TYPE_EREADER_TRAINER
                             | BATTLE_TYPE_BATTLE_TOWER
-                            | BATTLE_TYPE_LINK))
+                            | BATTLE_TYPE_LINK
+                            | BATTLE_TYPE_WILD_SCRIPTED))
                         && gTrainerBattleOpponent_A != TRAINER_SECRET_BASE)
                     {
                         gBattlescriptCurrInstr++;
@@ -2635,7 +2636,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     else if (!(gBattleTypeFlags &
                             (BATTLE_TYPE_EREADER_TRAINER
                             | BATTLE_TYPE_BATTLE_TOWER
-                            | BATTLE_TYPE_LINK))
+                            | BATTLE_TYPE_LINK
+                            | BATTLE_TYPE_WILD_SCRIPTED))
                         && gTrainerBattleOpponent_A != TRAINER_SECRET_BASE
                         && (gWishFutureKnock.knockedOffMons[side] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]))
                     {
@@ -2652,7 +2654,13 @@ void SetMoveEffect(bool8 primary, u8 certain)
                         || gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY
                         || IS_ITEM_MAIL(gBattleMons[gBattlerTarget].item)
                         || gBattleMons[gBattlerTarget].item == ITEM_NONE
-                        || gBattleMons[gBattlerAttacker].item == ITEM_MASTER_BALL)
+                        || gBattleMons[gBattlerTarget].item == ITEM_MASTER_BALL)
+                    {
+                        gBattlescriptCurrInstr++;
+                    }
+                    else if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT
+                        && gBattleTypeFlags & BATTLE_TYPE_WILD_SCRIPTED
+                        && gBattleMons[gBattlerTarget].item != ITEM_LEFTOVERS)
                     {
                         gBattlescriptCurrInstr++;
                     }
@@ -2739,7 +2747,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
             case MOVE_EFFECT_KNOCK_OFF:
                 if (gBattleMons[gEffectBattler].ability == ABILITY_STICKY_HOLD)
                 {
-                    if (gBattleMons[gEffectBattler].item == ITEM_NONE || IS_ITEM_MAIL(gBattleMons[gEffectBattler].item) || gBattleMons[gEffectBattler].item == ITEM_MASTER_BALL)
+                    if (gBattleMons[gEffectBattler].item == ITEM_NONE
+                        || !IS_HELD_ITEM(gBattleMons[gEffectBattler].item))
                     {
                         gBattlescriptCurrInstr++;
                     }
@@ -2751,7 +2760,8 @@ void SetMoveEffect(bool8 primary, u8 certain)
                     }
                     break;
                 }
-                if (gBattleMons[gEffectBattler].item && !IS_ITEM_MAIL(gBattleMons[gEffectBattler].item) && gBattleMons[gEffectBattler].item != ITEM_MASTER_BALL)
+                if (gBattleMons[gEffectBattler].item
+                    && IS_HELD_ITEM(gBattleMons[gEffectBattler].item))
                 {
                     side = GetBattlerSide(gEffectBattler);
 
@@ -8830,10 +8840,12 @@ static void Cmd_tryswapitems(void)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         }
         // can't swap if two pokemon don't have an item
-        // or if either of them is an enigma berry or a mail
+        // or if either of them is an enigma berry or a mail or a master ball
         else if ((gBattleMons[gBattlerAttacker].item == ITEM_NONE && gBattleMons[gBattlerTarget].item == ITEM_NONE)
                  || gBattleMons[gBattlerAttacker].item == ITEM_ENIGMA_BERRY
                  || gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY
+                 || gBattleMons[gBattlerAttacker].item == ITEM_MASTER_BALL
+                 || gBattleMons[gBattlerTarget].item == ITEM_MASTER_BALL
                  || IS_ITEM_MAIL(gBattleMons[gBattlerAttacker].item)
                  || IS_ITEM_MAIL(gBattleMons[gBattlerTarget].item))
         {
@@ -9540,7 +9552,7 @@ static void Cmd_handleballthrow(void)
                     ballMultiplier = 10;
                 break;
             case ITEM_TIMER_BALL:
-                ballMultiplier = gBattleResults.battleTurnCounter + 10;
+                ballMultiplier = gBattleResults.battleTurnCounter * 3 + 10;
                 if (ballMultiplier > 40)
                     ballMultiplier = 40;
                 break;

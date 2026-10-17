@@ -165,6 +165,7 @@ const u32 sTopMenuIconTiles_Mountain[] = INCBIN_U32("graphics/pokedex/cat_icon_m
 const u32 sTopMenuIconTiles_Rare[] = INCBIN_U32("graphics/pokedex/cat_icon_rare.4bpp.lz");
 const u32 sTopMenuIconTiles_Sea[] = INCBIN_U32("graphics/pokedex/cat_icon_sea.4bpp.lz");
 const u32 sTopMenuIconTiles_Numerical[] = INCBIN_U32("graphics/pokedex/cat_icon_numerical.4bpp.lz");
+const u32 sTopMenuIconTiles_Favorites[] = INCBIN_U32("graphics/pokedex/cat_icon_favorite.4bpp.lz");
 const u32 sTopMenuIconTiles_RoughTerrain[] = INCBIN_U32("graphics/pokedex/cat_icon_rough_terrain.4bpp.lz");
 const u32 sTopMenuIconTiles_WatersEdge[] = INCBIN_U32("graphics/pokedex/cat_icon_waters_edge.4bpp.lz");
 const u32 sTopMenuIconTiles_Type[] = INCBIN_U32("graphics/pokedex/cat_icon_type.4bpp.lz");
@@ -180,6 +181,7 @@ const u16 sTopMenuIconPals_Mountain[] = INCBIN_U16("graphics/pokedex/cat_icon_mo
 const u16 sTopMenuIconPals_Rare[] = INCBIN_U16("graphics/pokedex/cat_icon_rare.gbapal");
 const u16 sTopMenuIconPals_Sea[] = INCBIN_U16("graphics/pokedex/cat_icon_sea.gbapal");
 const u16 sTopMenuIconPals_Numerical[] = INCBIN_U16("graphics/pokedex/cat_icon_numerical.gbapal");
+const u16 sTopMenuIconPals_Favorites[] = INCBIN_U16("graphics/pokedex/cat_icon_favorite.gbapal");
 const u16 sTopMenuIconPals_RoughTerrain[] = INCBIN_U16("graphics/pokedex/cat_icon_rough_terrain.gbapal");
 const u16 sTopMenuIconPals_WatersEdge[] = INCBIN_U16("graphics/pokedex/cat_icon_waters_edge.gbapal");
 const u16 sTopMenuIconPals_Type[] = INCBIN_U16("graphics/pokedex/cat_icon_type.gbapal");
@@ -1361,6 +1363,8 @@ static void DexScreen_CreateCharacteristicListMenu(void)
     template.items = sPokedexScreenData->listItems;
     template.windowId = sPokedexScreenData->numericalOrderWindowId;
     template.totalItems = sPokedexScreenData->orderedDexCount;
+    if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_ONE_HAND)
+        template.scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD_L_R;
     DexScreen_InitListMenuForOrderedList(&template, sPokedexScreenData->dexOrderId);
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
     DexScreen_PrintStringWithAlignment(gText_SearchNoColor, TEXT_CENTER);
@@ -2208,7 +2212,8 @@ static u32 DexScreen_GetDefaultPersonality(int species)
 
 static void DexScreen_LoadMonPicInWindow(u8 windowId, u16 species, u16 paletteOffset)
 {
-    LoadMonPicInWindow(species, SHINY_ODDS, DexScreen_GetDefaultPersonality(species), TRUE, paletteOffset >> 4, windowId);
+    u32 personality = DexScreen_GetDefaultPersonality(species);
+    LoadMonPicInWindow(species, personality ^ SHINY_ODDS, personality, TRUE, paletteOffset >> 4, windowId);
 }
 
 static void DexScreen_PrintMonDexNo(u8 windowId, u8 fontId, u16 species, u8 x, u8 y)

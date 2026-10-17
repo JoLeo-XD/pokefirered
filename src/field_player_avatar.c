@@ -20,6 +20,7 @@
 #include "script.h"
 #include "strings.h"
 #include "wild_encounter.h"
+#include "constants/abilities.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/songs.h"
@@ -1779,12 +1780,21 @@ static bool8 Fishing5(struct Task *task)
 static bool8 Fishing6(struct Task *task)
 {
     bool8 bite;
+    u8 chance = 1;
+    u8 monsCount = CalculatePlayerPartyCount();
+    u8 i;
 
     AlignFishingAnimationFrames(&gSprites[gPlayerAvatar.spriteId]);
     task->tStep++;
     bite = FALSE;
 
-    if (!DoesCurrentMapHaveFishingMons() || Random() & 1)
+    for (i = 0; i < monsCount; i++)
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG)
+            && (GetMonAbility(&gPlayerParty[i]) == ABILITY_STICKY_HOLD
+            || GetMonAbility(&gPlayerParty[i]) == ABILITY_SUCTION_CUPS))
+            chance = 2;
+
+    if (!DoesCurrentMapHaveFishingMons() || Random() % 4 > chance)
     {
         task->tStep = FISHING_NO_BITE;
     }

@@ -11,7 +11,7 @@
 	.equiv GAME_LANGUAGE, 5
 	.else
 	.ifdef PORTUGUESE
-	.equiv GAME_LANGUAGE, 7
+	.equiv GAME_LANGUAGE, 6
 	.endif
 	.endif
 	.endif

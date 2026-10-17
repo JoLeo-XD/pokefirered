@@ -769,7 +769,7 @@
 #define FLAG_DEFEATED_ARTICUNO                           0x2E6
 #define FLAG_DEFEATED_ZAPDOS                             0x2E7
 #define FLAG_DEFEATED_MOLTRES                            0x2E8
-#define FLAG_0x2E9                                       0x2E9
+#define FLAG_DEFEATED_ROAMER                             0x2E9
 #define FLAG_FARAWAY_ISLAND_SHOW_CLOUDS                  0x2EA
 #define FLAG_0x2EB                                       0x2EB
 #define FLAG_REVIVED_DOME                                0x2EC

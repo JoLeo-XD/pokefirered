@@ -1,6 +1,6 @@
 # Pokémon VermelhoFogo e VerdeFolha
 
-This is a Portuguese translation of Pokémon FireRed and LeafGreen, using the decompilation of the English Version.
+This is a translation of Pokémon FireRed and LeafGreen to Brazilian Portuguese, using the decompilation of the English Version.
 
 It builds the following ROM images:
 

@@ -66,9 +66,19 @@ static void Task_SoftboiledRestoreHealth(u8 taskId)
     PartyMenuModifyHP(taskId, gPartyMenu.slotId2, 1, GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_MAX_HP) / 5, Task_DisplayHPRestoredMessage);
 }
 
+static const u8 sText_da[] = _("da");
+static const u8 sText_do[] = _("do");
+static const u8 sText_de[] = _("de");
+
 static void Task_DisplayHPRestoredMessage(u8 taskId)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId2], gStringVar1);
+    if (GetMonGender(&gPlayerParty[gPartyMenu.slotId2]) == MON_FEMALE)
+        StringCopy(gStringVar3, sText_da);
+    else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId2]) == MON_MALE)
+        StringCopy(gStringVar3, sText_do);
+    else
+        StringCopy(gStringVar3, sText_de);
     StringExpandPlaceholders(gStringVar4, gText_PkmnHPRestoredByVar2);
     DisplayPartyMenuMessage(gStringVar4, FALSE);
     ScheduleBgCopyTilemapToVram(2);

@@ -9,7 +9,7 @@ Route1_EventScript_MartClerk::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	checkitemspace ITEM_POTION
 	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
-	bufferitemname STR_VAR_2, ITEM_POTION
+	bufferitemname STR_VAR_2, ITEM_POTION, 1
 	playfanfare MUS_LEVEL_UP
 	message Text_ObtainedTheX
 	waitmessage

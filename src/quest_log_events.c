@@ -2095,7 +2095,7 @@ static const u16 *LoadEvent_BoughtItem(const u16 *eventData)
     DynamicPlaceholderTextUtil_Reset();
     GetMapNameGeneric(gStringVar1, r7[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, ItemId_GetName(r4[0]));
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, ItemId_GetNamePlural(r4[0]));
     if (r4[1] < 2)
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_BoughtItem);
     else

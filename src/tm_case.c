@@ -1182,7 +1182,7 @@ static void Task_SelectedTMHM_Sell(u8 taskId)
             if (tQuantityOwned > 99)
                 tQuantityOwned = 99;
             CopyItemName(gSpecialVar_ItemId, gStringVar1);
-            StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSell);
+            StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSellF);
             PrintMessageWithFollowupTaskColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_InitQuantitySelectUI);
         }
     }
@@ -1278,13 +1278,20 @@ static void Task_QuantitySelect_HandleInput(u8 taskId)
     }
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_as[] = _("as");
+
 static void Task_PrintSaleConfirmedText(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
 
     PutWindowTilemap(WIN_LIST);
     ScheduleBgCopyTilemapToVram(0);
-    CopyItemName(gSpecialVar_ItemId, gStringVar1);
+    CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, tQuantitySelected);
+    if (tQuantitySelected == 1)
+        StringCopy(gStringVar2, sText_a);
+    else
+        StringCopy(gStringVar2, sText_as);
     ConvertIntToDecimalStringN(gStringVar3, ItemId_GetPrice(BagGetItemIdByPocketPosition(POCKET_TM_CASE, tSelection)) / 2 * tQuantitySelected, STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_TurnedOverItemsWorthYen);
     PrintMessageWithFollowupTask(taskId, FONT_NORMAL, gStringVar4, Task_DoSaleOfTMs);

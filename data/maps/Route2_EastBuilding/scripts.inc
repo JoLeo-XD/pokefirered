@@ -31,7 +31,7 @@ Route2_EastBuilding_EventScript_AlreadyGotHM05::
 
 Route2_EastBuilding_EventScript_GetAideRequestInfo::
 	buffernumberstring STR_VAR_1, REQUIRED_SEEN_MONS
-	bufferitemname STR_VAR_2, ITEM_HM05
+	bufferitemname STR_VAR_2, ITEM_HM05, 1
 	return
 
 Route2_EastBuilding_EventScript_Rocker::

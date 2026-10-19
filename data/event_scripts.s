@@ -1006,8 +1006,8 @@ Text_TheresBedLetsRest::
 	.string "やすんでいこう$"
 
 Text_FoundTMHMContainsMove::
-	.string "{PLAYER} found a {STR_VAR_2}!\n"
-	.string "It contains {STR_VAR_1}.$"
+	.string "{PLAYER} achou uma {STR_VAR_2}!\n"
+	.string "Contém o ataque {STR_VAR_1}.$"
 
 	.include "data/text/seagallop.inc"
 
@@ -1124,7 +1124,7 @@ EventScript_ChangePokemonNickname::
 
 @ Unused
 EventScript_HandOverItem::
-	bufferitemname STR_VAR_1, VAR_0x8004
+	bufferitemname STR_VAR_1, VAR_0x8004, 1
 	playfanfare MUS_OBTAIN_TMHM
 	message Text_HandedOverItem
 	waitmessage

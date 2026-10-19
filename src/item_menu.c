@@ -67,7 +67,7 @@ EWRAM_DATA struct BagStruct gBagMenuState = {};
 static EWRAM_DATA struct BagMenuAlloc * sBagMenuDisplay = NULL;
 static EWRAM_DATA void *sBagBgTilemapBuffer = NULL;
 static EWRAM_DATA struct ListMenuItem * sListMenuItems = NULL;
-static EWRAM_DATA u8 (*sListMenuItemStrings)[19] = NULL;
+static EWRAM_DATA u8 (*sListMenuItemStrings)[20] = NULL;
 static EWRAM_DATA u8 sContextMenuItemsBuffer[4] = {};
 static EWRAM_DATA const u8 *sContextMenuItemsPtr = NULL;
 static EWRAM_DATA u8 sContextMenuNumItems = 0;
@@ -1344,7 +1344,7 @@ static void InitQuantityToTossOrDeposit(u16 cursorPos, const u8 *str)
 {
     u8 r4;
     u8 r5 = ShowBagWindow(6, 2);
-    CopyItemName(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, cursorPos), gStringVar1);
+    CopyItemNameHandlePlural(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, cursorPos), gStringVar1, 0);
     StringExpandPlaceholders(gStringVar4, str);
     BagPrintTextOnWindow(r5, FONT_NORMAL, gStringVar4, 0, 2, 1, 0, 0, 1);
     r4 = ShowBagWindow(0, 0);
@@ -1537,7 +1537,10 @@ static void Task_ItemMenuAction_Toss(u8 taskId)
     }
     else
     {
-        InitQuantityToTossOrDeposit(data[1], gText_TossOutHowManyStrVar1s);
+        if (ItemId_GetFeminine(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1])))
+            InitQuantityToTossOrDeposit(data[1], gText_TossOutHowManyStrVar1sF);
+        else
+            InitQuantityToTossOrDeposit(data[1], gText_TossOutHowManyStrVar1sM);
         gTasks[taskId].func = Task_SelectQuantityToToss;
     }
 }
@@ -1596,7 +1599,7 @@ static void Task_TossItem_Yes(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     HideBagWindow(6);
-    CopyItemName(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1]), gStringVar1);
+    CopyItemNameHandlePlural(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1]), gStringVar1, data[8]);
     ConvertIntToDecimalStringN(gStringVar2, data[8], STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_ThrewAwayStrVar2StrVar1s);
     BagPrintTextOnWindow(ShowBagWindow(6, 3), FONT_NORMAL, gStringVar4, 0, 2, 1, 0, 0, 1);
@@ -1858,8 +1861,11 @@ static void Task_ItemContext_Sell(u8 taskId)
         {
             if (data[2] > 99)
                 data[2] = 99;
-            CopyItemName(gSpecialVar_ItemId, gStringVar1);
-            StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSell);
+            CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, 0);
+            if (ItemId_GetFeminine(gSpecialVar_ItemId))
+                StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSellF);
+            else
+                StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSellM);
             DisplayItemMessageInBagColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_InitSaleQuantitySelectInterface);
         }
     }
@@ -1957,12 +1963,37 @@ static void Task_SelectQuantityToSell(u8 taskId)
     }
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_o[] = _("o");
+static const u8 sText_as[] = _("as");
+static const u8 sText_os[] = _("os");
+
 static void Task_SellItem_Yes(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     PutWindowTilemap(0);
     ScheduleBgCopyTilemapToVram(0);
-    CopyItemName(gSpecialVar_ItemId, gStringVar1);
+    CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, data[8]);
+    if (data[8] == 1
+     && gSpecialVar_ItemId != ITEM_SACRED_ASH
+     && gSpecialVar_ItemId != ITEM_LEFTOVERS
+     && gSpecialVar_ItemId != ITEM_BLACK_GLASSES
+     && gSpecialVar_ItemId != ITEM_DEVON_GOODS
+     && gSpecialVar_ItemId != ITEM_GO_GOGGLES
+     && gSpecialVar_ItemId != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(gSpecialVar_ItemId))
+            StringCopy(gStringVar2, sText_a);
+        else
+            StringCopy(gStringVar2, sText_o);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(gSpecialVar_ItemId))
+            StringCopy(gStringVar2, sText_as);
+        else
+            StringCopy(gStringVar2, sText_os);
+    }
     ConvertIntToDecimalStringN(gStringVar3, ItemId_GetPrice(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1])) / 2 * data[8], STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_TurnedOverItemsWorthYen);
     DisplayItemMessageInBag(taskId, FONT_NORMAL, gStringVar4, Task_FinalizeSaleToShop);
@@ -2009,7 +2040,10 @@ static void Task_ItemContext_Deposit(u8 taskId)
     }
     else
     {
-        InitQuantityToTossOrDeposit(data[1], gText_DepositHowManyStrVars1);
+        if (ItemId_GetFeminine(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1])))
+            InitQuantityToTossOrDeposit(data[1], gText_DepositHowManyStrVars1F);
+        else
+            InitQuantityToTossOrDeposit(data[1], gText_DepositHowManyStrVars1M);
         gTasks[taskId].func = Task_SelectQuantityToDeposit;
     }
 }
@@ -2050,7 +2084,7 @@ static void Task_TryDoItemDeposit(u8 taskId)
     if (AddPCItem(gSpecialVar_ItemId, data[8]) == TRUE)
     {
         ItemUse_SetQuestLogEvent(QL_EVENT_DEPOSITED_ITEM_PC, 0, gSpecialVar_ItemId, 0xFFFF);
-        CopyItemName(gSpecialVar_ItemId, gStringVar1);
+        CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, data[8]);
         ConvertIntToDecimalStringN(gStringVar2, data[8], STR_CONV_MODE_LEFT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, gText_DepositedStrVar2StrVar1s);
         BagPrintTextOnWindow(ShowBagWindow(6, 3), FONT_NORMAL, gStringVar4, 0, 2, 1, 0, 0, 1);

@@ -8,16 +8,19 @@ EventScript_ItemfinderDigUpUnderfootItem::
 	end
 
 EventScript_DigUpItemPutInPocket::
+	buffergenderstringsingle STR_VAR_1, VAR_0x8005
 	message Text_DugUpItemFromGround
 	waitfanfare
 	waitmessage
 	delay 60
+	buffergenderstring STR_VAR_1, VAR_0x8005, VAR_0x8006
 	msgbox Text_PutItemAway
 	special SetHiddenItemFlag
 	releaseall
 	end
 
 EventScript_DigUpItemBagIsFull::
+	buffergenderstringsingle STR_VAR_1, VAR_0x8005
 	msgbox Text_DugUpItemFromGround
 	msgbox Text_TooBadBagFull
 	setvar VAR_RESULT, 0

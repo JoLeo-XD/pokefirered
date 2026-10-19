@@ -1609,6 +1609,19 @@ static void Task_ReturnToChooseMonAfterText(u8 taskId)
     }
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_o[] = _("o");
+static const u8 sText_as[] = _("as");
+static const u8 sText_os[] = _("os");
+static const u8 sText_da[] = _("da");
+static const u8 sText_do[] = _("do");
+static const u8 sText_de[] = _("de");
+static const u8 sText_Space[] = _(" ");
+static const u8 sText_pela[] = _("pela ");
+static const u8 sText_pelo[] = _("pelo ");
+static const u8 sText_pelas[] = _("pelas ");
+static const u8 sText_pelos[] = _("pelos ");
+
 static void DisplayGaveHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keepOpen, bool8 fromBagMenu)
 {
     if (!fromBagMenu) // Used Give option from party menu
@@ -1619,6 +1632,25 @@ static void DisplayGaveHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keep
         ItemUse_SetQuestLogEvent(QL_EVENT_GAVE_HELD_ITEM_BAG, mon, item, 0xFFFF);
     GetMonNickname(mon, gStringVar1);
     CopyItemName(item, gStringVar2);
+    if (item != ITEM_SACRED_ASH
+     && item != ITEM_LEFTOVERS
+     && item != ITEM_BLACK_GLASSES
+     && item != ITEM_DEVON_GOODS
+     && item != ITEM_GO_GOGGLES
+     && item != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar3, sText_a);
+        else
+            StringCopy(gStringVar3, sText_o);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar3, sText_as);
+        else
+            StringCopy(gStringVar3, sText_os);
+    }
     StringExpandPlaceholders(gStringVar4, gText_PkmnWasGivenItem);
     DisplayPartyMenuMessage(gStringVar4, keepOpen);
     ScheduleBgCopyTilemapToVram(2);
@@ -1626,18 +1658,69 @@ static void DisplayGaveHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keep
 
 static void DisplayTookHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keepOpen)
 {
+    u8 stringAppendNickname[11] = {};
+
     ItemUse_SetQuestLogEvent(QL_EVENT_TOOK_HELD_ITEM, mon, item, 0xFFFF);
-    GetMonNickname(mon, gStringVar1);
+    if (GetMonGender(mon) == MON_FEMALE)
+        StringCopy(gStringVar1, sText_da);
+    else if (GetMonGender(mon) == MON_MALE)
+        StringCopy(gStringVar1, sText_do);
+    else
+        StringCopy(gStringVar1, sText_de);
+    StringAppend(gStringVar1, sText_Space);
+    GetMonNickname(mon, stringAppendNickname);
+    StringAppend(gStringVar1, stringAppendNickname);
     CopyItemName(item, gStringVar2);
+    if (item != ITEM_SACRED_ASH
+     && item != ITEM_LEFTOVERS
+     && item != ITEM_BLACK_GLASSES
+     && item != ITEM_DEVON_GOODS
+     && item != ITEM_GO_GOGGLES
+     && item != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar3, sText_a);
+        else
+            StringCopy(gStringVar3, sText_o);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar3, sText_as);
+        else
+            StringCopy(gStringVar3, sText_os);
+    }
     StringExpandPlaceholders(gStringVar4, gText_ReceivedItemFromPkmn);
     DisplayPartyMenuMessage(gStringVar4, keepOpen);
     ScheduleBgCopyTilemapToVram(2);
 }
 
+static const u8 sText_uma[] = _("uma");
+static const u8 sText_um[] = _("um");
+
 static void DisplayAlreadyHoldingItemSwitchMessage(struct Pokemon *mon, u16 item, bool8 keepOpen)
 {
     GetMonNickname(mon, gStringVar1);
     CopyItemName(item, gStringVar2);
+    if (item != ITEM_SACRED_ASH
+     && item != ITEM_LEFTOVERS
+     && item != ITEM_BLACK_GLASSES
+     && item != ITEM_DEVON_GOODS
+     && item != ITEM_GO_GOGGLES
+     && item != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar3, sText_uma);
+        else
+            StringCopy(gStringVar3, sText_um);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar3, sText_as);
+        else
+            StringCopy(gStringVar3, sText_os);
+    }
     StringExpandPlaceholders(gStringVar4, gText_PkmnAlreadyHoldingItemSwitch);
     DisplayPartyMenuMessage(gStringVar4, keepOpen);
     ScheduleBgCopyTilemapToVram(2);
@@ -1646,8 +1729,46 @@ static void DisplayAlreadyHoldingItemSwitchMessage(struct Pokemon *mon, u16 item
 static void DisplaySwitchedHeldItemMessage(u16 item, u16 item2, bool8 keepOpen)
 {
     SetSwappedHeldItemQuestLogEvent(&gPlayerParty[gPartyMenu.slotId], item2, item);
-    CopyItemName(item, gStringVar1);
+    if (item != ITEM_SACRED_ASH
+     && item != ITEM_LEFTOVERS
+     && item != ITEM_BLACK_GLASSES
+     && item != ITEM_DEVON_GOODS
+     && item != ITEM_GO_GOGGLES
+     && item != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar1, sText_pela);
+        else
+            StringCopy(gStringVar1, sText_pelo);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(item))
+            StringCopy(gStringVar1, sText_pelas);
+        else
+            StringCopy(gStringVar1, sText_pelos);
+    }
+    StringAppend(gStringVar1, ItemId_GetName(item));
     CopyItemName(item2, gStringVar2);
+    if (item2 != ITEM_SACRED_ASH
+     && item2 != ITEM_LEFTOVERS
+     && item2 != ITEM_BLACK_GLASSES
+     && item2 != ITEM_DEVON_GOODS
+     && item2 != ITEM_GO_GOGGLES
+     && item2 != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(item2))
+            StringCopy(gStringVar3, sText_a);
+        else
+            StringCopy(gStringVar3, sText_o);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(item2))
+            StringCopy(gStringVar3, sText_as);
+        else
+            StringCopy(gStringVar3, sText_os);
+    }
     StringExpandPlaceholders(gStringVar4, gText_SwitchedPkmnItem);
     DisplayPartyMenuMessage(gStringVar4, keepOpen);
     ScheduleBgCopyTilemapToVram(2);
@@ -2504,6 +2625,10 @@ static void PartyMenuRemoveWindow(u8 *windowId)
     }
 }
 
+static const u8 sText_ela[] = _("ela?");
+static const u8 sText_ele[] = _("ele?");
+static const u8 sText_PKMN[] = _("{PKMN}?");
+
 void DisplayPartyMenuStdMessage(u32 stringId)
 {
     u8 *windowPtr = &sPartyMenuInternal->windowId[1];
@@ -2542,6 +2667,15 @@ void DisplayPartyMenuStdMessage(u32 stringId)
         }
         DrawStdFrameWithCustomTileAndPalette(*windowPtr, FALSE, 0x58, 15);
         StringExpandPlaceholders(gStringVar4, sActionStringTable[stringId]);
+        if (stringId == PARTY_MSG_DO_WHAT_WITH_MON)
+        {
+            if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+                StringAppend(gStringVar4, sText_ela);
+            else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+                StringAppend(gStringVar4, sText_ele);
+            else
+                StringAppend(gStringVar4, sText_PKMN);
+        }
         AddTextPrinterParameterized(*windowPtr, FONT_NORMAL, gStringVar4, 0, 2, 0, 0);
         ScheduleBgCopyTilemapToVram(2);
     }
@@ -3744,7 +3878,10 @@ static void Task_HandleLoseMailMessageYesNoInput(u8 taskId)
         if (AddBagItem(item, 1) == TRUE)
         {
             TakeMailFromMon(&gPlayerParty[gPartyMenu.slotId]);
-            DisplayPartyMenuMessage(gText_MailTakenFromPkmn, FALSE);
+            if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+                DisplayPartyMenuMessage(gText_MailTakenFromPkmnF, FALSE);
+            else
+                DisplayPartyMenuMessage(gText_MailTakenFromPkmn, FALSE);
             gTasks[taskId].func = Task_UpdateHeldItemSprite;
         }
         else
@@ -4379,18 +4516,54 @@ static void GetMedicineItemEffectMessage(u16 item)
     switch (GetItemEffectType(item))
     {
     case ITEM_EFFECT_CURE_POISON:
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+        {
+            StringCopy(gStringVar3, sText_a);
+            StringAppend(gStringVar3, sText_Space);
+        }
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+        {
+            StringCopy(gStringVar3, sText_o);
+            StringAppend(gStringVar3, sText_Space);
+        }
         StringExpandPlaceholders(gStringVar4, gText_PkmnCuredOfPoison);
         break;
     case ITEM_EFFECT_CURE_SLEEP:
         StringExpandPlaceholders(gStringVar4, gText_PkmnWokeUp2);
         break;
     case ITEM_EFFECT_CURE_BURN:
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBurnHealed);
         break;
     case ITEM_EFFECT_CURE_FREEZE:
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+        {
+            StringCopy(gStringVar3, sText_a);
+            StringAppend(gStringVar3, sText_Space);
+        }
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+        {
+            StringCopy(gStringVar3, sText_o);
+            StringAppend(gStringVar3, sText_Space);
+        }
         StringExpandPlaceholders(gStringVar4, gText_PkmnThawedOut);
         break;
     case ITEM_EFFECT_CURE_PARALYSIS:
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+        {
+            StringCopy(gStringVar3, sText_a);
+            StringAppend(gStringVar3, sText_Space);
+        }
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+        {
+            StringCopy(gStringVar3, sText_o);
+            StringAppend(gStringVar3, sText_Space);
+        }
         StringExpandPlaceholders(gStringVar4, gText_PkmnCuredOfParalysis);
         break;
     case ITEM_EFFECT_CURE_CONFUSION:
@@ -4404,26 +4577,62 @@ static void GetMedicineItemEffectMessage(u16 item)
         break;
     case ITEM_EFFECT_HP_EV:
         StringCopy(gStringVar2, gText_ItemEffect_HP);
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
     case ITEM_EFFECT_ATK_EV:
         StringCopy(gStringVar2, gText_ItemEffect_Attack);
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
     case ITEM_EFFECT_DEF_EV:
         StringCopy(gStringVar2, gText_ItemEffect_Defense);
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
     case ITEM_EFFECT_SPEED_EV:
         StringCopy(gStringVar2, gText_ItemEffect_Speed);
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
     case ITEM_EFFECT_SPATK_EV:
         StringCopy(gStringVar2, gText_ItemEffect_SpAtk);
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
     case ITEM_EFFECT_SPDEF_EV:
         StringCopy(gStringVar2, gText_ItemEffect_SpDef);
+        if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+            StringCopy(gStringVar3, sText_da);
+        else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            StringCopy(gStringVar3, sText_do);
+        else
+            StringCopy(gStringVar3, sText_de);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
     case ITEM_EFFECT_PP_UP:
@@ -4565,6 +4774,12 @@ void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 static void Task_DisplayHPRestoredMessage(u8 taskId)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
+    if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+        StringCopy(gStringVar3, sText_da);
+    else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+        StringCopy(gStringVar3, sText_do);
+    else
+        StringCopy(gStringVar3, sText_de);
     StringExpandPlaceholders(gStringVar4, gText_PkmnHPRestoredByVar2);
     DisplayPartyMenuMessage(gStringVar4, FALSE);
     ScheduleBgCopyTilemapToVram(2);
@@ -5317,6 +5532,12 @@ static void Task_SacredAshLoop(u8 taskId)
 static void Task_SacredAshDisplayHPRestored(u8 taskId)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
+    if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+        StringCopy(gStringVar3, sText_da);
+    else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+        StringCopy(gStringVar3, sText_do);
+    else
+        StringCopy(gStringVar3, sText_de);
     StringExpandPlaceholders(gStringVar4, gText_PkmnHPRestoredByVar2);
     DisplayPartyMenuMessage(gStringVar4, FALSE);
     ScheduleBgCopyTilemapToVram(2);
@@ -5681,7 +5902,10 @@ static void TryGiveMailToSelectedMon(u8 taskId)
     mail = &gSaveBlock1Ptr->mail[gPlayerPcMenuManager.cursorPos + 6 + gPlayerPcMenuManager.itemsAbove];
     if (GetMonData(mon, MON_DATA_HELD_ITEM) != ITEM_NONE)
     {
-        DisplayPartyMenuMessage(gText_PkmnHoldingItemCantHoldMail, TRUE);
+        if (GetMonGender(mon) == MON_FEMALE)
+            DisplayPartyMenuMessage(gText_PkmnHoldingItemCantHoldMailF, TRUE);
+        else
+            DisplayPartyMenuMessage(gText_PkmnHoldingItemCantHoldMail, TRUE);
     }
     else
     {

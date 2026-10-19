@@ -1055,7 +1055,11 @@ static void Cmd_accuracycheck(void)
         else
         {
             u8 acc = gBattleMons[gBattlerAttacker].statStages[STAT_ACC];
-            buff = acc + DEFAULT_STAT_STAGE - gBattleMons[gBattlerTarget].statStages[STAT_EVASION];
+            u8 eva = gBattleMons[gBattlerTarget].statStages[STAT_EVASION];
+            if ((gBattleMons[gBattlerAttacker].ability == ABILITY_KEEN_EYE
+                || gBattleMons[gBattlerAttacker].ability == ABILITY_ILLUMINATE) && eva < DEFAULT_STAT_STAGE)
+                eva = DEFAULT_STAT_STAGE;
+            buff = acc + DEFAULT_STAT_STAGE - eva;
         }
 
         if (buff < MIN_STAT_STAGE)
@@ -2054,7 +2058,7 @@ static void Cmd_waitmessage(void)
         else
         {
             u16 toWait = T2_READ_16(gBattlescriptCurrInstr + 1);
-            if (++gPauseCounterBattle >= toWait)
+            if (++gPauseCounterBattle >= toWait || JOY_NEW(A_BUTTON | B_BUTTON))
             {
                 gPauseCounterBattle = 0;
                 gBattlescriptCurrInstr += 3;
@@ -3782,7 +3786,7 @@ static void Cmd_pause(void)
     if (gBattleControllerExecFlags == 0)
     {
         u16 value = T2_READ_16(gBattlescriptCurrInstr + 1);
-        if (++gPauseCounterBattle >= value)
+        if (++gPauseCounterBattle >= value || JOY_NEW(A_BUTTON | B_BUTTON))
         {
             gPauseCounterBattle = 0;
             gBattlescriptCurrInstr += 3;
@@ -4006,6 +4010,7 @@ static void Cmd_playstatchangeanimation(void)
                         && gBattleMons[gActiveBattler].ability != ABILITY_CLEAR_BODY
                         && gBattleMons[gActiveBattler].ability != ABILITY_WHITE_SMOKE
                         && !(gBattleMons[gActiveBattler].ability == ABILITY_KEEN_EYE && currStat == STAT_ACC)
+                        && !(gBattleMons[gActiveBattler].ability == ABILITY_ILLUMINATE && currStat == STAT_ACC)
                         && !(gBattleMons[gActiveBattler].ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK))
                 {
                     if (gBattleMons[gActiveBattler].statStages[currStat] > MIN_STAT_STAGE)
@@ -6743,8 +6748,9 @@ static u8 ChangeStatBuffs(s8 statValue, u8 statId, u8 flags, const u8 *BS_ptr)
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if (gBattleMons[gActiveBattler].ability == ABILITY_KEEN_EYE
-                 && !certain && statId == STAT_ACC)
+        else if ((gBattleMons[gActiveBattler].ability == ABILITY_KEEN_EYE
+                  || gBattleMons[gActiveBattler].ability == ABILITY_ILLUMINATE)
+                  && !certain && statId == STAT_ACC)
         {
             if (flags == STAT_CHANGE_ALLOW_PTR)
             {

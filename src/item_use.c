@@ -585,11 +585,18 @@ static void Task_UseRepel(u8 taskId)
     }
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_o[] = _("o");
+
 static void RemoveUsedItem(void)
 {
     RemoveBagItem(gSpecialVar_ItemId, 1);
     Pocket_CalculateNItemsAndMaxShowed(ItemId_GetPocket(gSpecialVar_ItemId));
     PocketCalculateInitialCursorPosAndItemsAbove(ItemId_GetPocket(gSpecialVar_ItemId));
+    if (ItemId_GetFeminine(gSpecialVar_ItemId))
+        StringCopy(gStringVar1, sText_a);
+    else
+        StringCopy(gStringVar1, sText_o);
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
 }

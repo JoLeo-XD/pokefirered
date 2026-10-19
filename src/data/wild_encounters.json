@@ -18136,7 +18136,7 @@
                 "species": "SPECIES_GRAVELER"
               },
               {
-                "min_level": 30,
+                "min_level": 25,
                 "max_level": 40,
                 "species": "SPECIES_MAGNETON"
               }

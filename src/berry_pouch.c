@@ -916,7 +916,7 @@ void InitTossQuantitySelectUI(u8 taskId, const u8 * str)
     s16 * data = gTasks[taskId].data;
     u8 windowId = GetOrCreateVariableWindow(8);
     u8 windowId2;
-    CopySelectedListMenuItemName(data[1], gStringVar1);
+    CopyItemNameHandlePlural(BagGetItemIdByPocketPosition(POCKET_BERRY_POUCH, data[1]), gStringVar1, 0);
     StringExpandPlaceholders(gStringVar4, str);
     BerryPouchPrint(windowId, FONT_NORMAL, gStringVar4, 0, 2, 1, 2, 0, 1);
     windowId2 = GetOrCreateVariableWindow(0);
@@ -1097,7 +1097,7 @@ static void Task_BerryPouch_Toss(u8 taskId)
         Task_AskTossMultiple(taskId);
     else
     {
-        InitTossQuantitySelectUI(taskId, gText_TossOutHowManyStrVar1s);
+        InitTossQuantitySelectUI(taskId, gText_TossOutHowManyStrVar1sF);
         CreateScrollIndicatorArrows_TossQuantity();
         gTasks[taskId].func = Task_Toss_SelectMultiple;
     }
@@ -1159,7 +1159,7 @@ static void Task_TossYes(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
     DestroyVariableWindow(7);
-    CopySelectedListMenuItemName(data[1], gStringVar1);
+    CopyItemNameHandlePlural(BagGetItemIdByPocketPosition(POCKET_BERRY_POUCH, data[1]), gStringVar1, data[8]);
     ConvertIntToDecimalStringN(gStringVar2, data[8], STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_ThrewAwayStrVar2StrVar1s);
     BerryPouchPrint(GetOrCreateVariableWindow(9), FONT_NORMAL, gStringVar4, 0, 2, 1, 2, 0, 1);
@@ -1287,8 +1287,8 @@ static void Task_ContextMenu_Sell(u8 taskId)
         {
             if (data[2] > 99)
                 data[2] = 99;
-            CopyItemName(gSpecialVar_ItemId, gStringVar1);
-            StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSell);
+            CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, 0);
+            StringExpandPlaceholders(gStringVar4, gText_HowManyWouldYouLikeToSellF);
             DisplayItemMessageInBerryPouchColor(taskId, GetDialogBoxFontId(), GetDialogBoxColorId(), gStringVar4, Task_Sell_PrintSelectMultipleUI);
         }
     }
@@ -1371,12 +1371,19 @@ static void Task_Sell_SelectMultiple(u8 taskId)
     }
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_as[] = _("as");
+
 static void Task_SellYes(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
     PutWindowTilemap(0);
     ScheduleBgCopyTilemapToVram(0);
-    CopyItemName(gSpecialVar_ItemId, gStringVar1);
+    CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, data[8]);
+    if (data[8] == 1)
+        StringCopy(gStringVar2, sText_a);
+    else
+        StringCopy(gStringVar2, sText_as);
     ConvertIntToDecimalStringN(gStringVar3, ItemId_GetPrice(BagGetItemIdByPocketPosition(POCKET_BERRY_POUCH, data[1])) / 2 * data[8], STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, gText_TurnedOverItemsWorthYen);
     DisplayItemMessageInBerryPouch(taskId, FONT_NORMAL, gStringVar4, Task_SellBerries_PlaySfxAndRemoveBerries);

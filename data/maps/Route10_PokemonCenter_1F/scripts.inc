@@ -57,5 +57,5 @@ Route10_PokemonCenter_1F_EventScript_AlreadyGotEverstone::
 
 Route10_PokemonCenter_1F_EventScript_GetAideRequestInfo::
 	buffernumberstring STR_VAR_1, REQUIRED_OWNED_MONS
-	bufferitemname STR_VAR_2, ITEM_EVERSTONE
+	bufferitemname STR_VAR_2, ITEM_EVERSTONE, 1
 	return

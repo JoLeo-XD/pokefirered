@@ -5360,7 +5360,7 @@ const struct WildPokemon sRoute10_FireRed_RockSmashMons[] =
     { 20, 30, SPECIES_GEODUDE },
     { 20, 25, SPECIES_GRAVELER },
     { 25, 30, SPECIES_GRAVELER },
-    { 30, 40, SPECIES_MAGNETON },
+    { 25, 40, SPECIES_MAGNETON },
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_RockSmashMonsInfo = { 20, sRoute10_FireRed_RockSmashMons };

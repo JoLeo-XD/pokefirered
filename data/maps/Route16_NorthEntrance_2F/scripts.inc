@@ -47,5 +47,5 @@ Route16_NorthEntrance_2F_EventScript_AlreadyGotAmuletCoin::
 
 Route16_NorthEntrance_2F_EventScript_GetAideRequestInfo::
 	buffernumberstring STR_VAR_1, REQUIRED_CAUGHT_MONS
-	bufferitemname STR_VAR_2, ITEM_AMULET_COIN
+	bufferitemname STR_VAR_2, ITEM_AMULET_COIN, 1
 	return

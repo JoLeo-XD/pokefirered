@@ -17,6 +17,7 @@ Std_ObtainItem::
 	return
 
 EventScript_ObtainItemMessage::
+	buffergenderstring STR_VAR_1, VAR_0x8000, VAR_0x8001
 	bufferitemnameplural STR_VAR_2, VAR_0x8000, VAR_0x8001
 	checkitemtype VAR_0x8000
 	call EventScript_BufferPocketNameTryFanfare
@@ -85,6 +86,7 @@ Std_ObtainDecoration::
 	return
 
 EventScript_ObtainDecorMessage::
+	buffergenderstring STR_VAR_1, VAR_0x8000, 1
 	bufferdecorationname STR_VAR_2, VAR_0x8000
 	call_if_eq VAR_0x8007, TRUE, EventScript_ObtainedDecor
 	call_if_eq VAR_0x8007, FALSE, EventScript_NoRoomForDecor
@@ -111,7 +113,7 @@ Std_FindItem::
 	copyvar VAR_0x8005, VAR_0x8001
 	checkitemspace VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemname STR_VAR_2, VAR_0x8000
+	bufferitemname STR_VAR_2, VAR_0x8000, VAR_0x8001
 	checkitemtype VAR_0x8000
 	call EventScript_BufferPocketNameTryFanfare
 	call_if_eq VAR_0x8007, TRUE, EventScript_PickUpItem
@@ -128,6 +130,7 @@ EventScript_PickUpItem::
 	call_if_eq VAR_0x8008, FALSE, EventScript_FoundItem
 	waitfanfare
 	waitmessage
+	buffergenderstring STR_VAR_1, VAR_0x8004, VAR_0x8005
 	msgbox Text_PutItemAway
 	return
 
@@ -136,10 +139,22 @@ EventScript_FoundTMHM::
 	return
 
 EventScript_FoundItem::
+	call_if_eq VAR_0x8005, 1, EventScript_FoundSingleItemBall
+	call_if_ne VAR_0x8005, 1, EventScript_FoundMultipleItemsBall
+	return
+
+EventScript_FoundSingleItemBall::
+	buffergenderstringsingle STR_VAR_1, VAR_0x8004
 	message Text_FoundOneItem
 	return
 
+EventScript_FoundMultipleItemsBall::
+	buffernumberstring STR_VAR_1, VAR_0x8005
+	message Text_FoundXItems
+	return
+
 EventScript_NoRoomToPickUpItem::
+	buffergenderstring STR_VAR_1, VAR_0x8004, VAR_0x8005
 	msgbox Text_ObtainedTheX
 	msgbox Text_TooBadBagFull
 	setvar VAR_RESULT, FALSE
@@ -158,7 +173,7 @@ EventScript_HiddenItemScript::
 EventScript_TryPickUpHiddenItem::
 	additem VAR_0x8005, VAR_0x8006
 	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemname STR_VAR_2, VAR_0x8005
+	bufferitemname STR_VAR_2, VAR_0x8005, VAR_0x8006
 	checkitemtype VAR_0x8005
 	call EventScript_BufferPocketNameTryFanfare
 	return
@@ -168,12 +183,14 @@ EventScript_PickedUpHiddenItem::
 	call_if_ne VAR_0x8006, 1, EventScript_FoundMultipleItems
 	waitfanfare
 	waitmessage
+	buffergenderstring STR_VAR_1, VAR_0x8005, VAR_0x8006
 	msgbox Text_PutItemAway
 	special SetHiddenItemFlag
 	releaseall
 	end
 
 EventScript_FoundSingleItem::
+	buffergenderstringsingle STR_VAR_1, VAR_0x8005
 	message Text_FoundOneItem
 	return
 
@@ -188,6 +205,7 @@ EventScript_FoundMultipleItems::
 	return
 
 EventScript_NoRoomForHiddenItem::
+	buffergenderstringsingle STR_VAR_1, VAR_0x8005
 	msgbox Text_FoundOneItem
 	msgbox Text_TooBadBagFull
 	setvar VAR_RESULT, 0

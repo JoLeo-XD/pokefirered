@@ -900,7 +900,7 @@ static void ItemPc_DoWithdraw(u8 taskId)
     if (AddBagItem(itemId, data[8]) == TRUE)
     {
         ItemUse_SetQuestLogEvent(QL_EVENT_WITHDREW_ITEM_PC, NULL, itemId, 0xFFFF);
-        CopyItemName(itemId, gStringVar1);
+        CopyItemNameHandlePlural(itemId, gStringVar1, data[8]);
         ConvertIntToDecimalStringN(gStringVar2, data[8], STR_CONV_MODE_LEFT_ALIGN, 3);
         StringExpandPlaceholders(gStringVar4, gText_WithdrewQuantItem);
         windowId = ItemPc_GetOrCreateSubwindow(2);
@@ -958,7 +958,7 @@ static void ItemPc_WithdrawMultipleInitWindow(u16 slotId)
 {
     u16 itemId = ItemPc_GetItemIdBySlotId(slotId);
 
-    CopyItemName(itemId, gStringVar1);
+    CopyItemNameHandlePlural(itemId, gStringVar1, 0);
     StringExpandPlaceholders(gStringVar4, gText_WithdrawHowMany);
     AddTextPrinterParameterized(ItemPc_GetOrCreateSubwindow(1), FONT_NORMAL, gStringVar4, 0, 2, 0, NULL);
     ConvertIntToDecimalStringN(gStringVar1, 1, STR_CONV_MODE_LEADING_ZEROS, 3);

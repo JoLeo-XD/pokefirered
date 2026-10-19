@@ -922,8 +922,11 @@ static void Task_BuyMenu(u8 taskId)
             }
             else
             {
-                CopyItemName(itemId, gStringVar1);
-                BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
+                CopyItemNameHandlePlural(itemId, gStringVar1, 0);
+                if (ItemId_GetFeminine(itemId))
+                    BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowManyF, Task_BuyHowManyDialogueInit);
+                else
+                    BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowManyM, Task_BuyHowManyDialogueInit);
             }
             break;
         }
@@ -976,7 +979,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             ClearWindowTilemap(3);
             ClearWindowTilemap(1);
             PutWindowTilemap(4);
-            CopyItemName(tItemId, gStringVar1);
+            CopyItemNameHandlePlural(tItemId, gStringVar1, tItemCount);
             ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, 2);
             ConvertIntToDecimalStringN(gStringVar3, sShopData.itemPrice, STR_CONV_MODE_LEFT_ALIGN, 8);
             BuyMenuDisplayMessage(taskId, gText_Var1AndYouWantedVar2, CreateBuyMenuConfirmPurchaseWindow);

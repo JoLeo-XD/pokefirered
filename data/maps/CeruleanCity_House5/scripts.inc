@@ -55,77 +55,77 @@ CeruleanCity_House5_EventScript_ChooseExchangeItem::
 	end
 
 CeruleanCity_House5_EventScript_EnergyPowder::
-	bufferitemname STR_VAR_1, ITEM_ENERGY_POWDER
+	bufferitemname STR_VAR_1, ITEM_ENERGY_POWDER, 1
 	setvar VAR_0x8008, ITEM_ENERGY_POWDER
 	setvar VAR_0x8009, 50
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_EnergyRoot::
-	bufferitemname STR_VAR_1, ITEM_ENERGY_ROOT
+	bufferitemname STR_VAR_1, ITEM_ENERGY_ROOT, 1
 	setvar VAR_0x8008, ITEM_ENERGY_ROOT
 	setvar VAR_0x8009, 80
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_HealPowder::
-	bufferitemname STR_VAR_1, ITEM_HEAL_POWDER
+	bufferitemname STR_VAR_1, ITEM_HEAL_POWDER, 1
 	setvar VAR_0x8008, ITEM_HEAL_POWDER
 	setvar VAR_0x8009, 50
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_RevivalHerb::
-	bufferitemname STR_VAR_1, ITEM_REVIVAL_HERB
+	bufferitemname STR_VAR_1, ITEM_REVIVAL_HERB, 1
 	setvar VAR_0x8008, ITEM_REVIVAL_HERB
 	setvar VAR_0x8009, 300
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_Protein::
-	bufferitemname STR_VAR_1, ITEM_PROTEIN
+	bufferitemname STR_VAR_1, ITEM_PROTEIN, 1
 	setvar VAR_0x8008, ITEM_PROTEIN
 	setvar VAR_0x8009, 1000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_Iron::
-	bufferitemname STR_VAR_1, ITEM_IRON
+	bufferitemname STR_VAR_1, ITEM_IRON, 1
 	setvar VAR_0x8008, ITEM_IRON
 	setvar VAR_0x8009, 1000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_Carbos::
-	bufferitemname STR_VAR_1, ITEM_CARBOS
+	bufferitemname STR_VAR_1, ITEM_CARBOS, 1
 	setvar VAR_0x8008, ITEM_CARBOS
 	setvar VAR_0x8009, 1000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_Calcium::
-	bufferitemname STR_VAR_1, ITEM_CALCIUM
+	bufferitemname STR_VAR_1, ITEM_CALCIUM, 1
 	setvar VAR_0x8008, ITEM_CALCIUM
 	setvar VAR_0x8009, 1000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_Zinc::
-	bufferitemname STR_VAR_1, ITEM_ZINC
+	bufferitemname STR_VAR_1, ITEM_ZINC, 1
 	setvar VAR_0x8008, ITEM_ZINC
 	setvar VAR_0x8009, 1000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_HPUp::
-	bufferitemname STR_VAR_1, ITEM_HP_UP
+	bufferitemname STR_VAR_1, ITEM_HP_UP, 1
 	setvar VAR_0x8008, ITEM_HP_UP
 	setvar VAR_0x8009, 1000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem
 	end
 
 CeruleanCity_House5_EventScript_PPUp::
-	bufferitemname STR_VAR_1, ITEM_PP_UP
+	bufferitemname STR_VAR_1, ITEM_PP_UP, 1
 	setvar VAR_0x8008, ITEM_PP_UP
 	setvar VAR_0x8009, 3000
 	goto CeruleanCity_House5_EventScript_ExchangePowderForItem

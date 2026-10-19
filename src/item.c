@@ -83,6 +83,22 @@ void CopyItemName(u16 itemId, u8 * dest)
     }
 }
 
+void CopyItemNameHandlePlural(u16 itemId, u8 * dest, u32 quantity)
+{
+    if (itemId == ITEM_ENIGMA_BERRY)
+    {
+        StringCopy(dest, gText_Berry);
+        StringAppend(dest, GetBerryInfo(ITEM_TO_BERRY(ITEM_ENIGMA_BERRY))->name);
+    }
+    else
+    {
+        if (quantity == 1)
+            StringCopy(dest, ItemId_GetName(itemId));
+        else
+            StringCopy(dest, ItemId_GetNamePlural(itemId));
+    }
+}
+
 s8 BagPocketGetFirstEmptySlot(u8 pocketId)
 {
     u16 i;
@@ -610,6 +626,16 @@ u16 SanitizeItemId(u16 itemId)
 const u8 * ItemId_GetName(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].name;
+}
+
+const bool8 ItemId_GetFeminine(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].gender;
+}
+
+const u8 * ItemId_GetNamePlural(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].namePlural;
 }
 
 // Unused

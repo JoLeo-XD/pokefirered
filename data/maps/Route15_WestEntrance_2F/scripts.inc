@@ -47,5 +47,5 @@ Route15_WestEntrance_2F_EventScript_AlreadyGotExpShare::
 
 Route15_WestEntrance_2F_EventScript_GetAideRequestInfo::
 	buffernumberstring STR_VAR_1, REQUIRED_CAUGHT_MONS
-	bufferitemname STR_VAR_2, ITEM_EXP_SHARE
+	bufferitemname STR_VAR_2, ITEM_EXP_SHARE, 1
 	return

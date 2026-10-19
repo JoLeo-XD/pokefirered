@@ -1626,13 +1626,11 @@ bool8 ScrCmd_bufferitemname(struct ScriptContext * ctx)
 {
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
+    u16 quantity = VarGet(ScriptReadHalfword(ctx));
 
-    CopyItemName(itemId, sScriptStringVars[stringVarIndex]);
+    CopyItemNameHandlePlural(itemId, sScriptStringVars[stringVarIndex], quantity);
     return FALSE;
 }
-
-static const u8 sText_S[] = _("S");
-static const u8 sText_IES[] = _("IES");
 
 bool8 ScrCmd_bufferitemnameplural(struct ScriptContext * ctx)
 {
@@ -1640,21 +1638,71 @@ bool8 ScrCmd_bufferitemnameplural(struct ScriptContext * ctx)
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u16 quantity = VarGet(ScriptReadHalfword(ctx));
 
-    CopyItemName(itemId, sScriptStringVars[stringVarIndex]);
-    if (itemId == ITEM_POKE_BALL && quantity >= 2)
-        StringAppend(sScriptStringVars[stringVarIndex], sText_S);
-    else if (itemId >= FIRST_BERRY_INDEX && itemId < LAST_BERRY_INDEX && quantity >= 2)
-    {
-        u16 strlength = StringLength(sScriptStringVars[stringVarIndex]);
-        if (strlength != 0)
-        {
-            u8 * endptr = sScriptStringVars[stringVarIndex] + strlength;
-            endptr[-1] = EOS;
-            StringAppend(sScriptStringVars[stringVarIndex], sText_IES);
-        }
-    }
-
+    CopyItemNameHandlePlural(itemId, sScriptStringVars[stringVarIndex], quantity);
     return FALSE;
+}
+
+static const u8 sText_a[] = _("a");
+static const u8 sText_o[] = _("o");
+static const u8 sText_as[] = _("as");
+static const u8 sText_os[] = _("os");
+
+bool8 ScrCmd_buffergenderstring(struct ScriptContext * ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 itemId = VarGet(ScriptReadHalfword(ctx));
+    u16 quantity = VarGet(ScriptReadHalfword(ctx));
+
+    if (quantity == 1
+     && itemId != ITEM_SACRED_ASH
+     && itemId != ITEM_LEFTOVERS
+     && itemId != ITEM_BLACK_GLASSES
+     && itemId != ITEM_DEVON_GOODS
+     && itemId != ITEM_GO_GOGGLES
+     && itemId != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(sScriptStringVars[stringVarIndex], sText_a);
+        else
+            StringCopy(sScriptStringVars[stringVarIndex], sText_o);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(sScriptStringVars[stringVarIndex], sText_as);
+        else
+            StringCopy(sScriptStringVars[stringVarIndex], sText_os);
+    }
+    return FALSE;
+}
+
+static const u8 sText_uma[] = _("uma");
+static const u8 sText_um[] = _("um");
+
+bool8 ScrCmd_buffergenderstringsingle(struct ScriptContext * ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 itemId = VarGet(ScriptReadHalfword(ctx));
+
+    if (itemId != ITEM_SACRED_ASH
+     && itemId != ITEM_LEFTOVERS
+     && itemId != ITEM_BLACK_GLASSES
+     && itemId != ITEM_DEVON_GOODS
+     && itemId != ITEM_GO_GOGGLES
+     && itemId != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(sScriptStringVars[stringVarIndex], sText_uma);
+        else
+            StringCopy(sScriptStringVars[stringVarIndex], sText_um);
+    }
+    else
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(sScriptStringVars[stringVarIndex], sText_as);
+        else
+            StringCopy(sScriptStringVars[stringVarIndex], sText_os);
+    }
 }
 
 bool8 ScrCmd_bufferdecorationname(struct ScriptContext * ctx)

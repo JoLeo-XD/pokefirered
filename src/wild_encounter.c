@@ -343,7 +343,7 @@ static u32 GenerateUnownPersonalityByNatureLetter(u8 letter, u8 nature, u32 otid
         {
             do
             {
-                personality = Random32();
+                personality = (Random() << 16) | Random();
             } while (GetUnownLetterByPersonalityLoByte(personality) != letter
                     || nature != personality % NUM_NATURES);
         }
@@ -351,7 +351,7 @@ static u32 GenerateUnownPersonalityByNatureLetter(u8 letter, u8 nature, u32 otid
         {
             do
             {
-                personality = Random32();
+                personality = (Random() << 16) | Random();
             } while (GetUnownLetterByPersonalityLoByte(personality) != letter);
         }
         shinyValue = GET_SHINY_VALUE(otid, personality);

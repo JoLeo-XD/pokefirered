@@ -303,14 +303,14 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeTM::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeItem::
-	bufferitemname STR_VAR_1, VAR_TEMP_1
+	bufferitemname STR_VAR_1, VAR_TEMP_1, 1
 	msgbox CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize::
-	bufferitemname STR_VAR_1, VAR_TEMP_1
+	bufferitemname STR_VAR_1, VAR_TEMP_1, 1
 	checkcoins VAR_RESULT
 	goto_if_lt VAR_RESULT, VAR_TEMP_2, CeladonCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoins
 	checkitemspace VAR_TEMP_1

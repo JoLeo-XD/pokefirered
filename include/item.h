@@ -7,7 +7,9 @@ typedef void (*ItemUseFunc)(u8);
 
 struct Item
 {
-    u8 name[ITEM_NAME_LENGTH];
+    u8 name[ITEM_NAME_LENGTH + 1];
+    u8 namePlural[ITEM_NAME_LENGTH + 1];
+    bool8 gender;
     u16 itemId;
     u16 price;
     u8 holdEffect;
@@ -55,6 +57,8 @@ bool8 CheckPCHasItem(u16 itemId, u16 count);
 bool8 AddPCItem(u16 itemId, u16 count);
 void SwapRegisteredBike(void);
 const u8 *ItemId_GetName(u16 itemId);
+const u8 *ItemId_GetNamePlural(u16 itemId);
+const bool8 ItemId_GetFeminine(u16 itemId);
 u16 ItemId_GetId(u16 itemId);
 u16 ItemId_GetPrice(u16 itemId);
 u8 ItemId_GetHoldEffect(u16 itemId);

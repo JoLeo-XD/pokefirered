@@ -6,5 +6,5 @@ Text_ItemfinderResponding::
 	.string "‥‥‥$"
 
 Text_DugUpItemFromGround::
-	.string "{PLAYER} dug up one {STR_VAR_2}\n"
-	.string "from deep in the ground.$"
+	.string "{PLAYER} desenterrou {STR_VAR_1}\n"
+	.string "{STR_VAR_2} do fundo do chão.$"

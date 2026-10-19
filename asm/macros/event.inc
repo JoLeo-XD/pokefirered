@@ -1060,10 +1060,11 @@
 
 	@ Writes the name of the specified item to the specified buffer. If itemId is >= ITEMS_COUNT,
 	@ then the name of ITEM_NONE ("????????") is buffered instead.
-	.macro bufferitemname stringVarId:req, item:req
+	.macro bufferitemname stringVarId:req, item:req, quantity:req
 	.byte 0x80
 	stringvar \stringVarId
 	.2byte \item
+	.2byte \quantity
 	.endm
 
 	@ In FRLG, this command is a nop. In RSE, writes the name of the specified decoration to the specified buffer.
@@ -1632,14 +1633,27 @@
 	.4byte \msg
 	.endm
 
-	@ Writes the name of the specified item to the specified buffer. If 'item' is a Berry or ITEM_POKE_BALL
-	@ and if the quantity is 2 or more, the buffered string will be pluralized ("IES" or "S" appended).
-	@ If the specified item is >= ITEMS_COUNT then the name of ITEM_NONE ("????????") is buffered instead.
+	@ Same as bufferitemname. Both are handled the exact same in this fork.
 	.macro bufferitemnameplural stringVarId:req, item:req, quantity:req
 	.byte 0xd4
 	stringvar \stringVarId
 	.2byte \item
 	.2byte \quantity
+	.endm
+
+	@ Writes either "o", "a", "os", or "as" depending on the item and quantity
+	.macro buffergenderstring stringVarId:req, item:req, quantity:req
+	.byte 0xd6
+	stringvar \stringVarId
+	.2byte \item
+	.2byte \quantity
+	.endm
+
+	@ Writes only either "um" or "uma" depending on the item
+	.macro buffergenderstringsingle stringVarId:req, item:req
+	.byte 0xd7
+	stringvar \stringVarId
+	.2byte \item
 	.endm
 
 

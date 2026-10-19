@@ -383,6 +383,9 @@ void PSA_HideMessageWindow(void)
     CopyWindowToVram(0, COPYWIN_MAP);
 }
 
+static const u8 sText_a[] = _("a ");
+static const u8 sText_o[] = _("o ");
+
 void PSA_PrintMessage(u8 messageId)
 {
     struct PokemonSpecialAnimScene * scene = PSA_GetSceneWork();
@@ -397,14 +400,28 @@ void PSA_PrintMessage(u8 messageId)
     {
     case 0: // Item was used on Mon
         str = StringCopy(scene->textBuf, gText_WasUsedOn1);
+        if (ItemId_GetFeminine(itemId))
+            StringAppend(scene->textBuf, sText_a);
+        else
+            StringAppend(scene->textBuf, sText_o);
         str = StringAppend(str, ItemId_GetName(itemId));
-        str = StringAppend(str, gText_WasUsedOn2);
+        if (GetMonGender(pokemon) == MON_FEMALE)
+            str = StringAppend(str, gText_WasUsedOn2F);
+        else if (GetMonGender(pokemon) == MON_MALE)
+            str = StringAppend(str, gText_WasUsedOn2M);
+        else
+            str = StringAppend(str, gText_WasUsedOn2);
         GetMonData(pokemon, MON_DATA_NICKNAME, str);
         StringAppend(scene->textBuf, gText_Period);
         break;
     case 1: // Mon's level was elevated to level
         level = GetMonData(pokemon, MON_DATA_LEVEL);
-        str = StringCopy(scene->textBuf, gText_LevelRoseTo1);
+        if (GetMonGender(pokemon) == MON_FEMALE)
+            str = StringCopy(scene->textBuf, gText_LevelRoseTo1F);
+        else if (GetMonGender(pokemon) == MON_MALE)
+            str = StringCopy(scene->textBuf, gText_LevelRoseTo1M);
+        else
+            str = StringCopy(scene->textBuf, gText_LevelRoseTo1);
         GetMonData(pokemon, MON_DATA_NICKNAME, str);
         str = StringAppend(str, gText_LevelRoseTo2);
         if (level < MAX_LEVEL)

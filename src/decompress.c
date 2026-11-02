@@ -4,7 +4,11 @@
 #include "pokemon.h"
 
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
+extern const struct CompressedSpriteSheet gMonFrontPicTableF[];
+extern const struct CompressedSpriteSheet gMonFrontPicTableM[];
 extern const struct CompressedSpriteSheet gMonBackPicTable[];
+extern const struct CompressedSpriteSheet gMonBackPicTableF[];
+extern const struct CompressedSpriteSheet gMonBackPicTableM[];
 
 static void DuplicateDeoxysTiles(void *pointer, s32 species);
 
@@ -84,7 +88,7 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
 {
     if (species == SPECIES_UNOWN)
     {
-        u16 i = (((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 3)) % 0x1C;
+        u16 i = (((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 3)) % NUM_UNOWN_FORMS;
 
         // The other Unowns are separate from Unown A.
         if (i == 0)
@@ -95,6 +99,23 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
             LZ77UnCompWram(gMonBackPicTable[i].data, dest);
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
+    }
+    else if (HAS_GENDER_DIFFERENCE(species))
+    {
+        if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
+        {
+            if (!isFrontPic)
+                LZ77UnCompWram(gMonBackPicTableF[species].data, dest);
+            else
+                LZ77UnCompWram(gMonFrontPicTableF[species].data, dest);
+        }
+        else
+        {
+            if (!isFrontPic)
+                LZ77UnCompWram(gMonBackPicTableM[species].data, dest);
+            else
+                LZ77UnCompWram(gMonFrontPicTableM[species].data, dest);
+        }
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
         LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
@@ -328,7 +349,7 @@ void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src
 {
     if (species == SPECIES_UNOWN)
     {
-        u16 i = (((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 3)) % 0x1C;
+        u16 i = (((personality & 0x3000000) >> 18) | ((personality & 0x30000) >> 12) | ((personality & 0x300) >> 6) | (personality & 3)) % NUM_UNOWN_FORMS;
 
         // The other Unowns are separate from Unown A.
         if (i == 0)
@@ -339,6 +360,23 @@ void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src
             LZ77UnCompWram(gMonBackPicTable[i].data, dest);
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
+    }
+    else if (HAS_GENDER_DIFFERENCE(species))
+    {
+        if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
+        {
+            if (!isFrontPic)
+                LZ77UnCompWram(gMonBackPicTableF[species].data, dest);
+            else
+                LZ77UnCompWram(gMonFrontPicTableF[species].data, dest);
+        }
+        else
+        {
+            if (!isFrontPic)
+                LZ77UnCompWram(gMonBackPicTableM[species].data, dest);
+            else
+                LZ77UnCompWram(gMonFrontPicTableM[species].data, dest);
+        }
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
     {

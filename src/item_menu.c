@@ -1419,8 +1419,7 @@ static void OpenContextMenu(u8 taskId)
             sContextMenuItemsPtr = sContextMenuItemsBuffer;
             sContextMenuNumItems = 2;
         }
-        else if (ItemId_GetBattleUsage(gSpecialVar_ItemId)
-             && (gSpecialVar_ItemId != ITEM_MASTER_BALL || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_GHOST))))
+        else if (ItemId_GetBattleUsage(gSpecialVar_ItemId))
         {
             sContextMenuItemsPtr = sContextMenuItems_BattleUse;
             sContextMenuNumItems = 2;
@@ -1772,8 +1771,16 @@ static void Task_ItemMenuAction_BattleUse(u8 taskId)
         HideBagWindow(6);
         PutWindowTilemap(0);
         PutWindowTilemap(1);
-        CopyWindowToVram(0, COPYWIN_MAP);
-        ItemId_GetBattleFunc(gSpecialVar_ItemId)(taskId);
+        if (ItemIsMasterBall(gSpecialVar_ItemId) == TRUE && (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_GHOST)))
+        {
+            ScheduleBgCopyTilemapToVram(0);
+            DisplayItemMessageInBag(taskId, FONT_NORMAL, gText_ProbablyShouldntDoThat, Task_WaitAButtonAndCloseContextMenu);
+        }
+        else
+        {
+            CopyWindowToVram(0, COPYWIN_MAP);
+            ItemId_GetBattleFunc(gSpecialVar_ItemId)(taskId);
+        }
     }
 }
 

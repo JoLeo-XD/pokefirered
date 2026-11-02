@@ -1109,6 +1109,7 @@ extern const u8 gText_PokeBalls2[];
 extern const u8 gText_KeyItems2[];
 extern const u8 gText_CloseBag[];
 extern const u8 gText_CantWriteMailHere[];
+extern const u8 gText_ProbablyShouldntDoThat[];
 extern const u8 gText_DepositHowManyStrVars1M[];
 extern const u8 gText_DepositHowManyStrVars1F[];
 extern const u8 gText_DepositedStrVar2StrVar1s[];

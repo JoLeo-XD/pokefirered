@@ -631,8 +631,8 @@ ALIGNED(4) static const bool8 sRegionMapPermissions[REGIONMAP_TYPE_COUNT][MAPPER
 };
 
 static const struct GpuWindowParams sMapsecNameWindowDims[4] = {
-    [WIN_MAP_NAME]     = {.left = 24, .top = 16, .right = 144, .bottom = 32},
-    [WIN_DUNGEON_NAME] = {.left = 24, .top = 32, .right = 144, .bottom = 48},
+    [WIN_MAP_NAME]     = {.left = 24, .top = 16, .right = 160, .bottom = 32},
+    [WIN_DUNGEON_NAME] = {.left = 24, .top = 32, .right = 160, .bottom = 48},
     [WIN_UNKNOWN_MAP]  = {.left = 24, .top = 16, .right = 216, .bottom = 180},
     [CLEAR_NAME]       = {.left =  0, .top =  0, .right =   0, .bottom =  0}
 };

@@ -179,6 +179,7 @@ const u8 gText_CloseBag[] = _("FECHAR BOLSA");
 const u8 gText_Var1IsSelected[] = _("Selecionou\n{STR_VAR_1}.");
 const u8 gText_IsSelected[] = _("\nselecionada.");
 const u8 gText_CantWriteMailHere[] = _("Não pode escrever\nCARTAS aqui.");
+const u8 gText_ProbablyShouldntDoThat[] = _("Provavelmente não deveria\nfazer isso‥!");
 const u8 gText_ThereIsNoPokemon[] = _("Não há\nPOKéMONS.");
 const u8 gOtherText_WhereShouldTheStrVar1BePlaced[] = _("Onde {STR_VAR_3} {STR_VAR_1}\n{STR_VAR_2} estar?");
 const u8 gText_ItemCantBeHeld[] = _("Não pode segurar {STR_VAR_1}.");

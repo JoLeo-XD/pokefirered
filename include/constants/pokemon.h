@@ -290,6 +290,71 @@
 #define MON_PIC_HEIGHT 64
 #define MON_PIC_SIZE (MON_PIC_WIDTH * MON_PIC_HEIGHT / 2)
 
+// Gender Differences
+#define HAS_GENDER_DIFFERENCE(species)((species == SPECIES_VENUSAUR     \
+                                     || species == SPECIES_BUTTERFREE   \
+                                     || species == SPECIES_RATTATA      \
+                                     || species == SPECIES_RATICATE     \
+                                     || species == SPECIES_PIKACHU      \
+                                     || species == SPECIES_RAICHU       \
+                                     || species == SPECIES_ZUBAT        \
+                                     || species == SPECIES_GOLBAT       \
+                                     || species == SPECIES_GLOOM        \
+                                     || species == SPECIES_VILEPLUME    \
+                                     || species == SPECIES_KADABRA      \
+                                     || species == SPECIES_ALAKAZAM     \
+                                     || species == SPECIES_DODUO        \
+                                     || species == SPECIES_DODRIO       \
+                                     || species == SPECIES_HYPNO        \
+                                     || species == SPECIES_RHYHORN      \
+                                     || species == SPECIES_RHYDON       \
+                                     || species == SPECIES_GOLDEEN      \
+                                     || species == SPECIES_SEAKING      \
+                                     || species == SPECIES_SCYTHER      \
+                                     || species == SPECIES_MAGIKARP     \
+                                     || species == SPECIES_GYARADOS     \
+                                     || species == SPECIES_EEVEE        \
+                                     || species == SPECIES_MEGANIUM     \
+                                     || species == SPECIES_LEDYBA       \
+                                     || species == SPECIES_LEDIAN       \
+                                     || species == SPECIES_XATU         \
+                                     || species == SPECIES_SUDOWOODO    \
+                                     || species == SPECIES_POLITOED     \
+                                     || species == SPECIES_AIPOM        \
+                                     || species == SPECIES_WOOPER       \
+                                     || species == SPECIES_QUAGSIRE     \
+                                     || species == SPECIES_MURKROW      \
+                                     || species == SPECIES_WOBBUFFET    \
+                                     || species == SPECIES_GIRAFARIG    \
+                                     || species == SPECIES_GLIGAR       \
+                                     || species == SPECIES_STEELIX      \
+                                     || species == SPECIES_SCIZOR       \
+                                     || species == SPECIES_HERACROSS    \
+                                     || species == SPECIES_SNEASEL      \
+                                     || species == SPECIES_URSARING     \
+                                     || species == SPECIES_PILOSWINE    \
+                                     || species == SPECIES_OCTILLERY    \
+                                     || species == SPECIES_HOUNDOOM     \
+                                     || species == SPECIES_DONPHAN      \
+                                     || species == SPECIES_TORCHIC      \
+                                     || species == SPECIES_COMBUSKEN    \
+                                     || species == SPECIES_BLAZIKEN     \
+                                     || species == SPECIES_BEAUTIFLY    \
+                                     || species == SPECIES_DUSTOX       \
+                                     || species == SPECIES_LUDICOLO     \
+                                     || species == SPECIES_NUZLEAF      \
+                                     || species == SPECIES_SHIFTRY      \
+                                     || species == SPECIES_MILOTIC      \
+                                     || species == SPECIES_NUMEL        \
+                                     || species == SPECIES_CAMERUPT     \
+                                     || species == SPECIES_CACTURNE     \
+                                     || species == SPECIES_MEDITITE     \
+                                     || species == SPECIES_MEDICHAM     \
+                                     || species == SPECIES_ROSELIA      \
+                                     || species == SPECIES_GULPIN       \
+                                     || species == SPECIES_SWALOT       \
+                                     || species == SPECIES_RELICANTH))
+
 // Most pokemon have 1 frame. There are 2 exceptions:
 // - Castform has 4 frames, 1 for each form
 // - Deoxys has 2 frames, 1 for each form

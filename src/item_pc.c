@@ -766,14 +766,48 @@ static void ItemPc_ReturnFromSubmenu(u8 taskId)
     gTasks[taskId].func = Task_ItemPcMain;
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_o[] = _("o");
+static const u8 sText_as[] = _("as");
+static const u8 sText_os[] = _("os");
+static const u8 sText_deveria[] = _("deveria");
+static const u8 sText_deveriam[] = _("deveriam");
+
 static void ItemPc_MoveItemModeInit(u8 taskId, s16 pos)
 {
     s16 * data = gTasks[taskId].data;
+    u16 itemId, quantity;
 
     ListMenuSetTemplateField(data[0], LISTFIELD_CURSORKIND, 1);
     data[1] = pos;
+    itemId = ItemPc_GetItemIdBySlotId(data[1]);
+    quantity = ItemPc_GetItemQuantityBySlotId(data[1]);
     sStateDataPtr->moveModeOrigPos = pos;
-    StringCopy(gStringVar1, ItemId_GetName(ItemPc_GetItemIdBySlotId(data[1])));
+    if (quantity == 1
+     && itemId != ITEM_SACRED_ASH
+     && itemId != ITEM_LEFTOVERS
+     && itemId != ITEM_BLACK_GLASSES
+     && itemId != ITEM_POWER_LENS
+     && itemId != ITEM_DEVON_GOODS
+     && itemId != ITEM_GO_GOGGLES
+     && itemId != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(gStringVar3, sText_a);
+        else
+            StringCopy(gStringVar3, sText_o);
+        StringCopy(gStringVar2, sText_deveria);
+        StringCopy(gStringVar1, ItemId_GetName(itemId));
+    }
+    else
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(gStringVar3, sText_as);
+        else
+            StringCopy(gStringVar3, sText_os);
+        StringCopy(gStringVar2, sText_deveriam);
+        StringCopy(gStringVar1, ItemId_GetNamePlural(itemId));
+    }
     StringExpandPlaceholders(gStringVar4, gOtherText_WhereShouldTheStrVar1BePlaced);
     FillWindowPixelBuffer(1, 0x00);
     ItemPc_AddTextPrinterParameterized(1, FONT_NORMAL, gStringVar4, 0, 3, 2, 3, 0, 0);

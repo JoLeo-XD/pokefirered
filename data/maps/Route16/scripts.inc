@@ -6,7 +6,7 @@ Route16_MapScripts::
 
 Route16_OnResume::
 	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, Route16_EventScript_RemoveSnorlax
-	call_if_unset FLAG_SYS_NATIONAL_DEX, Route16_EventScript_HideRecurringSnorlax
+	call_if_unset FLAG_SYS_GAME_CLEAR, Route16_EventScript_HideRecurringSnorlax
 	call_if_unset FLAG_HIDE_ROUTE_16_SNORLAX, Route16_EventScript_HideRecurringSnorlax
 	end
 

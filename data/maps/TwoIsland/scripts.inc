@@ -165,6 +165,7 @@ TwoIsland_EventScript_ShopExpanded3::
 	.align 2
 TwoIsland_Items_ShopExpanded3::
 	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_DIVE_BALL
 	.2byte ITEM_REPEAT_BALL
 	.2byte ITEM_TIMER_BALL
 	.2byte ITEM_LEMONADE

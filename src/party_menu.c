@@ -1635,6 +1635,7 @@ static void DisplayGaveHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keep
     if (item != ITEM_SACRED_ASH
      && item != ITEM_LEFTOVERS
      && item != ITEM_BLACK_GLASSES
+     && item != ITEM_POWER_LENS
      && item != ITEM_DEVON_GOODS
      && item != ITEM_GO_GOGGLES
      && item != ITEM_GOLD_TEETH)
@@ -1674,6 +1675,7 @@ static void DisplayTookHeldItemMessage(struct Pokemon *mon, u16 item, bool8 keep
     if (item != ITEM_SACRED_ASH
      && item != ITEM_LEFTOVERS
      && item != ITEM_BLACK_GLASSES
+     && item != ITEM_POWER_LENS
      && item != ITEM_DEVON_GOODS
      && item != ITEM_GO_GOGGLES
      && item != ITEM_GOLD_TEETH)
@@ -1705,6 +1707,7 @@ static void DisplayAlreadyHoldingItemSwitchMessage(struct Pokemon *mon, u16 item
     if (item != ITEM_SACRED_ASH
      && item != ITEM_LEFTOVERS
      && item != ITEM_BLACK_GLASSES
+     && item != ITEM_POWER_LENS
      && item != ITEM_DEVON_GOODS
      && item != ITEM_GO_GOGGLES
      && item != ITEM_GOLD_TEETH)
@@ -1732,6 +1735,7 @@ static void DisplaySwitchedHeldItemMessage(u16 item, u16 item2, bool8 keepOpen)
     if (item != ITEM_SACRED_ASH
      && item != ITEM_LEFTOVERS
      && item != ITEM_BLACK_GLASSES
+     && item != ITEM_POWER_LENS
      && item != ITEM_DEVON_GOODS
      && item != ITEM_GO_GOGGLES
      && item != ITEM_GOLD_TEETH)
@@ -1753,6 +1757,7 @@ static void DisplaySwitchedHeldItemMessage(u16 item, u16 item2, bool8 keepOpen)
     if (item2 != ITEM_SACRED_ASH
      && item2 != ITEM_LEFTOVERS
      && item2 != ITEM_BLACK_GLASSES
+     && item2 != ITEM_POWER_LENS
      && item2 != ITEM_DEVON_GOODS
      && item2 != ITEM_GO_GOGGLES
      && item2 != ITEM_GOLD_TEETH)
@@ -2669,10 +2674,12 @@ void DisplayPartyMenuStdMessage(u32 stringId)
         StringExpandPlaceholders(gStringVar4, sActionStringTable[stringId]);
         if (stringId == PARTY_MSG_DO_WHAT_WITH_MON)
         {
-            if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
-                StringAppend(gStringVar4, sText_ela);
-            else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE)
+            if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_MALE
+                || GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SANITY_IS_EGG)
+                || GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SANITY_IS_BAD_EGG))
                 StringAppend(gStringVar4, sText_ele);
+            else if (GetMonGender(&gPlayerParty[gPartyMenu.slotId]) == MON_FEMALE)
+                StringAppend(gStringVar4, sText_ela);
             else
                 StringAppend(gStringVar4, sText_PKMN);
         }
@@ -5249,9 +5256,6 @@ static void Task_HandleStopLearningMoveYesNoInput(u8 taskId)
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
         }
         break;
-    case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
-        // fallthrough
     case 1: // No
         GetMonNickname(mon, gStringVar1);
         StringCopy(gStringVar2, gMoveNames[gPartyMenu.learnMoveId]);

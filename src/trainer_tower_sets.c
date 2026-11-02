@@ -16,7 +16,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_4 = {
 	.id = 1,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_WHITE_HERB,
+	.prize = TTPRIZE_IRON,
 	.trainers = {
 	    {
 			.name = _("COLE"),
@@ -171,7 +171,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_7 = {
 	.id = 2,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_DRAGON_SCALE,
+	.prize = TTPRIZE_ZINC,
 	.trainers = {
 	    {
 			.name = _("JAC"),
@@ -1075,7 +1075,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_2 = {
 	.id = 6,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_DOUBLE,
-	.prize = TTPRIZE_HP_UP,
+	.prize = TTPRIZE_POWER_BELT,
 	.trainers = {
 	    {
 			.name = _("JO & HALEY"),
@@ -1811,7 +1811,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_2 = {
 	.id = 8,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_KNOCKOUT,
-	.prize = TTPRIZE_UP_GRADE,
+	.prize = TTPRIZE_CARBOS,
 	.trainers = {
 	    {
 			.name = _("MIKE"),
@@ -2250,7 +2250,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_5 = {
 	.id = 9,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_HP_UP,
+	.prize = TTPRIZE_POWER_ANKLET,
 	.trainers = {
 	    {
 			.name = _("JOEY"),
@@ -2405,7 +2405,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_8 = {
 	.id = 10,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_METAL_COAT,
+	.prize = TTPRIZE_WHITE_HERB,
 	.trainers = {
 	    {
 			.name = _("LILY"),
@@ -2560,7 +2560,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_2 = {
 	.id = 11,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_UP_GRADE,
+	.prize = TTPRIZE_FOCUS_SASH,
 	.trainers = {
 	    {
 			.name = _("BRANDON"),
@@ -2715,7 +2715,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_3 = {
 	.id = 12,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_DOUBLE,
-	.prize = TTPRIZE_IRON,
+	.prize = TTPRIZE_HP_UP,
 	.trainers = {
 	    {
 			.name = _("RIC & RENE"),
@@ -3309,7 +3309,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_4 = {
 	.id = 14,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_DOUBLE,
-	.prize = TTPRIZE_MENTAL_HERB,
+	.prize = TTPRIZE_POWER_BELT,
 	.trainers = {
 	    {
 			.name = _("ISAC & MAG"),
@@ -4045,7 +4045,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_3 = {
 	.id = 16,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_KNOCKOUT,
-	.prize = TTPRIZE_CALCIUM,
+	.prize = TTPRIZE_POWER_BRACER,
 	.trainers = {
 	    {
 			.name = _("CAMRYN"),
@@ -4484,7 +4484,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_6 = {
 	.id = 17,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_CARBOS,
+	.prize = TTPRIZE_POWER_ANKLET,
 	.trainers = {
 	    {
 			.name = _("BRADEN"),
@@ -4949,7 +4949,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_5 = {
 	.id = 20,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_DOUBLE,
-	.prize = TTPRIZE_METAL_COAT,
+	.prize = TTPRIZE_POWER_BRACER,
 	.trainers = {
 	    {
 			.name = _("KAT & KIPP"),
@@ -6279,7 +6279,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_4 = {
 	.id = 24,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_KNOCKOUT,
-	.prize = TTPRIZE_DRAGON_SCALE,
+	.prize = TTPRIZE_POWER_WEIGHT,
 	.trainers = {
 	    {
 			.name = _("BRENNAN"),
@@ -6718,7 +6718,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Single_3 = {
 	.id = 25,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_METAL_COAT,
+	.prize = TTPRIZE_SCOPE_LENS,
 	.trainers = {
 	    {
 			.name = _("JARRETT"),
@@ -6873,7 +6873,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_3 = {
 	.id = 26,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_DRAGON_SCALE,
+	.prize = TTPRIZE_POWER_LENS,
 	.trainers = {
 	    {
 			.name = _("OWEN"),
@@ -7028,7 +7028,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Mixed_2 = {
 	.id = 27,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_SINGLE,
-	.prize = TTPRIZE_PROTEIN,
+	.prize = TTPRIZE_POWER_LENS,
 	.trainers = {
 	    {
 			.name = _("LORENZO"),
@@ -7480,7 +7480,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Double_7 = {
 	.id = 29,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_DOUBLE,
-	.prize = TTPRIZE_CARBOS,
+	.prize = TTPRIZE_POWER_BAND,
 	.trainers = {
 		{
 			.name = _("AXE & REN"),
@@ -8074,7 +8074,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_6 = {
 	.id = 31,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_KNOCKOUT,
-	.prize = TTPRIZE_WHITE_HERB,
+	.prize = TTPRIZE_POWER_BAND,
 	.trainers = {
 		{
 			.name = _("BEN"),
@@ -8513,7 +8513,7 @@ static const struct TrainerTowerFloor sTrainerTowerFloor_Knockout_5 = {
 	.id = 32,
 	.floorIdx = MAX_TRAINER_TOWER_FLOORS,
 	.challengeType = CHALLENGE_TYPE_KNOCKOUT,
-	.prize = TTPRIZE_UP_GRADE,
+	.prize = TTPRIZE_POWER_WEIGHT,
 	.trainers = {
 		{
 			.name = _("MAURA"),
@@ -8955,43 +8955,43 @@ const struct EReaderTrainerTowerSetSubstruct gTrainerTowerLocalHeader = {
 
 const struct TrainerTowerFloor *const gTrainerTowerFloors[NUM_TOWER_CHALLENGE_TYPES][MAX_TRAINER_TOWER_FLOORS] = {
     [CHALLENGE_TYPE_SINGLE] = {
-        &sTrainerTowerFloor_Single_1,
-        &sTrainerTowerFloor_Single_2,
-        &sTrainerTowerFloor_Single_3,
-        &sTrainerTowerFloor_Single_4,
-        &sTrainerTowerFloor_Single_5,
-        &sTrainerTowerFloor_Single_6,
-        &sTrainerTowerFloor_Single_7,
-        &sTrainerTowerFloor_Single_8
+        &sTrainerTowerFloor_Single_1,   // TTPRIZE_UP_GRADE
+        &sTrainerTowerFloor_Single_2,   // TTPRIZE_FOCUS_SASH
+        &sTrainerTowerFloor_Single_3,   // TTPRIZE_SCOPE_LENS
+        &sTrainerTowerFloor_Single_4,   // TTPRIZE_IRON
+        &sTrainerTowerFloor_Single_5,   // TTPRIZE_POWER_ANKLET
+        &sTrainerTowerFloor_Single_6,   // TTPRIZE_POWER_ANKLET
+        &sTrainerTowerFloor_Single_7,   // TTPRIZE_ZINC
+        &sTrainerTowerFloor_Single_8    // TTPRIZE_WHITE_HERB
     },
     [CHALLENGE_TYPE_DOUBLE] = {
-        &sTrainerTowerFloor_Double_1,
-        &sTrainerTowerFloor_Double_2,
-        &sTrainerTowerFloor_Double_3,
-        &sTrainerTowerFloor_Double_4,
-        &sTrainerTowerFloor_Double_5,
-        &sTrainerTowerFloor_Double_6,
-        &sTrainerTowerFloor_Double_7,
-        &sTrainerTowerFloor_Double_8
+        &sTrainerTowerFloor_Double_1,   // TTPRIZE_DRAGON_SCALE
+        &sTrainerTowerFloor_Double_2,   // TTPRIZE_POWER_BELT
+        &sTrainerTowerFloor_Double_3,   // TTPRIZE_HP_UP
+        &sTrainerTowerFloor_Double_4,   // TTPRIZE_POWER_BELT
+        &sTrainerTowerFloor_Double_5,   // TTPRIZE_CHOICE_BAND
+        &sTrainerTowerFloor_Double_6,   // TTPRIZE_CALCIUM
+        &sTrainerTowerFloor_Double_7,   // TTPRIZE_POWER_BAND
+        &sTrainerTowerFloor_Double_8    // TTPRIZE_MENTAL_HERB
     },
     [CHALLENGE_TYPE_KNOCKOUT] = {
-        &sTrainerTowerFloor_Knockout_1,
-        &sTrainerTowerFloor_Knockout_2,
-        &sTrainerTowerFloor_Knockout_3,
-        &sTrainerTowerFloor_Knockout_4,
-        &sTrainerTowerFloor_Knockout_5,
-        &sTrainerTowerFloor_Knockout_6,
-        &sTrainerTowerFloor_Knockout_7,
-        &sTrainerTowerFloor_Knockout_8
+        &sTrainerTowerFloor_Knockout_1, // TTPRIZE_METAL_COAT
+        &sTrainerTowerFloor_Knockout_2, // TTPRIZE_CARBOS
+        &sTrainerTowerFloor_Knockout_3, // TTPRIZE_POWER_BRACER
+        &sTrainerTowerFloor_Knockout_4, // TTPRIZE_POWER_WEIGHT
+        &sTrainerTowerFloor_Knockout_5, // TTPRIZE_POWER_WEIGHT
+        &sTrainerTowerFloor_Knockout_6, // TTPRIZE_POWER_BAND
+        &sTrainerTowerFloor_Knockout_7, // TTPRIZE_PROTEIN
+        &sTrainerTowerFloor_Knockout_8  // TTPRIZE_BRIGHT_POWDER
     },
     [CHALLENGE_TYPE_MIXED] = {
-        &sTrainerTowerFloor_Mixed_1,
-        &sTrainerTowerFloor_Mixed_2,
-        &sTrainerTowerFloor_Mixed_3,
-        &sTrainerTowerFloor_Double_8,
-        &sTrainerTowerFloor_Mixed_5,
-        &sTrainerTowerFloor_Knockout_8,
-        &sTrainerTowerFloor_Double_3,
-        &sTrainerTowerFloor_Knockout_2
+        &sTrainerTowerFloor_Mixed_1,    // TTPRIZE_KINGS_ROCK
+        &sTrainerTowerFloor_Mixed_2,    // TTPRIZE_POWER_LENS
+        &sTrainerTowerFloor_Mixed_3,    // TTPRIZE_POWER_LENS
+        &sTrainerTowerFloor_Double_8,   // TTPRIZE_MENTAL_HERB
+        &sTrainerTowerFloor_Mixed_5,    // TTPRIZE_POWER_BRACER
+        &sTrainerTowerFloor_Knockout_8, // TTPRIZE_BRIGHT_POWDER
+        &sTrainerTowerFloor_Double_3,   // TTPRIZE_HP_UP
+        &sTrainerTowerFloor_Knockout_2  // TTPRIZE_CARBOS
     }
 };

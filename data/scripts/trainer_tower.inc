@@ -284,7 +284,7 @@ TrainerTower_Roof_EventScript_ReceivePrize:
 	msgbox TrainerTower_Roof_Text_ThisIsForYou
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	playfanfare MUS_LEVEL_UP
-	buffergenderstring STR_VAR_1, VAR_0x8004, 1
+	buffergenderstring STR_VAR_1, VAR_0x8001, 1
 	message Text_ObtainedTheX
 	waitfanfare
 	waitmessage

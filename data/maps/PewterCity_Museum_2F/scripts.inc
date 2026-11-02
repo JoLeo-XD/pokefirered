@@ -1,5 +1,14 @@
 PewterCity_Museum_2F_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, PewterCity_Museum_2F_OnLoad
 	.byte 0
+
+PewterCity_Museum_2F_OnLoad::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, PewterCity_Museum_2F_RemovePikachu
+	end
+
+PewterCity_Museum_2F_RemovePikachu::
+	setflag FLAG_TEMP_1
+	end
 
 PewterCity_Museum_2F_EventScript_Man::
 	msgbox PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone, MSGBOX_NPC
@@ -14,11 +23,39 @@ PewterCity_Museum_2F_EventScript_Scientist::
 	end
 
 PewterCity_Museum_2F_EventScript_LittleGirl::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, PewterCity_Museum_2F_EventScript_LittleGirlHasPikachu
 	msgbox PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu, MSGBOX_NPC
+	release
+	end
+
+PewterCity_Museum_2F_EventScript_LittleGirlHasPikachu::
+	msgbox PewterCity_Museum_1F_Text_AskedDaddyToCatchClefairyAsWell, MSGBOX_NPC
+	release
 	end
 
 PewterCity_Museum_2F_EventScript_BaldingMan::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, PewterCity_Museum_2F_EventScript_BaldingManCaughtPikachu
 	msgbox PewterCity_Museum_1F_Text_PikachuSoonIPromise, MSGBOX_NPC
+	release
+	end
+
+PewterCity_Museum_2F_EventScript_BaldingManCaughtPikachu::
+	msgbox PewterCity_Museum_1F_Text_IJustCaughtPikachu, MSGBOX_NPC
+	release
+	end
+
+PewterCity_Museum_2F_EventScript_Pikachu::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIKACHU, CRY_MODE_NORMAL
+	msgbox PewterCity_Museum_1F_Text_Pikachu
+	waitmoncry
+	release
 	end
 
 PewterCity_Museum_2F_EventScript_SpaceShuttle::

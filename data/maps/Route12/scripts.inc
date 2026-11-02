@@ -4,7 +4,7 @@ Route12_MapScripts::
 
 Route12_OnResume::
 	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, Route12_EventScript_TryRemoveSnorlax
-	call_if_unset FLAG_SYS_NATIONAL_DEX, Route12_EventScript_HideRecurringSnorlax
+	call_if_unset FLAG_SYS_GAME_CLEAR, Route12_EventScript_HideRecurringSnorlax
 	call_if_unset FLAG_HIDE_ROUTE_12_SNORLAX, Route12_EventScript_HideRecurringSnorlax
 	end
 

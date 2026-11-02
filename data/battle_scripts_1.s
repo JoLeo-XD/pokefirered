@@ -4232,6 +4232,12 @@ BattleScript_CuteCharmActivates::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_DestinyKnotActivates::
+	status2animation BS_TARGET, STATUS2_INFATUATION
+	printstring STRINGID_DESTINYKNOTINFATUATESXASWELL
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_ApplySecondaryEffect::
 	waitstate
 	seteffectsecondary

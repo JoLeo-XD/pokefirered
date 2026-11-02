@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-void StartWildBattle(void);
+void StartWildBattle(bool8 isFishing);
 void StartRoamerBattle(void);
 void StartOldManTutorialBattle(void);
 void StartScriptedWildBattle(void);

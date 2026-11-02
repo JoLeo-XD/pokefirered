@@ -1657,6 +1657,7 @@ bool8 ScrCmd_buffergenderstring(struct ScriptContext * ctx)
      && itemId != ITEM_SACRED_ASH
      && itemId != ITEM_LEFTOVERS
      && itemId != ITEM_BLACK_GLASSES
+     && itemId != ITEM_POWER_LENS
      && itemId != ITEM_DEVON_GOODS
      && itemId != ITEM_GO_GOGGLES
      && itemId != ITEM_GOLD_TEETH)
@@ -1687,6 +1688,7 @@ bool8 ScrCmd_buffergenderstringsingle(struct ScriptContext * ctx)
     if (itemId != ITEM_SACRED_ASH
      && itemId != ITEM_LEFTOVERS
      && itemId != ITEM_BLACK_GLASSES
+     && itemId != ITEM_POWER_LENS
      && itemId != ITEM_DEVON_GOODS
      && itemId != ITEM_GO_GOGGLES
      && itemId != ITEM_GOLD_TEETH)

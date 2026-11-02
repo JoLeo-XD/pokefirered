@@ -60,7 +60,7 @@ struct TrainerBattleParameter
 
 static void DoSafariBattle(void);
 static void DoGhostBattle(void);
-static void DoStandardWildBattle(void);
+static void DoStandardWildBattle(bool8 isFishing);
 static void CB2_EndWildBattle(void);
 static u8 GetWildBattleTransition(void);
 static u8 GetTrainerBattleTransition(void);
@@ -234,23 +234,25 @@ static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
         return FALSE;
 }
 
-void StartWildBattle(void)
+void StartWildBattle(bool8 isFishing)
 {
     if (GetSafariZoneFlag())
         DoSafariBattle();
     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         DoGhostBattle();
     else
-        DoStandardWildBattle();
+        DoStandardWildBattle(isFishing);
 }
 
-static void DoStandardWildBattle(void)
+static void DoStandardWildBattle(bool8 isFishing)
 {
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndWildBattle;
     gBattleTypeFlags = 0;
+    if (isFishing)
+        gBattleTypeFlags |= BATTLE_TYPE_FISHING;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
@@ -360,7 +362,7 @@ void StartLegendaryBattle(void)
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_MEWTWO);
         break;
     case SPECIES_MEW:
-        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_MEW);
+        CreateBattleStartTask(B_TRANSITION_BIG_POKEBALL, MUS_VS_MEW);
         break;
     case SPECIES_DEOXYS:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_VS_DEOXYS);

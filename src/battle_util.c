@@ -2074,8 +2074,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                  && gBattleMons[gBattlerAttacker].ability != ABILITY_OBLIVIOUS
                  && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
                  && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
-                 && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != MON_GENDERLESS
+                 && ((GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != MON_GENDERLESS
                  && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != MON_GENDERLESS)
+                 || speciesDef == SPECIES_DITTO))
                 {
                     gBattleMons[gBattlerAttacker].status2 |= STATUS2_INFATUATED_WITH(gBattlerTarget);
                     BattleScriptPushCursor();
@@ -2829,6 +2830,23 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
+            case HOLD_EFFECT_DESTINY_KNOT:
+                if (gBattleMons[battlerId].status2 & STATUS2_INFATUATION)
+                {
+                    for (i = 0; i < gBattlersCount; i++)
+                    {
+                        if (gBattleMons[battlerId].status2 & STATUS2_INFATUATED_WITH(i)
+                        && !(gBattleMons[i].status2 & STATUS2_INFATUATION)
+                        && gBattleMons[i].ability != ABILITY_OBLIVIOUS)
+                        {
+                            gBattleMons[i].status2 |= STATUS2_INFATUATED_WITH(battlerId);
+                            BattleScriptExecute(BattleScript_DestinyKnotActivates);
+                            effect = ITEM_EFFECT_OTHER;
+                            break;
+                        }
+                    }
+                }
+                break;
             }
             if (effect != 0)
             {
@@ -2931,6 +2949,24 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
                     gBattlescriptCurrInstr = BattleScript_BerryCureChosenStatusRet;
                     effect = ITEM_EFFECT_OTHER;
+                }
+                break;
+            case HOLD_EFFECT_DESTINY_KNOT:
+                if (gBattleMons[battlerId].status2 & STATUS2_INFATUATION)
+                {
+                    for (i = 0; i < gBattlersCount; i++)
+                    {
+                        if (gBattleMons[battlerId].status2 & STATUS2_INFATUATED_WITH(i)
+                        && !(gBattleMons[i].status2 & STATUS2_INFATUATION)
+                        && gBattleMons[i].ability != ABILITY_OBLIVIOUS)
+                        {
+                            gBattleMons[i].status2 |= STATUS2_INFATUATED_WITH(battlerId);
+                            BattleScriptPushCursor();
+                            gBattlescriptCurrInstr = BattleScript_DestinyKnotActivates;
+                            effect = ITEM_EFFECT_OTHER;
+                            break;
+                        }
+                    }
                 }
                 break;
             case HOLD_EFFECT_CURE_STATUS:

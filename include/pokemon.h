@@ -282,6 +282,7 @@ struct Evolution
 #define GET_SHINY_VALUE(otId, personality) (HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality))
 #define SHINY_CHARM_ROLLS 2
 #define WHITE_FLUTE_ABILITY_ROLLS 1
+#define MASUDA_METHOD_ROLLS 6
 
 extern const struct BattleMove gBattleMoves[];
 extern u8 gPlayerPartyCount;

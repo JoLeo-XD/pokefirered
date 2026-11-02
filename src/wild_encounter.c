@@ -317,6 +317,7 @@ static void GenerateWildMon(u16 species, u8 level, u8 slot, u16 rollsTotal)
             }
 
             CreateMonWithGenderNatureLetter(&gEnemyParty[0], species, level, USE_RANDOM_IVS, gender, nature, 0, rollsTotal);
+            return;
         }
     }
 
@@ -494,8 +495,8 @@ static u16 GenerateFishingEncounter(const struct WildPokemonInfo * info, u8 rod)
     if (CheckBagHasItem(ITEM_SHINY_CHARM, 2))
         rollsTotal += SHINY_CHARM_ROLLS / 2;
     if (FlagGet(FLAG_SYS_WHITE_FLUTE_ACTIVE) == TRUE
-        || (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
-        && (GetMonAbility(&gPlayerParty[0]) == ABILITY_ILLUMINATE || GetMonAbility(&gPlayerParty[0]) == ABILITY_ARENA_TRAP)))
+     || (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
+     && (GetMonAbility(&gPlayerParty[0]) == ABILITY_ILLUMINATE || GetMonAbility(&gPlayerParty[0]) == ABILITY_ARENA_TRAP)))
         rollsTotal += WHITE_FLUTE_ABILITY_ROLLS;
     GenerateWildMon(info->wildPokemon[slot].species, level, slot, rollsTotal);
     return info->wildPokemon[slot].species;
@@ -597,7 +598,7 @@ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetatileBehavior)
                 // try a regular wild land encounter
                 if (TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
-                    StartWildBattle();
+                    StartWildBattle(FALSE);
                     return TRUE;
                 }
                 else
@@ -634,7 +635,7 @@ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetatileBehavior)
             {
                 if (TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsInfo, WILD_AREA_WATER, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
                 {
-                    StartWildBattle();
+                    StartWildBattle(FALSE);
                     return TRUE;
                 }
                 else
@@ -659,7 +660,7 @@ void RockSmashWildEncounter(void)
         gSpecialVar_Result = FALSE;
     else if (TryGenerateWildMon(gWildMonHeaders[headerIdx].rockSmashMonsInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
     {
-        StartWildBattle();
+        StartWildBattle(FALSE);
         gSpecialVar_Result = TRUE;
     }
     else
@@ -688,7 +689,7 @@ bool8 SweetScentWildEncounter(void)
 
             TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, 0);
 
-            StartWildBattle();
+            StartWildBattle(FALSE);
             return TRUE;
         }
         else if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_WATER)
@@ -703,7 +704,7 @@ bool8 SweetScentWildEncounter(void)
                 return FALSE;
 
             TryGenerateWildMon(gWildMonHeaders[headerId].waterMonsInfo, WILD_AREA_WATER, 0);
-            StartWildBattle();
+            StartWildBattle(FALSE);
             return TRUE;
         }
     }
@@ -725,7 +726,7 @@ void FishingWildEncounter(u8 rod)
 {
     GenerateFishingEncounter(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     IncrementGameStat(GAME_STAT_FISHING_CAPTURES);
-    StartWildBattle();
+    StartWildBattle(TRUE);
 }
 
 u16 GetLocalWildMon(bool8 *isWaterMon)

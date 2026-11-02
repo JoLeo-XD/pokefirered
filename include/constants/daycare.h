@@ -13,7 +13,8 @@
 #define DAYCARE_ONE_MON     2
 #define DAYCARE_TWO_MONS    3
 
-#define INHERITED_IV_COUNT 3
+#define INHERITED_IV_COUNT    3
+#define DESTINY_KNOT_IV_COUNT 5
 #define EGG_HATCH_LEVEL 1
 #define EGG_GENDER_CHANCE 0x8000  // used to create an alternate gender version egg from a one gender only parent species (e.g. Nidoran)
 

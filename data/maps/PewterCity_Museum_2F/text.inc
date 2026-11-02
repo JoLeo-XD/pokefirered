@@ -42,8 +42,20 @@ PewterCity_Museum_1F_Text_AskedDaddyToCatchPikachu::
     .string "It's so cute!\p"
     .string "I asked my daddy to catch me one!$"
 
+PewterCity_Museum_1F_Text_AskedDaddyToCatchClefairyAsWell::
+    .string "I want a CLEFAIRY!\n"
+    .string "Because I love pink!\p"
+    .string "I asked my daddy to catch me one\n"
+    .string "as well!$"
+
 PewterCity_Museum_1F_Text_PikachuSoonIPromise::
     .string "Yeah, a PIKACHU soon, I promise!$"
+
+PewterCity_Museum_1F_Text_IJustCaughtPikachu::
+    .string "I just caught her that PIKACHU…$"
+
+PewterCity_Museum_1F_Text_Pikachu::
+    .string "PIKACHU: Chu! Pikachu!$"
 
 PewterCity_Museum_1F_Text_SpaceShuttle::
     .string "Space Shuttle$"

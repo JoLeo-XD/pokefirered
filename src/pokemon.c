@@ -5684,28 +5684,6 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         else
             multiplier = 1;
 
-        switch (i)
-        {
-        case STAT_HP:
-            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_HP * multiplier;
-            break;
-        case STAT_ATK:
-            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Attack * multiplier;
-            break;
-        case STAT_DEF:
-            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Defense * multiplier;
-            break;
-        case STAT_SPEED:
-            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Speed * multiplier;
-            break;
-        case STAT_SPATK:
-            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpAttack * multiplier;
-            break;
-        case STAT_SPDEF:
-            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpDefense * multiplier;
-            break;
-        }
-
         heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
 
         if (heldItem == ITEM_ENIGMA_BERRY)
@@ -5718,6 +5696,46 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         else
         {
             holdEffect = ItemId_GetHoldEffect(heldItem);
+        }
+
+        switch (i)
+        {
+        case STAT_HP:
+            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_HP;
+            if (holdEffect == HOLD_EFFECT_POWER_WEIGHT)
+                evIncrease += 4;
+            evIncrease *= multiplier;
+            break;
+        case STAT_ATK:
+            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Attack;
+            if (holdEffect == HOLD_EFFECT_POWER_BRACER)
+                evIncrease += 4;
+            evIncrease *= multiplier;
+            break;
+        case STAT_DEF:
+            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Defense;
+            if (holdEffect == HOLD_EFFECT_POWER_BELT)
+                evIncrease += 4;
+            evIncrease *= multiplier;
+            break;
+        case STAT_SPEED:
+            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Speed;
+            if (holdEffect == HOLD_EFFECT_POWER_ANKLET)
+                evIncrease += 4;
+            evIncrease *= multiplier;
+            break;
+        case STAT_SPATK:
+            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpAttack;
+            if (holdEffect == HOLD_EFFECT_POWER_LENS)
+                evIncrease += 4;
+            evIncrease *= multiplier;
+            break;
+        case STAT_SPDEF:
+            evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpDefense;
+            if (holdEffect == HOLD_EFFECT_POWER_BAND)
+                evIncrease += 4;
+            evIncrease *= multiplier;
+            break;
         }
 
         if (holdEffect == HOLD_EFFECT_MACHO_BRACE)

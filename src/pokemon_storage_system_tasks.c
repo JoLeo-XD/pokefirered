@@ -2349,11 +2349,11 @@ static void PrintDisplayMonInfo(void)
         for (i = 0, y = 0; i < 3; i++, y += 14)
             AddTextPrinterParameterized(0, FONT_NORMAL, gStorage->displayMonTexts[i], i == 2 ? 10 : 6, y, TEXT_SKIP_DRAW, NULL);
 
-        AddTextPrinterParameterized(0, FONT_SMALL, gStorage->displayMonTexts[3], 6, y + 2, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(0, FONT_SMALL, gStorage->displayMonTexts[3], 2, y + 2, TEXT_SKIP_DRAW, NULL);
     }
     else
     {
-        AddTextPrinterParameterized(0, FONT_SMALL, gStorage->displayMonTexts[3], 6, 0, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(0, FONT_SMALL, gStorage->displayMonTexts[3], 2, 0, TEXT_SKIP_DRAW, NULL);
         for (i = 0, y = 15; i < 3; i++, y += 14)
             AddTextPrinterParameterized(0, FONT_NORMAL, gStorage->displayMonTexts[i], i == 2 ? 10 : 6, y, TEXT_SKIP_DRAW, NULL);
     }

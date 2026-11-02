@@ -26,6 +26,8 @@
 #define SWITCH_BUTTON_X 21
 #define SWITCH_BUTTON_Y 11
 
+#define SEVII_TOTAL_REGION_MAPS 3
+
 enum {
     REGIONMAP_KANTO,
     REGIONMAP_SEVII123,
@@ -51,12 +53,13 @@ enum {
 enum {
     WIN_MAP_NAME,
     WIN_DUNGEON_NAME,
+    WIN_UNKNOWN_MAP,
     WIN_MAP_PREVIEW,
     WIN_TOPBAR_LEFT,
     WIN_TOPBAR_RIGHT,
 };
 
-#define CLEAR_NAME 2
+#define CLEAR_NAME 3
 
 enum {
     MAP_INPUT_NONE,
@@ -303,6 +306,7 @@ static void ResetOamForRegionMap(void);
 static void SetBg0andBg3Hidden(bool8);
 static void UpdateMapsecNameBox(void);
 static void DisplayCurrentMapName(void);
+static void DisplayUnknownMap(void);
 static void DrawDungeonNameBox(void);
 static void DisplayCurrentDungeonName(void);
 static void BufferRegionMapBg(u8, u16 *);
@@ -483,6 +487,16 @@ static const struct WindowTemplate sRegionMapWindowTemplates[] = {
         .paletteNum = 12,
         .baseBlock = 0x027
     }, 
+    [WIN_UNKNOWN_MAP] =
+    {
+        .bg = 3,
+        .tilemapLeft = 8,
+        .tilemapTop = 9,
+        .width = 17,
+        .height = 2,
+        .paletteNum = 12,
+        .baseBlock = 0x001
+    },
     [WIN_MAP_PREVIEW] =
     {
         .bg = 3,
@@ -581,7 +595,6 @@ static const u8 sSeviiMapsecs[3][30] = {
         MAPSEC_TANOBY_CHAMBERS,
         MAPSEC_TANOBY_KEY,
         MAPSEC_BIRTH_ISLAND,
-        MAPSEC_FARAWAY_ISLAND,
         MAPSEC_MONEAN_CHAMBER,
         MAPSEC_LIPTOO_CHAMBER,
         MAPSEC_WEEPTH_CHAMBER,
@@ -617,9 +630,10 @@ ALIGNED(4) static const bool8 sRegionMapPermissions[REGIONMAP_TYPE_COUNT][MAPPER
     }
 };
 
-static const struct GpuWindowParams sMapsecNameWindowDims[3] = {
-    [WIN_MAP_NAME]     = {.left = 24, .top = 16, .right = 160, .bottom = 32},
-    [WIN_DUNGEON_NAME] = {.left = 24, .top = 32, .right = 160, .bottom = 48},
+static const struct GpuWindowParams sMapsecNameWindowDims[4] = {
+    [WIN_MAP_NAME]     = {.left = 24, .top = 16, .right = 144, .bottom = 32},
+    [WIN_DUNGEON_NAME] = {.left = 24, .top = 32, .right = 144, .bottom = 48},
+    [WIN_UNKNOWN_MAP]  = {.left = 24, .top = 16, .right = 216, .bottom = 180},
     [CLEAR_NAME]       = {.left =  0, .top =  0, .right =   0, .bottom =  0}
 };
 
@@ -1033,7 +1047,7 @@ static void InitRegionMapType(void)
     if (gMapHeader.regionMapSectionId >= SEVII_MAPSEC_START)
     {
         // Mapsec is in Sevii Islands, determine which map to use
-        while (region == REGIONMAP_KANTO)
+        for (j = 0; j < SEVII_TOTAL_REGION_MAPS; j++)
         {
             for (i = 0; sSeviiMapsecs[j][i] != MAPSEC_NONE; i++)
             {
@@ -1043,7 +1057,6 @@ static void InitRegionMapType(void)
                     break;
                 }
             }
-            j++;
         }
     }
     sRegionMap->selectedRegion = region;
@@ -1081,8 +1094,17 @@ static void CB2_OpenRegionMap(void)
         }
         break;
     case 6:
-        DisplayCurrentMapName();
-        PutWindowTilemap(WIN_MAP_NAME);
+        if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+            && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
+        {
+            DisplayCurrentMapName();
+            PutWindowTilemap(WIN_MAP_NAME);
+        }
+        else
+        {
+            DisplayUnknownMap();
+            PutWindowTilemap(WIN_UNKNOWN_MAP);
+        }
         break;
     case 7:
         DisplayCurrentDungeonName();
@@ -1213,10 +1235,19 @@ static void Task_RegionMap(u8 taskId)
     case 2:
         if (!gPaletteFade.active && !IsDma3ManagerBusyWithBgCopy())
         {
-            DisplayCurrentMapName();
-            PutWindowTilemap(WIN_MAP_NAME);
-            DisplayCurrentDungeonName();
-            PutWindowTilemap(WIN_DUNGEON_NAME);
+            if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+                && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
+            {
+                DisplayCurrentMapName();
+                PutWindowTilemap(WIN_MAP_NAME);
+                DisplayCurrentDungeonName();
+                PutWindowTilemap(WIN_DUNGEON_NAME);
+            }
+            else
+            {
+                DisplayUnknownMap();
+                PutWindowTilemap(WIN_UNKNOWN_MAP);
+            }
             sRegionMap->mainState++;
         }
         break;
@@ -1454,6 +1485,16 @@ static void DisplayCurrentMapName(void)
     }
 }
 
+static void DisplayUnknownMap(void)
+{
+    ClearWindowTilemap(WIN_UNKNOWN_MAP);
+    FillWindowPixelBuffer(WIN_UNKNOWN_MAP, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(WIN_UNKNOWN_MAP, FONT_NORMAL, 2, 2, sTextColor_Green, 0, gText_RegionMap_UnknownRegion);
+    PutWindowTilemap(WIN_UNKNOWN_MAP);
+    CopyWindowToVram(WIN_UNKNOWN_MAP, COPYWIN_GFX);
+    SetGpuWindowDims(0, &sMapsecNameWindowDims[WIN_UNKNOWN_MAP]);
+}
+
 static void DrawDungeonNameBox(void)
 {
     SetGpuWindowDims(1, &sMapsecNameWindowDims[WIN_DUNGEON_NAME]);
@@ -1479,7 +1520,7 @@ static void DisplayCurrentDungeonName(void)
          sRegionMap->dungeonWinBottom = 48;
          FillWindowPixelBuffer(WIN_DUNGEON_NAME, PIXEL_FILL(0));
          StringCopy(sRegionMap->dungeonName, sMapNames[descOffset]);
-         AddTextPrinterParameterized3(WIN_DUNGEON_NAME, FONT_NORMAL, 12, 2, sTextColorTable[GetSelectedMapsecType(LAYER_DUNGEON) - 2], 0, sRegionMap->dungeonName);
+         AddTextPrinterParameterized3(WIN_DUNGEON_NAME, FONT_SMALL, 12, 2, sTextColorTable[GetSelectedMapsecType(LAYER_DUNGEON) - 2], 0, sRegionMap->dungeonName);
          PutWindowTilemap(WIN_DUNGEON_NAME);
          CopyWindowToVram(WIN_DUNGEON_NAME, COPYWIN_FULL);
     }
@@ -1792,48 +1833,52 @@ static bool8 HandleSwitchMapInput(void)
     data.top = sSwitchMapMenu->highlight.top = 8 * (sSwitchMapMenu->yOffset + 4 * sSwitchMapMenu->currentSelection);
     data.right = sSwitchMapMenu->highlight.right = 168;
     data.bottom = sSwitchMapMenu->highlight.bottom = sSwitchMapMenu->highlight.top + 32;
-    if (JOY_NEW(DPAD_UP) && sSwitchMapMenu->currentSelection != 0)
+    if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+        && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
     {
-        PlaySE(SE_BAG_CURSOR);
-        sSwitchMapMenu->currentSelection--;
-        changedSelection = TRUE;
+        if (JOY_NEW(DPAD_UP) && sSwitchMapMenu->currentSelection != 0)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection--;
+            changedSelection = TRUE;
+        }
+        if (JOY_NEW(DPAD_DOWN) && sSwitchMapMenu->currentSelection < sSwitchMapMenu->maxSelection)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection++;
+            changedSelection = TRUE;
+        }
+        if (JOY_NEW(A_BUTTON) && sSwitchMapMenu->blendY == 6)
+        {
+            PlaySE(SE_M_SWIFT);
+            sSwitchMapMenu->chosenRegion = sSwitchMapMenu->currentSelection;
+            return TRUE;
+        }
+        if (JOY_NEW(B_BUTTON) || (JOY_NEW(SELECT_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_ONE_HAND))
+        {
+            sSwitchMapMenu->currentSelection = sSwitchMapMenu->chosenRegion;
+            BufferRegionMapBg(0, sRegionMap->layouts[sSwitchMapMenu->currentSelection]);
+            CopyBgTilemapBufferToVram(0);
+            SetFlyIconInvisibility(0xFF, NELEMS(sMapIcons->flyIcons), TRUE);
+            SetDungeonIconInvisibility(0xFF, NELEMS(sMapIcons->dungeonIcons), TRUE);
+            return TRUE;
+        }
+        if (changedSelection)
+        {
+            BufferRegionMapBg(0, sRegionMap->layouts[sSwitchMapMenu->currentSelection]);
+            PrintTopBarTextRight(gText_RegionMap_AButtonOK);
+            CopyBgTilemapBufferToVram(0);
+            CopyBgTilemapBufferToVram(3);
+            SetFlyIconInvisibility(0xFF, NELEMS(sMapIcons->flyIcons), TRUE);
+            SetDungeonIconInvisibility(0xFF, NELEMS(sMapIcons->dungeonIcons), TRUE);
+            SetFlyIconInvisibility(sSwitchMapMenu->currentSelection, NELEMS(sMapIcons->flyIcons), FALSE);
+            SetDungeonIconInvisibility(sSwitchMapMenu->currentSelection, NELEMS(sMapIcons->dungeonIcons), FALSE);
+        }
+        if (sSwitchMapMenu->currentSelection != GetRegionMapPlayerIsOn())
+            SetPlayerIconInvisibility(TRUE);
+        else
+            SetPlayerIconInvisibility(FALSE);
     }
-    if (JOY_NEW(DPAD_DOWN) && sSwitchMapMenu->currentSelection < sSwitchMapMenu->maxSelection)
-    {
-        PlaySE(SE_BAG_CURSOR);
-        sSwitchMapMenu->currentSelection++;
-        changedSelection = TRUE;
-    }
-    if (JOY_NEW(A_BUTTON) && sSwitchMapMenu->blendY == 6)
-    {
-        PlaySE(SE_M_SWIFT);
-        sSwitchMapMenu->chosenRegion = sSwitchMapMenu->currentSelection;
-        return TRUE;
-    }
-    if (JOY_NEW(B_BUTTON))
-    {
-        sSwitchMapMenu->currentSelection = sSwitchMapMenu->chosenRegion;
-        BufferRegionMapBg(0, sRegionMap->layouts[sSwitchMapMenu->currentSelection]);
-        CopyBgTilemapBufferToVram(0);
-        SetFlyIconInvisibility(0xFF, NELEMS(sMapIcons->flyIcons), TRUE);
-        SetDungeonIconInvisibility(0xFF, NELEMS(sMapIcons->dungeonIcons), TRUE);
-        return TRUE;
-    }
-    if (changedSelection)
-    {
-        BufferRegionMapBg(0, sRegionMap->layouts[sSwitchMapMenu->currentSelection]);
-        PrintTopBarTextRight(gText_RegionMap_AButtonOK);
-        CopyBgTilemapBufferToVram(0);
-        CopyBgTilemapBufferToVram(3);
-        SetFlyIconInvisibility(0xFF, NELEMS(sMapIcons->flyIcons), TRUE);
-        SetDungeonIconInvisibility(0xFF, NELEMS(sMapIcons->dungeonIcons), TRUE);
-        SetFlyIconInvisibility(sSwitchMapMenu->currentSelection, NELEMS(sMapIcons->flyIcons), FALSE);
-        SetDungeonIconInvisibility(sSwitchMapMenu->currentSelection, NELEMS(sMapIcons->dungeonIcons), FALSE);
-    }
-    if (sSwitchMapMenu->currentSelection != GetRegionMapPlayerIsOn())
-        SetPlayerIconInvisibility(TRUE);
-    else
-        SetPlayerIconInvisibility(FALSE);
     SetGpuWindowDims(1, &data);
     return FALSE;
 }
@@ -2395,20 +2440,32 @@ static void Task_MapOpenAnim(u8 taskId)
             sMapOpenCloseAnim->openState++;
         break;
     case 7:
-        SetPlayerIconInvisibility(FALSE);
-        SetMapCursorInvisibility(FALSE);
+        if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+            && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
+        {
+            SetPlayerIconInvisibility(FALSE);
+            SetMapCursorInvisibility(FALSE);
+        }
         sMapOpenCloseAnim->openState++;
         break;
     case 8:
         sMapOpenCloseAnim->blendY = 15;
         SetGpuRegsToFadeMapToWhite();
         SetBg0andBg3Hidden(FALSE);
-        SetFlyIconInvisibility(GetSelectedRegionMap(), NELEMS(sMapIcons->flyIcons), FALSE);
-        SetDungeonIconInvisibility(GetSelectedRegionMap(), NELEMS(sMapIcons->dungeonIcons), FALSE);
+        if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+            && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
+        {
+            SetFlyIconInvisibility(GetSelectedRegionMap(), NELEMS(sMapIcons->flyIcons), FALSE);
+            SetDungeonIconInvisibility(GetSelectedRegionMap(), NELEMS(sMapIcons->dungeonIcons), FALSE);
+        }
         sMapOpenCloseAnim->openState++;
         break;
     case 9:
-        PrintTopBarTextLeft(gText_RegionMap_DPadMove);
+        if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+            && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
+            PrintTopBarTextLeft(gText_RegionMap_DPadMove);
+        else
+            PrintTopBarTextLeft(gText_RegionMap_BButtonCancel);
         if (GetSelectedMapsecType(LAYER_DUNGEON) != MAPSECTYPE_VISITED)
             PrintTopBarTextRight(gText_RegionMap_Space);
         else
@@ -2758,79 +2815,88 @@ static u8 HandleRegionMapInput(void)
     sMapCursor->horizontalMove = 0;
     sMapCursor->verticalMove = 0;
 
-    if (JOY_HELD(DPAD_UP))
+    if (gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND
+        && gMapHeader.regionMapSectionId != MAPSEC_FARAWAY_ISLAND_HARBOR)
     {
-        if (sMapCursor->y > 0)
+        if (JOY_HELD(DPAD_UP))
         {
-            sMapCursor->verticalMove = -2;
-            input = MAP_INPUT_MOVE_START;
+            if (sMapCursor->y > 0)
+            {
+                sMapCursor->verticalMove = -2;
+                input = MAP_INPUT_MOVE_START;
+            }
         }
-    }
-    if (JOY_HELD(DPAD_DOWN))
-    {
-        if (sMapCursor->y < MAP_HEIGHT - 1)
+        if (JOY_HELD(DPAD_DOWN))
         {
-            sMapCursor->verticalMove = 2;
-            input = MAP_INPUT_MOVE_START;
+            if (sMapCursor->y < MAP_HEIGHT - 1)
+            {
+                sMapCursor->verticalMove = 2;
+                input = MAP_INPUT_MOVE_START;
+            }
         }
-    }
-    if (JOY_HELD(DPAD_RIGHT))
-    {
-        if (sMapCursor->x < MAP_WIDTH - 1)
+        if (JOY_HELD(DPAD_RIGHT))
         {
-            sMapCursor->horizontalMove = 2;
-            input = MAP_INPUT_MOVE_START;
+            if (sMapCursor->x < MAP_WIDTH - 1)
+            {
+                sMapCursor->horizontalMove = 2;
+                input = MAP_INPUT_MOVE_START;
+            }
         }
-    }
-    if (JOY_HELD(DPAD_LEFT))
-    {
-        if (sMapCursor->x > 0)
+        if (JOY_HELD(DPAD_LEFT))
         {
-            sMapCursor->horizontalMove = -2;
-            input = MAP_INPUT_MOVE_START;
+            if (sMapCursor->x > 0)
+            {
+                sMapCursor->horizontalMove = -2;
+                input = MAP_INPUT_MOVE_START;
+            }
         }
-    }
-    if (JOY_NEW(A_BUTTON))
-    {
-        input = MAP_INPUT_A_BUTTON;
-        if (sMapCursor->x == CANCEL_BUTTON_X 
-         && sMapCursor->y == CANCEL_BUTTON_Y)
+        if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_M_HYPER_BEAM2);
+            input = MAP_INPUT_A_BUTTON;
+            if (sMapCursor->x == CANCEL_BUTTON_X 
+            && sMapCursor->y == CANCEL_BUTTON_Y)
+            {
+                PlaySE(SE_M_HYPER_BEAM2);
+                input = MAP_INPUT_CANCEL;
+            }
+            if (sMapCursor->x == SWITCH_BUTTON_X 
+            && sMapCursor->y == SWITCH_BUTTON_Y 
+            && GetRegionMapPermission(MAPPERM_HAS_SWITCH_BUTTON) == TRUE)
+            {
+                PlaySE(SE_M_HYPER_BEAM2);
+                input = MAP_INPUT_SWITCH;
+            }
+        }
+        else if (!JOY_NEW(B_BUTTON))
+        {
+            if (JOY_REPT(START_BUTTON))
+            {
+                SnapToIconOrButton();
+                sMapCursor->selectedMapsec = GetSelectedMapSection(GetSelectedRegionMap(), LAYER_MAP, sMapCursor->y, sMapCursor->x);
+                sMapCursor->selectedMapsecType = GetMapsecType(sMapCursor->selectedMapsec);
+                sMapCursor->selectedDungeonType = GetDungeonMapsecType(GetSelectedMapSection(GetSelectedRegionMap(), LAYER_DUNGEON, sMapCursor->y, sMapCursor->x));
+                return MAP_INPUT_MOVE_END;
+            }
+            else if (JOY_NEW(SELECT_BUTTON))
+            {
+                input = MAP_INPUT_CANCEL;
+            }
+        }
+        else
+        {
             input = MAP_INPUT_CANCEL;
         }
-        if (sMapCursor->x == SWITCH_BUTTON_X 
-         && sMapCursor->y == SWITCH_BUTTON_Y 
-         && GetRegionMapPermission(MAPPERM_HAS_SWITCH_BUTTON) == TRUE)
+        if (input == MAP_INPUT_MOVE_START)
         {
-            PlaySE(SE_M_HYPER_BEAM2);
-            input = MAP_INPUT_SWITCH;
+            sMapCursor->moveCounter = 4;
+            sMapCursor->inputHandler = MoveMapCursor;
         }
     }
-    else if (!JOY_NEW(B_BUTTON))
-    {
-        if (JOY_REPT(START_BUTTON))
-        {
-            SnapToIconOrButton();
-            sMapCursor->selectedMapsec = GetSelectedMapSection(GetSelectedRegionMap(), LAYER_MAP, sMapCursor->y, sMapCursor->x);
-            sMapCursor->selectedMapsecType = GetMapsecType(sMapCursor->selectedMapsec);
-            sMapCursor->selectedDungeonType = GetDungeonMapsecType(GetSelectedMapSection(GetSelectedRegionMap(), LAYER_DUNGEON, sMapCursor->y, sMapCursor->x));
-            return MAP_INPUT_MOVE_END;
-        }
-        else if (JOY_NEW(SELECT_BUTTON) && sRegionMap->savedCallback == CB2_ReturnToField)
-        {
-            input = MAP_INPUT_CANCEL;
-        }
-    }
-    else
+    else if (JOY_NEW(B_BUTTON) || JOY_NEW(SELECT_BUTTON))
     {
         input = MAP_INPUT_CANCEL;
     }
-    if (input == MAP_INPUT_MOVE_START)
-    {
-        sMapCursor->moveCounter = 4;
-        sMapCursor->inputHandler = MoveMapCursor;
-    }
+    
     return input;
 }
 

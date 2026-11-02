@@ -2,6 +2,7 @@
 #include "event_data.h"
 #include "random.h"
 #include "constants/maps.h"
+#include "constants/abilities.h"
 
 #define MAX_HIDDEN_ITEMS_PER_GROUP 8
 
@@ -791,17 +792,32 @@ void TryRegenerateRenewableHiddenItems(void)
 static void SampleRenewableItemFlags(void)
 {
     u8 i, j;
+    u8 rarePercent = 10;
+    u8 uncommonPercent = 30;
+    u8 commonPercent = 60;
     const u8 * flags;
     u16 rval;
 
+    if (GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES)
+    {
+        rarePercent = 20;
+        uncommonPercent = 40;
+        commonPercent = 40;
+    }
+
+    rarePercent = rarePercent > 100 ? 100 : rarePercent;
+    uncommonPercent = uncommonPercent > 100 ? 100 : uncommonPercent;
+    uncommonPercent = (rarePercent + uncommonPercent) > 100 ? (100 - rarePercent) : uncommonPercent;
+    commonPercent = commonPercent > 100 ? 100 : commonPercent;
+    commonPercent = (rarePercent + uncommonPercent + commonPercent) > 100 ? (100 - (rarePercent + uncommonPercent)) : commonPercent;
     for (i = 0; i < ARRAY_COUNT(sRenewableHiddenItems); i++)
     {
         rval = Random() % 100;
-        if (rval >= 90)
+        if (rval < rarePercent)
             flags = sRenewableHiddenItems[i].rare;
-        else if (rval >= 60)
+        else if (rval < rarePercent + uncommonPercent)
             flags = sRenewableHiddenItems[i].uncommon;
-        else
+        else if (rval < rarePercent + uncommonPercent + commonPercent)
             flags = sRenewableHiddenItems[i].common;
         for (j = 0; j < MAX_HIDDEN_ITEMS_PER_GROUP; j++)
         {

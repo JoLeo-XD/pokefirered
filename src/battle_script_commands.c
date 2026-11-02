@@ -18,6 +18,8 @@
 #include "party_menu.h"
 #include "trainer_pokemon_sprites.h"
 #include "field_specials.h"
+#include "field_player_avatar.h"
+#include "fieldmap.h"
 #include "battle.h"
 #include "battle_message.h"
 #include "battle_anim.h"
@@ -1605,10 +1607,15 @@ static void Cmd_adjustnormaldamage(void)
     if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
-        gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
+    }
+    if (holdEffect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+    {
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
     }
     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
-     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded)
+     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBandedSashed)
      && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
     {
         gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
@@ -1616,7 +1623,7 @@ static void Cmd_adjustnormaldamage(void)
         {
             gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         }
-        else if (gSpecialStatuses[gBattlerTarget].focusBanded)
+        else if (gSpecialStatuses[gBattlerTarget].focusBandedSashed)
         {
             gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
@@ -1648,10 +1655,15 @@ static void Cmd_adjustnormaldamage2(void)
     if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
-        gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
+    }
+    if (holdEffect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+    {
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
     }
     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
-     && (gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded)
+     && (gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBandedSashed)
      && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
     {
         gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
@@ -1659,7 +1671,7 @@ static void Cmd_adjustnormaldamage2(void)
         {
             gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         }
-        else if (gSpecialStatuses[gBattlerTarget].focusBanded)
+        else if (gSpecialStatuses[gBattlerTarget].focusBandedSashed)
         {
             gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
@@ -5311,12 +5323,6 @@ static void Cmd_yesnoboxstoplearningmove(void)
 
             HandleBattleWindow(23, 8, 29, 13, WINDOW_CLEAR);
         }
-        else if (JOY_NEW(B_BUTTON))
-        {
-            PlaySE(SE_SELECT);
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-            HandleBattleWindow(23, 8, 29, 13, WINDOW_CLEAR);
-        }
         break;
     }
 }
@@ -5643,10 +5649,15 @@ static void Cmd_adjustsetdamage(void)
     if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
     {
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
-        gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
+    }
+    if (holdEffect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+    {
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
     }
     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
-     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBanded)
+     && (gBattleMoves[gCurrentMove].effect == EFFECT_FALSE_SWIPE || gProtectStructs[gBattlerTarget].endured || gSpecialStatuses[gBattlerTarget].focusBandedSashed)
      && gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
     {
         gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
@@ -5654,7 +5665,7 @@ static void Cmd_adjustsetdamage(void)
         {
             gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
         }
-        else if (gSpecialStatuses[gBattlerTarget].focusBanded)
+        else if (gSpecialStatuses[gBattlerTarget].focusBandedSashed)
         {
             gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
@@ -7143,8 +7154,13 @@ static void Cmd_tryKO(void)
 
     if (holdEffect == HOLD_EFFECT_FOCUS_BAND && (Random() % 100) < param)
     {
-        RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_FOCUS_BAND);
-        gSpecialStatuses[gBattlerTarget].focusBanded = 1;
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
+    }
+    if (holdEffect == HOLD_EFFECT_FOCUS_SASH && gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
+    {
+        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+        gSpecialStatuses[gBattlerTarget].focusBandedSashed = 1;
     }
 
     if (gBattleMons[gBattlerTarget].ability == ABILITY_STURDY)
@@ -7185,7 +7201,7 @@ static void Cmd_tryKO(void)
                 gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
                 gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
             }
-            else if (gSpecialStatuses[gBattlerTarget].focusBanded)
+            else if (gSpecialStatuses[gBattlerTarget].focusBandedSashed)
             {
                 gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
                 gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
@@ -9515,8 +9531,10 @@ static void Cmd_handleballthrow(void)
     }
     else
     {
+        s16 x, y;
         u32 odds;
         u8 catchRate;
+        PlayerGetDestCoords(&x, &y);
 
         if (gLastUsedItem == ITEM_SAFARI_BALL)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
@@ -9534,22 +9552,18 @@ static void Cmd_handleballthrow(void)
                     ballMultiplier = 10;
                 break;
             case ITEM_DIVE_BALL:
-                if (GetCurrentMapType() == MAP_TYPE_UNDERWATER)
+                if (GetCurrentMapType() == MAP_TYPE_UNDERWATER
+                 || MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_WATER
+                 || (gBattleTypeFlags & BATTLE_TYPE_FISHING))
                     ballMultiplier = 35;
                 else
                     ballMultiplier = 10;
                 break;
             case ITEM_NEST_BALL:
-                if (gBattleMons[gBattlerTarget].level < 40)
-                {
-                    ballMultiplier = 40 - gBattleMons[gBattlerTarget].level;
-                    if (ballMultiplier <= 9)
-                        ballMultiplier = 10;
-                }
+                if (gBattleMons[gBattlerTarget].level < 30)
+                    ballMultiplier = 41 - gBattleMons[gBattlerTarget].level;
                 else
-                {
                     ballMultiplier = 10;
-                }
                 break;
             case ITEM_REPEAT_BALL:
                 if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT))
@@ -9609,13 +9623,15 @@ static void Cmd_handleballthrow(void)
         {
             u8 shakes;
 
-            odds = Sqrt(Sqrt(16711680 / odds));
-            odds = 1048560 / odds;
-
-            for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
-
             if (gLastUsedItem == ITEM_MASTER_BALL)
-                shakes = BALL_3_SHAKES_SUCCESS; // why calculate the shakes before that check?
+                shakes = BALL_3_SHAKES_SUCCESS;
+            else
+            {
+                odds = Sqrt(Sqrt(16711680 / odds));
+                odds = 1048560 / odds;
+
+                for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
+            }
 
             BtlController_EmitBallThrowAnim(BUFFER_A, shakes);
             MarkBattlerForControllerExec(gActiveBattler);

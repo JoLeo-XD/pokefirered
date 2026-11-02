@@ -26,6 +26,13 @@
 #define TTPRIZE_METAL_COAT         12
 #define TTPRIZE_DRAGON_SCALE       13
 #define TTPRIZE_UP_GRADE           14
+#define TTPRIZE_POWER_ANKLET       15
+#define TTPRIZE_POWER_BAND         16
+#define TTPRIZE_POWER_BELT         17
+#define TTPRIZE_POWER_BRACER       18
+#define TTPRIZE_POWER_LENS         19
+#define TTPRIZE_POWER_WEIGHT       20
+#define TTPRIZE_FOCUS_SASH         21
 
 #define MAX_TRAINER_TOWER_FLOORS 8
 

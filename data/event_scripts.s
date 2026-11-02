@@ -1278,6 +1278,7 @@ Std_PutItemAway::
 	bufferitemnameplural STR_VAR_2, VAR_0x8000, VAR_0x8001
 	checkitemtype VAR_0x8000
 	call EventScript_BufferPutAwayPocketName
+	buffergenderstring STR_VAR_1, VAR_0x8000, VAR_0x8001
 	msgbox Text_PutItemAway
 	return
 

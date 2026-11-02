@@ -5,3 +5,7 @@ SixIsland_AlteringCave_MapScripts::
 SixIsland_AlteringCave_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_SIX_ISLAND_ALTERING_CAVE
 	end
+
+SixIsland_AlteringCave_EventScript_ItemDestinyKnot::
+	finditem ITEM_DESTINY_KNOT
+	end

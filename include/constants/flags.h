@@ -189,9 +189,9 @@
 #define FLAG_HIDE_MISC_KANTO_ROCKETS                       0x0AD
 #define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE
 #define FLAG_HIDE_VERMILION_CITY_CAPTAIN                   0x0AF
+#define FLAG_HIDE_ALTERING_CAVE_DESTINY_KNOT               0x0B0
 
 // Unused?
-#define FLAG_0x0B0               0x0B0
 #define FLAG_0x0B1               0x0B1
 #define FLAG_0x0B2               0x0B2
 #define FLAG_0x0B3               0x0B3

@@ -583,7 +583,6 @@ static void MoveRelearnerStateMachine(void)
             sMoveRelearner->state = 27;
             break;
         case 1:
-        case -1:
             sMoveRelearner->state = 16;
             break;
         }

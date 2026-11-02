@@ -43,9 +43,11 @@ OneIsland_KindleRoad_EmberSpa_EventScript_AlreadyGotHM06::
 
 OneIsland_KindleRoad_EmberSpa_EventScript_SpaHeal::
 	lockall
+	playse SE_USE_ITEM
 	fadescreen FADE_TO_WHITE
 	special HealPlayerParty
 	fadescreen FADE_FROM_WHITE
+	waitse
 	msgbox OneIsland_KindleRoad_EmberSpa_Text_WaterExquisiteFullyRefreshed
 	setvar VAR_TEMP_1, 1
 	releaseall

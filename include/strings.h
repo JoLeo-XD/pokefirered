@@ -1056,6 +1056,7 @@ extern const u8 gText_LinkCableBattles[];
 
 // region_map
 extern const u8 gText_RegionMap_DPadMove[];
+extern const u8 gText_RegionMap_BButtonCancel[];
 extern const u8 gText_RegionMap_Space[];
 extern const u8 gText_RegionMap_AButtonGuide[];
 extern const u8 gText_RegionMap_AButtonCancel[];
@@ -1063,6 +1064,7 @@ extern const u8 gText_RegionMap_AButtonCancel2[];
 extern const u8 gText_RegionMap_AButtonSwitch[];
 extern const u8 gText_RegionMap_AButtonOK[];
 extern const u8 gText_RegionMap_UpDownPick[];
+extern const u8 gText_RegionMap_UnknownRegion[];
 extern const u8 gText_RegionMap_NoData[];
 extern const u8 gText_RegionMap_AreaDesc_ViridianForest[];
 extern const u8 gText_RegionMap_AreaDesc_MtMoon[];

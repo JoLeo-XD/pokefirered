@@ -235,13 +235,13 @@
 #define ITEM_METAL_POWDER 223
 #define ITEM_THICK_CLUB 224
 #define ITEM_STICK 225
-#define ITEM_0E2 226
-#define ITEM_0E3 227
-#define ITEM_0E4 228
-#define ITEM_0E5 229
-#define ITEM_0E6 230
-#define ITEM_0E7 231
-#define ITEM_0E8 232
+#define ITEM_POWER_ANKLET 226
+#define ITEM_POWER_BAND 227
+#define ITEM_POWER_BELT 228
+#define ITEM_POWER_BRACER 229
+#define ITEM_POWER_LENS 230
+#define ITEM_POWER_WEIGHT 231
+#define ITEM_FOCUS_SASH 232
 #define ITEM_0E9 233
 #define ITEM_0EA 234
 #define ITEM_0EB 235
@@ -447,8 +447,9 @@
 #define ITEM_SAPPHIRE 374
 #define ITEM_OLD_SEA_MAP 375
 #define ITEM_SHINY_CHARM 376
+#define ITEM_DESTINY_KNOT 377
 
-#define ITEMS_COUNT 377
+#define ITEMS_COUNT 378
 
 #define IS_ITEM_BERRY(itemId)((itemId >= FIRST_BERRY_INDEX && itemId < LAST_BERRY_INDEX))
 #define IS_HELD_ITEM(itemId)(( IS_ITEM_BERRY(itemId)          \

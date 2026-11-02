@@ -1058,6 +1058,8 @@ void Overworld_PlaySpecialMapMusic(void)
     }
 
     music = GetCurrLocationDefaultMusic();
+    if (gMapHeader.regionMapSectionId == MAPSEC_SILPH_CO && FlagGet(FLAG_HIDE_SAFFRON_ROCKETS))
+        music = MUS_PEWTER;
 
     if (gSaveBlock1Ptr->savedMusic)
         music = gSaveBlock1Ptr->savedMusic;
@@ -1135,6 +1137,11 @@ static u8 GetMapMusicFadeoutSpeed(void)
 void TryFadeOutOldMapMusic(void)
 {
     u16 warpMusic = GetWarpDestinationMusic();
+    if ((gMapHeader.regionMapSectionId == MAPSEC_SAFFRON_CITY
+        || gMapHeader.regionMapSectionId == MAPSEC_SILPH_CO)
+        && warpMusic == MUS_SILPH
+        && FlagGet(FLAG_HIDE_SAFFRON_ROCKETS))
+        warpMusic = MUS_PEWTER;
     if (FlagGet(FLAG_DONT_TRANSITION_MUSIC) != TRUE && warpMusic != GetCurrentMapMusic())
     {
         FadeOutMapMusic(GetMapMusicFadeoutSpeed());
@@ -1157,6 +1164,8 @@ static void PlayAmbientCry(void)
     s8 pan;
     s8 volume;
 
+    if (sAmbientCrySpecies == SPECIES_NONE)
+        return;
     PlayerGetDestCoords(&x, &y);
     if (sIsAmbientCryWaterMon == TRUE
         && !MetatileBehavior_IsSurfable(MapGridGetMetatileBehaviorAt(x, y)))

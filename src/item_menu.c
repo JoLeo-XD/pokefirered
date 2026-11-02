@@ -1249,16 +1249,50 @@ static void Task_AnimateSwitchPockets(u8 taskId)
     }
 }
 
+static const u8 sText_a[] = _("a");
+static const u8 sText_o[] = _("o");
+static const u8 sText_as[] = _("as");
+static const u8 sText_os[] = _("os");
+static const u8 sText_deveria[] = _("deveria");
+static const u8 sText_deveriam[] = _("deveriam");
+
 static void BeginMovingItemInPocket(u8 taskId, s16 itemIndex)
 {
     u16 itemsAbove;
     u16 cursorPos;
+    u16 itemId, quantity;
     s16 *data = gTasks[taskId].data;
     ListMenuGetScrollAndRow(data[0], &cursorPos, &itemsAbove);
     ListMenuSetTemplateField(data[0], LISTFIELD_CURSORKIND, 1);
     data[1] = itemIndex;
+    itemId = BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1]);
+    quantity = BagGetQuantityByPocketPosition(gBagMenuState.pocket + 1, data[1]);
     sBagMenuDisplay->itemOriginalLocation = itemIndex;
-    StringCopy(gStringVar1, ItemId_GetName(BagGetItemIdByPocketPosition(gBagMenuState.pocket + 1, data[1])));
+    if (quantity == 1
+     && itemId != ITEM_SACRED_ASH
+     && itemId != ITEM_LEFTOVERS
+     && itemId != ITEM_BLACK_GLASSES
+     && itemId != ITEM_POWER_LENS
+     && itemId != ITEM_DEVON_GOODS
+     && itemId != ITEM_GO_GOGGLES
+     && itemId != ITEM_GOLD_TEETH)
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(gStringVar3, sText_a);
+        else
+            StringCopy(gStringVar3, sText_o);
+        StringCopy(gStringVar2, sText_deveria);
+        StringCopy(gStringVar1, ItemId_GetName(itemId));
+    }
+    else
+    {
+        if (ItemId_GetFeminine(itemId))
+            StringCopy(gStringVar3, sText_as);
+        else
+            StringCopy(gStringVar3, sText_os);
+        StringCopy(gStringVar2, sText_deveriam);
+        StringCopy(gStringVar1, ItemId_GetNamePlural(itemId));
+    }
     StringExpandPlaceholders(gStringVar4, gOtherText_WhereShouldTheStrVar1BePlaced);
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     BagPrintTextOnWindow(1, FONT_NORMAL, gStringVar4, 0, 3, 2, 0, 0, 0);
@@ -1385,7 +1419,8 @@ static void OpenContextMenu(u8 taskId)
             sContextMenuItemsPtr = sContextMenuItemsBuffer;
             sContextMenuNumItems = 2;
         }
-        else if (ItemId_GetBattleUsage(gSpecialVar_ItemId))
+        else if (ItemId_GetBattleUsage(gSpecialVar_ItemId)
+             && (gSpecialVar_ItemId != ITEM_MASTER_BALL || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_GHOST))))
         {
             sContextMenuItemsPtr = sContextMenuItems_BattleUse;
             sContextMenuNumItems = 2;
@@ -1963,11 +1998,6 @@ static void Task_SelectQuantityToSell(u8 taskId)
     }
 }
 
-static const u8 sText_a[] = _("a");
-static const u8 sText_o[] = _("o");
-static const u8 sText_as[] = _("as");
-static const u8 sText_os[] = _("os");
-
 static void Task_SellItem_Yes(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -1978,6 +2008,7 @@ static void Task_SellItem_Yes(u8 taskId)
      && gSpecialVar_ItemId != ITEM_SACRED_ASH
      && gSpecialVar_ItemId != ITEM_LEFTOVERS
      && gSpecialVar_ItemId != ITEM_BLACK_GLASSES
+     && gSpecialVar_ItemId != ITEM_POWER_LENS
      && gSpecialVar_ItemId != ITEM_DEVON_GOODS
      && gSpecialVar_ItemId != ITEM_GO_GOGGLES
      && gSpecialVar_ItemId != ITEM_GOLD_TEETH)

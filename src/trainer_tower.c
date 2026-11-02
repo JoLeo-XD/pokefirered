@@ -1,6 +1,7 @@
 #include "global.h"
 #include "gflib.h"
 #include "util.h"
+#include "random.h"
 #include "event_data.h"
 #include "cereader_tool.h"
 #include "easy_chat.h"
@@ -376,7 +377,14 @@ static const u16 sPrizeList[] = {
     ITEM_SCOPE_LENS,
     ITEM_METAL_COAT,
     ITEM_DRAGON_SCALE,
-    ITEM_UP_GRADE
+    ITEM_UP_GRADE,
+    ITEM_POWER_ANKLET,
+    ITEM_POWER_BAND,
+    ITEM_POWER_BELT,
+    ITEM_POWER_BRACER,
+    ITEM_POWER_LENS,
+    ITEM_POWER_WEIGHT,
+    ITEM_FOCUS_SASH
 };
 
 static const u16 sTrainerTowerEncounterMusic[] = {
@@ -798,13 +806,12 @@ static void GetOwnerState(void)
 
 static void GiveChallengePrize(void)
 {
-    u16 itemId = sPrizeList[sTrainerTowerState->data.floors->prize];
+    u16 itemId;
+    u8 rand;
 
-    if (TRAINER_TOWER.receivedPrize)
-    {
-        gSpecialVar_Result = 2;
-    }
-    else if (AddBagItem(itemId, 1) == TRUE)
+    rand = Random() % 8;
+    itemId = sPrizeList[sTrainerTowerState->data.floors[rand].prize];
+    if (AddBagItem(itemId, 1) == TRUE)
     {
         CopyItemName(itemId, gStringVar2);
         TRAINER_TOWER.receivedPrize = TRUE;
@@ -814,6 +821,7 @@ static void GiveChallengePrize(void)
     {
         gSpecialVar_Result = 1;
     }
+    gSpecialVar_0x8001 = itemId;
 }
 
 static void CheckFinalTime(void)
@@ -905,7 +913,7 @@ static void ShowResultsBoard(void)
     windowId = AddWindow(sTimeBoardWindowTemplate);
     LoadStdWindowFrameGfx();
     DrawStdWindowFrame(windowId, FALSE);
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_TimeBoard, 74, 0, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_TimeBoard, 56, 0, TEXT_SKIP_DRAW, NULL);
 
     for (i = 0; i < NUM_TOWER_CHALLENGE_TYPES; i++)
     {
@@ -1059,7 +1067,7 @@ void PrintTrainerTowerRecords(void)
     SetUpTrainerTowerDataStruct();
     FillWindowPixelRect(0, PIXEL_FILL(0), 0, 0, 216, 144);
     ValidateOrResetCurTrainerTowerRecord();
-    AddTextPrinterParameterized3(0, FONT_NORMAL, 0x4a, 0, sTextColors, 0, gText_TimeBoard);
+    AddTextPrinterParameterized3(0, FONT_NORMAL, 0x38, 0, sTextColors, 0, gText_TimeBoard);
 
     for (i = 0; i < NUM_TOWER_CHALLENGE_TYPES; i++)
     {

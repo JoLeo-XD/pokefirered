@@ -1693,7 +1693,7 @@ u8 IsPlayerFishingGetRod(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_Fishing);
 
-    if (FuncIsActiveTask(Task_Fishing) && taskId != TASK_NONE && gTasks[taskId].data[0] == 10)
+    if (FuncIsActiveTask(Task_Fishing) && taskId != TASK_NONE && gTasks[taskId].data[0] <= 10)
         // Fishing11 is running; a fish bit.
         return gTasks[taskId].tFishingRod;
     else

@@ -1896,9 +1896,15 @@ void SpriteCB_EnemyMon(struct Sprite *sprite)
 
 static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
 {
-    if ((gIntroSlideFlags & 1) == 0)
+    if (!(gIntroSlideFlags & 1))
     {
-        sprite->x2 += 2;
+        if (gIntroSlideFlags & (1 << 1))
+        {
+            gIntroSlideFlags = 1 << 2;
+            sprite->x2 = 0;
+        }
+        else
+            sprite->x2 += 2;
         if (sprite->x2 == 0)
         {
             sprite->callback = SpriteCB_WildMonShowHealthbox;
@@ -1911,11 +1917,12 @@ static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite)
 {
     if (sprite->animEnded)
     {
+        if (!BeginNormalPaletteFade(0x20000, 0, 10, 0, RGB(8, 8, 8)))
+            return;
         StartHealthboxSlideIn(sprite->sBattler);
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[sprite->sBattler]);
         sprite->callback = SpriteCallbackDummy_2;
         StartSpriteAnimIfDifferent(sprite, 0);
-        BeginNormalPaletteFade(0x20000, 0, 10, 0, RGB(8, 8, 8));
     }
 }
 
@@ -2055,7 +2062,13 @@ static void oac_poke_ally_(struct Sprite *sprite)
 {
     if (!(gIntroSlideFlags & 1))
     {
-        sprite->x2 -= 2;
+        if (gIntroSlideFlags & (1 << 3))
+        {
+            gIntroSlideFlags &= ~(1 << 3);
+            sprite->x2 = 0;
+        }
+        else
+            sprite->x2 -= 2;
         if (sprite->x2 == 0)
         {
             sprite->callback = SpriteCB_Idle;

@@ -684,7 +684,15 @@ static bool8 Transition_WaitForIntro(struct Task *task)
 
 static bool8 Transition_StartMain(struct Task *task)
 {
-    CreateTask(sTasks_Main[task->tTransitionId], 0);
+    if (!JOY_HELD(START_BUTTON)
+     && task->tTransitionId != B_TRANSITION_LORELEI
+     && task->tTransitionId != B_TRANSITION_BRUNO
+     && task->tTransitionId != B_TRANSITION_AGATHA
+     && task->tTransitionId != B_TRANSITION_LANCE
+     && task->tTransitionId != B_TRANSITION_BLUE)
+        CreateTask(sTasks_Main[task->tTransitionId], 0);
+    else
+        FadeScreenBlack();
     task->tState++;
     return FALSE;
 }

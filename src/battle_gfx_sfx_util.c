@@ -162,7 +162,13 @@ void SpriteCB_TrainerSlideIn(struct Sprite *sprite)
 {
     if (!(gIntroSlideFlags & 1))
     {
-        sprite->x2 += sprite->data[0];
+        if (gIntroSlideFlags & (1 << 2))
+        {
+            gIntroSlideFlags = 1 << 3;
+            sprite->x2 = 0;
+        }
+        else
+            sprite->x2 += sprite->data[0];
         if (sprite->x2 == 0)
             sprite->callback = SpriteCallbackDummy;
     }

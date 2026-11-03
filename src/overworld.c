@@ -102,6 +102,7 @@ static EWRAM_DATA struct WarpData sFixedHoleWarp = {};
 static EWRAM_DATA struct InitialPlayerAvatarState sInitialPlayerAvatarState = {};
 
 EWRAM_DATA bool8 gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_OFF;
+EWRAM_DATA u16 gWeightedAmbientCrySpecies = SPECIES_NONE;
 static EWRAM_DATA u16 sAmbientCrySpecies = SPECIES_NONE;
 static EWRAM_DATA bool8 sIsAmbientCryWaterMon = FALSE;
 static EWRAM_DATA u8 sRoamerMoveCounter = 0;
@@ -135,7 +136,7 @@ static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStr
 static u16 GetCenterScreenMetatileBehavior(void);
 static void SetDefaultFlashLevel(void);
 static void Overworld_TryMapConnectionMusicTransition(void);
-static void ChooseAmbientCrySpecies(void);
+static void ChooseAmbientCrySpecies(bool8 pickWeightedSpecies);
 
 static void CB2_Overworld(void);
 static void CB2_LoadMap2(void);
@@ -348,7 +349,7 @@ static void Overworld_ResetStateOnContinue(void)
 {
     FlagClear(FLAG_SYS_SAFARI_MODE);
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
-    ChooseAmbientCrySpecies();
+    ChooseAmbientCrySpecies(FALSE);
     UpdateLocationHistoryForRoamer();
     if(sRoamerMoveCounter == 0)
     {
@@ -773,7 +774,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     RestartWildEncounterImmunitySteps();
     MapResetTrainerRematches(mapGroup, mapNum);
     SetSavedWeatherFromCurrMapHeader();
-    ChooseAmbientCrySpecies();
+    ChooseAmbientCrySpecies(FALSE);
     SetDefaultFlashLevel();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
@@ -815,7 +816,7 @@ static void LoadMapFromWarp(bool32 unused)
     RestartWildEncounterImmunitySteps();
     MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     SetSavedWeatherFromCurrMapHeader();
-    ChooseAmbientCrySpecies();
+    ChooseAmbientCrySpecies(FALSE);
     if (isOutdoors)
         FlagClear(FLAG_SYS_FLASH_ACTIVE);
     SetDefaultFlashLevel();
@@ -844,7 +845,7 @@ static void QL_LoadMapNormal(void)
     isOutdoors = IsMapTypeOutdoors(gMapHeader.mapType);
     TrySetMapSaveWarpStatus();
     SetSavedWeatherFromCurrMapHeader();
-    ChooseAmbientCrySpecies();
+    ChooseAmbientCrySpecies(FALSE);
     SetDefaultFlashLevel();
     QL_ResetDefeatedWildMonRecord();
     QL_RestoreMapLayoutId();
@@ -1208,6 +1209,23 @@ static bool8 IsSwarmInParty(void)
     return FALSE;
 }
 
+#define GetRoamerSpecies() ({\
+    u16 a;\
+    switch (GetStarterSpecies())\
+    {\
+    default:\
+        a = SPECIES_RAIKOU;\
+        break;\
+    case SPECIES_BULBASAUR:\
+        a = SPECIES_ENTEI;\
+        break;\
+    case SPECIES_CHARMANDER:\
+        a = SPECIES_SUICUNE;\
+        break;\
+    }\
+    a;\
+})
+
 void UpdateAmbientCry(s16 *state, u16 *delayCounter)
 {
     switch (*state)
@@ -1223,11 +1241,11 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
             *state = AMB_CRY_FIRST;
         break;
     case AMB_CRY_FIRST:
-        *delayCounter = ((Random() % 2400) + 1200) / (IsSwarmInParty() ? 2 : 1);
+        *delayCounter = ((Random() % 2400) + 1200) * 10 / (IsSwarmInParty() ? 25 : 10);
         *state = AMB_CRY_WAIT;
         break;
     case AMB_CRY_RESET:
-        *delayCounter = ((Random() % 1200) + 1200) / (IsSwarmInParty() ? 2 : 1);
+        *delayCounter = ((Random() % 1200) + 1200) * 10 / (IsSwarmInParty() ? 25 : 10);
         *state = AMB_CRY_WAIT;
         break;
     case AMB_CRY_WAIT:
@@ -1237,9 +1255,12 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
             // Chooses a new species to play the cry of, then plays it. Originally, the species was chosen once and never changed,
             // but this caused the same cry to play over and over again in areas with multiple wild Pokémon. Oversight?
             // But then again, it updates the species every time the player enters a new map, so maybe it was intentional... Hard to say.
-            ChooseAmbientCrySpecies();
+            ChooseAmbientCrySpecies(TRUE);
             PlayAmbientCry();
-            *state = AMB_CRY_RESET;
+            if (sAmbientCrySpecies != GetRoamerSpecies())
+                *state = AMB_CRY_RESET;
+            else
+                *delayCounter = 3600;
         }
         break;
     case AMB_CRY_IDLE:
@@ -1247,7 +1268,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
     }
 }
 
-static void ChooseAmbientCrySpecies(void)
+static void ChooseAmbientCrySpecies(bool8 pickWeightedSpecies)
 {
     u16 mapId = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
     bool8 articunoIsGone = FlagGet(FLAG_CAUGHT_ARTICUNO) || FlagGet(FLAG_DEFEATED_ARTICUNO) || FlagGet(FLAG_RAN_ARTICUNO);
@@ -1262,107 +1283,190 @@ static void ChooseAmbientCrySpecies(void)
     bool8 route12SnorlaxIsGone = FlagGet(FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX) && FlagGet(FLAG_HIDE_ROUTE_12_SNORLAX);
     bool8 route16SnorlaxIsGone = FlagGet(FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX) && FlagGet(FLAG_HIDE_ROUTE_16_SNORLAX);
 
-    sAmbientCrySpecies = GetLocalWildMon(&sIsAmbientCryWaterMon);
+    sAmbientCrySpecies = GetLocalWildMon(&sIsAmbientCryWaterMon, GetPlayerFishingRod());
 
-    //Special case for Lengendary Mon (+ other event Mon, like Marowak and Snorlax). Won't play their cry if they are gone.
-    //The rarity is based on proximity to the Mon's location (in terms of map, not true distance). The closer you are, the more likely it is to hear its cry.
+    // Special case for roaming Pokémon. If the roamer can be at the current map, it has a chance to play its cry instead of the local wild Pokémon's cry.
+    // The chance is increased if the player has a Pokémon with the Swarm ability in their party.
+    if (CanRoamerBeAt(mapId) && IsRoamerActive())
+    {
+        u8 i;
+        u16 chance = AMBIENT_CRY_UBER_RARE;
+
+        if (IsSwarmInParty())
+            chance = AMBIENT_CRY_VERY_RARE;
+
+        if (!(Random() % chance))
+        {
+            u16 roamerSpecies = GetRoamerSpecies();
+            sAmbientCrySpecies = roamerSpecies;
+        }
+    }
+
+    // The cry you hear on the map has a chance to weigh the encounter chance if the player has been standing still for a while.
+    if (pickWeightedSpecies && gStandingStillTimer == 0)
+        gWeightedAmbientCrySpecies = sAmbientCrySpecies;
+    else
+        gWeightedAmbientCrySpecies = SPECIES_NONE;
+
+    // Special case for Lengendary Mon (+ other event Mon, like Marowak and Snorlax). Won't play their cry if they are gone.
+    // The rarity is based on proximity to the Mon's location (in terms of map, not true distance). The closer you are, the more likely it is to hear its cry.
+    // These cries never weigh the encounter chance, since they're static encounters, not wild Pokémon. The only exception is the roaming Pokémon, which is handled above.
     switch (mapId)
     {
     case MAP_POKEMON_TOWER_5F:
-        if (!marowakIsGone && Random() % AMBIENT_CRY_RARE < 1)
+        if (!marowakIsGone && !(Random() % AMBIENT_CRY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_MAROWAK;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_POKEMON_TOWER_6F:
-        if (!marowakIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!marowakIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_MAROWAK;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_ROUTE12:
-        if (!route12SnorlaxIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!route12SnorlaxIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_SNORLAX;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_ROUTE16:
-        if (!route16SnorlaxIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!route16SnorlaxIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_SNORLAX;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_SEAFOAM_ISLANDS_B3F:
-        if (!articunoIsGone && Random() % AMBIENT_CRY_RARE < 1)
+        if (!articunoIsGone && !(Random() % AMBIENT_CRY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_ARTICUNO;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_SEAFOAM_ISLANDS_B4F:
-        if (!articunoIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!articunoIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_ARTICUNO;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_POWER_PLANT:
-        if (!zapdosIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!zapdosIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_ZAPDOS;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_MT_EMBER_EXTERIOR:
-        if (!moltresIsGone && Random() % AMBIENT_CRY_VERY_RARE < 1)
+        if (!moltresIsGone && !(Random() % AMBIENT_CRY_VERY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_MOLTRES;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_MT_EMBER_SUMMIT_PATH_2F:
-        if (!moltresIsGone && Random() % AMBIENT_CRY_RARE < 1)
+        if (!moltresIsGone && !(Random() % AMBIENT_CRY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_MOLTRES;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_MT_EMBER_SUMMIT_PATH_3F:
-        if (!moltresIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!moltresIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_MOLTRES;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_MT_EMBER_SUMMIT:
-        if (!moltresIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+        if (!moltresIsGone && !(Random() % AMBIENT_CRY_COMMON))
+        {
             sAmbientCrySpecies = SPECIES_MOLTRES;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_CERULEAN_CAVE_1F:
-        if (!mewtwoIsGone && Random() % AMBIENT_CRY_RARE < 1)
+        if (!mewtwoIsGone && !(Random() % AMBIENT_CRY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_MEWTWO;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_CERULEAN_CAVE_B1F:
-        if (!mewtwoIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!mewtwoIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_MEWTWO;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_NAVEL_ROCK_FORK:
-        if (Random() % AMBIENT_CRY_VERY_RARE < 1)
+        if (!(Random() % AMBIENT_CRY_VERY_RARE))
         {
-            if (!hoohIsGone)
+            if (Random() % 2)
             {
-                sAmbientCrySpecies = SPECIES_HO_OH;
+                if (!hoohIsGone)
+                    sAmbientCrySpecies = SPECIES_HO_OH;
             }
-        }
-        else if (Random() % AMBIENT_CRY_VERY_RARE == 1)
-        {
-            if (!lugiaIsGone)
+            else if (!lugiaIsGone)
             {
                 sAmbientCrySpecies = SPECIES_LUGIA;
             }
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
         }
         break;
     case MAP_NAVEL_ROCK_SUMMIT_PATH_5F:
-        if (!hoohIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!hoohIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_HO_OH;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_NAVEL_ROCK_SUMMIT:
-        if (!hoohIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+        if (!hoohIsGone && !(Random() % AMBIENT_CRY_COMMON))
+        {
             sAmbientCrySpecies = SPECIES_HO_OH;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_NAVEL_ROCK_BASE_PATH_B11F:
-        if (!lugiaIsGone && Random() % AMBIENT_CRY_UNCOMMON < 1)
+        if (!lugiaIsGone && !(Random() % AMBIENT_CRY_UNCOMMON))
+        {
             sAmbientCrySpecies = SPECIES_LUGIA;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_NAVEL_ROCK_BASE:
-        if (!lugiaIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+        if (!lugiaIsGone && !(Random() % AMBIENT_CRY_COMMON))
+        {
             sAmbientCrySpecies = SPECIES_LUGIA;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_BIRTH_ISLAND_EXTERIOR:
-        if (!deoxysIsGone && Random() % AMBIENT_CRY_VERY_RARE < 1)
+        if (!deoxysIsGone && !(Random() % AMBIENT_CRY_VERY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_DEOXYS;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_FARAWAY_ISLAND_EXTERIOR:
-        if (!mewIsGone && Random() % AMBIENT_CRY_RARE < 1)
+        if (!mewIsGone && !(Random() % AMBIENT_CRY_RARE))
+        {
             sAmbientCrySpecies = SPECIES_MEW;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     case MAP_FARAWAY_ISLAND_INTERIOR:
-        if (!mewIsGone && Random() % AMBIENT_CRY_COMMON < 1)
+        if (!mewIsGone && !(Random() % AMBIENT_CRY_COMMON))
+        {
             sAmbientCrySpecies = SPECIES_MEW;
+            gWeightedAmbientCrySpecies = SPECIES_NONE;
+        }
         break;
     default:
         break;

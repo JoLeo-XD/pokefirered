@@ -71,14 +71,33 @@ static void Task_RunPerStepCallback(u8 taskId)
 
 #define tAmbientCryState data[1]
 #define tAmbientCryDelay data[2]
+static EWRAM_DATA s16 sPrevX = 0;
+static EWRAM_DATA s16 sPrevY = 0;
+EWRAM_DATA u16 gStandingStillTimer = 0;
 
 // RTC functionality from RS was removed here.
 static void Task_RunTimeBasedEvents(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    s16 x, y;
 
-    if (!ArePlayerFieldControlsLocked() && !QL_IS_PLAYBACK_STATE)
-        UpdateAmbientCry(&tAmbientCryState, &tAmbientCryDelay);
+    if (!QL_IS_PLAYBACK_STATE)
+    {
+        if ((!ArePlayerFieldControlsLocked() || GetPlayerFishingRod() != 0xFF))
+            UpdateAmbientCry(&tAmbientCryState, &tAmbientCryDelay);
+
+        PlayerGetDestCoords(&x, &y);
+        if (x != sPrevX || y != sPrevY)
+        {
+            sPrevX = x;
+            sPrevY = y;
+            gStandingStillTimer = 900; // 15 seconds
+        }
+        else if (gStandingStillTimer > 0)
+        {
+            gStandingStillTimer--;
+        }
+    }
 }
 
 void SetUpFieldTasks(void)

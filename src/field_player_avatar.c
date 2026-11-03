@@ -1689,6 +1689,13 @@ void StartFishing(u8 rod)
         QL_AfterRecordFishActionSuccessful();
 }
 
+u8 GetPlayerFishingRod(void)
+{
+    if (FuncIsActiveTask(Task_Fishing))
+        return gTasks[FindTaskIdByFunc(Task_Fishing)].tFishingRod;
+    else
+        return 0xFF;
+}
 
 static void Task_Fishing(u8 taskId)
 {

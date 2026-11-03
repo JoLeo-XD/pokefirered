@@ -280,6 +280,7 @@ static void GenerateWildMon(u16 species, u8 level, u8 slot, u16 rollsTotal)
     u8 nature;
 
     ZeroEnemyPartyMons();
+    gWeightedAmbientCrySpecies = SPECIES_NONE;
     checkCuteCharm = TRUE;
     otIdValue  = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
@@ -380,7 +381,9 @@ enum
 static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8 flags)
 {
     u8 slot = 0;
-    u8 level;
+    u8 level, i;
+    u8 monsCount = CalculatePlayerPartyCount();
+    u8 weightPercent = 20;
     u16 rollsTotal = 1;
     bool8 checkWhiteFlute = TRUE;
 
@@ -470,6 +473,52 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
         }
 
     }
+    for (i = 0; i < monsCount; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+            continue;
+        if (GetMonAbility(&gPlayerParty[i]) == ABILITY_SWARM)
+        {
+            weightPercent = 50;
+            break;
+        }
+    }
+    if (gWeightedAmbientCrySpecies != SPECIES_NONE
+     && gWeightedAmbientCrySpecies != SPECIES_RAIKOU
+     && gWeightedAmbientCrySpecies != SPECIES_ENTEI
+     && gWeightedAmbientCrySpecies != SPECIES_SUICUNE)
+    {
+        u8 maxMons;
+
+        switch (area)
+        {
+        case WILD_AREA_LAND: maxMons = NUM_LAND_MONS_ENCOUNTER_SLOTS;
+            break;
+        case WILD_AREA_WATER: maxMons = NUM_WATER_MONS_ENCOUNTER_SLOTS;
+            break;
+        case WILD_AREA_ROCKS: maxMons = NUM_ROCK_MONS_ENCOUNTER_SLOTS;
+            break;
+        }
+
+        if ((Random() % 100) < weightPercent)
+        {
+            u8 validIndexes[maxMons];
+            u8 validMonCount;
+
+            for (i = 0; i < maxMons; i++)
+                validIndexes[i] = 0;
+
+            for (validMonCount = 0, i = 0; i < maxMons; i++)
+            {
+                if (info->wildPokemon[i].species == gWeightedAmbientCrySpecies)
+                    validIndexes[validMonCount++] = i;
+            }
+
+            if (validMonCount != 0 && validMonCount != maxMons)
+                slot = validIndexes[Random() % validMonCount];
+
+        }
+    }
     level = ChooseWildMonLevel(&info->wildPokemon[slot]);
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
         return FALSE;
@@ -490,6 +539,10 @@ static u16 GenerateFishingEncounter(const struct WildPokemonInfo * info, u8 rod)
     u8 slot = ChooseWildMonIndex_Fishing(info->wildPokemon, rod);
     u8 level = ChooseWildMonLevel(&info->wildPokemon[slot]);
     u8 rollsTotal = 1;
+    u8 i;
+    u8 weightPercent = 20;
+    u8 monsCount = CalculatePlayerPartyCount();
+
     if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
         rollsTotal += SHINY_CHARM_ROLLS;
     if (CheckBagHasItem(ITEM_SHINY_CHARM, 2))
@@ -498,6 +551,62 @@ static u16 GenerateFishingEncounter(const struct WildPokemonInfo * info, u8 rod)
      || (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
      && (GetMonAbility(&gPlayerParty[0]) == ABILITY_ILLUMINATE || GetMonAbility(&gPlayerParty[0]) == ABILITY_ARENA_TRAP)))
         rollsTotal += WHITE_FLUTE_ABILITY_ROLLS;
+
+    for (i = 0; i < monsCount; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+            continue;
+        if (GetMonAbility(&gPlayerParty[i]) == ABILITY_SWARM)
+        {
+            weightPercent = 50;
+            break;
+        }
+    }
+
+    if (gWeightedAmbientCrySpecies != SPECIES_NONE
+     && gWeightedAmbientCrySpecies != SPECIES_RAIKOU
+     && gWeightedAmbientCrySpecies != SPECIES_ENTEI
+     && gWeightedAmbientCrySpecies != SPECIES_SUICUNE)
+    {
+        u8 validIndexes[NUM_SUPER_ROD_ENCOUNTER_SLOTS];
+        u8 validMonCount;
+        u8 maxMons, startMon, lastMon;
+
+        switch (rod)
+        {
+        case OLD_ROD:
+            startMon = 0;
+            lastMon = NUM_OLD_ROD_ENCOUNTER_SLOTS;
+            break;
+        case GOOD_ROD:
+            startMon = NUM_OLD_ROD_ENCOUNTER_SLOTS;
+            lastMon = NUM_GOOD_ROD_ENCOUNTER_SLOTS;
+            break;
+        case SUPER_ROD:
+            startMon = NUM_GOOD_ROD_ENCOUNTER_SLOTS;
+            lastMon = NUM_SUPER_ROD_ENCOUNTER_SLOTS;
+            break;
+        }
+
+        if ((Random() % 100) < weightPercent)
+        {
+            u8 i;
+            maxMons = lastMon - startMon;
+
+            for (i = startMon; i < lastMon; i++)
+                validIndexes[i] = 0;
+
+            for (validMonCount = 0, i = startMon; i < lastMon; i++)
+            {
+                if (info->wildPokemon[i].species == gWeightedAmbientCrySpecies)
+                    validIndexes[validMonCount++] = i;
+            }
+
+            if (validMonCount != 0 && validMonCount != maxMons)
+                slot = validIndexes[Random() % validMonCount];
+
+        }
+    }
     GenerateWildMon(info->wildPokemon[slot].species, level, slot, rollsTotal);
     return info->wildPokemon[slot].species;
 }
@@ -729,11 +838,12 @@ void FishingWildEncounter(u8 rod)
     StartWildBattle(TRUE);
 }
 
-u16 GetLocalWildMon(bool8 *isWaterMon)
+u16 GetLocalWildMon(bool8 *isWaterMon, u8 fishingRod)
 {
     u16 headerId;
     const struct WildPokemonInfo * landMonsInfo;
     const struct WildPokemonInfo * waterMonsInfo;
+    const struct WildPokemonInfo * fishingMonsInfo;
 
     *isWaterMon = FALSE;
     headerId = GetCurrentMapWildMonHeaderId();
@@ -741,27 +851,40 @@ u16 GetLocalWildMon(bool8 *isWaterMon)
         return SPECIES_NONE;
     landMonsInfo = gWildMonHeaders[headerId].landMonsInfo;
     waterMonsInfo = gWildMonHeaders[headerId].waterMonsInfo;
-    // Neither
-    if (landMonsInfo == NULL && waterMonsInfo == NULL)
-        return SPECIES_NONE;
-    // Land Pokemon
-    else if (landMonsInfo != NULL && waterMonsInfo == NULL)
-        return landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
-    // Water Pokemon
-    else if (landMonsInfo == NULL && waterMonsInfo != NULL)
+    fishingMonsInfo = gWildMonHeaders[headerId].fishingMonsInfo;
+    if (fishingRod == 0xFF)
     {
-        *isWaterMon = TRUE;
-        return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
-    }
-    // Either land or water Pokemon
-    if ((Random() % 100) < 80)
-    {
-        return landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
+        // Neither
+        if (landMonsInfo == NULL && waterMonsInfo == NULL)
+            return SPECIES_NONE;
+        // Land Pokemon
+        else if (landMonsInfo != NULL && waterMonsInfo == NULL)
+            return landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
+        // Water Pokemon
+        else if (landMonsInfo == NULL && waterMonsInfo != NULL)
+        {
+            *isWaterMon = TRUE;
+            return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+        }
+        // Either land or water Pokemon
+        if ((Random() % 100) < 80)
+        {
+            return landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
+        }
+        else
+        {
+            *isWaterMon = TRUE;
+            return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+        }
     }
     else
     {
-        *isWaterMon = TRUE;
-        return waterMonsInfo->wildPokemon[ChooseWildMonIndex_WaterRock()].species;
+        // Fishing mon list is empty
+        if (fishingMonsInfo == NULL)
+            return SPECIES_NONE;
+        // Fishing Pokemon
+        else
+            return fishingMonsInfo->wildPokemon[ChooseWildMonIndex_Fishing(SPECIES_NONE, fishingRod)].species;
     }
 }
 

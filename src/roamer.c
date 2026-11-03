@@ -207,6 +207,28 @@ bool8 IsRoamerAt(u8 mapGroup, u8 mapNum)
         return FALSE;
 }
 
+bool8 CanRoamerBeAt(u16 mapId)
+{
+    u8 mapGroup = mapId >> 8;
+    u8 mapNum = mapId & 0xFF;
+    u8 i, j;
+
+    if (mapGroup != ROAMER_MAP_GROUP)
+        return FALSE;
+
+    for (i = 0; i < NUM_LOCATION_SETS; i++)
+    {
+        for (j = 0; j < NUM_LOCATIONS_PER_SET; j++)
+        {
+            if (sRoamerLocations[i][j] != MAP_NUM(MAP_UNDEFINED)
+             && sRoamerLocations[i][j] == mapNum)
+                return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 void CreateRoamerMonInstance(void)
 {
     u32 status;
@@ -270,7 +292,8 @@ void CreateRoamerMonInstance(void)
 
 bool8 TryStartRoamerEncounter(void)
 {
-    if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+    if ((IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && !(Random() % 4))
+     || (gWeightedAmbientCrySpecies == GetRoamerSpecies() && (Random() % 4)))
     {
         CreateRoamerMonInstance();
         return TRUE;
@@ -302,6 +325,11 @@ void ResetRoamerActive(void)
     ROAMER->status = 0;
     ROAMER->active = TRUE;
     RoamerMoveToOtherLocationSet();
+}
+
+bool8 IsRoamerActive(void)
+{
+    return ROAMER->active;
 }
 
 void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)

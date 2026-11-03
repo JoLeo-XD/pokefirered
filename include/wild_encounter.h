@@ -40,7 +40,7 @@ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetaTileBehavior)
 bool8 SweetScentWildEncounter(void);
 bool8 DoesCurrentMapHaveFishingMons(void);
 void FishingWildEncounter(u8 rod);
-u16 GetLocalWildMon(bool8 *isWaterMon);
+u16 GetLocalWildMon(bool8 *isWaterMon, u8 fishingRod);
 u16 GetLocalWaterMon(void);
 bool8 UpdateRepelCounter(void);
 void DisableWildEncounters(bool8 state);

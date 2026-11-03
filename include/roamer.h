@@ -10,6 +10,8 @@ void UpdateLocationHistoryForRoamer(void);
 void RoamerMoveToOtherLocationSet(void);
 void RoamerMove(void);
 bool8 IsRoamerAt(u8 mapGroup, u8 mapNum);
+bool8 CanRoamerBeAt(u16 mapId);
+bool8 IsRoamerActive(void);
 void CreateRoamerMonInstance(void);
 u8 TryStartRoamerEncounter(void);
 void UpdateRoamerHPStatus(struct Pokemon *mon);

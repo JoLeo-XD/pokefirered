@@ -63,6 +63,12 @@ ViridianCity_Text_ThatWasEducationalTakeThis::
     .string "educational, was it not?\p"
     .string "And here, take this, too.$"
 
+ViridianCity_Text_MyMyYouDoGetRustyAsYouAge::
+    .string "My, my… I suppose you do get\n"
+    .string "rusty as you age. But you did\l"
+    .string "get the jist of it, right?\p"
+    .string "And here, take this, too.$"
+
 ViridianCity_Text_WatchThatToLearnBasics::
     .string "If there's something you don't\n"
     .string "understand, watch that.\p"

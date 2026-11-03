@@ -474,6 +474,7 @@ static const u8 sText_PkmnBrokeFree[] = _("Ah, não!\nO POKéMON se libertou!");
 static const u8 sText_ItAppearedCaught[] = _("Awn!\nParecia que tinha pego!");
 static const u8 sText_AarghAlmostHadIt[] = _("Aahh!\nQuase consegui!");
 static const u8 sText_ShootSoClose[] = _("Droga!\nE tão perto, também!");
+static const u8 sText_ShootSoClose2[] = _("Droga!\nE tão perto, também!{PAUSE 127}");
 static const u8 sText_ItDodgedBall2[] = _("よけられた!\nこいつは つかまりそうにないぞ!"); // Unused version of the Marowak ghost dodging text
 static const u8 sText_GotchaPkmnCaught[] = _("É isso aí!\nCapturei {B_OPPONENT_MON1_NAME}!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}\p");
 static const u8 sText_GotchaPkmnCaught2[] = _("É isso aí!\nCapturei {B_OPPONENT_MON1_NAME}!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}{PAUSE 127}");
@@ -773,6 +774,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_ST
     [STRINGID_ITAPPEAREDCAUGHT - BATTLESTRINGS_TABLE_START]              = sText_ItAppearedCaught,
     [STRINGID_AARGHALMOSTHADIT - BATTLESTRINGS_TABLE_START]              = sText_AarghAlmostHadIt,
     [STRINGID_SHOOTSOCLOSE - BATTLESTRINGS_TABLE_START]                  = sText_ShootSoClose,
+    [STRINGID_SHOOTSOCLOSE2 - BATTLESTRINGS_TABLE_START]                 = sText_ShootSoClose2,
     [STRINGID_GOTCHAPKMNCAUGHT - BATTLESTRINGS_TABLE_START]              = sText_GotchaPkmnCaught,
     [STRINGID_GOTCHAPKMNCAUGHT2 - BATTLESTRINGS_TABLE_START]             = sText_GotchaPkmnCaught2,
     [STRINGID_GIVENICKNAMECAPTURED - BATTLESTRINGS_TABLE_START]          = sText_GiveNicknameCaptured,

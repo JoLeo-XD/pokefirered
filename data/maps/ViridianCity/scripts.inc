@@ -45,7 +45,9 @@ ViridianCity_EventScript_GymDoorLocked::
 	msgbox ViridianCity_Text_GymDoorsAreLocked
 	closemessage
 	applymovement LOCALID_PLAYER, ViridianCity_Movement_JumpDownLedge
+	playse SE_LEDGE
 	waitmovement 0
+	waitse
 	releaseall
 	end
 
@@ -230,8 +232,18 @@ ViridianCity_EventScript_DoTutorialBattle::
 	waitstate
 	lock
 	faceplayer
-	msgbox ViridianCity_Text_ThatWasEducationalTakeThis
+	specialvar VAR_RESULT, GetBattleOutcome
+	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, ViridianCity_EventScript_TutorialSuccess
+	call_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ViridianCity_EventScript_TutorialFail
 	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2
 	giveitem ITEM_TEACHY_TV
 	msgbox ViridianCity_Text_WatchThatToLearnBasics
+	return
+
+ViridianCity_EventScript_TutorialSuccess::
+	msgbox ViridianCity_Text_ThatWasEducationalTakeThis
+	return
+
+ViridianCity_EventScript_TutorialFail::
+	msgbox ViridianCity_Text_MyMyYouDoGetRustyAsYouAge
 	return

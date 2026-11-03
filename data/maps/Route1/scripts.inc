@@ -10,6 +10,7 @@ Route1_EventScript_MartClerk::
 	checkitemspace ITEM_POTION
 	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
 	bufferitemname STR_VAR_2, ITEM_POTION, 1
+	buffergenderstringsingle STR_VAR_1, ITEM_POTION
 	playfanfare MUS_LEVEL_UP
 	message Text_ObtainedTheX
 	waitmessage

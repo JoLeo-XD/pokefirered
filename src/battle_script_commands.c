@@ -9537,7 +9537,12 @@ static void Cmd_handleballthrow(void)
         PlayerGetDestCoords(&x, &y);
 
         if (gLastUsedItem == ITEM_SAFARI_BALL)
-            catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
+        {
+            if (FlagGet(FLAG_SYS_BOOSTED_SAFARI_BALLS) == TRUE)
+                catchRate = gBattleStruct->safariCatchFactor * 1275 / 55;
+            else
+                catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
+        }
         else
             catchRate = gSpeciesInfo[gBattleMons[gBattlerTarget].species].catchRate;
 

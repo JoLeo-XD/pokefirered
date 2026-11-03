@@ -19,9 +19,10 @@ void SetSafariZoneFlag(void)
     FlagSet(FLAG_SYS_SAFARI_MODE);
 }
 
-void ResetSafariZoneFlag(void)
+void ResetSafariZoneFlags(void)
 {
     FlagClear(FLAG_SYS_SAFARI_MODE);
+    FlagClear(FLAG_SYS_BOOSTED_SAFARI_BALLS);
 }
 
 void EnterSafariMode(void)
@@ -34,7 +35,7 @@ void EnterSafariMode(void)
 
 void ExitSafariMode(void)
 {
-    ResetSafariZoneFlag();
+    ResetSafariZoneFlags();
     gNumSafariBalls = 0;
     gSafariZoneStepCounter = 0;
 }

@@ -8,14 +8,29 @@ FuchsiaCity_SafariZone_Entrance_Text_PlaySafariGameFor500::
     .string "and catch what you like.\p"
     .string "Would you like to play?$"
 
-FuchsiaCity_SafariZone_Entrance_Text_ThatllBe500WeOnlyUseSpecialBalls::
-    .string "That'll be ¥500, please!\p"
-    .string "We only use a special kind of \n"
-    .string "POKé BALLS here.$"
+FuchsiaCity_SafariZone_Entrance_Text_BoostedBallsForAnExtra3500::
+    .string "We only use a special kind of\n"
+    .string "POKé BALL here, the SAFARI BALL.\p"
+    .string "For an extra ¥3500, you can get\n"
+    .string "BOOSTED SAFARI BALLS in place of\l"
+    .string "the regular ones!\p"
+    .string "These balls are much more effective\n"
+    .string "at catching POKéMON.\p"
+    .string "Would you like to buy some?$"
+
+FuchsiaCity_SafariZone_Entrance_Text_ThatllBe500Please::
+    .string "That'll be ¥500, please!$"
+
+FuchsiaCity_SafariZone_Entrance_Text_ThatllBe4000Total::
+    .string "That'll be ¥4000 total!$"
 
 FuchsiaCity_SafariZone_Entrance_Text_PlayerReceived30SafariBalls::
     .string "{PLAYER} received 30 SAFARI BALLS\n"
     .string "from the attendant.$"
+
+FuchsiaCity_SafariZone_Entrance_Text_PlayerReceived30BoostedSafariBalls::
+    .string "{PLAYER} received 30 BOOSTED SAFARI\n"
+    .string "BALLS from the attendant.$"
 
 FuchsiaCity_SafariZone_Entrance_Text_CallYouOnPAWhenYouRunOut::
     .string "We'll call you on the PA when you\n"
@@ -30,6 +45,12 @@ FuchsiaCity_SafariZone_Entrance_Text_OkayPleaseComeAgain::
 FuchsiaCity_SafariZone_Entrance_Text_OopsNotEnoughMoney::
     .string "Oops!\n"
     .string "Not enough money!$"
+
+FuchsiaCity_SafariZone_Entrance_Text_SorryNotEnoughMoneyForBoostedBalls::
+    .string "Sorry, you don't have enough money\n"
+    .string "for the BOOSTED SAFARI BALLS.\p"
+    .string "I'll just give you the regular\n"
+    .string "SAFARI BALLS instead.$"
 
 FuchsiaCity_SafariZone_Entrance_Text_GoingToLeaveSafariZoneEarly::
     .string "Are you going to leave the\n"

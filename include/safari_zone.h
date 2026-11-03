@@ -8,7 +8,7 @@ extern u16 gSafariZoneStepCounter;
 
 bool32 GetSafariZoneFlag(void);
 void SetSafariZoneFlag(void);
-void ResetSafariZoneFlag(void);
+void ResetSafariZoneFlags(void);
 
 void EnterSafariMode(void);
 void ExitSafariMode(void);

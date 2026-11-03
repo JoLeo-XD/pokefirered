@@ -1689,10 +1689,13 @@ void StartFishing(u8 rod)
         QL_AfterRecordFishActionSuccessful();
 }
 
-u8 GetPlayerFishingRod(void)
+u8 IsPlayerFishingGetRod(void)
 {
-    if (FuncIsActiveTask(Task_Fishing))
-        return gTasks[FindTaskIdByFunc(Task_Fishing)].tFishingRod;
+    u8 taskId = FindTaskIdByFunc(Task_Fishing);
+
+    if (FuncIsActiveTask(Task_Fishing) && taskId != TASK_NONE && gTasks[taskId].data[0] == 10)
+        // Fishing11 is running; a fish bit.
+        return gTasks[taskId].tFishingRod;
     else
         return 0xFF;
 }

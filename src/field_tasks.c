@@ -83,7 +83,7 @@ static void Task_RunTimeBasedEvents(u8 taskId)
 
     if (!QL_IS_PLAYBACK_STATE)
     {
-        if ((!ArePlayerFieldControlsLocked() || GetPlayerFishingRod() != 0xFF))
+        if ((!ArePlayerFieldControlsLocked() || IsPlayerFishingGetRod() != 0xFF))
             UpdateAmbientCry(&tAmbientCryState, &tAmbientCryDelay);
 
         PlayerGetDestCoords(&x, &y);

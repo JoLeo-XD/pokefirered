@@ -25,7 +25,7 @@ void SavePlayerFacingDirectionForTeleport(u8 direction);
 void SetPlayerAvatarTransitionFlags(u16 flags);
 bool8 IsPlayerFacingSurfableFishableWater(void);
 void StartFishing(u8 secondaryId);
-u8 GetPlayerFishingRod(void);
+u8 IsPlayerFishingGetRod(void);
 u8 GetPlayerAvatarObjectId(void);
 u8 PlayerGetElevation(void);
 u8 GetPlayerAvatarGraphicsIdByCurrentState(void);

@@ -1288,7 +1288,7 @@ static void ChooseAmbientCrySpecies(bool8 pickWeightedSpecies)
     bool8 route12SnorlaxIsGone = FlagGet(FLAG_HIDE_ROUTE_12_RECURRING_SNORLAX) && FlagGet(FLAG_HIDE_ROUTE_12_SNORLAX);
     bool8 route16SnorlaxIsGone = FlagGet(FLAG_HIDE_ROUTE_16_RECURRING_SNORLAX) && FlagGet(FLAG_HIDE_ROUTE_16_SNORLAX);
 
-    sAmbientCrySpecies = GetLocalWildMon(&sIsAmbientCryWaterMon, GetPlayerFishingRod());
+    sAmbientCrySpecies = GetLocalWildMon(&sIsAmbientCryWaterMon, IsPlayerFishingGetRod());
 
     // Special case for roaming Pokémon. If the roamer can be at the current map, it has a chance to play its cry instead of the local wild Pokémon's cry.
     // The chance is increased if the player has a Pokémon with the Swarm ability in their party.

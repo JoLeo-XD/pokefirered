@@ -1098,7 +1098,7 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y)
         return TRUE;
     if (FindTaskIdByFunc(Task_ScriptShowMonPic) != TASK_NONE)
         return FALSE;
-    spriteId = CreateMonSprite_PicBox(species, 8 * x + 40, 8 * y + 40, FALSE);
+    spriteId = CreateMonSprite_PicBox(species, 8 * x + 40, 8 * y + 40, TRUE);
     taskId = CreateTask(Task_ScriptShowMonPic, 80);
     gTasks[taskId].tWindowId = CreateWindowFromRect(x, y, 8, 8);
     gTasks[taskId].tState = 0;

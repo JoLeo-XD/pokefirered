@@ -9758,7 +9758,8 @@ static void Cmd_displaydexinfo(void)
                                             120,
                                             64,
                                             0,
-                                            0xFFFF);
+                                            0xFFFF,
+                                            TRUE);
             CpuFill32(0, gPlttBufferFaded, BG_PLTT_SIZE);
             BeginNormalPaletteFade(0x1FFFF, 0, 16, 0, RGB_BLACK);
             ShowBg(0);

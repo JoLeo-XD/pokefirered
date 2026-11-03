@@ -81,10 +81,10 @@ void HandleLoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *des
         isFrontPic = TRUE; // frontPic
     else
         isFrontPic = FALSE; // backPic
-    LoadSpecialPokePic(src, dest, species, personality, isFrontPic);
+    LoadSpecialPokePic(src, dest, species, personality, isFrontPic, FALSE);
 }
 
-void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic)
+void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic, bool8 ignoreGender)
 {
     if (species == SPECIES_UNOWN)
     {
@@ -100,7 +100,7 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
-    else if (HAS_GENDER_DIFFERENCE(species))
+    else if (HAS_GENDER_DIFFERENCE(species) && !ignoreGender)
     {
         if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
         {
@@ -342,10 +342,10 @@ void HandleLoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteShee
         isFrontPic = TRUE; // frontPic
     else
         isFrontPic = FALSE; // backPic
-    LoadSpecialPokePic_DontHandleDeoxys(src, dest, species, personality, isFrontPic);
+    LoadSpecialPokePic_DontHandleDeoxys(src, dest, species, personality, isFrontPic, FALSE);
 }
 
-void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic)
+void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic, bool8 ignoreGender)
 {
     if (species == SPECIES_UNOWN)
     {
@@ -361,7 +361,7 @@ void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
-    else if (HAS_GENDER_DIFFERENCE(species))
+    else if (HAS_GENDER_DIFFERENCE(species) && !ignoreGender)
     {
         if (GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
         {

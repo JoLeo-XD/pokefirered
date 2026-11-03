@@ -1958,13 +1958,15 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 templat
                                                 gMonSpritesGfxPtr->multiUseBuffer,
                                                 species,
                                                 personality,
-                                                TRUE);
+                                                TRUE,
+                                                FALSE);
         else
             LoadSpecialPokePic(&gMonFrontPicTable[species],
                                gMonSpritesGfxPtr->multiUseBuffer,
                                species,
                                personality,
-                               TRUE);
+                               TRUE,
+                               FALSE);
     }
     else
     {
@@ -1974,12 +1976,14 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 templat
                                                 gMonSpritesGfxPtr->multiUseBuffer,
                                                 species,
                                                 personality,
+                                                FALSE,
                                                 FALSE);
         else
             LoadSpecialPokePic(&gMonBackPicTable[species],
                                gMonSpritesGfxPtr->multiUseBuffer,
                                species,
                                personality,
+                               FALSE,
                                FALSE);
     }
     RequestDma3Copy(gMonSpritesGfxPtr->multiUseBuffer, (void *)(OBJ_VRAM0 + (sheet * 0x20)), 0x800, 1);

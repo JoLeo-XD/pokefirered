@@ -1484,6 +1484,11 @@ static void OpenContextMenu(u8 taskId)
                     sContextMenuItemsPtr = sContextMenuItems_GiveCancel;
                     sContextMenuNumItems = 2;
                 }
+                else if (gSpecialVar_ItemId == ITEM_SAFARI_BALL)
+                {
+                    sContextMenuItemsPtr = sContextMenuItems_Cancel;
+                    sContextMenuNumItems = 1;
+                }
                 else
                 {
                     sContextMenuItemsPtr = sContextMenuItems_Field[gBagMenuState.pocket];

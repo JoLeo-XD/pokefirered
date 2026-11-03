@@ -9548,7 +9548,7 @@ static void Cmd_handleballthrow(void)
         if (gLastUsedItem == ITEM_SAFARI_BALL)
         {
             if (FlagGet(FLAG_SYS_BOOSTED_SAFARI_BALLS) == TRUE)
-                catchRate = gBattleStruct->safariCatchFactor * 1275 / 55;
+                catchRate = gBattleStruct->safariCatchFactor * 2575 / 100;
             else
                 catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
         }

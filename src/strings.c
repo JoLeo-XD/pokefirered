@@ -313,6 +313,7 @@ const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} superou sua\npaixão.{P
 const u8 gText_OnlyPkmnForBattle[] = _("Esse é seu único\nPOKéMON para batalha.");
 ALIGNED(4) const u8 gText_PkmnCantBeTradedNow[] = _("Esse POKéMON não pode ser trocado\nagora.");
 ALIGNED(4) const u8 gText_EggCantBeTradedNow[] = _("Um OVO não pode ser trocado agora.");
+ALIGNED(4) const u8 gText_RemoveItemFirst[] = _("Remova o item primeiro.");
 ALIGNED(4) const u8 gText_OtherTrainersPkmnCantBeTraded[] = _("O POKéMON da outra pessoa\nnão pode ser trocado agora.");
 ALIGNED(4) const u8 gText_OtherTrainerCantAcceptPkmn[] = _("A outra pessoa não pode\naceitar esse POKéMON agora.");
 ALIGNED(4) const u8 gText_CantTradeWithTrainer[] = _("Você não pode trocar com essa pessoa\nagora.");

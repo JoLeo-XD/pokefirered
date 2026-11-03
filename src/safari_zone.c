@@ -1,10 +1,12 @@
 #include "global.h"
 #include "battle.h"
 #include "event_scripts.h"
+#include "item.h"
 #include "overworld.h"
 #include "script.h"
 #include "event_data.h"
 #include "field_screen_effect.h"
+#include "constants/items.h"
 
 EWRAM_DATA u8 gNumSafariBalls = 0;
 EWRAM_DATA u16 gSafariZoneStepCounter = 0;
@@ -21,8 +23,12 @@ void SetSafariZoneFlag(void)
 
 void ResetSafariZoneFlags(void)
 {
+    u8 i;
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_BOOSTED_SAFARI_BALLS);
+    for (i = gNumSafariBalls; i > 0; i--)
+        if (RemoveBagItem(ITEM_SAFARI_BALL, i))
+            break;
 }
 
 void EnterSafariMode(void)

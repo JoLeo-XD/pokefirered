@@ -1802,9 +1802,12 @@ static bool8 Fishing6(struct Task *task)
         if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG)
             && (GetMonAbility(&gPlayerParty[i]) == ABILITY_STICKY_HOLD
             || GetMonAbility(&gPlayerParty[i]) == ABILITY_SUCTION_CUPS))
+        {
             chance = 2;
+            break;
+        }
 
-    if (!DoesCurrentMapHaveFishingMons() || Random() % 4 > chance)
+    if (!DoesCurrentMapHaveFishingMons() || (Random() % 4) > chance)
     {
         task->tStep = FISHING_NO_BITE;
     }

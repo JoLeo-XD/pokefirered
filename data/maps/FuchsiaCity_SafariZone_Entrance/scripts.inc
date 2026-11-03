@@ -124,6 +124,7 @@ FuchsiaCity_SafariZone_Entrance_EventScript_EnterSafariZoneWithRegularBalls::
 	message FuchsiaCity_SafariZone_Entrance_Text_PlayerReceived30SafariBalls
 	waitfanfare
 FuchsiaCity_SafariZone_Entrance_EventScript_EnterSafariZone::
+	additem ITEM_SAFARI_BALL, 30
 	call EventScript_RestorePrevTextColor
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_CallYouOnPAWhenYouRunOut
 	closemessage

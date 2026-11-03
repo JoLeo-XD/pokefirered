@@ -91,7 +91,7 @@ static void Task_RunTimeBasedEvents(u8 taskId)
         {
             sPrevX = x;
             sPrevY = y;
-            gStandingStillTimer = 900; // 15 seconds
+            gStandingStillTimer = 1200; // 20 seconds
         }
         else if (gStandingStillTimer > 0)
         {

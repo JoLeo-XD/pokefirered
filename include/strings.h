@@ -866,6 +866,7 @@ extern const u8 gText_WaitingForFriendToFinish[];
 extern const u8 gText_FriendWantsToTrade[];
 extern const u8 gText_PkmnCantBeTradedNow[];
 extern const u8 gText_EggCantBeTradedNow[];
+extern const u8 gText_RemoveItemFirst[];
 extern const u8 gText_OtherTrainersPkmnCantBeTraded[];
 extern const u8 gText_4Qmark[];
 

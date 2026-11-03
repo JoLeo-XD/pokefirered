@@ -21,6 +21,7 @@
 #include "pokemon_storage_system.h"
 #include "new_menu_helpers.h"
 #include "trade_scene.h"
+#include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/moves.h"
 #include "constants/trade.h"
@@ -67,6 +68,7 @@ enum {
     MSG_FRIEND_WANTS_TO_TRADE,
     MSG_MON_CANT_BE_TRADED,
     MSG_EGG_CANT_BE_TRADED,
+    MSG_REMOVE_ITEM_FIRST,
     MSG_FRIENDS_MON_CANT_BE_TRADED,
 };
 
@@ -81,6 +83,7 @@ enum {
     QUEUE_MON_CANT_BE_TRADED,
     QUEUE_EGG_CANT_BE_TRADED,
     QUEUE_FRIENDS_MON_CANT_BE_TRADED,
+    QUEUE_CANT_TRADE_ITEM,
 };
 
 #define QUEUE_DELAY_MSG   3
@@ -552,6 +555,7 @@ static const u8 *const sMessages[] = {
     [MSG_FRIEND_WANTS_TO_TRADE]      = gText_FriendWantsToTrade,
     [MSG_MON_CANT_BE_TRADED]         = gText_PkmnCantBeTradedNow, 
     [MSG_EGG_CANT_BE_TRADED]         = gText_EggCantBeTradedNow,
+    [MSG_REMOVE_ITEM_FIRST]          = gText_RemoveItemFirst,
     [MSG_FRIENDS_MON_CANT_BE_TRADED] = gText_OtherTrainersPkmnCantBeTraded
 };
 
@@ -1912,6 +1916,10 @@ static void CB_ProcessSelectedMonInput(void)
             QueueAction(QUEUE_DELAY_MSG, QUEUE_ONLY_MON2);
             sTradeMenu->callbackId = CB_HANDLE_TRADE_CANCELED;
             break;
+        case CANT_TRADE_ITEM:
+            QueueAction(QUEUE_DELAY_MSG, QUEUE_CANT_TRADE_ITEM);
+            sTradeMenu->callbackId = CB_HANDLE_TRADE_CANCELED;
+            break;
         case CANT_TRADE_NATIONAL:
         case CANT_TRADE_INVALID_MON:
             QueueAction(QUEUE_DELAY_MSG, QUEUE_MON_CANT_BE_TRADED);
@@ -2571,6 +2579,9 @@ static void DoQueuedActions(void)
                 case QUEUE_FRIENDS_MON_CANT_BE_TRADED:
                     PrintTradeMessage(MSG_FRIENDS_MON_CANT_BE_TRADED);
                     break;
+                case QUEUE_CANT_TRADE_ITEM:
+                    PrintTradeMessage(MSG_REMOVE_ITEM_FIRST);
+                    break;
                 }
                 sTradeMenu->queuedActions[i].active = FALSE;
             }
@@ -2748,11 +2759,13 @@ static u32 CanTradeSelectedMon(struct Pokemon * playerParty, int partyCount, int
     struct LinkPlayer * partner;
     int species[PARTY_SIZE];
     int species2[PARTY_SIZE];
+    int itemId[PARTY_SIZE];
 
     for (i = 0; i < partyCount; i++)
     {
         species2[i] = GetMonData(&playerParty[i], MON_DATA_SPECIES_OR_EGG);
         species[i] = GetMonData(&playerParty[i], MON_DATA_SPECIES);
+        itemId[i] = GetMonData(&playerParty[i], MON_DATA_HELD_ITEM);
     }
 
     // Cant trade Eggs or non-Kanto mons if player doesn't have National Dex
@@ -2797,6 +2810,17 @@ static u32 CanTradeSelectedMon(struct Pokemon * playerParty, int partyCount, int
         if (!GetMonData(&playerParty[monIdx], MON_DATA_MODERN_FATEFUL_ENCOUNTER))
             return CANT_TRADE_INVALID_MON;
     }
+
+    if (partner->language != 6 &&
+       (itemId[monIdx] == ITEM_DESTINY_KNOT
+     || itemId[monIdx] == ITEM_FOCUS_SASH
+     || itemId[monIdx] == ITEM_POWER_ANKLET
+     || itemId[monIdx] == ITEM_POWER_BAND
+     || itemId[monIdx] == ITEM_POWER_BELT
+     || itemId[monIdx] == ITEM_POWER_BRACER
+     || itemId[monIdx] == ITEM_POWER_LENS
+     || itemId[monIdx] == ITEM_POWER_WEIGHT))
+        return CANT_TRADE_ITEM;
 
     // Make Eggs not count for numMonsLeft
     for (i = 0; i < partyCount; i++)
@@ -2869,12 +2893,13 @@ static bool32 IsDeoxysOrMewUntradable(u16 species, bool8 isModernFatefulEncounte
     return FALSE;
 }
 
-int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct RfuGameCompatibilityData partner, u16 playerSpecies2, u16 partnerSpecies, u8 requestedType, u16 playerSpecies, bool8 isModernFatefulEncounter)
+int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct RfuGameCompatibilityData partner, u16 playerSpecies2, u16 partnerSpecies, u8 requestedType, u16 playerSpecies, bool8 isModernFatefulEncounter, u16 itemId)
 {
     bool8 playerHasNationalDex = player.hasNationalDex;
     bool8 playerCanLinkNationally = player.canLinkNationally;
     bool8 partnerHasNationalDex = partner.hasNationalDex;
     bool8 partnerCanLinkNationally = partner.canLinkNationally;
+    u8 partnerLanguage = partner.language;
     u8 partnerVersion = partner.version;
     bool8 isNotFRLG;
 
@@ -2933,17 +2958,38 @@ int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct Rf
     if (!partnerHasNationalDex && playerSpecies2 > KANTO_SPECIES_END)
         return UR_TRADE_MSG_PARTNER_CANT_ACCEPT_MON;
 
+    if (partnerLanguage != 6 &&
+       (itemId == ITEM_DESTINY_KNOT
+     || itemId == ITEM_FOCUS_SASH
+     || itemId == ITEM_POWER_ANKLET
+     || itemId == ITEM_POWER_BAND
+     || itemId == ITEM_POWER_BELT
+     || itemId == ITEM_POWER_BRACER
+     || itemId == ITEM_POWER_LENS
+     || itemId == ITEM_POWER_WEIGHT))
+        return UR_TRADE_MSG_REMOVE_ITEM_FIRST;
+
     // Trade is allowed
     return UR_TRADE_MSG_NONE;
 }
 
-int CanRegisterMonForTradingBoard(struct RfuGameCompatibilityData player, u16 species2, u16 species, bool8 isModernFatefulEncounter)
+int CanRegisterMonForTradingBoard(struct RfuGameCompatibilityData player, u16 species2, u16 species, bool8 isModernFatefulEncounter, u16 itemId)
 {
     bool8 hasNationalDex = player.hasNationalDex;
 
     if (IsDeoxysOrMewUntradable(species, isModernFatefulEncounter))
         return CANT_REGISTER_MON;
 
+    if (itemId == ITEM_DESTINY_KNOT
+     || itemId == ITEM_FOCUS_SASH
+     || itemId == ITEM_POWER_ANKLET
+     || itemId == ITEM_POWER_BAND
+     || itemId == ITEM_POWER_BELT
+     || itemId == ITEM_POWER_BRACER
+     || itemId == ITEM_POWER_LENS
+     || itemId == ITEM_POWER_WEIGHT)
+        return CANT_REGISTER_ITEM;
+        
     if (hasNationalDex)
         return CAN_REGISTER_MON;
 

@@ -2300,15 +2300,15 @@ static void BattleStartClearSetData(void)
     gBattleStruct->runTries = 0;
     gBattleStruct->safariRockThrowCounter = 0;
     gBattleStruct->safariBaitThrowCounter = 0;
-    if (gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 % 1275)
+    if ((gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100) % 1275)
         *(&gBattleStruct->safariCatchFactor) = (gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275) + 1;
     else
         *(&gBattleStruct->safariCatchFactor) = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275;
     *(&gBattleStruct->safariEscapeFactor) = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].safariZoneFleeRate * 100 / 1275;
     if (gBattleStruct->safariCatchFactor <= 2)
-        gBattleStruct->safariCatchFactor = 3;
+        *(&gBattleStruct->safariCatchFactor) = 3;
     if (gBattleStruct->safariEscapeFactor <= 1)
-        gBattleStruct->safariEscapeFactor = 2;
+        *(&gBattleStruct->safariEscapeFactor) = 2;
     gBattleStruct->wildVictorySong = 0;
     gBattleStruct->moneyMultiplier = 1;
 
@@ -4452,10 +4452,12 @@ static void HandleAction_WatchesCarefully(void)
         --gBattleStruct->safariRockThrowCounter;
         if (gBattleStruct->safariRockThrowCounter == 0)
         {
-            if (gSpeciesInfo[GetMonData(gEnemyParty, MON_DATA_SPECIES)].catchRate * 100 % 1275)
+            if ((gSpeciesInfo[GetMonData(gEnemyParty, MON_DATA_SPECIES)].catchRate * 100) % 1275)
                 *(&gBattleStruct->safariCatchFactor) = (gSpeciesInfo[GetMonData(gEnemyParty, MON_DATA_SPECIES)].catchRate * 100 / 1275) + 1;
             else
                 *(&gBattleStruct->safariCatchFactor) = gSpeciesInfo[GetMonData(gEnemyParty, MON_DATA_SPECIES)].catchRate * 100 / 1275;
+            if (gBattleStruct->safariCatchFactor <= 2)
+                *(&gBattleStruct->safariCatchFactor) = 3;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MON_WATCHING;
         }
         else
@@ -4484,10 +4486,15 @@ static void HandleAction_WatchesCarefully(void)
 
 static void HandleAction_SafariZoneBallThrow(void)
 {
+    u8 i;
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
+    for (i = gNumSafariBalls; i > 0; i--)
+        if (RemoveBagItem(ITEM_SAFARI_BALL, i))
+            break;
     --gNumSafariBalls;
+    AddBagItem(ITEM_SAFARI_BALL, gNumSafariBalls);
     gLastUsedItem = ITEM_SAFARI_BALL;
     gBattlescriptCurrInstr = gBattlescriptsForBallThrow[ITEM_SAFARI_BALL];
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;

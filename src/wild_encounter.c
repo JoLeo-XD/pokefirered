@@ -433,19 +433,43 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
         // check ability for max level mon
         if ((ability == ABILITY_HUSTLE || ability == ABILITY_VITAL_SPIRIT || ability == ABILITY_PRESSURE) && !(Random() % 2))
         {
+            u8 validIndexes[maxMons];
+            u8 validMonCount;
+
             if (!(Random() % 5))
+            {
                 for (i = 0; i < maxMons; i++)
                 {
                     if (info->wildPokemon[i].maxLevel > info->wildPokemon[slot].maxLevel)
                         slot = i;
                 }
+                for (i = 0; i < maxMons; i++)
+                {
+                    if (info->wildPokemon[i].maxLevel == info->wildPokemon[slot].maxLevel)
+                        validIndexes[validMonCount++] = i;
+                }
+
+                if (validMonCount != 0 && validMonCount != maxMons)
+                    slot = validIndexes[Random() % validMonCount];
+            }
             else
+            {
                 for (i = 0; i < maxMons; i++)
                 {
                     if (info->wildPokemon[i].species == info->wildPokemon[slot].species
-                        && info->wildPokemon[i].maxLevel > info->wildPokemon[slot].maxLevel)
+                     && info->wildPokemon[i].maxLevel > info->wildPokemon[slot].maxLevel)
                         slot = i;
                 }
+                for (i = 0; i < maxMons; i++)
+                {
+                    if (info->wildPokemon[i].species == info->wildPokemon[slot].species
+                     && info->wildPokemon[i].maxLevel == info->wildPokemon[slot].maxLevel)
+                        validIndexes[validMonCount++] = i;
+                }
+
+                if (validMonCount != 0 && validMonCount != maxMons)
+                    slot = validIndexes[Random() % validMonCount];
+            }
         }
         // check ability for match mon
         else if (ability == ABILITY_CUTE_CHARM && !(Random() % 8))

@@ -6213,7 +6213,7 @@ void SetWildMonHeldItem(void)
         }
         if (gSpeciesInfo[species].itemCommon == gSpeciesInfo[species].itemRare)
         {
-            // Both held items are the same, 100% chance to hold item   
+            // Both held items are the same, 100% chance to hold item
             SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
             return;
         }

@@ -9521,14 +9521,14 @@ static void HealCaughtMonWithHealBall(struct Pokemon *mon)
     }
 }
 
-SetCaughtMonWithFriendBallFriendship(struct Pokemon *mon)
+static void SetCaughtMonWithFriendBallFriendship(struct Pokemon *mon)
 {
     u8 friendship = 200;
 
     if (GetMonData(mon, MON_DATA_FRIENDSHIP) < friendship)
         SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
-}*/
-
+}
+*/
 static void Cmd_handleballthrow(void)
 {
     u8 ballMultiplier = 0;
@@ -9576,6 +9576,7 @@ static void Cmd_handleballthrow(void)
         //u8 attackerGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
         //u8 i;
         u8 catchRate;
+        u8 shakes;
         PlayerGetDestCoords(&x, &y);
 
         if (gLastUsedItem == ITEM_SAFARI_BALL)
@@ -9676,17 +9677,20 @@ static void Cmd_handleballthrow(void)
                     else
                         catchRate -= 20;
                 }
-                else if (GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1) < 2000); // Changes nothing for weights between 100.0kg and 199.9kg
+                else if (GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1) < 2000)
+                {
+                    catchRate += 0;
+                }
                 else if (GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1) < 3000)
                 {
-                    if (catchRate >= 235)
+                    if (catchRate > 235)
                         catchRate = 255;
                     else
                         catchRate += 20;
                 }
                 else
                 {
-                    if (catchRate >= 225)
+                    if (catchRate > 225)
                         catchRate = 255;
                     else
                         catchRate += 30;
@@ -9735,19 +9739,23 @@ static void Cmd_handleballthrow(void)
                 break;
             }
         }
-        else if (FlagGet(FLAG_SYS_BOOSTED_SAFARI_BALLS) == FALSE || gLastUsedItem != ITEM_SAFARI_BALL)
+        else if (gLastUsedItem != ITEM_SAFARI_BALL || FlagGet(FLAG_SYS_BOOSTED_SAFARI_BALLS) == FALSE)
             ballMultiplier = sBallCatchBonuses[gLastUsedItem - ITEM_ULTRA_BALL];
         else
-            ballMultiplier = 35;
+            ballMultiplier = 40;
 
-        odds = (catchRate * ballMultiplier / 10)
-            * (maxHPOdds * 3 - hpOdds * 2)
-            / (3 * maxHPOdds);
+        if (gLastUsedItem != ITEM_MASTER_BALL)
+        {
+            odds = (catchRate * ballMultiplier / 10) * (maxHPOdds * 3 - hpOdds * 2)
+                / (3 * maxHPOdds);
 
-        if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
-            odds *= 2;
-        if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
-            odds = (odds * 15) / 10;
+            if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
+                odds *= 2;
+            if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
+                odds = (odds * 15) / 10;
+        }
+        else
+            odds = 255;
 
         if (gLastUsedItem != ITEM_SAFARI_BALL)
         {
@@ -9761,11 +9769,21 @@ static void Cmd_handleballthrow(void)
                     gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
             }
         }
-
-        if (odds > 254) // mon caught
+        if (odds < 255) // mon may be caught, calculate shakes
         {
-            BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);
-            MarkBattlerForControllerExec(gActiveBattler);
+            odds = Sqrt(Sqrt(16711680 / odds));
+            odds = 1048560 / odds;
+
+            for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
+        }
+        else // mon caught
+            shakes = BALL_3_SHAKES_SUCCESS;
+
+        BtlController_EmitBallThrowAnim(BUFFER_A, shakes);
+        MarkBattlerForControllerExec(gActiveBattler);
+
+        if (shakes == BALL_3_SHAKES_SUCCESS)
+        {
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
             /*if (gLastUsedItem == ITEM_HEAL_BALL)
@@ -9778,42 +9796,10 @@ static void Cmd_handleballthrow(void)
             else
                 gBattleCommunication[MULTISTRING_CHOOSER] = 1;
         }
-        else // mon may be caught, calculate shakes
+        else // not caught
         {
-            u8 shakes;
-
-            if (gLastUsedItem == ITEM_MASTER_BALL)
-                shakes = BALL_3_SHAKES_SUCCESS;
-            else
-            {
-                odds = Sqrt(Sqrt(16711680 / odds));
-                odds = 1048560 / odds;
-
-                for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS && Random() < odds; shakes++);
-            }
-
-            BtlController_EmitBallThrowAnim(BUFFER_A, shakes);
-            MarkBattlerForControllerExec(gActiveBattler);
-
-            if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
-            {
-                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
-                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
-                /*if (gLastUsedItem == ITEM_HEAL_BALL)
-                    HealCaughtMonWithHealBall(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]);
-                else if (gLastUsedItem == ITEM_FRIEND_BALL)
-                    SetCaughtMonWithFriendBallFriendship(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]);*/
-
-                if (CalculatePlayerPartyCount() == PARTY_SIZE)
-                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                else
-                    gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-            }
-            else // not caught
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = shakes;
-                gBattlescriptCurrInstr = BattleScript_ShakeBallThrow;
-            }
+            gBattleCommunication[MULTISTRING_CHOOSER] = shakes;
+            gBattlescriptCurrInstr = BattleScript_ShakeBallThrow;
         }
     }
 }

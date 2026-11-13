@@ -2103,9 +2103,11 @@ static void Task_EggHatchPlayBGM(u8 taskID)
     {
         PlayBGM(MUS_EVOLUTION);
         DestroyTask(taskID);
-        // UB: task is destroyed, yet the value is incremented
     }
-    gTasks[taskID].data[0]++;
+#ifdef UBFIX // UB: task is destroyed, yet the value is incremented
+    else
+#endif
+        gTasks[taskID].data[0]++;
 }
 
 static const u8 sText_Uma[] = _("Uma ");

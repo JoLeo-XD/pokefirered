@@ -19,9 +19,14 @@ Route24_Text_JoinTeamRocket::
     .string "Are you sure?\p"
     .string "Come on, join us!\p"
     .string "I'm telling you to join!\p"
-    .string "…Okay, you need convincing!\p"
+    .string "…Okay, you need convincing!$"
+
+Route24_Text_MakeAnOfferYouCantRefuse::
     .string "I'll make you an offer you can't\n"
     .string "refuse!$"
+
+Route24_Text_DoYouNeedFurtherConvincing::
+    .string "So, do you need further convincing?$"
 
 Route24_Text_RocketDefeat::
     .string "Arrgh!\n"

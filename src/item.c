@@ -307,8 +307,8 @@ bool8 RemoveBagItem(u16 itemId, u16 count)
             }
             // RS and Emerald check whether there is enough of the
             // item across all stacks.
-            // For whatever reason, FR/LG assume there's only one
-            // stack of the item.
+            // FR/LG assume there's only one stack of the item, which
+            // through normal gameplay should always be the case.
             else
                 return FALSE;
         }

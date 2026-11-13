@@ -1262,7 +1262,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
             // But then again, it updates the species every time the player enters a new map, so maybe it was intentional... Hard to say.
             ChooseAmbientCrySpecies(TRUE);
             PlayAmbientCry();
-            if (sAmbientCrySpecies != GetRoamerSpecies())
+            if (gWeightedAmbientCrySpecies != GetRoamerSpecies())
                 *state = AMB_CRY_RESET;
             else
                 *delayCounter = 3600;

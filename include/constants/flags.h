@@ -771,7 +771,7 @@
 #define FLAG_DEFEATED_MOLTRES                            0x2E8
 #define FLAG_DEFEATED_ROAMER                             0x2E9
 #define FLAG_FARAWAY_ISLAND_SHOW_CLOUDS                  0x2EA
-#define FLAG_0x2EB                                       0x2EB
+#define FLAG_BATTLED_NUGGET_ROCKET                       0x2EB
 #define FLAG_REVIVED_DOME                                0x2EC
 #define FLAG_REVIVED_HELIX                               0x2ED
 #define FLAG_REVIVED_AMBER                               0x2EE

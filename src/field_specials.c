@@ -2581,3 +2581,10 @@ u8 GetTextColorMode(void)
 {
     return gSaveBlock2Ptr->optionsTextMode;
 }
+
+void SetLocalIdSprite(void)
+{
+    // 8004 = LocalId
+    // 8005 = GraphicsId
+    ObjectEventSetGraphicsIdByLocalIdAndMap(gSpecialVar_0x8004, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, gSpecialVar_0x8005);
+}
